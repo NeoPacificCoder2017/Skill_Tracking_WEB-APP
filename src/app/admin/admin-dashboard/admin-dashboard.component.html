@@ -1,3 +1,31 @@
-<p>
-  Voilà mon dashboard admin
-</p>
+<div class="progress-circle small" data-value="38">
+    <div class="progress-masque">
+        <div class="progress-barre"></div>
+        <div class="progress-sup50"></div>
+    </div>
+</div>
+
+<!-- Liste des formations -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Logo</th>
+      <th scope="col">Nom</th>
+      <!-- <th scope="col">Progression</th> -->
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">Nombre d'étudiant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of listFormations">
+      <th scope="row">{{e.id}}</th>
+      <td> {{e.logo}} </td>
+      <td>{{e.name}}</td>
+      <td>{{e.start_at}}</td>
+      <td>{{e.end_at}}</td>
+      <td>{{e.nb}}</td>
+    </tr>
+</table>
+

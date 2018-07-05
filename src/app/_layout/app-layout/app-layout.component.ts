@@ -17,9 +17,9 @@ export class AppLayoutComponent implements OnInit {
   logout() {
     console.log('logout launched');
     this.authService.logout().subscribe((data) => {
-      console.log('logout test',data);
+      console.log('logout test', data);
       this.router.navigate(['/login']);
-    })
+    });
   }
 
 }
