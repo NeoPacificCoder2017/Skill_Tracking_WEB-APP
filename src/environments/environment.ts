@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://test.skillstracking.npc/api/'
+  apiUrl: 'http://skillstracking/api/'
 };
 
 /*
