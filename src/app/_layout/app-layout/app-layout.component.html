@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-2" style="background-color: #A3A1FB; text-align: center;">
+        <app-app-header></app-app-header>
+    </div>
+    <div class="col-10">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <form class="form-inline">
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Déconnexion</button>
+            </form>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-app-footer></app-app-footer>
