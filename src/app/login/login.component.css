@@ -84,6 +84,8 @@ input.form-in {
 .back {
   background-color: #F8F8F8;
   padding: 100%;
-  z-index: -3;
+  z-index: -2;
   position: absolute;
 }
+
+
