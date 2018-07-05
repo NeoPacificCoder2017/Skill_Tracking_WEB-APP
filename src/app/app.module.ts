@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Import ng-circle-progress
+// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
+
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,7 +42,15 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // NgCircleProgressModule.forRoot({
+    //   radius: 100,
+    //   outerStrokeWidth: 16,
+    //   innerStrokeWidth: 8,
+    //   outerStrokeColor: '#A3A1FB',
+    //   innerStrokeColor: '#E689B7',
+    //   animationDuration: 300
+    // })
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

@@ -1,0 +1,43 @@
+
+/* Legende des radials progresion bar */
+
+#caption_teacher {
+  -webkit-text-fill-color: #E689B8;
+  text-align: right;
+}
+
+#block_teacher {
+  height: 30px;
+  width: 30px;
+  background-color : #E689B7;
+}
+
+#caption_teacher span {
+  float: left;
+}
+
+#caption_student {
+  -webkit-text-fill-color: #A3A1FB;
+  text-align: right;
+}
+#block_student {
+  height: 30px;
+  width: 30px;
+  background-color : #A3A1FB;
+}
+#caption_student span {
+  float: left;
+}
+.navbar-text {
+  display: inline-block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-right: 7px;
+}
+
+/* bouton primary */
+.btn-primary {
+  color: #fff;
+  background-color : #A3A1FB;
+  border-color: #E689B7;
+}
