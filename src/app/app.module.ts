@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -43,7 +44,11 @@ import {MatTableModule} from '@angular/material/table';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     MatTableModule,
+=======
+    RoundProgressModule
+>>>>>>> 0b2e33a2f527455866b3cdf9588b3508da79040a
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
