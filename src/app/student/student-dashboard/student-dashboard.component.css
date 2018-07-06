@@ -1,6 +1,25 @@
+[_nghost-c5] {
 
-/* Legende des radials progresion bar */
+}
 
+ /* round progress bar */
+.roundProgressBarStudent1 {
+  position: absolute;
+
+}
+.roundProgressBarStudent2 {
+  position: absolute;
+  left: 35px;
+  top:91px;
+}
+
+.roundProgressBarTeacher {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Legende round progress bar */
 #caption_teacher {
   -webkit-text-fill-color: #E689B8;
   text-align: right;

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -43,14 +44,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgCircleProgressModule.forRoot({
-    //   radius: 100,
-    //   outerStrokeWidth: 16,
-    //   innerStrokeWidth: 8,
-    //   outerStrokeColor: '#A3A1FB',
-    //   innerStrokeColor: '#E689B7',
-    //   animationDuration: 300
-    // })
+    RoundProgressModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
