@@ -16,6 +16,7 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(apiUrl+ 'login', { email: username, password: password })
     .pipe(map(user => {
+      console.log('authService login user', user);
         if (user && user.token) {
           localStorage.setItem('user', JSON.stringify(user));
         }
@@ -37,5 +38,12 @@ export class AuthService {
       localStorage.removeItem('user');
       return data;
     }));
+  }
+
+  isLogged() {
+
+    let me = JSON.parse(localStorage.getItem('user'));
+    console.log('isLogged',me);
+    return (me)?true:false;
   }
 }
