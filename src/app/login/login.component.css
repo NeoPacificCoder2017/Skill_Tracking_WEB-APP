@@ -52,8 +52,8 @@ h2.grey {
 .element {
   padding: 100%;
   background-color: #A3A1FB;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 60%, 0 46%);
-  clip-path: polygon(0 0, 71% 0, 135% 58%, 0 46%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 55%, 0 48%);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 48%);
   z-index: -2;
   position: absolute;
   display: flex
@@ -90,80 +90,3 @@ input.form-in {
   bottom: 0%;
 }
 
-
-.progress-circle{
-  position: relative;             /* pour servir de référent */
-  box-sizing: border-box;         /* prise en compte bordure dans la dimension */
-  font-size: 6em;                 /* pour définir les dimensions */
-  width: 1em;                     /* fixe la largeur */
-  height: 1em;                    /* fixe la hauteur */
-  border-radius: 50%;             /* rendu aspect circulaire */
-  border: .15em solid #CDE;       /* couleur de fond de l'anneau */
-  background-color: #FFF;         /* couleur de fond de la progress bar */
-}
-
-.progress-masque {
-  position: absolute;
-  width: 1em;                     /* 100% de la largeur */
-  height: 1em;                    /* 100% de la hauteur */
-  left: -.15em;                   /* décalage de la largeur bordure de la gauge */
-  top: -.15em;                    /* décalage de la largeur bordure de la gauge */
-  clip: rect(0, 1em, 1em, .5em);  /* par défaut seule la partie droite est visible */
-}
-
-.progress-circle[data-value^='5']:not([data-value='5']):not([data-value^='5.']) .progress-masque,
-.progress-circle[data-value^='6']:not([data-value='6']):not([data-value^='6.']) .progress-masque,
-.progress-circle[data-value^='7']:not([data-value='7']):not([data-value^='7.']) .progress-masque,
-.progress-circle[data-value^='8']:not([data-value='8']):not([data-value^='8.']) .progress-masque,
-.progress-circle[data-value^='9']:not([data-value='9']):not([data-value^='9.']) .progress-masque,
-.progress-circle[data-value^='100'] .progress-masque {
-  clip: rect(auto, auto, auto, auto);
-}
-
-.progress-barre,
-.progress-sup50 {
-  position: absolute;
-  box-sizing: border-box;         /* prise en compte bordure dans la dimension */
-  border-width: .15em;            /* largeur bordure de la gauge */
-  border-style: solid;
-  border-color: #069;
-  border-radius: 50%;             /* rendu aspect circulaire */
-  width: 1em;                     /* largeur à 100% */
-  height: 1em;                    /* hauteur à 100% */
-  clip: rect(0, .5em, 1em, 0);    /* on ne garde que la partie gauche */
-}
-
-.progress-sup50 {
-  display: none;
-  clip: rect(0, 1em, 1em, .5em);
-}
-
-.progress-circle[data-value^='5']:not([data-value='5']):not([data-value^='5.']) .progress-sup50,
-.progress-circle[data-value^='6']:not([data-value='6']):not([data-value^='6.']) .progress-sup50,
-.progress-circle[data-value^='7']:not([data-value='7']):not([data-value^='7.']) .progress-sup50,
-.progress-circle[data-value^='8']:not([data-value='8']):not([data-value^='8.']) .progress-sup50,
-.progress-circle[data-value^='9']:not([data-value='9']):not([data-value^='9.']) .progress-sup50,
-.progress-circle[data-value^='100'] .progress-sup50 {
-  display:block;
-}
-
-.progress-circle:after {
-  content: attr(data-value) "%";  /* récup. valeur de progression */
-  font-size: 0.15em;              /* taille de la font en % du parent */
-  height: 100%;                   /* centrage dans le parent */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /*-- pour effet shadow intérieur --*/
-  border-radius: 50%;
-  box-shadow: 0 0 .5em rgba(0, 0, 0, .5) inset;
-}
-
-.progress-circle.small {
-  font-size: 5em;                 /* soit 80px avec une font de 16px */
-}
-
-.progress-circle.red {
-  border-color: #F8E0E0;          /* couleur de fond de la barre */
-}
