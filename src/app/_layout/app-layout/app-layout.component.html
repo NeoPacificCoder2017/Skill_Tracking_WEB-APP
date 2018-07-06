@@ -1,12 +1,17 @@
-<div class="row">
-    <div class="col-2" style="background-color: #A3A1FB; text-align: center;">
-        <app-app-header></app-app-header>
+<app-app-header></app-app-header>
+
+<!-- top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <button (click)="logout()" class="btn bg-purple pull-right">
+            Déconnexion
+        </button>
     </div>
-    <div class="col-10 pt-2">
-        <form class="form-inline pr-4" style="float: right;">
-            <button class="btn my-2 my-sm-0" style="background: #A3A1FB; color: white;" (click)="logout()">Déconnexion</button>
-        </form>
-        <router-outlet></router-outlet>
-    </div>
+</div>
+<!-- /top navigation -->
+
+<!-- page content -->
+<div class="right_col" role="main">
+<router-outlet></router-outlet>
 </div>
 <app-app-footer></app-app-footer>
