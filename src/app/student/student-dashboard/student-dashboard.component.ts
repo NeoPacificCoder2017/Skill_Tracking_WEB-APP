@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-dashboard.component.css']
 })
 export class StudentDashboardComponent implements OnInit {
-current = 75;
+current = 30;
 max = 100;
-
   constructor() { }
 
   ngOnInit() {
