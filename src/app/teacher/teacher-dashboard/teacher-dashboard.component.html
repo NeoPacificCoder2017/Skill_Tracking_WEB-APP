@@ -1,6 +1,9 @@
-<div class="container pt-5">
-    <table class="table table-borderless">
-      <thead class="" style="background-color: rgb(242, 242, 242);">
+<div class="pt-2 p-4">
+    <div class="pb-3">
+      <h2 style="font-size: 35px;">Accueil</h2>
+    </div>
+    <table class="table table-borderless" style="color: #999">
+      <thead class="" style="background-color: rgb(242, 242, 242); font-size: 14px; color: #999">
         <tr class="tablecolor">
           <th scope="col">#</th>
           <th scope="col">NOM</th>
@@ -11,10 +14,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <br>
+        <tr class="rounded shadow mb-5 bg-white rounded">
           <th scope="row"></th>
           <td>NPC</td>
-          <td>progression</td>
+          <td class="pb-4">
+            <round-progress style="position: absolute" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="24"[stroke]="5"></round-progress>
+            <round-progress class="progresseBarreTeacher" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="16"[stroke]="5"></round-progress>
+          </td>
+          <td>12 AOUT 2018</td>
+          <td>12 AOUT 2017</td>
+          <td>10</td>
+        </tr>
+          
+        <br>
+        <tr class="rounded shadow mb-5 bg-white rounded">
+          <th scope="row"></th>
+          <td>NPC</td>
+          <td class="pb-4">
+            <round-progress style="position: absolute" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="24"[stroke]="5"></round-progress>
+            <round-progress class="progresseBarreTeacher" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="16"[stroke]="5"></round-progress>
+          </td>
           <td>12 AOUT 2018</td>
           <td>12 AOUT 2017</td>
           <td>10</td>
