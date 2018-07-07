@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Import ng-circle-progress
+// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
+
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';

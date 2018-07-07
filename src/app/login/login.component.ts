@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  redirect = [null,'admin','teacher','student'];
+  redirect = [null, 'admin', 'teacher', 'student'];
 
   constructor(
     private authService: AuthService,
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       });
 
       // reset login status
-      //this.authService.logout();
+      // this.authService.logout();
 
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         data => {
           this.loading = false;
           console.log('login data', data);
-          this.router.navigate([this.redirect[data.user_type_id]+'/dashboard']);
+          this.router.navigate([this.redirect[data.user_type_id] + '/dashboard']);
         },
         error => {
             this.loading = false;

@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<any>(apiUrl+ 'login', { email: username, password: password })
+    return this.http.post<any>(apiUrl + 'login', { email: username, password: password })
     .pipe(map(user => {
       console.log('authService login user', user);
         if (user && user.token) {
@@ -25,16 +25,16 @@ export class AuthService {
   }
 
   logout() {
-    let me = JSON.parse(localStorage.getItem('user'));
+    const me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+ me.token
+        'Authorization': 'Bearer ' + me.token
       })
     };
-    return this.http.get(apiUrl+ 'logout', httpOptions)
+    return this.http.get(apiUrl + 'logout', httpOptions)
     .pipe(map(data => {
-      console.log('logout data',data);
+      console.log('logout data', data);
       localStorage.removeItem('user');
       return data;
     }));
@@ -42,8 +42,8 @@ export class AuthService {
 
   isLogged() {
 
-    let me = JSON.parse(localStorage.getItem('user'));
-    console.log('isLogged',me);
-    return (me)?true:false;
+    const me = JSON.parse(localStorage.getItem('user'));
+    console.log('isLogged', me);
+    return (me) ? true : false;
   }
 }
