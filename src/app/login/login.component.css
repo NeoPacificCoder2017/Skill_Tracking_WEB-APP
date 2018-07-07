@@ -46,17 +46,17 @@ h2.grey {
   color: rgb(175, 175, 175);
   font-family: "Open Sans";
   padding: 5% 0%;
+  top: -0.5em;
 }
 
 .element {
   padding: 100%;
-  float: left;
   background-color: #A3A1FB;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 60%, 0 46%);
-  clip-path: polygon(0 0, 71% 0, 135% 58%, 0 46%);
-  shape-margin: 2em;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 55%, 0 48%);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 48%);
   z-index: -2;
   position: absolute;
+  display: flex
 }
 
 h2.skill-title {
@@ -84,6 +84,9 @@ input.form-in {
 .back {
   background-color: #F8F8F8;
   padding: 100%;
-  z-index: -3;
+  z-index: -2;
   position: absolute;
+  top: 0%;
+  bottom: 0%;
 }
+

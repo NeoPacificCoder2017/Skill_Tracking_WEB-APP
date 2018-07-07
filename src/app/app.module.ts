@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     LoginComponent,
     StudentDashboardComponent,
     TeacherDashboardComponent,
-    AdminDashboardComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

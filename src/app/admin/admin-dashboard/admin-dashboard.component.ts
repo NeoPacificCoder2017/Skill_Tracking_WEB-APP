@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,11 +8,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  redirect = [null,'admin','teacher','student'];
+  redirect = [null, 'admin', 'teacher', 'student'];
+  listFormations: any;
+  // listFormations = [
+  //  {
+  //    id: 1,
+  //    name: 'NPC',
+  //    logo: 'npc.jpg',
+  //    start_at: '10/08/17',
+  //    end_at: '18/12/18',
+  //    nb: '12'
+  //  },
+  //  {
+  //   id: 1,
+  //   name: 'NPC',
+  //   logo: 'npc.jpg',
+  //   start_at: '10/08/17',
+  //   end_at: '18/12/18',
+  //   nb: '12'
+  // },
+  // {
+  //   id: 1,
+  //   name: 'NPC',
+  //   logo: 'npc.jpg',
+  //   start_at: '10/08/17',
+  //   end_at: '18/12/18',
+  //   nb: '12'
+  // },
+  // ];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.get('formations').subscribe(
+      data => {
+        console.log('data', data);
+        this.listFormations = data.data;
+      }
+    )
   }
+
+
 
 }
