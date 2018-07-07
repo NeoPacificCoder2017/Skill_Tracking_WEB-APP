@@ -33,8 +33,8 @@
       <tbody>
         <br>
         <tr *ngFor="let e of listFormations" class="rounded shadow mb-5 bg-white rounded rad text-row">
-          <th scope="row">{{e.id}}</th>
-          <td> {{e.logo}} </td>
+          <th scope="row" >{{e.id}}</th>
+          <td style="width: 60px;"><img src="{{ e.logo }}" class="img-circle profile_img" ></td>
           <td>{{e.name}}</td>
           <td class="pb-4 barre">
             <round-progress class="progressBar1" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="20" [stroke]="3"></round-progress>
@@ -42,7 +42,7 @@
           </td>
           <td>{{e.start_at}}</td>
           <td>{{e.end_at}}</td>
-          <td>{{e.nb}}</td>
+          <td>20</td>
           <td><i class="glyphicon glyphicon-pencil"></i></td>
           <td><i class="glyphicon glyphicon-trash"></i></td>
         </tr>
