@@ -16,15 +16,15 @@ export class AppLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.isLogged = this.authService.isLogged();
-    if(!this.isLogged) this.router.navigate(['/login']);
+    if (!this.isLogged) { this.router.navigate(['/login']); }
   }
 
   logout() {
     console.log('logout launched');
     this.authService.logout().subscribe((data) => {
-      console.log('logout test',data);
+      console.log('logout test', data);
       this.router.navigate(['/login']);
-    })
+    });
   }
 
 }
