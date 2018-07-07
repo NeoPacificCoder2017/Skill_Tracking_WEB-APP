@@ -37,10 +37,10 @@
   font-weight: bold;
 }
 /* Legende round progress bar */
-#caption_teacher {
+/* #caption_teacher {
   -webkit-text-fill-color: #E689B8;
   text-align: right;
-}
+} */
 
 #block_teacher {
   height: 30px;
@@ -99,4 +99,8 @@
   transition: all .2s ease
 }
 
-/*class div pour un module: animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12 */
+/* légende */
+.legende {
+  display: inline-flex;
+  vertical-align: middle;
+}
