@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -36,9 +37,14 @@ export class AdminDashboardComponent implements OnInit {
   },
   ];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.get('formations').subscribe(
+      data => {
+        console.log('data', data);
+      }
+    )
   }
 
 

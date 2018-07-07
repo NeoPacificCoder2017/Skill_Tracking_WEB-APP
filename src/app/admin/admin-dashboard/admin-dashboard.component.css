@@ -55,3 +55,13 @@ i.white {
   top: -35px;
   vertical-align: inherit;
 }
+
+/* légende */
+.legende {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.text-row {
+  text-align: center;
+}

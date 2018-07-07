@@ -11,9 +11,9 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class ApiService {
-  
-  httpOptions : any;
-  me : any;
+
+  httpOptions: any;
+  me: any;
 
   constructor(private http: HttpClient) {
     this.setHeaders();
@@ -21,16 +21,16 @@ export class ApiService {
 
   setHeaders() {
     this.me = JSON.parse(localStorage.getItem('user'));
-    if(this.me) {
+    if (this.me) {
       this.httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': 'Bearer '+ this.me.token
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.me.token
         })
       };
     }
   }
-  
+
   get(url): any {
     return this.http.get(apiUrl + url, this.httpOptions);
   }

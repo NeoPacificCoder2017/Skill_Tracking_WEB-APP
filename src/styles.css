@@ -1,19 +1,19 @@
 html , body{
-	
+
     height:100%;
-    
+
    }
-    
+
    .full-width {
-       
+
     width:100%;
-    
+
     }
-    
+
    .full-height{
     height:100%;
     }
-   
+
    .daterangepicker .ranges li {
        color: #73879C
    }
@@ -415,7 +415,7 @@ html , body{
        color: #9CC2CB
    }
    .red {
-       color: #E74C3C
+       color: #E689B8
    }
    .dark {
        color: #34495E
@@ -3222,9 +3222,9 @@ html , body{
    .form-group .btn {
        margin-bottom: -6px;
    }
-   
+
    .input-group-btn .btn { margin-bottom:0; }
-   
+
    /*!
     * bootstrap-vertical-tabs - v1.2.1
     * https://dbtek.github.io/bootstrap-vertical-tabs
@@ -3232,7 +3232,7 @@ html , body{
     * Copyright (c) 2014 İsmail Demirbilek
     * License: MIT
     */
-   
+
    .tabs-left,
    .tabs-right {
        border-bottom: none;
@@ -4162,11 +4162,11 @@ html , body{
        min-height: 300px;
        border: 1px solid #e5e5e5
    }
-   
+
 
    /* CUSTOM STYLES */
 
-   
+
 
 
 
@@ -4175,7 +4175,7 @@ html , body{
        direction: rtl;
    }
    */
-   
+
    .main_menu .label {
        line-height: 11px;
        margin-top: 4px;
@@ -4189,39 +4189,39 @@ html , body{
            float: none;
        }
    }
-   
-   
+
+
    @media (max-width: 767px) {
       .dataTables_length { float:none; }
    }
-   
-   
-   
-   
+
+
+
+
    /* CSS3 Checkbox */
    /*
    .checkbox-input { display:block;position:relative; }
    .checkbox-input:before { display:block;content:"";position:absolute;top:2px;left:0;height:20px;width:20px;background:red;border-radius:3px; }
-   
-   
+
+
     #input + label:after {
        content: 'click my input';
        color: blue;
      }
-   
+
      #input:focus + label:after {
        content: 'not valid yet';
        color: blue;
      }
-   
+
      #input:valid + label:after {
        content: 'looks good';
        color: red;
      }
-   
+
    /* CSS3 Checkbox - end */
    /*
-   
+
    /*
    .checkbox 																										{ display: block;position:relative;cursor:pointer; }
    .checkbox input 																								{ position:absolute;z-index:-1;opacity:0;left:0;top:0; }
@@ -4234,29 +4234,28 @@ html , body{
    .checkbox input:checked ~ div:after 																	{ display: block; }
    .checkbox-wp div:after 																					{ left: 7px;top: 3px;width: 7px;height: 11px;border: solid #fff;border-width: 0 2px 2px 0;transform: rotate(40deg); }
    .checkbox-wp input:disabled ~ div:after 																{ border-color: #F2F2F2; }
-   
-   
+
+
    .checkbox-radio div 																							{ border-radius: 50%; }
    .checkbox-radio div:after 																					{ left: 7px;top: 7px;height: 6px;width: 6px;border-radius: 50%;background: #fff; }
    .checkbox-radio input:disabled ~ div:after 															{ background: #F2F2F2; }
-   
-   
+
+
    .checkbox, .radio { margin-top:-3px; }
-   
+
    table thead .checkbox { margin-top:-7px;margin-top:-21px; }
    table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
    */
-               
+
    .daterangepicker.xdisplay { width:228px; }
-   
+
    .dataTables_wrapper > .row{
      overflow:auto !important; /*prevent datatables overflowing its container*/
    }
-   
+
    /** bootstrap-datetimepicker **/
    .input-group.date .input-group-addon{
        border-radius: 0px !important;
        background-color: #ffff !important;
    }
    /** /bootstrap-datetimepicker **/
-   

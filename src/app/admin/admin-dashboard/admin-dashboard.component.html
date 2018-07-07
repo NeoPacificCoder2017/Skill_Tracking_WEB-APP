@@ -1,18 +1,24 @@
 <!-- create a new formation -->
-<div class="bouton-add">
+ <div class="bouton-add">
     <span class="add-form">Ajouter une formation     </span>
     <button type="button" class="btn btn-add btn-circle btn-xl"><i class="glyphicon glyphicon-plus white"></i></button>
 </div>
 
-
+ <!-- Légende -->
+<div class="legende">
+ <p><i class="fa fa-square purple"></i>   PROGRESSION SUR LA FORMATION</p>
+ <p><i class="fa fa-square red"></i>   PROGRESSION SUR LA MODULE</p>
+</div>
 <!-- Liste des formations -->
 <div class="pt-2 p-4">
     <div class="pb-3">
       <h2 style="font-size: 35px;">Liste des formations</h2>
     </div>
+
+    <!-- Tableau des formations -->
     <table class="table table-borderless space" style="color: #999">
       <thead class="" style="background-color: rgb(242, 242, 242); font-size: 14px; color: #999">
-        <tr class="tablecolor rad">
+        <tr class="tablecolor rad text-row">
             <th scope="col">#</th>
             <th scope="col">Logo</th>
             <th scope="col">Nom</th>
@@ -26,7 +32,7 @@
       </thead>
       <tbody>
         <br>
-        <tr *ngFor="let e of listFormations" class="rounded shadow mb-5 bg-white rounded rad">
+        <tr *ngFor="let e of listFormations" class="rounded shadow mb-5 bg-white rounded rad text-row">
           <th scope="row">{{e.id}}</th>
           <td> {{e.logo}} </td>
           <td>{{e.name}}</td>
