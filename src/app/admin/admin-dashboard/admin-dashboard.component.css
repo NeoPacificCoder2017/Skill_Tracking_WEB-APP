@@ -1,65 +1,6 @@
- /* round progress bar */
- .roundProgressBarStudent1 {
-  position: absolute;
-
-}
-.roundProgressBarStudent2 {
-  position: absolute;
-  left: 35px;
-  top:91px;
-}
-
-.roundProgressBarTeacher {
-  display: block;
-  position: absolute;
-  overflow: hidden;
-}
-
-/* Legende round progress bar */
-#caption_teacher {
-  -webkit-text-fill-color: #E689B8;
-  text-align: right;
-}
-
-#block_teacher {
-  height: 30px;
-  width: 30px;
-  background-color : #E689B7;
-}
-
-#caption_teacher span {
-  float: left;
-}
-
-#caption_student {
-  -webkit-text-fill-color: #A3A1FB;
-  text-align: right;
-}
-#block_student {
-  height: 30px;
-  width: 30px;
-  background-color : #A3A1FB;
-}
-#caption_student span {
-  float: left;
-}
-.navbar-text {
-  display: inline-block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin-right: 7px;
-}
-
-/* bouton primary */
-.btn-primary {
-  color: #fff;
-  background-color : #A3A1FB;
-  border-color: #E689B7;
-}
-
 /*Boxe shadow de la liste du tableau*/
 .shadow {
-  box-shadow: 0 8px 6px -6px rgb(161, 161, 161);
+  box-shadow: 0 7px 13px -5px rgb(161, 161, 161);
 }
 
 .space {
@@ -67,11 +8,8 @@
   border-spacing: 0em 1em;
 }
 
-
 /* bouton de création */
-
 .btn-circle {
-  float: right;
   width: 30px;
   height: 30px;
   text-align: center;
@@ -100,4 +38,20 @@
 
 i.white {
   color: white;
+}
+
+.bouton-add {
+  float: right;
+}
+
+.add-form {
+  color: rgb(38, 38, 182);
+}
+
+/* barre de progression */
+
+.progressBar2 {
+  left: 5px;
+  top: -35px;
+  vertical-align: inherit;
 }
