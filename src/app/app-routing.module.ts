@@ -34,7 +34,7 @@ const routes: Routes = [
       // ROUTES TEACHER
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},
       { path: 'teacher/formation', component: TeacherFormationComponent},
-
+      
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
     ]

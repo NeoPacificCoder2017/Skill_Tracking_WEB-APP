@@ -1,3 +1,53 @@
-<p>
-  student-dashboard works!
-</p>
+<!-- Légende -->
+<div class="legende">
+    <p><i class="fa fa-square purple"></i>Validée par l'étudiant</p>
+    <p><i class="fa fa-square red"></i>   Validée par le formateur</p>
+</div>
+<!-- slide show -->
+<div class="row">
+  <div class="col-md-12">
+    <!-- Liste des modules -->
+    <!-- bar-progress -->
+    <div class="roundProgressBarWrapper" *ngFor="let item of dataStudent" (click)="filterByModule(item.module.id)">
+      <round-progress class="roundProgressBarTeacher"
+        [stroke]="10" [radius]="70" [current]="item.module.progression.teacher*100/item.module.totalSkills" [max]="max" [color]="'#E689B8'">
+      </round-progress>
+      <round-progress class="roundProgressBarStudent"
+        [stroke]="10" [radius]="56" [current]="item.module.progression.student*100/item.module.totalSkills" [max]="max" [color]="'#A3A1FB'">
+      </round-progress>
+      <div class="progressTeacherText red">{{ item.module.progression.teacher*100/item.module.totalSkills }} %</div>
+      <div class="progressStudentText purple">{{ item.module.progression.student*100/item.module.totalSkills }} %</div>
+      <div class="moduleName">{{ item.module.name }}</div>
+    </div>
+  </div>
+  </div>
+
+<br><br><br><br><br><br><br>
+<!-- Liste des competences -->
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Compétence</th>
+        <th scope="col">Module</th>
+        <th scope="col">Validé par le formateur le</th>
+        <th scope="col">Validé par l'étudiant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center" *ngFor="let item of skills">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.module_name }}</td>
+        <td>{{ item.progression.teacher_validation_date }}</td>
+        <td>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" [checked]="item.progression.student_validation">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

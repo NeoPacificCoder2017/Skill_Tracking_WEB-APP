@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Import ng-circle-progress
+// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
+
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
@@ -22,6 +25,7 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

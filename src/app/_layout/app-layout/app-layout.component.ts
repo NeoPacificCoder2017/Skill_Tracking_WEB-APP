@@ -9,9 +9,14 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class AppLayoutComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  isLogged = false;
+  constructor(private authService: AuthService, private router: Router) {
+    // localStorage.removeItem('user');
+  }
 
   ngOnInit() {
+    this.isLogged = this.authService.isLogged();
+    if (!this.isLogged) { this.router.navigate(['/login']); }
   }
 
   logout() {
