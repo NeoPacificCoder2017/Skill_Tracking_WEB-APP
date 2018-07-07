@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class TeacherDashboardComponent implements OnInit {
 
-  redirect = [null,'admin','teacher','student'];
+  redirect = [null, 'admin', 'teacher', 'student'];
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -19,9 +19,9 @@ export class TeacherDashboardComponent implements OnInit {
   logout() {
     console.log('logout launched');
     this.authService.logout().subscribe((data) => {
-      console.log('logout test',data);
+      console.log('logout test', data);
       this.router.navigate(['/login']);
-    })
+    });
   }
 
 }
