@@ -1,3 +1,9 @@
+.accueil {
+    font-size: 35px;
+    width: 20%;
+    float: left;
+}
+
 .progresseBarreTeacher{
     left: 6px;
     top: 6px;
@@ -12,3 +18,10 @@
 /* .shadow {
     box-shadow: 0 8px 6px -6px black;
   } */
+
+/* légende */
+.legende {
+    display: flex;
+    vertical-align: middle;
+    padding: 20px;
+  }

@@ -1,7 +1,12 @@
-<div class="pt-2 p-4">
+<div class="pt-2 p-4 bg-white">
     <div class="pb-3">
-      <h2 style="font-size: 35px;">Accueil</h2>
+      <h2 class="accueil">Accueil</h2>
+      <div class="legende">
+        <p style="padding-right: 20px;"><i class="fa fa-square purple"></i>   PROGRESSION SUR LA FORMATION</p>
+        <p><i class="fa fa-square red"></i>   PROGRESSION PAR MODULE</p>
+       </div>
     </div>
+    
     <table class="table table-borderless" style="color: #999">
       <thead class="" style="background-color: rgb(242, 242, 242); font-size: 14px; color: #999">
         <tr class="tablecolor">
@@ -14,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="rounded bg-white rounded shadowFormation" (click)="goToFormation(1)" *ngFor="let item of formations">
+        <tr class="rounded bg-white shadowFormation mb-5 bg-white rad text-row" (click)="goToFormation(1)" *ngFor="let item of formations">
           <th scope="row" style="width: 100px;"><img src="{{ item.logo }}" class="img-circle profile_img" style="width: 60%;"/></th>
           <td>{{ item.name }}</td>
           <td class="pb-4">
