@@ -26,7 +26,7 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   public getFormations(): any {
-    this.apiService.get('formations')
+    this.apiService.get('getAllFormations')
     .subscribe((data) => {
       this.formations = data.data;
       console.log('getFormations data', this.formations);

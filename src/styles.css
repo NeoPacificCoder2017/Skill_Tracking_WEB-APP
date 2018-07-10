@@ -13,6 +13,9 @@ html , body{
    .full-height{
     height:100%;
     }
+    app-root, app-site-layout, app-login {
+        height: 100%;
+    }
 
    .daterangepicker .ranges li {
        color: #73879C
@@ -420,6 +423,9 @@ html , body{
    .dark {
        color: #34495E
    }
+   .grey {
+       color: rgb(175, 175, 175);
+   }
    .border-blue {
        border-color: #3498DB !important
    }
@@ -491,7 +497,7 @@ html , body{
    }
    body {
        color: #73879C;
-       background: #ffffff;
+       background: #F8F8F8;
        font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
        font-size: 13px;
        font-weight: 400;
@@ -3409,9 +3415,10 @@ html , body{
    .login_wrapper {
        right: 0px;
        margin: 0px auto;
-       margin-top: 5%;
-       max-width: 350px;
-       position: relative
+       max-width: 550px;
+       position: relative;
+       transform: translateY(25%);
+       -webkit-transform: translateY(25%);
    }
    .registration_form,
    .login_form {
