@@ -94,7 +94,7 @@ html , body{
        background: #213345
    }
    .daterangepicker.picker_1 .calendar-table thead tr:first-child {
-       background: #1ABB9C
+       background: #84dccf
    }
    .daterangepicker.picker_1 .calendar-table td.off {
        background: #34495E;
@@ -104,14 +104,14 @@ html , body{
        color: #34495E
    }
    .daterangepicker.picker_2 .calendar-table thead tr {
-       color: #1ABB9C
+       color: #84dccf
    }
    .daterangepicker.picker_2 .calendar-table thead tr:first-child {
        color: #73879C
    }
    .daterangepicker.picker_3 .calendar-table thead tr:first-child {
        color: #fff;
-       background: #1ABB9C
+       background: #84dccf
    }
    .daterangepicker.picker_4 .calendar-table thead tr:first-child {
        color: #fff;
@@ -204,7 +204,7 @@ html , body{
    }
    .nav-sm .nav.child_menu li.active,
    .nav-sm .nav.side-menu li.active-sm {
-       border-right: 5px solid #1ABB9C
+       border-right: 5px solid #84dccf
    }
    .nav-sm ul.nav.child_menu ul,
    .nav-sm .nav.side-menu li.active-sm ul ul {
@@ -213,7 +213,7 @@ html , body{
        background: none
    }
    .nav-sm>.nav.side-menu>li.active-sm>a {
-       color: #1ABB9C !important
+       color: #84dccf !important
    }
    .nav-sm .nav.side-menu li a i.toggle-up {
        display: none !important
@@ -356,7 +356,7 @@ html , body{
        background: #F7F7F7
    }
    .nav-md .container.body .right_col {
-       padding: 10px 20px 0;
+       padding: 10px 60px 0;
        margin-left: 230px
    }
    .nav_title {
@@ -406,62 +406,73 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #3498DB
+       color: #afd6fa
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #1ABB9C
+       color: #abe5d9
    }
    .aero {
-       color: #9CC2CB
+       color: #FDDC97
+   }
+   .yellow {
+       color: #FDDC97
    }
    .red {
-       color: #E689B8
+       color: #fbb6d3
    }
    .dark {
-       color: #34495E
+       color: #C0D2F4
    }
    .grey {
        color: rgb(175, 175, 175);
    }
    .border-blue {
-       border-color: #3498DB !important
+       border-color: #afd6fa !important
    }
    .border-purple {
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #1ABB9C !important
+       border-color: #abe5d9 !important
+   }
+   .border-yellow {
+       border-color: #FDDC97 !important
    }
    .border-aero {
-       border-color: #9CC2CB !important
+       border-color: #FDDC97 !important
    }
    .border-red {
-       border-color: #E74C3C !important
+       border-color: #fbb6d3 !important
    }
    .border-dark {
-       border-color: #34495E !important
+       border-color: #C0D2F4 !important
    }
    .bg-white {
        background: #fff !important;
        border: 1px solid #fff !important;
-       color: #73879C
+       color: #788db4
    }
    .bg-green {
-       background: #1ABB9C !important;
-       border: 1px solid #1ABB9C !important;
+       background: #abe5d9 !important;
+       border: 1px solid #2fbfa0 !important;
        color: #fff
    }
    .bg-red {
-       background: #E74C3C !important;
-       border: 1px solid #E74C3C !important;
+       background: #E689B8 !important;
+       border: 1px solid #f64a91 !important;
        color: #fff
    }
    .bg-blue {
-       background: #3498DB !important;
-       border: 1px solid #3498DB !important;
+       background: #afd6fa !important;
+       border: 1px solid #399af2 !important;
+       color: #fff
+   }
+   .bg-yellow {
+       background: #FDDC97 !important;
+       border: 1px solid #FFCE67 !important;
        color: #fff
    }
    .bg-orange {
@@ -471,7 +482,7 @@ html , body{
    }
    .bg-purple {
        background: #A3A1FB !important;
-       border: 1px solid #A3A1FB !important;
+       border: 1px solid #817EF6 !important;
        color: #fff
    }
    .bg-blue-sky {
@@ -497,7 +508,7 @@ html , body{
    }
    body {
        color: #73879C;
-       background: #F8F8F8;
+       background: #f3f5f7;
        font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
        font-size: 13px;
        font-weight: 400;
@@ -509,6 +520,9 @@ html , body{
    }
    .no-padding {
        padding: 0 !important
+   }
+   .no-border {
+       border: none !important;
    }
    .page-title {
        width: 100%;
@@ -794,7 +808,7 @@ html , body{
    }
    .nav.side-menu>li.current-page,
    .nav.side-menu>li.active {
-       border-right: 5px solid #1ABB9C
+       border-right: 5px solid #84dccf
    }
    .nav li.current-page {
        background: rgba(255, 255, 255, 0.05)
@@ -1366,7 +1380,7 @@ html , body{
    }
    table.dataTable th.focus,
    table.dataTable td.focus {
-       outline: 2px solid #1ABB9C !important;
+       outline: 2px solid #84dccf !important;
        outline-offset: -1px
    }
    table.display {
@@ -2476,7 +2490,7 @@ html , body{
    }
    .bs-glyphicons li:hover {
        color: #fff;
-       background-color: #1ABB9C
+       background-color: #84dccf
    }
    @media (min-width: 768px) {
        .bs-glyphicons {
@@ -2502,7 +2516,7 @@ html , body{
        float: left;
        padding: 5px 9px;
        text-decoration: none;
-       background: #1ABB9C;
+       background: #84dccf;
        color: #F1F6F7;
        margin-right: 5px;
        font-weight: 500;
@@ -2628,7 +2642,7 @@ html , body{
    }
    .tag {
        line-height: 1;
-       background: #1ABB9C;
+       background: #84dccf;
        color: #fff !important
    }
    .tag:after {
@@ -2642,7 +2656,7 @@ html , body{
        pointer-events: none;
        border-top: 14px solid transparent;
        border-bottom: 14px solid transparent;
-       border-left: 11px solid #1ABB9C
+       border-left: 11px solid #84dccf
    }
    .timeline h2.title {
        position: relative;
@@ -2709,7 +2723,7 @@ html , body{
        border-radius: 50%
    }
    .chat .status.online {
-       background: #1ABB9C
+       background: #84dccf
    }
    .chat .status.away {
        background: #F39C12
@@ -2835,7 +2849,7 @@ html , body{
        padding: 0px
    }
    ul.widget_profile_box li a:hover {
-       color: #1ABB9C !important;
+       color: #84dccf !important;
        border: 1px solid #26b99a
    }
    ul.widget_profile_box li .profile_img {
@@ -3025,7 +3039,7 @@ html , body{
        background: #fff
    }
    .pricing .title {
-       background: #1ABB9C;
+       background: #84dccf;
        height: 110px;
        color: #fff;
        padding: 15px 0 0;
@@ -3622,14 +3636,14 @@ html , body{
        width: 100%
    }
    #nprogress .bar {
-       background: #1ABB9C
+       background: #84dccf
    }
    #nprogress .peg {
-       box-shadow: 0 0 10px #1ABB9C, 0 0 5px #1ABB9C
+       box-shadow: 0 0 10px #84dccf, 0 0 5px #84dccf
    }
    #nprogress .spinner-icon {
-       border-top-color: #1ABB9C;
-       border-left-color: #1ABB9C
+       border-top-color: #84dccf;
+       border-left-color: #84dccf
    }
    .editor-wrapper {
        min-height: 250px;
@@ -3898,7 +3912,7 @@ html , body{
    }
    .wizard_horizontal ul.wizard_steps li a.done:before,
    .wizard_horizontal ul.wizard_steps li a.done .step_no {
-       background: #1ABB9C;
+       background: #84dccf;
        color: #fff
    }
    .wizard_horizontal ul.wizard_steps li:first-child a:before {
@@ -3995,7 +4009,7 @@ html , body{
    }
    .wizard_verticle ul.wizard_steps li a.done:before,
    .wizard_verticle ul.wizard_steps li a.done .step_no {
-       background: #1ABB9C;
+       background: #84dccf;
        color: #fff
    }
    .wizard_verticle ul.wizard_steps li:first-child a:before {
@@ -4016,7 +4030,7 @@ html , body{
        border-radius: 0
    }
    .progress-bar-info {
-       background-color: #3498DB
+       background-color: #afd6fa
    }
    .progress-bar-success {
        background-color: #26B99A
@@ -4172,11 +4186,157 @@ html , body{
 
 
    /* CUSTOM STYLES */
+   
 
+    .legende {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .space {
+        border-collapse: separate;
+        border-spacing: 0em 1em;
+    }
+    table th, table td {
+        padding: 0px 8px !important;
+        vertical-align: middle !important;
+        border: none !important;
+    }
+    .shadow {
+         height: 70px;
+         box-shadow: 0 0px 5px 0px rgba(0,0,0,0.10);
+         transition: box-shadow 0.3s ease-in-out;
+    }
+    .shadow:hover {
+        box-shadow: 0 0px 30px 0px rgba(0,0,0,0.30);
+    }
 
+    .rounded {
+        padding: 6px 5px 0 5px;
+        border-radius: 100px;
+        font-size: 15px;
+        width: 34px;
+        height: 34px;
+        display: block;
+        font-weight: bold;
+    }
+    
 
+    /* barre de progression */
+    .roundProgressBarWrapper{
+        position: relative;
+        cursor: pointer;
+    }
+    .roundProgressBarWrapper{
+        width: 140px;
+        height: 190px;
+        float: left;
+        margin: 50px 20px;
+    }
+    .roundProgressBar, .roundProgressBarTeacher, .roundProgressBarStudent, .progressTeacherText, .progressStudentText, .moduleName {
+        position: absolute !important;
+    }
 
+    .roundProgressBarTeacher {
+        left: 0px;
+        top: 0px;
+    }
+    .roundProgressBarStudent {
+        left: 14px;
+        top: 13px;
+    }
+    .progressTeacherText {
+      top: 45px;
+      width: 140px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .progressStudentText {
+      top: 70px;
+      width: 140px;
+      text-align: center;
+      font-size: 20px;
+    }
 
+    .moduleName {
+        top: 160px;
+        width: 140px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    table .roundProgressBarWrapper {
+        position: relative;
+        margin: 10px 0;
+        height: 80px;
+    }
+    table .roundProgressBarTeacher {
+        left: 0px;
+        top: 0px;
+    }
+    table .roundProgressBarStudent {
+        left: 8px;
+        top: 8px;
+    }
+    table .progressTeacherText {
+        top: 20px;
+        width: 80px;
+        text-align: center;
+        font-size: 13px;
+    }
+    table .progressStudentText {
+      top: 40px;
+      width: 80px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    input.checky {
+        position: absolute;
+        left: -9999px;
+    }
+    
+    label.labChecky {
+        display: block;
+        position: relative;
+        padding: 10px 0px 10px 60px;
+        border-radius: 100px;
+        color: #fff;
+        background-color: #C0D2F4;
+        white-space: nowrap;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        transition: background-color .2s, box-shadow .2s;
+        width: 140px;
+    }
+    
+    label.labChecky::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 7px;
+        width: 26px;
+        border: 3px solid #fff;
+        border-radius: 100px;
+        transition: background-color .2s;
+    }
+    
+    label.labChecky:hover, input.checky:focus + label.labChecky {
+        
+    }
+    
+    input.checky:checked + label.labChecky {
+        background-color: #A3A1FB;
+    }
+    
+    input.checky:checked + label.labChecky::before {
+        background-color: #fff;
+    }
    /*
    .x_content {
        direction: rtl;

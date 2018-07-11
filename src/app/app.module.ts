@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
 
+registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 // Import ng-circle-progress
 // import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
 
@@ -50,7 +54,7 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
     ReactiveFormsModule,
     RoundProgressModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

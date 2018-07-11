@@ -12,7 +12,7 @@ import { ApiService } from '../../services/api/api.service';
 
 export class TeacherDashboardComponent implements OnInit {
 
-  formations: any;
+  listFormations: any;
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
@@ -26,10 +26,10 @@ export class TeacherDashboardComponent implements OnInit {
   }
 
   public getFormations(): any {
-    this.apiService.get('getAllFormations')
+    this.apiService.get('formations')
     .subscribe((data) => {
-      this.formations = data.data;
-      console.log('getFormations data', this.formations);
+      this.listFormations = data.data;
+      console.log('formations data', this.listFormations);
     });
   }
 }
