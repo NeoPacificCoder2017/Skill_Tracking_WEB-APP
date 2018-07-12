@@ -29,6 +29,9 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
+import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminFormationsComponent,
+    AdminTeachersComponent,
+    AdminStudentsComponent
   ],
   imports: [
     BrowserModule,

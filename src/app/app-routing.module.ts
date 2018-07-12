@@ -8,10 +8,19 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
 // PAGES
 import { LoginComponent } from './login/login.component';
-import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
-import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
+
+// PAGES ADMIN
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
+import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+
+// PAGES TEACHER
+import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+
+// PAGES STUDENT
+import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 
 const routes: Routes = [
   {
@@ -37,6 +46,9 @@ const routes: Routes = [
       
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
+      { path: 'admin/formations', component: AdminFormationsComponent},
+      { path: 'admin/teachers', component: AdminTeachersComponent},
+      { path: 'admin/students', component: AdminStudentsComponent},
     ]
   },
 
