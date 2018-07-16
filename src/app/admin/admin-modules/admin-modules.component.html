@@ -2,23 +2,25 @@
   <div class="title_left">
     <h3>Liste des modules</h3>
   </div>
+</div>
 
-  <div class="row"*ngFor="let formation of listFormations">
-    <div class="">
-      <div>{{formation.start_at | date}}</div>
-      <td style="width: 95px;"><img src="{{ formation.logo }}" class="img-circle" width="100%"></td>
-      <div>{{formation.end_at | date}}</div>
-    </div>
+<div class="">
+  <div class="">
+    <div>25/07/2018</div>
+    <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td>
+    <div>{{end_at | date}}</div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <div class="input-group pull-right">
-        <button class="btn green bg-green" type="button">Ajouter un module</button>
-      </div>
+<div class="">
+  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <div class="input-group pull-right">
+      
+      <button class="btn green bg-green" type="button">Ajouter un module</button>
     </div>
   </div>
 </div>
+
 
 
 <!-- Liste des formations -->
@@ -33,12 +35,12 @@
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col">Intitulé</th>
-          <th scope="col">Nomb re de compétence</th>
+          <th scope="col">Nombre de compétence</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let module of listModules" class="shadow bg-white rad text-row">
+        <tr *ngFor="let module of listModules" (click)="goToCompetence(module.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{module.module_id}}</th>
           <td></td>

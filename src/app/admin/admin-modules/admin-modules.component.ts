@@ -17,6 +17,11 @@ export class AdminModulesComponent implements OnInit {
     this.getFormations();
   }
 
+  goToCompetence(idCompetence) {
+    console.log('goToCompetence', idCompetence);
+    this.router.navigate(['/admin/competences']);
+  }
+
   public getFormations(): any {
     this.apiService.get('formations')
     .subscribe((data) => {
