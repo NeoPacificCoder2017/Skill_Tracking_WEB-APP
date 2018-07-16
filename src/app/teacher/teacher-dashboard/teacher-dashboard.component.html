@@ -1,35 +1,67 @@
-<div class="pt-2 p-4 bg-white">
-    <div class="pb-3">
-      <h2 class="accueil">Accueil</h2>
-      <div class="legende">
-        <p style="padding-right: 20px;"><i class="fa fa-square purple"></i>   PROGRESSION SUR LA FORMATION</p>
-        <p><i class="fa fa-square red"></i>   PROGRESSION PAR MODULE</p>
-       </div>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des formations</h3>
+  </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button">Ajouter une formation</button>
+      </div>
     </div>
-    
-    <table class="table table-borderless" style="color: #999">
-      <thead class="" style="background-color: rgb(242, 242, 242); font-size: 14px; color: #999">
-        <tr class="tablecolor">
-          <th scope="col">#</th>
-          <th scope="col">NOM</th>
-          <th scope="col">PROGRESSION</th>
-          <th scope="col">DATE DE DEBUT</th>
-          <th scope="col">DATE DE FIN</th>
-          <th scope="col">NOMBRE D'ETUDIANT</th>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="legende pull-right">
+      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
+      <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+    </div>
+  </div>
+</div>
+<!-- Liste des formations -->
+<div class="row">
+  <div class="col-md-12">
+    <!-- Tableau des formations -->
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Progression</th>
+            <th scope="col">Date de début</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">Nombre d'étudiant</th>
+            <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr class="rounded bg-white shadowFormation mb-5 bg-white rad text-row" (click)="goToFormation(1)" *ngFor="let item of formations">
-          <th scope="row" style="width: 100px;"><img src="{{ item.logo }}" class="img-circle profile_img" style="width: 60%;"/></th>
-          <td>{{ item.name }}</td>
-          <td class="pb-4">
-            <round-progress style="position: absolute" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="24"[stroke]="5"></round-progress>
-            <round-progress class="progresseBarreTeacher" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="18"[stroke]="5"></round-progress>
+        <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{e.id}}</th>
+          <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{e.name}}</span></td>
+          <td class="">
+            <div class="roundProgressBarWrapper">
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
+              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
+              <div class="progressTeacherText red">50 %</div>
+              <div class="progressStudentText purple">80 %</div>
+            </div>
           </td>
-          <td>{{ item.start_at }}</td>
-          <td>{{ item.end_at }}</td>
-          <td>10</td>
+          <td><span class="alignleft">{{e.start_at | date}}</span></td>
+          <td><span class="alignleft">{{e.end_at | date}}</span></td>
+          <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
+          <td>
+          </td>
         </tr>
+        <br>
       </tbody>
     </table>
+  </div>
 </div>

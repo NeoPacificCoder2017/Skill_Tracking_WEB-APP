@@ -1,52 +1,69 @@
-<!-- create a new formation -->
- <div class="bouton-add">
-    <span class="add-form">Ajouter une formation     </span>
-    <button type="button" class="btn btn-add btn-circle btn-xl"><i class="glyphicon glyphicon-plus white"></i></button>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des formations</h3>
+  </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button">Ajouter une formation</button>
+      </div>
+    </div>
+  </div>
 </div>
 
- <!-- Légende -->
-<div class="legende">
- <p><i class="fa fa-square purple"></i>   PROGRESSION SUR LA FORMATION</p>
- <p><i class="fa fa-square red"></i>   PROGRESSION SUR LA MODULE</p>
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="legende pull-right">
+      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
+      <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+    </div>
+  </div>
 </div>
 <!-- Liste des formations -->
-<div class="pt-2 p-4">
-    <div class="pb-3">
-      <h2 style="font-size: 35px;">Liste des formations</h2>
-    </div>
-
+<div class="row">
+  <div class="col-md-12">
     <!-- Tableau des formations -->
     <table class="table table-borderless space" style="color: #999">
-      <thead class="" style="background-color: rgb(242, 242, 242); font-size: 14px; color: #999">
+      <thead class="">
         <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col">Logo</th>
             <th scope="col">Nom</th>
             <th scope="col">Progression</th>
             <th scope="col">Date de début</th>
             <th scope="col">Date de fin</th>
-            <th scope="col">Nombre d'étudiant</th>
-            <th></th>
+            <th scope="col">Nombre d'étudiants</th>
             <th></th>
         </tr>
       </thead>
       <tbody>
-        <br>
-        <tr *ngFor="let e of listFormations" class="rounded shadow mb-5 bg-white rounded rad text-row">
-          <th scope="row" >{{e.id}}</th>
-          <td style="width: 60px;"><img src="{{ e.logo }}" class="img-circle profile_img" ></td>
-          <td>{{e.name}}</td>
-          <td class="pb-4 barre">
-            <round-progress class="progressBar1" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="20" [stroke]="3"></round-progress>
-            <round-progress class="progressBar2" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="15"[stroke]="3"></round-progress>
+        <tr *ngFor="let e of listFormations" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{e.id}}</th>
+          <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{e.name}}</span></td>
+          <td class="">
+            <div class="roundProgressBarWrapper">
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
+              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
+              <div class="progressTeacherText red">50 %</div>
+              <div class="progressStudentText purple">80 %</div>
+            </div>
           </td>
-          <td>{{e.start_at}}</td>
-          <td>{{e.end_at}}</td>
-          <td>20</td>
-          <td><i class="glyphicon glyphicon-pencil"></i></td>
-          <td><i class="glyphicon glyphicon-trash"></i></td>
+          <td><span class="alignleft">{{e.start_at | date}}</span></td>
+          <td><span class="alignleft">{{e.end_at | date}}</span></td>
+          <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
+          <td>
+              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+          </td>
         </tr>
         <br>
       </tbody>
     </table>
+  </div>
 </div>

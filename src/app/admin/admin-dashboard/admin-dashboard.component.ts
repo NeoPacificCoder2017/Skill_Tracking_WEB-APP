@@ -10,32 +10,6 @@ export class AdminDashboardComponent implements OnInit {
 
   redirect = [null, 'admin', 'teacher', 'student'];
   listFormations: any;
-  // listFormations = [
-  //  {
-  //    id: 1,
-  //    name: 'NPC',
-  //    logo: 'npc.jpg',
-  //    start_at: '10/08/17',
-  //    end_at: '18/12/18',
-  //    nb: '12'
-  //  },
-  //  {
-  //   id: 1,
-  //   name: 'NPC',
-  //   logo: 'npc.jpg',
-  //   start_at: '10/08/17',
-  //   end_at: '18/12/18',
-  //   nb: '12'
-  // },
-  // {
-  //   id: 1,
-  //   name: 'NPC',
-  //   logo: 'npc.jpg',
-  //   start_at: '10/08/17',
-  //   end_at: '18/12/18',
-  //   nb: '12'
-  // },
-  // ];
 
   constructor(private apiService: ApiService) { }
 
@@ -45,7 +19,7 @@ export class AdminDashboardComponent implements OnInit {
         console.log('data', data);
         this.listFormations = data.data;
       }
-    )
+    );
   }
 
 
