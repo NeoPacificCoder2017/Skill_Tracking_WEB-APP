@@ -33,7 +33,7 @@ import { AdminFormationsComponent } from './admin/admin-formations/admin-formati
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminModulesComponent } from './admin/admin-modules/admin-modules.component';
-import { AdminCompetencesComponent } from './admin/admin-competences/admin-competences.component';
+import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { AdminCompetencesComponent } from './admin/admin-competences/admin-compe
     AdminTeachersComponent,
     AdminStudentsComponent,
     AdminModulesComponent,
-    AdminCompetencesComponent
+    AdminSkillsComponent
   ],
   imports: [
     BrowserModule,
