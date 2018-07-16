@@ -17,9 +17,9 @@ export class AdminModulesComponent implements OnInit {
     this.getFormations();
   }
 
-  goToSkill(idSill) {
-    console.log('goToSkill', idSill);
-    this.router.navigate(['/admin/goToSkills']);
+  goToSkill(idSkill) {
+    console.log('goToSkill', idSkill);
+    this.router.navigate(['/admin/skills']);
   }
 
   public getFormations(): any {
