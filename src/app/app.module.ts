@@ -1,7 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeFrExtra from '@angular/common/locales/extra/fr';
 
+<<<<<<< HEAD
+=======
+registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
+// Import ng-circle-progress
+// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
+
+>>>>>>> 6dd0727d75f7f7225c16cc3f0331ad66a2b8be39
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
@@ -21,6 +31,11 @@ import { LoginComponent } from './login/login.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
+import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +49,11 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     StudentDashboardComponent,
     TeacherDashboardComponent,
     AdminDashboardComponent,
+    TeacherFormationComponent,
+    AdminDashboardComponent,
+    AdminFormationsComponent,
+    AdminTeachersComponent,
+    AdminStudentsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +63,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     ReactiveFormsModule,
     RoundProgressModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { FormationService } from '../../services/formation/formation.service';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-teacher-dashboard',
   templateUrl: './teacher-dashboard.component.html',
   styleUrls: ['./teacher-dashboard.component.css']
 })
+
 export class TeacherDashboardComponent implements OnInit {
 
-  redirect = [null,'admin','teacher','student'];
+  listFormations: any;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
+    this.getFormations();
   }
 
-  logout() {
-    console.log('logout launched');
-    this.authService.logout().subscribe((data) => {
-      console.log('logout test',data);
-      this.router.navigate(['/login']);
-    })
+  goToFormation(idFormation) {
+    console.log('goToFormation', idFormation);
+    this.router.navigate(['/teacher/formation']);
   }
 
+  public getFormations(): any {
+    this.apiService.get('formations')
+    .subscribe((data) => {
+      this.listFormations = data.data;
+      console.log('formations data', this.listFormations);
+    });
+  }
 }

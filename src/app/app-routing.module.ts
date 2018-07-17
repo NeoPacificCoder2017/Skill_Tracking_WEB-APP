@@ -1,20 +1,30 @@
 import { NgModule } from '@angular/core';
-import { ModuleWithProviders } from "@angular/core";
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//LAYOUT
+// LAYOUT
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
-//PAGES
+// PAGES
 import { LoginComponent } from './login/login.component';
-import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
-import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
+
+// PAGES ADMIN
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
+import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+
+// PAGES TEACHER
+import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
+import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+
+// PAGES STUDENT
+import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: SiteLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent},
@@ -22,24 +32,28 @@ const routes: Routes = [
     ]
   },
 
-  //ROUTES STUDENT
-  { 
+  // ROUTES STUDENT
+  {
     path: '',
-    component: AppLayoutComponent, 
+    component: AppLayoutComponent,
     children: [
-      //ROUTES STUDENT
+      // ROUTES STUDENT
       { path: 'student/dashboard', component: StudentDashboardComponent},
-    
-      //ROUTES TEACHER
+
+      // ROUTES TEACHER
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},
-    
-      //ROUTES ADMIN
+      { path: 'teacher/formation', component: TeacherFormationComponent},
+      
+      // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
+      { path: 'admin/formations', component: AdminFormationsComponent},
+      { path: 'admin/teachers', component: AdminTeachersComponent},
+      { path: 'admin/students', component: AdminStudentsComponent},
     ]
   },
 
-  //DEFAULT
-  
+  // DEFAULT
+
 ];
 
 export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);

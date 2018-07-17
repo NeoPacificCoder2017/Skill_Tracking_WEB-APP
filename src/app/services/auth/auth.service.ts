@@ -46,4 +46,9 @@ export class AuthService {
     console.log('isLogged', me);
     return (me) ? true : false;
   }
+
+  getUserTypeId() {
+    const me = JSON.parse(localStorage.getItem('user'));
+    return me.user_type_id;
+  }
 }

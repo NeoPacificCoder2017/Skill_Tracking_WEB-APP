@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth/auth.service';
 export class AppLayoutComponent implements OnInit {
 
   isLogged = false;
+
+  
   constructor(private authService: AuthService, private router: Router) {
     // localStorage.removeItem('user');
   }

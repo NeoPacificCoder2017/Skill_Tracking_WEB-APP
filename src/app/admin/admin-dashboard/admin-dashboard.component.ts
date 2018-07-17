@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,12 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+  
+  listFormations: any;
 
-  redirect = [null,'admin','teacher','student'];
-
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.get('formations').subscribe(
+      data => {
+        console.log('data', data);
+        this.listFormations = data.data;
+      }
+    )
   }
+
+
 
 }

@@ -29,7 +29,6 @@ export class StudentDashboardComponent implements OnInit {
             this.dataStudent[i].module.skills[j]['module_name'] = this.dataStudent[i].module.name;
             this.skills.push(this.dataStudent[i].module.skills[j]);
             this.allSkills.push(this.dataStudent[i].module.skills[j]);
-            console.log(this.skills);
           }
         }
       }
