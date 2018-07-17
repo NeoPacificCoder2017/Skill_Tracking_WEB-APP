@@ -32,6 +32,7 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+import { AdminModulesComponent } from './admin/admin-modules/admin-modules.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AdminStudentsComponent } from './admin/admin-students/admin-students.co
     AdminDashboardComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
-    AdminStudentsComponent
+    AdminStudentsComponent,
+    AdminModulesComponent
   ],
   imports: [
     BrowserModule,
