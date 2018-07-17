@@ -23,11 +23,13 @@ export class AppHeaderComponent implements OnInit {
     },
     {
       "name": "teacher",
-      "links": {
-        1: {"title": "Over Here", "url": "In This City"},
-        2: {"title": "Over Here", "url": "In This City"},
-        3: {"title": "Over Here", "url": "In This City"}
-      }
+      "links": [
+        {"title": "Dashboard", "icon": "fa-home", "url": "dashboard"},
+        {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
+        {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
+        {"title": "Reports", "icon": "fa-clipboard", "url": "reports"},
+        {"title": "Planning", "icon": "fa-calendar", "url": "planning"}
+      ]
     },
     {
       "name": "student",
