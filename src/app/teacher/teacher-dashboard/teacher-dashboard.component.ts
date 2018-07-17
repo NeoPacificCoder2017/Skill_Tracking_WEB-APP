@@ -31,8 +31,4 @@ export class TeacherDashboardComponent implements OnInit {
       console.log('formations data', this.listFormations);
     });
   }
-
-  selectedFormationId(id: number) {
-    this.router.navigate(['/teacher/formation' + id]);
-  }
 }
