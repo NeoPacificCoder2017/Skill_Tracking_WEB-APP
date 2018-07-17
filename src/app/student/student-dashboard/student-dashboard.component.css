@@ -73,7 +73,7 @@
   padding: auto;
 }
 
-/* slide */
+/* scrolling */
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
