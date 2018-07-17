@@ -21,16 +21,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of skills" class="shadow bg-white rad text-row">
+        <tr *ngFor="let skill of skills" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" >{{ item.id }}</th>
-          <td>{{ item.name }}</td>
-          <td><span class="alignleft">{{ item.module_name }}</span></td>
-          <td>{{ item.progression.teacher_validation_date | date }}</td>
+          <th scope="row" width="40" >{{ skill_id }}</th>
+          <td>{{ skill_name }}</td>
+          <td><span class="alignleft">{{ skill.module_name }}</span></td>
+          <td>{{ skill.progression.teacher_validation_date | date }}</td>
           <td>
             <div class="pull-right">
-              <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
-              <label for="toggle{{ item.id }}" class="labChecky">Validé!</label>
+              <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="skill.progression.student_validation">
+              <label for="toggle{{ skill.id }}" class="labChecky">Validé!</label>
             </div>
           </td>
         </tr>

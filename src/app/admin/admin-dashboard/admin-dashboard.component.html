@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let e of listFormations" (click)="goToModule(e.id)" class="shadow bg-white rad text-row">
+        <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{e.id}}</th>
           <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>

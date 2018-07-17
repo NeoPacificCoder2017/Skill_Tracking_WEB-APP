@@ -8,13 +8,14 @@ import { ApiService } from '../../services/api/api.service';
   styleUrls: ['./admin-modules.component.css']
 })
 export class AdminModulesComponent implements OnInit {
-  listFormations: any;
+  formation: any;
   listModules: any;
+  module: any;
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.getModules();
-    this.getFormations();
+    this.getFormation();
   }
 
   goToSkill(idSkill) {
@@ -22,11 +23,12 @@ export class AdminModulesComponent implements OnInit {
     this.router.navigate(['/admin/skills']);
   }
 
-  public getFormations(): any {
-    this.apiService.get('formations')
+  /*================Methode GET============================*/
+  public getFormation(idFormation): any {
+    this.apiService.get('formations/' + idFormation)
     .subscribe((data) => {
-      this.listFormations = data.data;
-      console.log('formations data', this.listFormations);
+      this.formation = data.data;
+      console.log('formation data', this.formation);
     });
   }
 
@@ -38,4 +40,13 @@ export class AdminModulesComponent implements OnInit {
     });
   }
 
+  /*================METHODE POST======================================*/
+
+  public postModul(): any {
+    this.apiService.post('module/create')
+    .subscribe((data) => {
+      this.module = data.data;
+      console.log('module data', this.module);
+    });
+  }
 }

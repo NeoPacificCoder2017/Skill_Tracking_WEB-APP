@@ -22,9 +22,9 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
-  goToModule(idModule) {
-    console.log('goToModule', idModule);
-    this.router.navigate(['/admin/modules']);
+  goToFormation(idFormation) {
+    console.log('goToModule', idFormation);
+    this.router.navigate(['/admin/formation/' + idFormation]);
   }
 
 

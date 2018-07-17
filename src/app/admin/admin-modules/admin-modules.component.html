@@ -4,23 +4,24 @@
   </div>
 </div>
 
-<div class="">
+<div class="row" style="text-align: center; padding-top: 30px">
+  <div class="" style="display: flex;">
+      <div>Date de début: {{start_at | date}}</div>
+      <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td>
+      <!-- <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td> -->
+      <div>Date de fin: {{end_at | date}}</div>
+  </div>
   <div class="">
-    <div>25/07/2018</div>
-    <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td>
-    <div>{{end_at | date}}</div>
+    <h3 class="" style="font-size: 14px;">Formation analyste developpeur</h3>
   </div>
 </div>
 
-<div class="">
-  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-    <div class="input-group pull-right">
-      
-      <button class="btn green bg-green" type="button">Ajouter un module</button>
-    </div>
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+  <div class="input-group pull-right row" style="display: flex;">
+    <input type="text img-rounded" class="form-control col-md-2" placeholder="module">
+    <button class="btn green bg-green" type="button">Ajouter un module</button>
   </div>
 </div>
-
 
 
 <!-- Liste des formations -->
