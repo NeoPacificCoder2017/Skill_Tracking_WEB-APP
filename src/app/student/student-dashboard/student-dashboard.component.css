@@ -104,3 +104,22 @@
   display: inline-flex;
   vertical-align: middle;
 }
+.row{
+  padding: auto;
+}
+
+/* slide */
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-wrapper .card {
+  display: inline-block;
+}
+
+.scrolling-wrapper ::-webkit-scrollbar {
+  display: none;
+}

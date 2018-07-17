@@ -1,5 +1,6 @@
 import { ApiService } from './../../services/api/api.service';
 import { Component, OnInit } from '@angular/core';
+import { $ } from '../../../../node_modules/protractor';
 
 
 
@@ -43,4 +44,10 @@ export class StudentDashboardComponent implements OnInit {
     }
   }
 
+  // startSlide() {
+  //   $('.carousel').carousel({
+  //     interval: 2000,
+
+  //   });
+  // }
 }
