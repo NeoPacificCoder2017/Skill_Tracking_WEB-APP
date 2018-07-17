@@ -28,7 +28,7 @@ export class TeacherModuleComponent implements OnInit {
     .subscribe((data) => {
       console.log('data', data);
       this.listeModules = data.data;
-      console.log('students data', this.listeModules);
+      console.log('modules data', this.listeModules);
     });
   }
 

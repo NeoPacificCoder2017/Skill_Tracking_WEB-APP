@@ -9,8 +9,64 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./teacher-formation.component.css']
 })
 export class TeacherFormationComponent implements OnInit {
-  listeEtudiant: any;
+  // listeEtudiants: any;
   idEtudiant: number;
+  listeEtudiants = [
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    },
+    {
+      id: 1,
+      avatar: 'avatar1',
+      last_name: 'BOPBOP',
+      first_name: 'Lolololo',
+    }
+  ];
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
@@ -27,8 +83,8 @@ export class TeacherFormationComponent implements OnInit {
     this.apiService.get('students')
     .subscribe((data) => {
       console.log('data', data);
-      this.listeEtudiant = data.data;
-      console.log('students data', this.listeEtudiant);
+      // this.listeEtudiants = data.data;
+      console.log('students data', this.listeEtudiants);
     });
   }
 

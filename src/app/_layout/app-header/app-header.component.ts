@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AppHeaderComponent implements OnInit {
 
-  me : any;
+  me: any;
   environment = environment;
   allMenus = [
     null,
@@ -40,8 +40,8 @@ export class AppHeaderComponent implements OnInit {
       }
     }
   ];
-  menus : any;
-  menuPrefix : any;
+  menus: any;
+  menuPrefix: any;
 
   constructor() { }
 
@@ -50,7 +50,7 @@ export class AppHeaderComponent implements OnInit {
     console.log('this.me', this.me);
     this.menuPrefix = this.allMenus[this.me.user_type_id].name;
     this.menus = this.allMenus[this.me.user_type_id].links;
-    console.log('this.menu',this.menus);
+    console.log('this.menu', this.menus);
   }
 
 }

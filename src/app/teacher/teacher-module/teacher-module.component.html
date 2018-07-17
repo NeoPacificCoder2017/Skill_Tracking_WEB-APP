@@ -23,26 +23,9 @@
     <tr *ngFor="let e of listeModules" (click)="selectedModule(e.id)" class="shadow bg-white rad text-row">
             <th></th>
             <th scope="row" width="40" >{{e.id}}</th>
-            <td style="width: 95px;"><img src="{{ e.avatar }}" class="img-circle" width="100%"></td>
-            <td><span class="alignleft">{{e.last_name}}</span></td>
+            <td><span class="alignleft">{{e.name}}</span></td>
             <td><span class="alignleft">{{e.first_name}}</span></td>
-            <!-- <td class="">
-              <div class="roundProgressBarWrapper">
-                <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
-                <div class="progressTeacherText red">50 %</div>
-              </div>
-            </td>
-            <td>
-              <div class="roundProgressBarWrapper">
-                <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
-                <div class="progressStudentText purple">80 %</div>
-              </div>
-            </td> -->
-            <!-- <td><span class="alignleft">{{e.start_at | date}}</span></td>
-            <td><span class="alignleft">{{e.end_at | date}}</span></td>
-            <td><a href="" class="btn btn-round bg-green no-border left">20</a></td> -->
-            <td>
-            </td>
+            <td></td>
           </tr>
           <br>
         </tbody>
