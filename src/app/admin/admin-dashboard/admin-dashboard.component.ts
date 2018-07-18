@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,11 +23,24 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
-  goToFormation(idFormation) {
-    console.log('goToModule', idFormation);
+  Formation(idFormation) {
+    console.log('Formation', idFormation);
     this.router.navigate(['/admin/formation/' + idFormation]);
   }
 
+  // createFormation(idFormation): any {
+  //   this.apiService.post('formation/create')
+  //   .subscribe((data) => {
 
+  //   });
+  // }
+
+  deleteFormation(id: number): any {
+    this.apiService.delete('formation/' + id)
+    .subscribe((data) => {
+      this.deleteFormation = data.data;
+      console.log('modules data', this.deleteFormation);
+    });
+  }
 
 }

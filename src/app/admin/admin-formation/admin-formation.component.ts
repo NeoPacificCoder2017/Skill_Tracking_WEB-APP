@@ -2,15 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
+
 @Component({
-  selector: 'app-admin-modules',
-  templateUrl: './admin-modules.component.html',
-  styleUrls: ['./admin-modules.component.css']
+  selector: 'app-admin-formation',
+  templateUrl: './admin-formation.component.html',
+  styleUrls: ['./admin-formation.component.css']
 })
-export class AdminModulesComponent implements OnInit {
+export class AdminFormationComponent implements OnInit {
   formation: any;
   listModules: any;
   module: any;
+
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
@@ -25,10 +27,10 @@ export class AdminModulesComponent implements OnInit {
 
   /*================Methode GET============================*/
   public getFormation(idFormation): any {
-    this.apiService.get('formations/' + idFormation)
+    this.apiService.get('/admin/formation/' + idFormation)
     .subscribe((data) => {
       this.formation = data.data;
-      console.log('formation data', this.formation);
+      console.log('/admin/formation/ data', this.formation);
     });
   }
 
@@ -49,4 +51,5 @@ export class AdminModulesComponent implements OnInit {
       console.log('module data', this.module);
     });
   }
+
 }

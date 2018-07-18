@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 // PAGES ADMIN
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminModulesComponent } from './admin/admin-modules/admin-modules.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
       { path: 'admin/formations', component: AdminFormationsComponent},
+      { path: 'admin/formation/', component: AdminFormationComponent},
       { path: 'admin/teachers', component: AdminTeachersComponent},
       { path: 'admin/students', component: AdminStudentsComponent},
       { path: 'admin/modules', component: AdminModulesComponent},

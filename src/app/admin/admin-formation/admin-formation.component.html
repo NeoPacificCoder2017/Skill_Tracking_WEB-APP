@@ -1,0 +1,61 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des modules</h3>
+  </div>
+</div>
+  
+<div class="row" goToSkill(id) style="text-align: center; padding-top: 30px">
+  <div class="" style="display: flex;">
+      <div>Date de début: {{start_at | date}}</div>
+      <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td>
+      <!-- <td style="width: 95px;"><img src="{{ logo }}" class="img-circle" width="100%"></td> -->
+      <div>Date de fin: {{end_at | date}}</div>
+  </div>
+  <div class="">
+    <h3 class="" style="font-size: 14px;">Formation analyste developpeur</h3>
+  </div>
+</div>
+
+<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+  <div class="input-group pull-right row" style="display: flex;">
+    <input type="text img-rounded" class="form-control col-md-2" placeholder="module">
+    <button class="btn green bg-green" type="button">Ajouter un module</button>
+  </div>
+</div>
+  
+  
+  <!-- Liste des formations -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Tableau des formations -->
+      <table class="table table-borderless space" style="color: #999">
+        <thead class="">
+          <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Intitulé</th>
+            <th scope="col">Nombre de compétence</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let module of listModules" (click)="goToSkill(module.id)" class="shadow bg-white rad text-row">
+            <th></th>
+            <th scope="row" width="40" >{{module.module_id}}</th>
+            <td></td>
+            <td></td>
+            <td><span class="alignleft">{{module.module_name}}</span></td>
+            <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
+            <td>
+                <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+                <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+            </td>
+          </tr>
+          <br>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
