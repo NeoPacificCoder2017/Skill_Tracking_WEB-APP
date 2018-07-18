@@ -76,7 +76,7 @@ export class TeacherFormationComponent implements OnInit {
 
   selectedEtudiant(idEtudiant) {
     console.log('selectedEtudiant', idEtudiant);
-    this.router.navigate(['/student']);
+    this.router.navigate(['/teacher/student/' + idEtudiant]);
   }
 
   public getEtudiants() {

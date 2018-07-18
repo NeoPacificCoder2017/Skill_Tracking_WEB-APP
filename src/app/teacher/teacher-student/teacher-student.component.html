@@ -1,0 +1,83 @@
+<div class="page-title">
+    <div class="title_left">
+      <h3>Formation : {{ name }}</h3>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- Légende -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="legende pull-right">
+        <div style="margin-right: 10px">
+          <i class="fa fa-square purple"></i> PROGRESSION ETUDIANT</div>
+        <div>
+          <i class="fa fa-square red"></i> PROGRESSION FORMATEUR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- slide show -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="scrolling-wrapper">
+        <!-- Liste des modules -->
+        <!-- bar-progress -->
+        <div class="card" *ngFor="let item of dataStudent">
+          <div class="roundProgressBarWrapper"  (click)="filterByModule(item.module.id)">
+            <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="item.module.progression.teacher*100/item.module.totalSkills"
+              [max]="max" [color]="'#E689B8'">
+            </round-progress>
+            <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="item.module.progression.student*100/item.module.totalSkills"
+              [max]="max" [color]="'#A3A1FB'">
+            </round-progress>
+            <div class="progressTeacherText red">{{ item.module.progression.teacher*100/item.module.totalSkills }} %</div>
+            <div class="progressStudentText purple">{{ item.module.progression.student*100/item.module.totalSkills }} %</div>
+            <div class="moduleName">{{ item.module.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- Liste des compétences -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Tableau des compétences -->
+      <table class="table table-borderless space" style="color: #999">
+        <thead class="">
+          <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Compétences</th>
+            <th scope="col">Modules</th>
+            <th scope="col">Validée par le formateur</th>
+            <th scope="col" class="pull-right">Validée par vous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of skills" class="shadow bg-white rad text-row">
+            <th></th>
+            <th scope="row" width="40">{{ item.id }}</th>
+            <td>{{ item.name }}</td>
+            <td>
+              <span class="alignleft">{{ item.module_name }}</span>
+            </td>
+            <td>{{ item.progression.teacher_validation_date | date }}</td>
+            <td>
+              <div class="pull-right">
+                <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
+                <label for="toggle{{ item.id }}" class="labChecky">Validé!</label>
+              </div>
+            </td>
+          </tr>
+          <br>
+        </tbody>
+      </table>
+    </div>
+  </div>
