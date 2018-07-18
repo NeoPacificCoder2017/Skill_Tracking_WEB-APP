@@ -34,8 +34,8 @@
             <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="item.module.progression.student*100/item.module.totalSkills"
               [max]="max" [color]="'#A3A1FB'">
             </round-progress>
-            <div class="progressTeacherText red">{{ item.module.progression.teacher*100/item.module.totalSkills }} %</div>
-            <div class="progressStudentText purple">{{ item.module.progression.student*100/item.module.totalSkills }} %</div>
+            <div class="progressTeacherText red">{{ item.module.progression.teacher*max/item.module.totalSkills }} %</div>
+            <div class="progressStudentText purple">{{ item.module.progression.student*max/item.module.totalSkills }} %</div>
             <div class="moduleName">{{ item.module.name }}</div>
           </div>
         </div>

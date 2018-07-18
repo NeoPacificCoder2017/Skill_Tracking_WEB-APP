@@ -25,9 +25,9 @@
   <tr *ngFor="let e of listeEtudiants" (click)="selectedEtudiant(e.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{ e.avatar }}" class="img-circle" width="100%"></td>
-          <td><span class="alignleft">{{e.last_name}}</span></td>
-          <td><span class="alignleft">{{e.first_name}}</span></td>
+          <td style="width: 95px;"><img src="http://skillstracking.motjo.io/uploads/images/{{ e.avatar }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{e.lastname}}</span></td>
+          <td><span class="alignleft">{{e.firstname}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
               <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>

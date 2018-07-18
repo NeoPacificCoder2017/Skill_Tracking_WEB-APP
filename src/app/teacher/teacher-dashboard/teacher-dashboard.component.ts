@@ -21,7 +21,7 @@ export class TeacherDashboardComponent implements OnInit {
 
   goToFormation(idFormation) {
     console.log('goToFormation', idFormation);
-    this.router.navigate(['/teacher/formation']);
+    this.router.navigate(['/teacher/formation'], { queryParams: { idFormation: idFormation }});
   }
 
   public getFormations(): any {
