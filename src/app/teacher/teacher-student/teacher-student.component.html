@@ -20,7 +20,7 @@
 
   <div class="clearfix"></div>
 
-  <!-- slide show -->
+  <!-- slide show Modules -->
   <div class="row">
     <div class="col-md-12">
       <div class="scrolling-wrapper">
@@ -46,38 +46,30 @@
   <div class="clearfix"></div>
 
   <!-- Liste des compétences -->
-  <div class="row">
+  <div class="row" *ngFor="let module of modules">
     <div class="col-md-12">
       <!-- Tableau des compétences -->
+      <div class="row">
       <table class="table table-borderless space" style="color: #999">
-        <thead class="">
-          <tr class="tablecolor rad text-row">
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Compétences</th>
-            <th scope="col">Modules</th>
-            <th scope="col">Validée par le formateur</th>
-            <th scope="col" class="pull-right">Validée par vous</th>
-          </tr>
-        </thead>
         <tbody>
-          <tr *ngFor="let item of skills" class="shadow bg-white rad text-row">
+          <tr class="shadow bg-white rad text-row">
             <th></th>
-            <th scope="row" width="40">{{ item.id }}</th>
-            <td>{{ item.name }}</td>
+            <th scope="row" width="40">{{ module.id }}</th>
+            <td>{{ module.name }}</td>
             <td>
-              <span class="alignleft">{{ item.module_name }}</span>
+              <span class="alignleft">{{ module.module_name }}</span>
             </td>
-            <td>{{ item.progression.teacher_validation_date | date }}</td>
+            <td>{{ module.progression.teacher_validation_date | date }}</td>
             <td>
               <div class="pull-right">
-                <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
-                <label for="toggle{{ item.id }}" class="labChecky">Validé!</label>
+                <input id="toggle{{ module.id }}" type="checkbox" class="checky" [checked]="module.progression.student_validation">
+                <label for="toggle{{ module.id }}" class="labChecky">Validé!</label>
               </div>
             </td>
           </tr>
           <br>
         </tbody>
       </table>
+    </div>
     </div>
   </div>

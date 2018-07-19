@@ -34,7 +34,7 @@
         <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>
+          <td style="width: 95px;"><img src="{{ environnement.appUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
           <td><span class="alignleft">{{e.name}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
