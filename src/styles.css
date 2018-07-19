@@ -4186,7 +4186,7 @@ html , body{
 
 
    /* CUSTOM STYLES */
-   
+
 
     .legende {
         display: inline-flex;
@@ -4219,7 +4219,7 @@ html , body{
         display: block;
         font-weight: bold;
     }
-    
+
 
     /* barre de progression */
     .roundProgressBarWrapper{
@@ -4295,14 +4295,14 @@ html , body{
         position: absolute;
         left: -9999px;
     }
-    
+
     label.labChecky {
         display: block;
         position: relative;
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #C0D2F4;
+        background-color: #E689B8;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;
@@ -4312,7 +4312,7 @@ html , body{
         transition: background-color .2s, box-shadow .2s;
         width: 140px;
     }
-    
+
     label.labChecky::before {
         content: '';
         display: block;
@@ -4325,15 +4325,15 @@ html , body{
         border-radius: 100px;
         transition: background-color .2s;
     }
-    
+
     label.labChecky:hover, input.checky:focus + label.labChecky {
-        
+
     }
-    
+
     input.checky:checked + label.labChecky {
         background-color: #A3A1FB;
     }
-    
+
     input.checky:checked + label.labChecky::before {
         background-color: #fff;
     }
