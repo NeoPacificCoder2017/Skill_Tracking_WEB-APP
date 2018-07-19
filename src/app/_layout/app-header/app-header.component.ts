@@ -32,7 +32,9 @@ export class AppHeaderComponent implements OnInit {
     {
       'name': 'student',
       'links': [
-        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'}
+        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
+        {'title': 'Rapports', 'icon': 'fa-home', 'url': 'reports'},
+        {'title': 'Planning', 'icon': 'fa-home', 'url': 'plannings'}
       ]
     }
   ];
