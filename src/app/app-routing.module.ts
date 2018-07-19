@@ -50,7 +50,7 @@ const routes: Routes = [
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
       { path: 'admin/formations', component: AdminFormationsComponent},
-      { path: 'admin/formation/', component: AdminFormationComponent},
+      { path: 'admin/formation', component: AdminFormationComponent},
       { path: 'admin/teachers', component: AdminTeachersComponent},
       { path: 'admin/students', component: AdminStudentsComponent},
       { path: 'admin/modules', component: AdminModulesComponent},

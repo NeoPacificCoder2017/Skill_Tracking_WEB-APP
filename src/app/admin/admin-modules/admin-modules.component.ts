@@ -15,7 +15,7 @@ export class AdminModulesComponent implements OnInit {
 
   ngOnInit() {
     this.getModules();
-    this.getFormation(idFormation);
+    // this.getFormation(idFormation);
   }
 
   goToSkill(idSkill) {
@@ -42,11 +42,11 @@ export class AdminModulesComponent implements OnInit {
 
   /*================METHODE POST======================================*/
 
-  public postModul(): any {
-    this.apiService.post('module/create')
-    .subscribe((data) => {
-      this.module = data.data;
-      console.log('module data', this.module);
-    });
-  }
+  // public postModul(): any {
+  //   this.apiService.post('module/create')
+  //   .subscribe((data) => {
+  //     this.module = data.data;
+  //     console.log('module data', this.module);
+  //   });
+  // }
 }

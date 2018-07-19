@@ -46,7 +46,7 @@
         <tr *ngFor="let e of listFormations" (click)="Formation(e.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>
+          <td style="width: 95px;"><img src="{{environment.appUrl}}{{ e.logo }}" class="img-circle" width="100%"></td>
           <td><span class="alignleft">{{e.name}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
@@ -61,7 +61,7 @@
           <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
           <td>
               <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+              <button (click)="Formation(e.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
           </td>
         </tr>
         <br>

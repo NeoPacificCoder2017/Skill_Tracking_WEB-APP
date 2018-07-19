@@ -36,6 +36,7 @@ import { AdminModulesComponent } from './admin/admin-modules/admin-modules.compo
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,7 @@ import { AdminFormationComponent } from './admin/admin-formation/admin-formation
     AdminStudentsComponent,
     AdminModulesComponent,
     AdminSkillsComponent,
-    AdminFormationComponent
+    AdminFormationComponent,
   ],
   imports: [
     BrowserModule,

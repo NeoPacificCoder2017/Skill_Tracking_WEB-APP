@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -11,7 +11,8 @@ import { ApiService } from '../../services/api/api.service';
 })
 export class AdminDashboardComponent implements OnInit {
   listFormations: any;
-
+  formation: any;
+  environment = environment;
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
@@ -21,11 +22,18 @@ export class AdminDashboardComponent implements OnInit {
         this.listFormations = data.data;
       }
     );
+    // this.apiService.get('formation/:id').subscribe(
+    //   data => {
+    //     console.log('data', data);
+    //     this.formation = data.data;
+    //   }
+    // );
+
   }
 
   Formation(idFormation) {
     console.log('Formation', idFormation);
-    this.router.navigate(['/admin/formation/' + idFormation]);
+    this.router.navigate(['/admin/formation/'], { queryParams: { idFormation } });
   }
 
   // createFormation(idFormation): any {
