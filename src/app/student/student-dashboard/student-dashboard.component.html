@@ -26,15 +26,15 @@
       <!-- Liste des modules -->
       <!-- bar-progress -->
       <div class="card" *ngFor="let item of dataStudent">
-        <div class="roundProgressBarWrapper"  (click)="filterByModule(item.module.id)">
+        <div class="roundProgressBarWrapper" (click)="filterByModule(item.module.id)">
           <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="item.module.progression.teacher*100/item.module.totalSkills"
             [max]="max" [color]="'#E689B8'">
           </round-progress>
           <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="item.module.progression.student*100/item.module.totalSkills"
             [max]="max" [color]="'#A3A1FB'">
           </round-progress>
-          <div class="progressTeacherText red">{{ item.module.progression.teacher*100/item.module.totalSkills }} %</div>
-          <div class="progressStudentText purple">{{ item.module.progression.student*100/item.module.totalSkills }} %</div>
+          <div class="progressTeacherText red">{{ (item.module.progression.teacher*100/item.module.totalSkills) | number: '1.0-0' }} %</div>
+          <div class="progressStudentText purple">{{ (item.module.progression.student*100/item.module.totalSkills) | number: '1.0-0' }} %</div>
           <div class="moduleName">{{ item.module.name }}</div>
         </div>
       </div>
@@ -71,7 +71,8 @@
           <td>
             <div class="pull-right">
               <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
-              <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation)" for="toggle{{ item.id }}" class="labChecky" >Validé!</label>
+              <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation)"
+                for="toggle{{ item.id }}" class="labChecky">Validé!</label>
             </div>
           </td>
         </tr>
