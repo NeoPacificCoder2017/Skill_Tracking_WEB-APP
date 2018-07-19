@@ -32,7 +32,6 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
-import { AdminModulesComponent } from './admin/admin-modules/admin-modules.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
 
@@ -55,7 +54,6 @@ import { AdminFormationComponent } from './admin/admin-formation/admin-formation
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
-    AdminModulesComponent,
     AdminSkillsComponent,
     AdminFormationComponent,
   ],

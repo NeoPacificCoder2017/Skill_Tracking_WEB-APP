@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
-import * as $ from 'jquery';
+import { $ } from '../../../../node_modules/protractor';
 
 @Component({
   selector: 'app-admin-formation',
@@ -20,13 +20,12 @@ export class AdminFormationComponent implements OnInit {
     // this.formation.logo = null;
     // this.formation.end_at = null;
     // this.formation.name = null;
-  }
+   }
 
   ngOnInit() {
     this.getFormation();
-    document.getElementsByClassName('initHide').style.display = 'none';
-  }
 
+  }
 
   goToSkill(idSkill) {
     console.log('goToSkill', idSkill);
@@ -50,6 +49,4 @@ export class AdminFormationComponent implements OnInit {
       });
 
   }
-
-
 }
