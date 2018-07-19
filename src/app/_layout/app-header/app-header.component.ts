@@ -8,38 +8,36 @@ import { environment } from '../../../environments/environment';
 })
 export class AppHeaderComponent implements OnInit {
 
-  me : any;
+  me: any;
   environment = environment;
   allMenus = [
     null,
     {
-      "name": "admin",
-      "links": [
-        {"title": "Dashboard", "icon": "fa-home", "url": "dashboard"},
+      'name': 'admin',
+      'links': [
+        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
         // {"title": "Formations", "icon": "fa-graduation-cap", "url": "formations"},
-        {"title": "Formateurs", "icon": "fa-user", "url": "teachers"},
-        {"title": "Apprentis", "icon": "fa-user", "url": "students"}
+        {'title': 'Formateurs', 'icon': 'fa-user', 'url': 'teachers'},
+        {'title': 'Apprentis', 'icon': 'fa-user', 'url': 'students'}
       ]
     },
     {
-      "name": "teacher",
-      "links": {
-        1: {"title": "Over Here", "url": "In This City"},
-        2: {"title": "Over Here", "url": "In This City"},
-        3: {"title": "Over Here", "url": "In This City"}
+      'name': 'teacher',
+      'links': {
+        1: {'title': 'Over Here', 'url': 'In This City'},
+        2: {'title': 'Over Here', 'url': 'In This City'},
+        3: {'title': 'Over Here', 'url': 'In This City'}
       }
     },
     {
-      "name": "student",
-      "links": {
-        1: {"title": "Over Here", "url": "In This City"},
-        2: {"title": "Over Here", "url": "In This City"},
-        3: {"title": "Over Here", "url": "In This City"}
-      }
+      'name': 'student',
+      'links': [
+        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'}
+      ]
     }
   ];
-  menus : any;
-  menuPrefix : any;
+  menus: any;
+  menuPrefix: any;
 
   constructor() { }
 
@@ -48,7 +46,7 @@ export class AppHeaderComponent implements OnInit {
     console.log('this.me', this.me);
     this.menuPrefix = this.allMenus[this.me.user_type_id].name;
     this.menus = this.allMenus[this.me.user_type_id].links;
-    console.log('this.menu',this.menus);
+    console.log('this.menu', this.menus);
   }
 
 }
