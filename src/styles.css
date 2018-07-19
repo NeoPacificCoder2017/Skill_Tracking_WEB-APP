@@ -4220,7 +4220,26 @@ html , body{
         font-weight: bold;
     }
 
-
+    /* scrolling */
+    .scrolling-wrapper {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .scrolling-wrapper .card {
+        display: inline-block;
+    }
+    
+    .scrolling-wrapper .card.selected {
+        background: #3F3D99;
+        color: #fff;
+    }
+    
+    .scrolling-wrapper ::-webkit-scrollbar {
+        display: none;
+    }
     /* barre de progression */
     .roundProgressBarWrapper{
         position: relative;
@@ -4263,6 +4282,9 @@ html , body{
         text-align: center;
         font-size: 20px;
         font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     table .roundProgressBarWrapper {
