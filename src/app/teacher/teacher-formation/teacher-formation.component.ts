@@ -12,24 +12,21 @@ import { Location } from '@angular/common';
   styleUrls: ['./teacher-formation.component.css']
 })
 export class TeacherFormationComponent implements OnInit {
-  listeEtudiants: any;
-  idEtudiant: number;
+
+  students: any;
   idFormation: number;
   formation: any; // formation détail
-  environnement = environment;
+  environment = environment;
 
-  constructor(
-    private location: Location,
-    private route: ActivatedRoute,
-    private apiService: ApiService,
-    private router: Router,
-    private http: HttpClient) { }
+  constructor(private location: Location, private route: ActivatedRoute, private apiService: ApiService, private router: Router, private http: HttpClient) {
+    this.formation = {};
+  }
 
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
-        this.getEtudiants();
+        this.getStudents();
       });
   }
 
@@ -37,22 +34,22 @@ export class TeacherFormationComponent implements OnInit {
     this.location.back();
   }
 
-  selectedEtudiant(idStudent) {
+  showStudent(idStudent) {
     console.log('selectedEtudiant', idStudent);
     this.router.navigate(['/teacher/student'], { queryParams: { idFormation: this.idFormation, idStudent: idStudent } });
   }
 
-  public getEtudiants(): any {
+  public getStudents(): any {
     console.log('idFormation', this.idFormation);
-    this.apiService.get('formationdetail/' + this.idFormation)
+    this.apiService.get('formation/' + this.idFormation)
       .subscribe((data) => {
         this.formation = data;
         console.log('info formation', this.formation);
         this.apiService.get('getStudentsOfFormation/' + this.idFormation)
           .subscribe((studentData) => {
             console.log('idFormation', this.idFormation);
-            this.listeEtudiants = studentData;
-            console.log('students data', this.listeEtudiants);
+            this.students = studentData;
+            console.log('students data', this.students);
           });
       });
   }
