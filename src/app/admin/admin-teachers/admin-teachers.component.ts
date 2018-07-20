@@ -20,7 +20,7 @@ export class AdminTeachersComponent implements OnInit {
         console.log('data', data);
         this.teachers = data.data;
       }
-    )
+    );
   }
 
 }

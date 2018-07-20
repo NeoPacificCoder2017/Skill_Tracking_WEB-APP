@@ -1,3 +1,51 @@
-<p>
-  teacher-formation works!
-</p>
+<div class="page-title">
+  <div class="title_left">
+
+    <h3><i (click)="backClicked()" class="fa fa-arrow-left fa-1x"></i> Formation : {{ formation.formation_name }} </h3>
+  </div>
+
+  <div class="clearfix"></div>
+
+<!-- Liste des étudiants de la formation sélectionnée -->
+<div class="row">
+  <div class="col-md-12">
+    <!-- Tableau des formations -->
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+            <th scope="col">Progression formateur</th>
+            <th scope="col">Progression étudiant</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr *ngFor="let e of listeEtudiants" (click)="selectedEtudiant(e.id)" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{e.id}}</th>
+          <td style="width: 95px;"><img src="{{ environnement.appUrl }}{{ e.avatar }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{e.lastname}}</span></td>
+          <td><span class="alignleft">{{e.firstname}}</span></td>
+          <td class="">
+            <div class="roundProgressBarWrapper">
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="1" [max]="1"[radius]="40" [stroke]="5"></round-progress>
+              <div class="progressTeacherText red">50 %</div>
+            </div>
+          </td>
+          <td>
+            <div class="roundProgressBarWrapper">
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="40"[stroke]="5"></round-progress>
+              <div class="progressTeacherText purple">80 %</div>
+            </div>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
+</div>

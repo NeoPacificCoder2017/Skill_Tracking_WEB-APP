@@ -7,7 +7,8 @@ import { ApiService } from '../../services/api/api.service';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  
+
+  redirect = [null, 'admin', 'teacher', 'student'];
   listFormations: any;
 
   constructor(private apiService: ApiService) { }
@@ -18,7 +19,7 @@ export class AdminDashboardComponent implements OnInit {
         console.log('data', data);
         this.listFormations = data.data;
       }
-    )
+    );
   }
 
 
