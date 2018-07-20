@@ -1,5 +1,4 @@
-
- /* round progress bar */
+/* round progress bar */
 
 /* Legende round progress bar */
 /* #caption_teacher {
@@ -36,13 +35,7 @@
   margin-right: 7px;
 }
 
-/* bouton primary */
-.btn-primary {
-  color: #fff;
-  background-color : #A3A1FB;
-  border-color: #E689B7;
-}
-
+/* bouton primary *
 /***********  TEMPLATE BOOTSTRAP 4 ************/
 .tile_count {
   margin-bottom: 20px;
@@ -68,4 +61,31 @@
 .legende {
   display: inline-flex;
   vertical-align: middle;
+}
+.row{
+  padding: auto;
+}
+
+/* scrolling */
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-wrapper .card {
+  display: inline-block;
+}
+
+.scrolling-wrapper ::-webkit-scrollbar {
+  display: none;
+}
+
+.moduleName {
+  top: 160px;
+  width: 164px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
 }

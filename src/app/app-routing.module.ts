@@ -1,3 +1,4 @@
+import { StudentReportComponent } from './student/student-report/student-report.component';
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -39,11 +40,12 @@ const routes: Routes = [
     children: [
       // ROUTES STUDENT
       { path: 'student/dashboard', component: StudentDashboardComponent},
+      { path: 'student/reports', component: StudentReportComponent},
 
       // ROUTES TEACHER
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},
       { path: 'teacher/formation', component: TeacherFormationComponent},
-      
+
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
       { path: 'admin/formations', component: AdminFormationsComponent},

@@ -1,0 +1,23 @@
+/** Champs rechercher */
+.input-group {
+  position: absolute;
+  display: flex;
+  border-collapse: separate;
+}
+
+
+/** Champs rechercher par date */
+.control-group {
+  float:left;
+}
+
+#auteur{
+  margin-left: 330px;
+  margin-top: -55px;
+}
+#date{
+  margin-left: 330px;
+
+}
+/** Champs rechercher par Auteur */
+

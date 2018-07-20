@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://test.skillstracking.npc/api/'
+  apiUrl: 'http://skillstracking.motjo.io/api/',
+  appUrl: 'http://skillstracking.motjo.io/uploads/images/'
 };
 
 /*
