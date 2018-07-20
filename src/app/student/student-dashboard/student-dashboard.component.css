@@ -65,27 +65,3 @@
 .row{
   padding: auto;
 }
-
-/* scrolling */
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scrolling-wrapper .card {
-  display: inline-block;
-}
-
-.scrolling-wrapper ::-webkit-scrollbar {
-  display: none;
-}
-
-.moduleName {
-  top: 160px;
-  width: 164px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-}

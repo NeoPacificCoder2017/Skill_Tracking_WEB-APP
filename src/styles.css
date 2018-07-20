@@ -146,7 +146,7 @@ html , body{
        padding: 0 0 4px 0
    }
    .left_col {
-       background: #A3A1FB
+       background: #3F3D99
    }
    .nav-sm .container.body .col-md-3.left_col {
        min-height: 100%;
@@ -362,7 +362,7 @@ html , body{
    .nav_title {
        width: 230px;
        float: left;
-       background: #A3A1FB;
+       background: #3F3D99;
        border-radius: 0;
        height: 57px;
    }
@@ -406,13 +406,13 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #afd6fa
+       color: #399af2
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #abe5d9
+       color: #66d9c1
    }
    .aero {
        color: #FDDC97
@@ -436,7 +436,7 @@ html , body{
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #abe5d9 !important
+       border-color: #66d9c1 !important
    }
    .border-yellow {
        border-color: #FDDC97 !important
@@ -466,7 +466,7 @@ html , body{
        color: #fff
    }
    .bg-blue {
-       background: #afd6fa !important;
+       background: #399af2 !important;
        border: 1px solid #399af2 !important;
        color: #fff
    }
@@ -489,6 +489,11 @@ html , body{
        background: #50C1CF !important;
        border: 1px solid #50C1CF !important;
        color: #fff
+   }
+   .bg-dark {
+        background: #C0D2F4 !important;
+        border: 1px solid #C0D2F4 !important;
+        color: #fff
    }
    .container {
        width: 100%;
@@ -4186,7 +4191,7 @@ html , body{
 
 
    /* CUSTOM STYLES */
-   
+
 
     .legende {
         display: inline-flex;
@@ -4220,7 +4225,39 @@ html , body{
         font-weight: bold;
     }
     
+    .img-circle {
+        object-fit: cover;
+        width: 60px;
+    }
+    table .img-circle {
+        height: 60px;
+    }
 
+    /* scrolling */
+    .scrolling-wrapper {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .scrolling-wrapper .card {
+        display: inline-block;
+    }
+    
+    .scrolling-wrapper .card.selected {
+        background: #3F3D99;
+        color: #fff;
+    }
+    
+    .scrolling-wrapper .card.selected circle {
+        stroke: #fff !important;
+    }
+    
+    
+    .scrolling-wrapper ::-webkit-scrollbar {
+        display: none;
+    }
     /* barre de progression */
     .roundProgressBarWrapper{
         position: relative;
@@ -4230,7 +4267,7 @@ html , body{
         width: 140px;
         height: 190px;
         float: left;
-        margin: 50px 20px;
+        margin: 20px 20px 15px;
     }
     .roundProgressBar, .roundProgressBarTeacher, .roundProgressBarStudent, .progressTeacherText, .progressStudentText, .moduleName {
         position: absolute !important;
@@ -4261,8 +4298,11 @@ html , body{
         top: 160px;
         width: 140px;
         text-align: center;
-        font-size: 20px;
+        font-size: 14px;
         font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     table .roundProgressBarWrapper {
@@ -4295,14 +4335,14 @@ html , body{
         position: absolute;
         left: -9999px;
     }
-    
+
     label.labChecky {
         display: block;
         position: relative;
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #C0D2F4;
+        background-color: #66d9c1;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;
@@ -4312,7 +4352,7 @@ html , body{
         transition: background-color .2s, box-shadow .2s;
         width: 140px;
     }
-    
+
     label.labChecky::before {
         content: '';
         display: block;
@@ -4325,15 +4365,15 @@ html , body{
         border-radius: 100px;
         transition: background-color .2s;
     }
-    
+
     label.labChecky:hover, input.checky:focus + label.labChecky {
-        
+
     }
-    
+
     input.checky:checked + label.labChecky {
         background-color: #A3A1FB;
     }
-    
+
     input.checky:checked + label.labChecky::before {
         background-color: #fff;
     }

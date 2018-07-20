@@ -6,9 +6,6 @@ import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
-// Import ng-circle-progress
-// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
@@ -38,6 +35,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
+import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +56,12 @@ import { AdminStudentsComponent } from './admin/admin-students/admin-students.co
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
+<<<<<<< HEAD
     StudentReportComponent
+=======
+    TeacherModuleComponent,
+    TeacherStudentComponent
+>>>>>>> a6416fc1499e98b6391507c71fc670e05ce5d487
   ],
   imports: [
     BrowserModule,

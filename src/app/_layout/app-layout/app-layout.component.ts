@@ -11,13 +11,14 @@ export class AppLayoutComponent implements OnInit {
 
   isLogged = false;
 
-  
+
   constructor(private authService: AuthService, private router: Router) {
     // localStorage.removeItem('user');
   }
 
   ngOnInit() {
     this.isLogged = this.authService.isLogged();
+    console.log('AppLayoutComponent ngOnInit this.isLogged', this.isLogged)
     if (!this.isLogged) { this.router.navigate(['/login']); }
   }
 
