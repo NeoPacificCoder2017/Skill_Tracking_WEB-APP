@@ -14,8 +14,8 @@
     
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <form class="input-group pull-right row" style="display: flex;">
-        <input type="text rounded" [(ngModel)]="moduleName" class="form-control col-md-2" placeholder="module">
-        <button (click)="addModule('{moduleName}')" class="btn green bg-green" type="button">Ajouter un module</button>
+        <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
+        <button (click)="addModule()" class="btn green bg-green" type="button">Ajouter un module</button>
       </form>
     </div>
   </div>

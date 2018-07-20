@@ -17,17 +17,19 @@ export class AdminFormationComponent implements OnInit {
   dropDown: boolean;
   displayOff: string;
   displayOne: string;
-  moduleName: string ;
+  moduleName: string;
   environment = environment;
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
-    // this.formation.start_at = null;
-    // this.formation.logo = null;
-    // this.formation.end_at = null;
-    // this.formation.name = null;
-   }
+    this.moduleName = '';
+    this.formation = {};
+  }
 
   ngOnInit() {
-    this.getFormation();
+    this.route.queryParams
+      .subscribe(params => {
+        this.idFormation = params.idFormation;
+        this.getFormation();
+      });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
 
@@ -44,45 +46,32 @@ export class AdminFormationComponent implements OnInit {
   }
 
   public getFormation(): any {
-    this.route.queryParams
-      .subscribe(params => {
-        this.idFormation = params.idFormation;
-        this.apiService.get('formation/' + this.idFormation)
-          .subscribe((data) => {
-            this.formation = data;
-            console.log('formation data', this.formation);
-          });
-        this.apiService.get('modules')
-          .subscribe((data) => {
-            this.listModules = data.data;
-            console.log('listModules data', this.listModules);
-          });
+    this.apiService.get('formation/' + this.idFormation)
+      .subscribe((data) => {
+        this.formation = data;
+        console.log('formation data', this.formation);
+      });
+    this.apiService.get('modules')
+      .subscribe((data) => {
+        this.listModules = data.data;
+        console.log('listModules data', this.listModules);
       });
 
   }
 
-  addModule(toto): any {
-    this.moduleName = toto;
+  addModule(): any {
     console.log('moduleName', this.moduleName);
-    this.route.queryParams
-      .subscribe(params => {
-        this.idFormation = params.idFormation;
-        this.apiService.post('module/create', this.moduleName)
-        .subscribe((data: any) => {
-          console.log('name', name);
-          console.log('Module create', data);
-        });
+    this.apiService.post('module/create', this.moduleName)
+      .subscribe((data: any) => {
+        console.log('name', name);
+        console.log('Module create', data);
       });
   }
 
   deleteModule(): any {
-    this.route.queryParams
-      .subscribe(params => {
-        this.idFormation = params.idFormation;
-        this.apiService.delete('module/')
-        .subscribe(() => {
-          console.log('Module deleted');
-        });
+    this.apiService.delete('module/')
+      .subscribe(() => {
+        console.log('Module deleted');
       });
   }
 }
