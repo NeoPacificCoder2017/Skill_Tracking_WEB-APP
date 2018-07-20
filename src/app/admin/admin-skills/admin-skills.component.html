@@ -5,8 +5,7 @@
   </div>
   
   <div>
-    <span><i></i></span>
-    <h4>HTML/CSS</h4>
+    <h4>{{module.module_name}}</h4>
   </div>
   
   <table class="table table-borderless space" style="color: #999">
@@ -21,12 +20,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let skill of skills" class="shadow bg-white rad text-row">
+        <tr *ngFor="let skill of listSkill" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" >{{ skill_id }}</th>
-          <td>{{ skill_name }}</td>
-          <td><span class="alignleft">{{ skill.module_name }}</span></td>
-          <td>{{ skill.progression.teacher_validation_date | date }}</td>
+          <th scope="row" width="40" >{{ skill.skill_id }}</th>
+          <td>{{ skill.skill_name }}</td>
+          
           <td>
             <div class="pull-right">
               <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="skill.progression.student_validation">
