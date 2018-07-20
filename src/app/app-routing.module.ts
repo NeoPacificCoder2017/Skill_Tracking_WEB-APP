@@ -44,7 +44,6 @@ const routes: Routes = [
       // ROUTES TEACHER
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},
       { path: 'teacher/formation', component: TeacherFormationComponent},
-      { path: 'teacher/formation', component: TeacherFormationComponent},
       { path: 'teacher/student', component: TeacherStudentComponent},
 
 
