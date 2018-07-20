@@ -10,6 +10,8 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  redirect = [null, 'admin', 'teacher', 'student'];
   listFormations: any;
   formation: any;
   environment = environment;

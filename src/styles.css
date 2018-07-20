@@ -146,7 +146,7 @@ html , body{
        padding: 0 0 4px 0
    }
    .left_col {
-       background: #A3A1FB
+       background: #3F3D99
    }
    .nav-sm .container.body .col-md-3.left_col {
        min-height: 100%;
@@ -362,7 +362,7 @@ html , body{
    .nav_title {
        width: 230px;
        float: left;
-       background: #A3A1FB;
+       background: #3F3D99;
        border-radius: 0;
        height: 57px;
    }
@@ -406,13 +406,13 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #afd6fa
+       color: #399af2
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #abe5d9
+       color: #66d9c1
    }
    .aero {
        color: #FDDC97
@@ -436,7 +436,7 @@ html , body{
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #abe5d9 !important
+       border-color: #66d9c1 !important
    }
    .border-yellow {
        border-color: #FDDC97 !important
@@ -466,7 +466,7 @@ html , body{
        color: #fff
    }
    .bg-blue {
-       background: #afd6fa !important;
+       background: #399af2 !important;
        border: 1px solid #399af2 !important;
        color: #fff
    }
@@ -4227,6 +4227,10 @@ html , body{
     
     .img-circle {
         object-fit: cover;
+        width: 60px;
+    }
+    table .img-circle {
+        height: 60px;
     }
 
     /* scrolling */
@@ -4338,7 +4342,7 @@ html , body{
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #E689B8;
+        background-color: #66d9c1;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;

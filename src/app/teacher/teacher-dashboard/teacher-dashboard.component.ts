@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-teacher-dashboard',
@@ -10,8 +11,8 @@ import { ApiService } from '../../services/api/api.service';
 })
 
 export class TeacherDashboardComponent implements OnInit {
-
   listFormations: any;
+  environnement = environment;
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 
@@ -21,11 +22,11 @@ export class TeacherDashboardComponent implements OnInit {
 
   goToFormation(idFormation) {
     console.log('goToFormation', idFormation);
-    this.router.navigate(['/teacher/formation']);
+    this.router.navigate(['/teacher/formation'], { queryParams: { idFormation: idFormation }});
   }
 
   public getFormations(): any {
-    this.apiService.get('formations')
+    this.apiService.get('teacher/myFormations')
     .subscribe((data) => {
       this.listFormations = data.data;
       console.log('formations data', this.listFormations);

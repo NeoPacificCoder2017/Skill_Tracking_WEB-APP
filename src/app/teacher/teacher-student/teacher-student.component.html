@@ -1,0 +1,95 @@
+<div class="page-title">
+  <div class="title_left">
+    <div id="crop-avatar" class="pull-left">
+      <img class="img-circle img-responsive avatar-view" src="{{ environment.appImageUrl }}{{ student.user_avatar }}" alt="Photo de {{ student.user_firstname }} {{ student.user_lastname }}">
+    </div>
+    <h3 class="pull-left" style="margin: 13px 0 0 10px;">{{ student.user_firstname }} {{ student.user_lastname }}</h3>
+  </div>
+  <div class="title_right">
+      <button class="btn bg-blue pull-right" (click)="backClicked()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row" style="margin: 50px 0 0 0;">
+  <div class="col-md-12">
+    <div class="scrolling-wrapper">
+      <div class="card" [class.selected]="moduleSelected == 0">
+        <div class="roundProgressBarWrapper"  (click)="filterByModule(0)">
+          <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="totalTeacherValidation*100/totalSkills"
+            [max]="max" [color]="'#E689B8'">
+          </round-progress>
+          <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="totalStudentValidation*100/totalSkills"
+            [max]="max" [color]="'#A3A1FB'">
+          </round-progress>
+          <div class="progressTeacherText red">{{ (totalTeacherValidation*100/totalSkills) | number: '1.0-0' }} %</div>
+          <div class="progressStudentText purple">{{ (totalStudentValidation*100/totalSkills) | number: '1.0-0' }} %</div>
+          <div class="moduleName">Tout</div>
+        </div>
+      </div>
+      <div class="card" *ngFor="let module of modules" [class.selected]="moduleSelected == module.id">
+        <div class="roundProgressBarWrapper"  (click)="filterByModule(module.id)">
+          <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="module.progression.teacher*100/module.totalSkills"
+            [max]="max" [color]="'#E689B8'">
+          </round-progress>
+          <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="module.progression.student*100/module.totalSkills"
+            [max]="max" [color]="'#A3A1FB'">
+          </round-progress>
+          <div class="progressTeacherText red">{{ (module.progression.teacher*100/module.totalSkills) | number: '1.0-0' }} %</div>
+          <div class="progressStudentText purple">{{ (module.progression.student*100/module.totalSkills) | number: '1.0-0' }} %</div>
+          <div class="moduleName">{{ module.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row" style="margin: 50px 0 0 0;">
+  <div class="col-md-12">
+    <div class="legende pull-right">
+      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
+      <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<!-- Liste des formations -->
+<div class="row" style="margin: 50px 0 0 0;">
+  <div class="col-md-12">
+    <!-- Tableau des formations -->
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Compétences</th>
+            <th scope="col">Modules</th>
+            <th scope="col">Validés par vous le</th>
+            <th scope="col" class="pull-right">Validation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let skill of skills; let i = index" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{ skill.id }}</th>
+          <td>{{ skill.name }}</td>
+          <td><span class="alignleft">{{ skill.module_name }}</span></td>
+          <td>{{ skill.progression.teacher_validation_date | date }}</td>
+          <td>
+            <div class="pull-right">
+              <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
+              <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
+            </div>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
+</div>
+
