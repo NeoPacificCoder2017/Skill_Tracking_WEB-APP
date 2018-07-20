@@ -1,6 +1,6 @@
+import { environment } from './../../../environments/environment';
 import { ApiService } from './../../services/api/api.service';
 import { Component, OnInit } from '@angular/core';
-import { $ } from '../../../../node_modules/protractor';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -8,7 +8,10 @@ import { $ } from '../../../../node_modules/protractor';
   styleUrls: ['./student-dashboard.component.css']
 })
 export class StudentDashboardComponent implements OnInit {
+
+  environment = environment;
   max = 100;
+  formation: any;
   dataStudent: any;
   allSkills = [];
   skills = [];
@@ -19,10 +22,19 @@ export class StudentDashboardComponent implements OnInit {
   totalSkills = 0;
   totalStudentValidation = 0;
   totalTeacherValidation = 0;
+  me: any;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    this.formation = {};
+  }
 
   ngOnInit() {
+    this.me = JSON.parse(localStorage.getItem('user'));
+    console.log('this.me',this.me);
+    this.apiService.get('formation/'+this.me.formation_id).subscribe(data => {
+      this.formation = data;
+    });
+
     this.apiService.get('getFormations').subscribe(data => {
       console.log('StudentDashboardComponent getFormation data', data);
       this.dataStudent = data;
@@ -76,6 +88,15 @@ export class StudentDashboardComponent implements OnInit {
     }
 
     this.filterByModule(this.moduleSelected);
+
+    for (let i = 0; i < this.dataStudent.length; i++) {
+      for (let j = 0; j < this.dataStudent[i].module.skills.length; j++) {
+        if (this.dataStudent[i].module.skills[j].id === skillId) {
+          this.dataStudent[i].module.skills[j].progression.student_validation = studentValidation;
+          break;
+        }
+      }
+    }
   }
 
   filterByModule(moduleId) {
