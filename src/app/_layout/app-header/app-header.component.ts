@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AppHeaderComponent implements OnInit {
 
-  me: any;
+  public me: any;
   environment = environment;
   allMenus = [
     null,

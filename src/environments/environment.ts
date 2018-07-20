@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://skillstracking.motjo.io/api/'
+  apiUrl: 'http://skillstracking.motjo.io/api/',
+  appUrl: 'http://skillstracking.motjo.io/',
+  appImageUrl: 'http://skillstracking.motjo.io/uploads/images/',
+  appCalendarUrl: 'http://skillstracking.motjo.io/uploads/calendars/'
 };
 
 /*
