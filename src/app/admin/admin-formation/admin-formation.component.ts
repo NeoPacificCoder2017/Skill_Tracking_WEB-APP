@@ -14,6 +14,10 @@ export class AdminFormationComponent implements OnInit {
   formation: any;
   listModules: any;
   idFormation: any;
+  dropDown: boolean;
+  displayOff: string;
+  displayOne: string;
+  moduleName: string ;
   environment = environment;
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     // this.formation.start_at = null;
@@ -24,7 +28,14 @@ export class AdminFormationComponent implements OnInit {
 
   ngOnInit() {
     this.getFormation();
+    this.displayOne = this.dropDown ? 'inline' : 'none';
+  }
 
+  editeModule(idModule) {
+    console.log('idModule', idModule);
+    this.dropDown = !this.dropDown;
+    this.displayOff = this.dropDown ? 'inline' : 'none';
+    this.displayOne = this.dropDown ? 'inline' : 'inline';
   }
 
   goToSkill(idSkill) {
@@ -48,5 +59,30 @@ export class AdminFormationComponent implements OnInit {
           });
       });
 
+  }
+
+  addModule(toto): any {
+    this.moduleName = toto;
+    console.log('moduleName', this.moduleName);
+    this.route.queryParams
+      .subscribe(params => {
+        this.idFormation = params.idFormation;
+        this.apiService.post('module/create', this.moduleName)
+        .subscribe((data: any) => {
+          console.log('name', name);
+          console.log('Module create', data);
+        });
+      });
+  }
+
+  deleteModule(): any {
+    this.route.queryParams
+      .subscribe(params => {
+        this.idFormation = params.idFormation;
+        this.apiService.delete('module/')
+        .subscribe(() => {
+          console.log('Module deleted');
+        });
+      });
   }
 }

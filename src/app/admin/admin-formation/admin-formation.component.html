@@ -13,10 +13,10 @@
     </div>
     
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <div class="input-group pull-right row" style="display: flex;">
-        <input type="text img-rounded" class="form-control col-md-2" placeholder="module">
-        <button class="btn green bg-green" type="button">Ajouter un module</button>
-      </div>
+      <form class="input-group pull-right row" style="display: flex;">
+        <input type="text rounded" [(ngModel)]="moduleName" class="form-control col-md-2" placeholder="module">
+        <button (click)="addModule('{moduleName}')" class="btn green bg-green" type="button">Ajouter un module</button>
+      </form>
     </div>
   </div>
   
@@ -37,15 +37,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let module of listModules" (click)="goToSkill(module.id)" class="shadow bg-white rad text-row">
+          <tr *ngFor="let module of listModules" class="shadow bg-white rad text-row">
             <th></th>
             <th scope="row" width="40" >{{module.module_id}}</th>
             <td></td>
             <td></td>
 
-            <td class="initHide">
-              <div id="moduleName{{module.module_id}}"><span class="alignleft">{{module.module_name}}</span></div>
-              <div class="initHide"><input type="text img-rounded" class="form-control col-md-2" value="{{module.module_name}}"></div>
+            <td class="">
+              <div [ngStyle]="{display:displayOff}" (click)="goToSkill(module.id)"><span class="alignleft">{{module.module_name}}</span></div>
+              <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.module_name}}"></div>
             </td>
            
            
@@ -55,11 +55,11 @@
 
 
             <td>
-              <div>
-                <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <div [ngStyle]="{display:displayOff}">
+                <button (click)="deleteModule(module.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
                 <button (click)="editeModule(module.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
               </div>
-              <div class="initHide">
+              <div [ngStyle]="{display:displayOne}" class="">
                 <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
                 <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
               </div>

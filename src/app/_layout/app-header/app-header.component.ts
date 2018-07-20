@@ -8,7 +8,11 @@ import { environment } from '../../../environments/environment';
 })
 export class AppHeaderComponent implements OnInit {
 
+<<<<<<< HEAD
   me: any;
+=======
+  public me: any;
+>>>>>>> b64f691eb867b61c94e4d9ef9574d324fec38cef
   environment = environment;
   allMenus = [
     null,
@@ -31,11 +35,19 @@ export class AppHeaderComponent implements OnInit {
     },
     {
       'name': 'student',
+<<<<<<< HEAD
       'links': {
         1: {'title': 'Over Here', 'url': 'In This City'},
         2: {'title': 'Over Here', 'url': 'In This City'},
         3: {'title': 'Over Here', 'url': 'In This City'}
       }
+=======
+      'links': [
+        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
+        {'title': 'Rapports', 'icon': 'fa-home', 'url': 'reports'},
+        {'title': 'Planning', 'icon': 'fa-home', 'url': 'plannings'}
+      ]
+>>>>>>> b64f691eb867b61c94e4d9ef9574d324fec38cef
     }
   ];
   menus: any;

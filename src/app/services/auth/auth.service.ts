@@ -40,6 +40,12 @@ export class AuthService {
     }));
   }
 
+  me() {
+
+    const me = JSON.parse(localStorage.getItem('user'));
+    return me;
+  }
+
   isLogged() {
 
     const me = JSON.parse(localStorage.getItem('user'));

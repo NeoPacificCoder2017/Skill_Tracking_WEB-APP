@@ -69,3 +69,6 @@
   display: inline-flex;
   vertical-align: middle;
 }
+.row{
+  padding: auto;
+}

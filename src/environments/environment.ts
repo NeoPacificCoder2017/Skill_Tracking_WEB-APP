@@ -5,7 +5,13 @@
 export const environment = {
   production: false,
   apiUrl: 'http://skillstracking.motjo.io/api/',
+<<<<<<< HEAD
   appUrl: 'http://skillstracking.motjo.io/uploads/images/'
+=======
+  appUrl: 'http://skillstracking.motjo.io/',
+  appImageUrl: 'http://skillstracking.motjo.io/uploads/images/',
+  appCalendarUrl: 'http://skillstracking.motjo.io/uploads/calendars/'
+>>>>>>> b64f691eb867b61c94e4d9ef9574d324fec38cef
 };
 
 /*

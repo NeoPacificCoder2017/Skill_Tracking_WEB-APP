@@ -6,9 +6,6 @@ import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
-// Import ng-circle-progress
-// import { NgCircleProgressModule } from 'ng-circle-progress/index.js';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
