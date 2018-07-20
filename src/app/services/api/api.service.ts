@@ -17,6 +17,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {
     this.setHeaders();
+    console.log( this.httpOptions );
   }
 
   setHeaders() {
@@ -27,6 +28,7 @@ export class ApiService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.me.token
         })
+
       };
     }
   }
