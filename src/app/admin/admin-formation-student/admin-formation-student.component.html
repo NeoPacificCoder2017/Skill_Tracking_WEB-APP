@@ -6,7 +6,7 @@
       <h3 class="pull-left" style="margin: 13px 0 0 10px;">{{ student.user_firstname }} {{ student.user_lastname }}</h3>
     </div>
     <div class="title_right">
-        <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
+        <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux étudiants</button>
     </div>
   </div>
   
@@ -61,8 +61,8 @@
               <th scope="col">#</th>
               <th scope="col">Compétences</th>
               <th scope="col">Modules</th>
-              <th scope="col">Validés par vous le</th>
-              <th scope="col" class="pull-right">Validation</th>
+              <th scope="col">Validés par le formateur</th>
+              <th scope="col">Validés par l'étudiant</th>
           </tr>
         </thead>
         <tbody>
@@ -70,14 +70,9 @@
             <th></th>
             <th scope="row" width="40" >{{ skill.id }}</th>
             <td>{{ skill.name }}</td>
-            <td><span class="alignleft">{{ skill.module_name }}</span></td>
-            <td>{{ skill.progression.teacher_validation_date | date }}</td>
-            <td>
-              <div class="pull-right">
-                <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-                <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
-              </div>
-            </td>
+            <td><span class="btn btn-round bg-dark no-border left">{{ skill.module_name }}</span></td>
+            <td><span class="btn btn-round bg-red no-border left" *ngIf="skill.progression.teacher_validation_date">{{ skill.progression.teacher_validation_date | date }}</span></td>
+            <td><span class="btn btn-round bg-purple no-border left" *ngIf="skill.progression.student_validation_date">{{ skill.progression.student_validation_date | date }}</span></td>
           </tr>
           <br>
         </tbody>

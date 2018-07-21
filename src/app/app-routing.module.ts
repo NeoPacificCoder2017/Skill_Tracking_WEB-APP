@@ -24,6 +24,7 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'admin/dashboard', component: AdminDashboardComponent},
       { path: 'admin/formations', component: AdminFormationsComponent},
       { path: 'admin/formation', component: AdminFormationComponent},
+      { path: 'admin/formation/student', component: AdminFormationStudentComponent},
       { path: 'admin/teachers', component: AdminTeachersComponent},
       { path: 'admin/students', component: AdminStudentsComponent},
       { path: 'admin/skills', component: AdminSkillsComponent},

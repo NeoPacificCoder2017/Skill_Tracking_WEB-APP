@@ -24,7 +24,7 @@ export class AuthService {
     }));
   }
 
-  logout() {
+  logout(): boolean {
     const me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {
       headers: new HttpHeaders({
@@ -32,12 +32,12 @@ export class AuthService {
         'Authorization': 'Bearer ' + me.token
       })
     };
-    return this.http.get(apiUrl + 'logout', httpOptions)
+    localStorage.removeItem('user');
+    this.http.get(apiUrl + 'logout', httpOptions)
     .pipe(map(data => {
       console.log('logout data', data);
-      localStorage.removeItem('user');
-      return data;
     }));
+    return true;
   }
 
   me() {

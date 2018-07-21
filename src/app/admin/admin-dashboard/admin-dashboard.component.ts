@@ -12,16 +12,19 @@ import { environment } from '../../../environments/environment';
 export class AdminDashboardComponent implements OnInit {
 
   redirect = [null, 'admin', 'teacher', 'student'];
-  listFormations: any;
+  formations: {};
   formation: any;
   environment = environment;
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
+
+  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) {
+    // this.formations = {};
+  }
 
   ngOnInit() {
-    this.apiService.get('formations').subscribe(
+    this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
         console.log('data', data);
-        this.listFormations = data.data;
+        this.formations = data;
       }
     );
     // this.apiService.get('formation/:id').subscribe(
@@ -33,9 +36,9 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-  Formation(idFormation) {
+  showFormation(idFormation) {
     console.log('Formation', idFormation);
-    this.router.navigate(['/admin/formation/'], { queryParams: { idFormation } });
+    this.router.navigate(['/admin/formation'], { queryParams: { idFormation: idFormation } });
   }
 
   // createFormation(idFormation): any {

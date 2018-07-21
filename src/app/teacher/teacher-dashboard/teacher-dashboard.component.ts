@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 
 export class TeacherDashboardComponent implements OnInit {
   listFormations: any;
-  environnement = environment;
+  environment = environment;
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 

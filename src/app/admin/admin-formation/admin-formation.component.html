@@ -1,71 +1,179 @@
-<div>
-  <div class="row">
-    <div class="" style="text-align: center; padding-top: 60px; margin: auto auto;
-    width: 50%;">
-      <div class="" style="display: flex;">
-          <div style="padding-top: 15px;">Date de début: {{formation.start_at | date}}</div>
-          <td style="width: 95px; margin: 0px 30px;"><img src="{{environment.appUrl}}{{ formation.logo }}" class="img-circle" width="100%"></td>
-          <div style="padding-top: 15px;">Date de fin: {{formation.end_at | date}}</div>
-      </div>
-      <div class="">
-        <h3 class="" style="font-size: 20px; padding-top: 5px;">{{ formation.name }}</h3>
-      </div>
-    </div>
-    
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <form class="input-group pull-right row" style="display: flex;">
-        <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
-        <button (click)="addModule()" class="btn green bg-green" type="button">Ajouter un module</button>
-      </form>
-    </div>
+<div class="page-title">
+  <div class="title_left">
+    <h3></h3>
   </div>
-  
-  <!-- Liste des formations -->
-  <div class="row">
-    <div class="col-md-12">
-      <!-- Tableau des formations -->
-      <table class="table table-borderless space" style="color: #999">
-        <thead class="">
-          <tr class="tablecolor rad text-row">
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">Intitulé</th>
-            <th scope="col">Nombre de compétence</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let module of listModules" class="shadow bg-white rad text-row">
-            <th></th>
-            <th scope="row" width="40" >{{module.module_id}}</th>
-            <td></td>
-            <td></td>
+  <div class="title_right">
+      <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
+  </div>
+</div>
 
-            <td class="">
-              <a [ngStyle]="{display:displayOff}" (click)="goToSkill(module.id)"><span class="alignleft">{{module.module_name}}</span></a>
-              <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.module_name}}"></div>
-            </td>
-            
-            <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
-            
-            <td>
-              <div [ngStyle]="{display:displayOff}">
-                <button (click)="deleteModule(module.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
-                <button (click)="editeModule(module.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
-              </div>
-              <div [ngStyle]="{display:displayOne}" class="">
-                <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
-                <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
-              </div>
-            </td>
+<div class="row">
+  <div class="col-md-12">
+    <img src="{{ environment.appImageUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+  </div>
+</div>
+<div class="row" style="margin-bottom: 50px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h3>Formation : {{ formation.name }}</h3>
+    <button class="btn bg-dark "><i class="fa fa-calendar"></i> début : {{ formation.start_at | date }}</button>
+    <button class="btn bg-dark "><i class="fa fa-calendar"></i> fin : {{ formation.end_at | date }}</button>
+  </div>
+</div>
 
-          </tr>
-          <br>
-        </tbody>
-      </table>
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1">Formateurs</button>
+    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2">Étudiants</button>
+    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3">Modules</button>
+  </div>
+</div>
+
+<!-- Liste des Teachers -->
+<div class="row" *ngIf="tabSelected === 1">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-borderless space" style="color: #999">
+          <thead class="">
+            <tr class="tablecolor rad text-row">
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Modules</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let teacher of teachers" class="shadow bg-white rad text-row">
+              <th></th>
+              <th scope="row" width="40" >{{ teacher.id }}</th>
+              <td>
+                <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" width="100%">
+                <div class="pull-left" style="margin: 13px 0 0 10px;">
+                  <span class="alignleft">{{teacher.lastname}}</span><br/>
+                  <span class="alignleft">{{teacher.firstname}}</span>
+                </div>
+              </td>
+              <td>
+                  <button class="btn btn-round bg-dark no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
+              </td>
+              <td>
+                <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+                <button (click)="goToTeacherPage(teacher.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- Liste des Students -->
+<div class="row" *ngIf="tabSelected === 2">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-borderless space" style="color: #999">
+          <thead class="">
+            <tr class="tablecolor rad text-row">
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Progression</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students" class="shadow bg-white rad text-row">
+              <th></th>
+              <th scope="row" width="40" >{{ student.user_id }}</th>
+              <td>
+                <img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle pull-left" width="100%">
+                <div class="pull-left" style="margin: 13px 0 0 10px;">
+                  <span class="alignleft">{{student.lastname}}</span><br/>
+                  <span class="alignleft">{{student.firstname}}</span>
+                </div>
+              </td>
+              <td>
+                <div class="roundProgressBarWrapper">
+                  <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progressions_teacher_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                  <round-progress class="roundProgressBar roundProgressBarStudent" [current]="student.progressions_student_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                  <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
+                  <div class="progressTeacherText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
+                </div>
+              </td>
+              <td>
+                <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+                <button (click)="goToStudentPage(student.user_id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Liste des formations -->
+<div class="row" *ngIf="tabSelected === 3">
+  <div class="col-md-12">
+
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <form class="input-group pull-right row" style="display: flex;">
+          <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
+          <button (click)="addModule()" class="btn green bg-green" type="button">Ajouter un module</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Tableau des formations -->
+        <table class="table table-borderless space" style="color: #999">
+          <thead class="">
+            <tr class="tablecolor rad text-row">
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Intitulé</th>
+              <th scope="col">Nombre de compétence</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let module of modules" class="shadow bg-white rad text-row">
+              <th></th>
+              <th scope="row" width="40" >{{module.id}}</th>
+              <td></td>
+              <td></td>
+
+              <td class="">
+                <a [ngStyle]="{display:displayOff}" (click)="goToSkill(module.id)"><span class="alignleft">{{module.name}}</span></a>
+                <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.name}}"></div>
+              </td>
+              
+              <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
+              
+              <td>
+                <div [ngStyle]="{display:displayOff}">
+                  <button (click)="deleteModule(module.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+                  <button (click)="editeModule(module.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+                </div>
+                <div [ngStyle]="{display:displayOne}" class="">
+                  <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
+                  <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
+                </div>
+              </td>
+
+            </tr>
+            <br>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
