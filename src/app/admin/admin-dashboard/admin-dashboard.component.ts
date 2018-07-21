@@ -1,3 +1,4 @@
+import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -13,10 +14,15 @@ export class AdminDashboardComponent implements OnInit {
 
   redirect = [null, 'admin', 'teacher', 'student'];
   listFormations: any;
-  formation: any;
+  name: string;
+  start_at: any = '08/20/2018';
+  end_at: any = '20/07/2018';
+  logoFile: File = null;
+  formations: any;
   environment = environment;
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
+  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) {
 
+  }
   ngOnInit() {
     this.apiService.get('formations').subscribe(
       data => {
@@ -24,13 +30,10 @@ export class AdminDashboardComponent implements OnInit {
         this.listFormations = data.data;
       }
     );
-    // this.apiService.get('formation/:id').subscribe(
-    //   data => {
-    //     console.log('data', data);
-    //     this.formation = data.data;
-    //   }
-    // );
+  }
 
+  logo(event) {
+    console.log(event);
   }
 
   Formation(idFormation) {
@@ -38,15 +41,16 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['/admin/formation/'], { queryParams: { idFormation } });
   }
 
-  // createFormation(idFormation): any {
-  //   this.apiService.post('formation/create')
-  //   .subscribe((data) => {
 
-  //   });
-  // }
+  createFormation(): any {
+    this.apiService.post('formation/create', this.formations)
+    .subscribe((data: any) => {
+      console.log('formation create', data);
+    });
+  }
 
-  deleteFormation(id: number): any {
-    this.apiService.delete('formation/' + id)
+  deleteFormation(idFormation): any {
+    this.apiService.delete('formation/' + idFormation)
     .subscribe((data) => {
       this.deleteFormation = data.data;
       console.log('modules data', this.deleteFormation);

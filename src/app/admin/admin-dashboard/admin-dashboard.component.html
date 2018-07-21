@@ -1,14 +1,14 @@
 <div class="page-title">
   <div class="title_left">
-    <h3 >Liste des formations</h3>
+    <h3>Liste des formations</h3>
   </div>
 
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
         <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">
-            Ajouter une formation
-          </button>
+          Ajouter une formation
+        </button>
       </div>
     </div>
   </div>
@@ -19,8 +19,10 @@
 <div class="row">
   <div class="col-md-12">
     <div class="legende pull-right">
-      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
-      <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+      <div style="margin-right: 10px">
+        <i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
+      <div>
+        <i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
     </div>
   </div>
 </div>
@@ -31,37 +33,53 @@
     <table class="table table-borderless space" style="color: #999">
       <thead class="">
         <tr class="tablecolor rad text-row">
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Logo</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Progression</th>
-            <th scope="col">Date de début</th>
-            <th scope="col">Date de fin</th>
-            <th scope="col">Nombre d'étudiants</th>
-            <th></th>
+          <th scope="col"></th>
+          <th scope="col">#</th>
+          <th scope="col">Logo</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Progression</th>
+          <th scope="col">Date de début</th>
+          <th scope="col">Date de fin</th>
+          <th scope="col">Nombre d'étudiants</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let e of listFormations" (click)="Formation(e.id)" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{environment.appUrl}}{{ e.logo }}" class="img-circle" width="100%"></td>
-          <td><span class="alignleft">{{e.name}}</span></td>
+          <th scope="row" width="40">{{e.id}}</th>
+          <td style="width: 95px;">
+            <img src="{{environment.appUrl}}{{ e.logo }}" class="img-circle" width="100%">
+          </td>
+          <td>
+            <span class="alignleft">{{e.name}}</span>
+          </td>
           <td class="">
             <div class="roundProgressBarWrapper">
-              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
-              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100" [radius]="40"
+                [stroke]="5"></round-progress>
+              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100" [radius]="32"
+                [stroke]="5"></round-progress>
               <div class="progressTeacherText red">50 %</div>
               <div class="progressStudentText purple">80 %</div>
             </div>
           </td>
-          <td><span class="alignleft">{{e.start_at | date}}</span></td>
-          <td><span class="alignleft">{{e.end_at | date}}</span></td>
-          <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
           <td>
-              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-              <button (click)="Formation(e.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+            <span class="alignleft">{{e.start_at | date}}</span>
+          </td>
+          <td>
+            <span class="alignleft">{{e.end_at | date}}</span>
+          </td>
+          <td>
+            <a href="" class="btn btn-round bg-green no-border left">20</a>
+          </td>
+          <td>
+            <a href="" class="rounded btn bg-red icon no-border alignright">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+            <button (click)="Formation(e.id)" class="rounded btn bg-blue icon no-border alignright">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </button>
           </td>
         </tr>
         <br>
@@ -74,34 +92,63 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
       </div>
       <div class="modal-body">
-          <form class="row">
-            <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
-              <label for="name">Nom de la formation :</label>
-              <input type="name" class="form-control" id="name" placeholder="name">
+        <form class="row">
+          <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
+            <label for="name">Nom de la formation :</label>
+            <input type="name" class="form-control" id="name" placeholder="name">
+          </div>
+
+          <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
+            <label for="logo">Ajouter un logo :</label>
+            <input type="file" (change)="logo($event)" id="logo">
+          </div>
+
+          <!-- date picker -->
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+              <fieldset>
+                <div class="control-group">
+                  <label for="start_at">Date de début</label>
+                  <div class="controls">
+                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                      <input class="form-control has-feedback-left calendar" id="start_at" name="start_at" placeholder="Date att" aria-describedby="inputSuccess2Status4"
+                        type="text">
+                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                      <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <label for="exampleInputFile">Ajouter un logo :</label>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Veuillez entrer un logo</p>
+          </div>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+              <fieldset>
+                <div class="control-group">
+                    <label for="end_at">Date de fin</label>
+                  <div class="controls">
+                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                      <input class="form-control has-feedback-left calendar" id="end_at" name="end_at" placeholder="First Name" aria-describedby="inputSuccess2Status3"
+                        value="07/20/2018" type="text">
+                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                      <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <p>Date de début: <input type="text" id="datepicker"></p>
-            </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <p>Date de fin: <input type="text" id="datepicker"></p>
-            </div>
-          </form>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-blue icon no-border">Ajouter</button>
+        <button (click)="createFormation()" type="button" class="btn bg-blue icon no-border">Ajouter</button>
       </div>
     </div>
   </div>
