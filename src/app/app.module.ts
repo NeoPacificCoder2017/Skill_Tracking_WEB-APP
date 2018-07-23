@@ -49,6 +49,7 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
     SiteLayoutComponent,
     LoginComponent,
     StudentDashboardComponent,
+    StudentReportComponent,
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
@@ -56,12 +57,8 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
-<<<<<<< HEAD
-    StudentReportComponent
-=======
     TeacherModuleComponent,
     TeacherStudentComponent
->>>>>>> a6416fc1499e98b6391507c71fc670e05ce5d487
   ],
   imports: [
     BrowserModule,

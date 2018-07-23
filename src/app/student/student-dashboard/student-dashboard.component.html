@@ -91,22 +91,13 @@
           <th scope="row" width="40">{{ item.id }}</th>
           <td>{{ item.name }}</td>
           <td>
-<<<<<<< HEAD
-            <span class="alignleft">{{ item.module_name }} - {{ item.progression.student_validation }}</span>
-=======
             <span class="alignleft">{{ item.module_name }}</span>
->>>>>>> a6416fc1499e98b6391507c71fc670e05ce5d487
           </td>
           <td>{{ item.progression.teacher_validation_date | date }}</td>
           <td>
             <div class="pull-right">
-<<<<<<< HEAD
-              <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
-              <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation)" for="toggle{{ item.id }}" class="labChecky">Validé!</label>
-=======
               <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="isStudentValidated(item.id)" (change)="onChange(item.id)" >
               <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation, i)" for="toggle{{ item.id }}" class="labChecky" [innerHtml]="stateText(item.id)"></label>
->>>>>>> a6416fc1499e98b6391507c71fc670e05ce5d487
             </div>
           </td>
         </tr>

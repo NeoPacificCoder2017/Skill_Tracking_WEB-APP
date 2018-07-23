@@ -63,7 +63,6 @@ export class StudentDashboardComponent implements OnInit {
     console.log('skillValidatedByStudent progressionId', progressionId);
     console.log('skillValidatedByStudent studentValidation', studentValidation);
     this.skills[skillIndex].progression.student_validation = studentValidation;
-    console.log('skillValidatedByStudent this.skills[skillIndex].progression.student_validation', this.skills[skillIndex].progression.student_validation);
 
     this.updateSkillsArray(skillId, studentValidation);
 

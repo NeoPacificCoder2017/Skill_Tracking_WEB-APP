@@ -18,7 +18,7 @@ export class AppLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.isLogged = this.authService.isLogged();
-    console.log('AppLayoutComponent ngOnInit this.isLogged', this.isLogged)
+    console.log('AppLayoutComponent ngOnInit this.isLogged', this.isLogged);
     if (!this.isLogged) { this.router.navigate(['/login']); }
   }
 

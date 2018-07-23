@@ -1,6 +1,6 @@
 <form id="search">
     <!-- champ de recherche par auteur -->
-    <div class="col-xs-12 form-group pull-right top_search" id="search_author">
+    <div class="col-xs-12 form-group top_search" id="search_author">
         <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
         <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -14,14 +14,14 @@
         </div>
       </div>
   <!-- champ recherche par date picker -->
-  <div class="col-xs-12 form-group pull-right top_search" id="search_date">
+  <div class="col-xs-12 form-group top_search" id="search_date">
     <div class="col-md-9 col-sm-9 col-xs-9">
       <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
       <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
     </div>
   </div>
   <!-- champ rechercher -->
-  <div class="col-xs-12 form-group pull-right top_search" id="search_field">
+  <div class="col-xs-12 form-group top_search" id="search_field">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Rechercher...">
       <span class="input-group-btn">
@@ -29,6 +29,8 @@
       </span>
     </div>
   </div>
+  <!-- bouton ajouter -->
+  <div class="glyphicon glyphicon-plus"></div>
 
 </form>
 <!-- Liste des formations -->
@@ -46,14 +48,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of reports" class="shadow bg-white rad text-row">
-          <th></th>
-          <th scope="row" width="40">{{ item.id }}</th>
-          <td>{{ item.name }}</td>
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+          <td></td>
+          <td scope="row" width="40">{{ item.report_id }}</td>
+          <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
           <td>
-            <span class="alignleft">{{ item.module_name }} - {{ item.progression.student_validation }}</span>
+            <span class="alignleft">{{ item.date }}</span>
           </td>
-          <td>{{ item.progression.teacher_validation_date | date }}</td>
+          <td>{{ item.date }}</td>
         </tr>
         <br>
       </tbody>
