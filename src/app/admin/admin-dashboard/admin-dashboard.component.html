@@ -1,14 +1,14 @@
 <div class="page-title">
   <div class="title_left">
-    <h3 >Liste des formations</h3>
+    <h3>Liste des formations</h3>
   </div>
 
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
         <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">
-            Ajouter une formation
-          </button>
+          Ajouter une formation
+        </button>
       </div>
     </div>
   </div>
@@ -83,34 +83,63 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
       </div>
       <div class="modal-body">
-          <form class="row">
-            <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
-              <label for="name">Nom de la formation :</label>
-              <input type="name" class="form-control" id="name" placeholder="name">
+        <form class="row">
+          <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
+            <label for="name">Nom de la formation :</label>
+            <input type="name" class="form-control" id="name" placeholder="name">
+          </div>
+
+          <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
+            <label for="logo">Ajouter un logo :</label>
+            <input type="file" (change)="logo($event)" id="logo">
+          </div>
+
+          <!-- date picker -->
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+              <fieldset>
+                <div class="control-group">
+                  <label for="start_at">Date de début</label>
+                  <div class="controls">
+                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                      <input class="form-control has-feedback-left calendar" id="start_at" name="start_at" placeholder="Date att" aria-describedby="inputSuccess2Status4"
+                        type="text">
+                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                      <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <label for="exampleInputFile">Ajouter un logo :</label>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Veuillez entrer un logo</p>
+          </div>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+              <fieldset>
+                <div class="control-group">
+                    <label for="end_at">Date de fin</label>
+                  <div class="controls">
+                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                      <input class="form-control has-feedback-left calendar" id="end_at" name="end_at" placeholder="First Name" aria-describedby="inputSuccess2Status3"
+                        value="07/20/2018" type="text">
+                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                      <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <p>Date de début: <input type="text" id="datepicker"></p>
-            </div>
-      
-            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-              <p>Date de fin: <input type="text" id="datepicker"></p>
-            </div>
-          </form>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-blue icon no-border">Ajouter</button>
+        <button (click)="createFormation()" type="button" class="btn bg-blue icon no-border">Ajouter</button>
       </div>
     </div>
   </div>

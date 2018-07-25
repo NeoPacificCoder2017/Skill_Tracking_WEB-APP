@@ -57,7 +57,8 @@
               "node_modules/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",
               "node_modules/gentelella/vendors/moment/min/moment.min.js",
               "node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js",
-              "node_modules/gentelella/build/js/custom.min.js"
+              "node_modules/gentelella/build/js/custom.min.js",
+              "src/assets/js/scripts.js"
             ]
           },
           "configurations": {
