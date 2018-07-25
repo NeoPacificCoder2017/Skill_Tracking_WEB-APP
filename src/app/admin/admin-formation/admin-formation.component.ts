@@ -102,9 +102,10 @@ export class AdminFormationComponent implements OnInit {
       });
   }
 
-  deleteModule(): any {
-    this.apiService.delete('module/')
-      .subscribe(() => {
+  deleteModule(idModule): any {
+    console.log('idModule', idModule);
+    this.apiService.delete('module/' + { params: {idModule: idModule}})
+      .subscribe((data) => {
         console.log('Module deleted');
       });
   }
