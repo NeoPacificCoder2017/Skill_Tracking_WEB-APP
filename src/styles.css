@@ -146,7 +146,7 @@ html , body{
        padding: 0 0 4px 0
    }
    .left_col {
-       background: #3F3D99
+       background: #2E1166
    }
    .nav-sm .container.body .col-md-3.left_col {
        min-height: 100%;
@@ -362,7 +362,7 @@ html , body{
    .nav_title {
        width: 230px;
        float: left;
-       background: #3F3D99;
+       background: #2E1166;
        border-radius: 0;
        height: 57px;
    }
@@ -406,7 +406,7 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #399af2
+       color: #90c8fd
    }
    .purple {
        color: #A3A1FB
@@ -457,18 +457,18 @@ html , body{
    }
    .bg-green {
        background: #abe5d9 !important;
-       border: 1px solid #2fbfa0 !important;
-       color: #fff
+       border: 1px solid #1a967b !important;
+       color: #1a967b
    }
    .bg-red {
-       background: #E689B8 !important;
-       border: 1px solid #f64a91 !important;
+       background: #fbb6d3 !important;
+       border: 1px solid #fbb6d3 !important;
        color: #fff
    }
    .bg-blue {
-       background: #399af2 !important;
-       border: 1px solid #399af2 !important;
-       color: #fff
+       background: #90c8fd !important;
+       border: 1px solid #90c8fd !important;
+       color: #399af2
    }
    .bg-yellow {
        background: #FDDC97 !important;
@@ -493,7 +493,7 @@ html , body{
    .bg-dark {
         background: #C0D2F4 !important;
         border: 1px solid #C0D2F4 !important;
-        color: #fff
+        color: #73879C
    }
    .container {
        width: 100%;
@@ -3489,11 +3489,11 @@ html , body{
    }
    .alignleft {
        float: left;
-       margin-right: 15px
+       margin-right: 5px
    }
    .alignright {
        float: right;
-       margin-left: 15px
+       margin-left: 5px
    }
    .clearfix:after,
    form:after {
@@ -4246,7 +4246,7 @@ html , body{
     }
     
     .scrolling-wrapper .card.selected {
-        background: #3F3D99;
+        background: #2E1166;
         color: #fff;
     }
     
@@ -4308,27 +4308,30 @@ html , body{
     table .roundProgressBarWrapper {
         position: relative;
         margin: 10px 0;
-        height: 80px;
+        height: 60px;
+        width: 60px;
     }
     table .roundProgressBarTeacher {
         left: 0px;
         top: 0px;
     }
     table .roundProgressBarStudent {
-        left: 8px;
-        top: 8px;
+        left: 6px;
+        top: 6px;
     }
     table .progressTeacherText {
-        top: 20px;
-        width: 80px;
+        top: 16px;
+        width: 60px;
         text-align: center;
-        font-size: 13px;
+        font-size: 11px;
+        font-weight: bold;
     }
     table .progressStudentText {
-      top: 40px;
-      width: 80px;
-      text-align: center;
-      font-size: 13px;
+        top: 28px;
+        width: 60px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
     }
 
     input.checky {
@@ -4376,6 +4379,15 @@ html , body{
 
     input.checky:checked + label.labChecky::before {
         background-color: #fff;
+    }
+
+    .loadingWrapper {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #f3f5f7;
+        z-index: 9;
     }
    /*
    .x_content {

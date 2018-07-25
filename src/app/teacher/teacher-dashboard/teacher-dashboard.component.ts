@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormationService } from '../../services/formation/formation.service';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
 
@@ -13,7 +12,7 @@ import { environment } from '../../../environments/environment';
 
 export class TeacherDashboardComponent implements OnInit {
   listFormations: any;
-  environnement = environment;
+  environment = environment;
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
 

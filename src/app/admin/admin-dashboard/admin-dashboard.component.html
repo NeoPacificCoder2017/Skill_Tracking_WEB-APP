@@ -6,7 +6,9 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button class="btn green bg-green" type="button">Ajouter une formation</button>
+        <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">
+            Ajouter une formation
+          </button>
       </div>
     </div>
   </div>
@@ -17,8 +19,8 @@
 <div class="row">
   <div class="col-md-12">
     <div class="legende pull-right">
-      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
-      <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> VALIDATIONS DES FORMATEURS</div>
+      <div><i class="fa fa-square red"></i> VALIDATIONS DES ÉTUDIANTS</div>
     </div>
   </div>
 </div>
@@ -33,37 +35,83 @@
             <th scope="col">#</th>
             <th scope="col">Logo</th>
             <th scope="col">Nom</th>
-            <th scope="col">Progression</th>
-            <th scope="col">Date de début</th>
-            <th scope="col">Date de fin</th>
-            <th scope="col">Nombre d'étudiants</th>
+            <th scope="col">Date</th>
+            <th scope="col">Progressions</th>
+            <th scope="col">Effectifs</th>
+            <th scope="col">Formation</th>
             <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let e of listFormations" class="shadow bg-white rad text-row">
+        <tr *ngFor="let formation of formations" (click)="showFormation(formation.id)" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{ e.logo }}" class="img-circle" width="100%"></td>
-          <td><span class="alignleft">{{e.name}}</span></td>
-          <td class="">
-            <div class="roundProgressBarWrapper">
-              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
-              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
-              <div class="progressTeacherText red">50 %</div>
-              <div class="progressStudentText purple">80 %</div>
-            </div>
-          </td>
-          <td><span class="alignleft">{{e.start_at | date}}</span></td>
-          <td><span class="alignleft">{{e.end_at | date}}</span></td>
-          <td><a href="" class="btn btn-round bg-green no-border left">20</a></td>
+          <th scope="row" width="40" >{{formation.id}}</th>
+          <td style="width: 95px;"><img src="{{environment.appImageUrl}}{{ formation.logo }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{formation.name}}</span></td>
           <td>
+            <span class="alignleft"><i class="fa fa-calendar"></i> Début : {{formation.start_at | date:'shortDate'}}</span><br/>
+            <span class="alignleft"><i class="fa fa-calendar"></i> Fin : {{formation.end_at | date:'shortDate' }}</span>
+          </td>
+          <td>
+              <div class="roundProgressBarWrapper">
+                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="formation.progressions_teacher_validated*100/formation.progressions_total_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="formation.progressions_student_validated*100/formation.progressions_total_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                <div class="progressTeacherText red">{{ (formation.progressions_teacher_validated*100/formation.progressions_total_skills) | number: '1.0-0' }}%</div>
+                <div class="progressStudentText purple">{{ (formation.progressions_student_validated*100/formation.progressions_total_skills) | number: '1.0-0' }}%</div>
+              </div>
+          </td>
+          <td>
+            <span class="btn btn-round bg-green no-border left">{{ formation.total_teachers }} formateurs</span>
+            <span class="btn btn-round bg-green no-border left">{{ formation.total_students }} étudiants</span>
+          </td>
+          <td>
+            <button class="btn btn-round bg-green no-border left">{{ formation.total_modules }} modules</button>
+            <button class="btn btn-round bg-green no-border left">{{ formation.total_skills }} compétences</button>
+          </td>
+          <td style="width: 124px;">
               <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+              <button (click)="Formation(formation.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
           </td>
         </tr>
         <br>
       </tbody>
     </table>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
+      </div>
+      <div class="modal-body">
+          <form class="row">
+            <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
+              <label for="name">Nom de la formation :</label>
+              <input type="name" class="form-control" id="name" placeholder="name">
+            </div>
+      
+            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
+              <label for="exampleInputFile">Ajouter un logo :</label>
+              <input type="file" id="exampleInputFile">
+              <p class="help-block">Veuillez entrer un logo</p>
+            </div>
+      
+            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
+              <p>Date de début: <input type="text" id="datepicker"></p>
+            </div>
+      
+            <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
+              <p>Date de fin: <input type="text" id="datepicker"></p>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
   </div>
 </div>
