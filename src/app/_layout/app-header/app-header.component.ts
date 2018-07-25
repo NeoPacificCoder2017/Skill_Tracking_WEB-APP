@@ -23,21 +23,21 @@ export class AppHeaderComponent implements OnInit {
       ]
     },
     {
-      "name": "teacher",
-      "links": [
-        {"title": "Dashboard", "icon": "fa-home", "url": "dashboard"},
+      'name': 'teacher',
+      'links': [
+        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
         // {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
         // {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
-        {"title": "Reports", "icon": "fa-clipboard", "url": "reports"},
-        {"title": "Planning", "icon": "fa-calendar", "url": "planning"}
+        {'title': 'Reports', 'icon': 'fa-clipboard', 'url': 'reports'},
+        {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
       ]
     },
     {
       'name': 'student',
       'links': [
         {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
-        {'title': 'Rapports', 'icon': 'fa-home', 'url': 'reports'},
-        {'title': 'Planning', 'icon': 'fa-home', 'url': 'plannings'}
+        {'title': 'Rapports', 'icon': 'fa-clipboard', 'url': 'reports'},
+        {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'plannings'}
       ]
     }
   ];

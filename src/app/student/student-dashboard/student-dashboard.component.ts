@@ -30,8 +30,8 @@ export class StudentDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
-    console.log('this.me',this.me);
-    this.apiService.get('formation/'+this.me.formation_id).subscribe(data => {
+    console.log('this.me', this.me);
+    this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
       this.formation = data;
     });
 
@@ -43,11 +43,11 @@ export class StudentDashboardComponent implements OnInit {
           this.totalSkills++;
           this.dataStudent[i].module.skills[j]['module_id'] = this.dataStudent[i].module.id;
           this.dataStudent[i].module.skills[j]['module_name'] = this.dataStudent[i].module.name;
-          if(this.dataStudent[i].module.skills[j]['progression']['student_validation']){
+          if (this.dataStudent[i].module.skills[j]['progression']['student_validation']) {
             this.selectedSkills.push(this.dataStudent[i].module.skills[j]['id']);
             this.totalStudentValidation++;
           }
-          if(this.dataStudent[i].module.skills[j]['progression']['teacher_validation']){
+          if (this.dataStudent[i].module.skills[j]['progression']['teacher_validation']) {
             this.totalTeacherValidation++;
           }
           this.skills.push(this.dataStudent[i].module.skills[j]);
@@ -63,7 +63,6 @@ export class StudentDashboardComponent implements OnInit {
     console.log('skillValidatedByStudent progressionId', progressionId);
     console.log('skillValidatedByStudent studentValidation', studentValidation);
     this.skills[skillIndex].progression.student_validation = studentValidation;
-    console.log('skillValidatedByStudent this.skills[skillIndex].progression.student_validation', this.skills[skillIndex].progression.student_validation);
 
     this.updateSkillsArray(skillId, studentValidation);
 
@@ -120,19 +119,19 @@ export class StudentDashboardComponent implements OnInit {
 
   onChange(skillId) {
     console.log('onChange');
-    let index = this.selectedSkills.indexOf(skillId);
-    if (index == -1) {
+    const index = this.selectedSkills.indexOf(skillId);
+    if (index === -1) {
       this.selectedSkills.push(skillId);
     } else {
       this.selectedSkills.splice(index, 1);
     }
   }
 
-  isStudentValidated(skillId){
+  isStudentValidated(skillId) {
     return this.selectedSkills.indexOf(skillId) >= 0;
   }
 
-  stateText(skillId){
-    return (this.selectedSkills.indexOf(skillId) >= 0)?"validé":"à valider";
+  stateText(skillId) {
+    return (this.selectedSkills.indexOf(skillId) >= 0) ? 'validé' : 'à valider';
   }
 }
