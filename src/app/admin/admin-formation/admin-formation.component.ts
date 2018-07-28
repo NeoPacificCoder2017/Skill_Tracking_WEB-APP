@@ -21,8 +21,8 @@ export class AdminFormationComponent implements OnInit {
   moduleName: string;
   environment = environment;
   tabSelected = 1;
-  teachers: [];
-  students: [];
+  teachers: any;
+  students: any;
 
   constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     this.moduleName = '';

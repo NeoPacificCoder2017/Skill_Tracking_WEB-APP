@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  $('#menu_toggle').on('click', function() {
+		console.log('clicked - menu toggle');
+		
+		if ($("body").hasClass('nav-md')) {
+			$('#sidebar-menu').find('li.active ul').hide();
+			$('#sidebar-menu').find('li.active').addClass('active-sm').removeClass('active');
+		} else {
+			$('#sidebar-menu').find('li.active-sm ul').show();
+			$('#sidebar-menu').find('li.active-sm').addClass('active').removeClass('active-sm');
+		}
+
+    $("body").toggleClass('nav-md nav-sm');
+  });
   // $('.calendar').daterangepicker({
   //   singleDatePicker: true,
   //   singleClasses: "picker_4",

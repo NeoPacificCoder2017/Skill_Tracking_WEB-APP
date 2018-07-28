@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AppLayoutComponent implements OnInit {
 
-  me = false;
+  me: any;
   environment = environment;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -26,6 +26,7 @@ export class AppLayoutComponent implements OnInit {
   logout() {
     console.log('logout launched');
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

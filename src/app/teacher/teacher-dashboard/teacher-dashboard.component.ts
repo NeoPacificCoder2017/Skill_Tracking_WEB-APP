@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 
 export class TeacherDashboardComponent implements OnInit {
   listFormations: any;
-  environnement = environment;
+  environment = environment;
   nameFormation: string;
   addPicture: string;
   dateAdd: number;

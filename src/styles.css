@@ -4296,7 +4296,7 @@ html , body{
         margin: 20px 20px 15px;
     }
     .roundProgressBarWrapper circle {
-        stroke: #F5F5FE !important;
+        stroke: #DEDDFF !important;
     }
     .roundProgressBar, .roundProgressBarTeacher, .roundProgressBarStudent, .progressTeacherText, .progressStudentText, .moduleName {
         position: absolute !important;
@@ -4374,7 +4374,7 @@ html , body{
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #abe5d9;
+        background-color: #788db4;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;
