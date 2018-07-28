@@ -9,7 +9,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <img src="{{ environment.appImageUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+    <img src="{{ environment.appLogoUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
@@ -35,7 +35,11 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="teachers.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore de formateurs</p>
+          <button class="btn bg-blue">Ajoutez le premier formateur</button>
+        </div>
+        <table *ngIf="teachers.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
@@ -76,7 +80,11 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore d'apprentis</p>
+          <button class="btn bg-blue">Ajoutez le premier apprenti</button>
+        </div>
+        <table *ngIf="students.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
@@ -129,7 +137,7 @@
 <div class="row" *ngIf="tabSelected === 3">
   <div class="col-md-12">
 
-    <div class="row">
+    <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <form class="input-group pull-right row" style="display: flex;">
           <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
@@ -139,8 +147,11 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <!-- Tableau des formations -->
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore de modules</p>
+          <button class="btn bg-blue">Ajoutez le premier module</button>
+        </div>
+        <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>

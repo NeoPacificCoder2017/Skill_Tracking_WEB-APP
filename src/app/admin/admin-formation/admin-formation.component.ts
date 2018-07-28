@@ -21,8 +21,8 @@ export class AdminFormationComponent implements OnInit {
   moduleName: string;
   environment = environment;
   tabSelected = 1;
-  teachers: {};
-  students: {};
+  teachers: [];
+  students: [];
 
   constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     this.moduleName = '';
@@ -30,6 +30,9 @@ export class AdminFormationComponent implements OnInit {
 
   ngOnInit() {
     this.formation = {};
+    this.teachers = [];
+    this.students = [];
+    this.modules = [];
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
