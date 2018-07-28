@@ -9,7 +9,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <img src="{{ environment.appImageUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+    <img src="{{ environment.appLogoUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
@@ -24,9 +24,9 @@
 
 <div class="row">
   <div class="col-md-12">
-    <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1">Formateurs</button>
-    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2">Étudiants</button>
-    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3">Modules</button>
+    <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1" [class.bg-dark]="tabSelected != 1">Formateurs</button>
+    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">Étudiants</button>
+    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Modules</button>
   </div>
 </div>
 
@@ -35,7 +35,11 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="teachers.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore de formateurs</p>
+          <button class="btn bg-blue">Ajoutez le premier formateur</button>
+        </div>
+        <table *ngIf="teachers.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
@@ -57,7 +61,7 @@
                 </div>
               </td>
               <td>
-                  <button class="btn btn-round bg-dark no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
+                  <button class="btn btn-round bg-purple no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
               </td>
               <td>
                 <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
@@ -76,13 +80,19 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore d'apprentis</p>
+          <button class="btn bg-blue">Ajoutez le premier apprenti</button>
+        </div>
+        <table *ngIf="students.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
               <th scope="col">Progression</th>
+              <th scope="col">Validées par le formateur</th>
+              <th scope="col">Validées par l'étudiant</th>
               <th></th>
             </tr>
           </thead>
@@ -106,6 +116,12 @@
                 </div>
               </td>
               <td>
+                  <span class="btn btn-round bg-red no-border left">{{ student.progressions_teacher_validated }} compétences</span>
+              </td>
+              <td>
+                  <span class="btn btn-round bg-purple no-border left">{{ student.progressions_student_validated }} compétences</span>
+              </td>
+              <td>
                 <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
                 <button (click)="goToStudentPage(student.user_id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
               </td>
@@ -121,7 +137,7 @@
 <div class="row" *ngIf="tabSelected === 3">
   <div class="col-md-12">
 
-    <div class="row">
+    <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <form class="input-group pull-right row" style="display: flex;">
           <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
@@ -131,8 +147,11 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <!-- Tableau des formations -->
-        <table class="table table-borderless space" style="color: #999">
+        <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
+          <p>Il n'y a pas encore de modules</p>
+          <button class="btn bg-blue">Ajoutez le premier module</button>
+        </div>
+        <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
