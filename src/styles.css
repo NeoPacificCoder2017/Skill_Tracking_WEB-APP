@@ -353,7 +353,7 @@ html , body{
        position: fixed
    }
    body .container.body .right_col {
-       background: #F7F7F7
+       background: #f5f5fa
    }
    .nav-md .container.body .right_col {
        padding: 10px 60px 0;
@@ -406,13 +406,13 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #90c8fd
+       color: #afd6fa
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #66d9c1
+       color: #abe5d9
    }
    .aero {
        color: #FDDC97
@@ -436,7 +436,7 @@ html , body{
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #66d9c1 !important
+       border-color: #abe5d9 !important
    }
    .border-yellow {
        border-color: #FDDC97 !important
@@ -457,8 +457,8 @@ html , body{
    }
    .bg-green {
        background: #abe5d9 !important;
-       border: 1px solid #1a967b !important;
-       color: #1a967b
+       border: 1px solid #abe5d9 !important;
+       color: #fff
    }
    .bg-red {
        background: #fbb6d3 !important;
@@ -466,13 +466,13 @@ html , body{
        color: #fff
    }
    .bg-blue {
-       background: #90c8fd !important;
-       border: 1px solid #90c8fd !important;
-       color: #399af2
+       background: #afd6fa !important;
+       border: 1px solid #afd6fa !important;
+       color: #fff
    }
    .bg-yellow {
        background: #FDDC97 !important;
-       border: 1px solid #FFCE67 !important;
+       border: 1px solid #FDDC97 !important;
        color: #fff
    }
    .bg-orange {
@@ -482,7 +482,7 @@ html , body{
    }
    .bg-purple {
        background: #A3A1FB !important;
-       border: 1px solid #817EF6 !important;
+       border: 1px solid #A3A1FB !important;
        color: #fff
    }
    .bg-blue-sky {
@@ -491,9 +491,37 @@ html , body{
        color: #fff
    }
    .bg-dark {
-        background: #C0D2F4 !important;
-        border: 1px solid #C0D2F4 !important;
-        color: #73879C
+        background: #788db4 !important;
+        border: 1px solid #788db4 !important;
+        color: #fff
+   }
+   
+   .bg-green:hover {
+    background: #2fbfa0 !important;
+   }
+   .bg-red:hover {
+    background: #f64a91 !important;
+   }
+   .bg-blue:hover {
+    background: #399af2 !important;
+   }
+   .bg-yellow:hover {
+    background: #FFCE67 !important;
+   }
+   .bg-orange:hover {
+    background: #FFCE67 !important;
+   }
+   .bg-purple:hover {
+    background: #817EF6 !important;
+   }
+   .bg-blue-sky:hover {
+    background: #399af2 !important;
+   }
+   .bg-dark:hover {
+    background: #788db4 !important;
+   }
+   .btn:hover {
+       color: #fff
    }
    .container {
        width: 100%;
@@ -513,7 +541,7 @@ html , body{
    }
    body {
        color: #73879C;
-       background: #f3f5f7;
+       background: #f5f5fa;
        font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
        font-size: 13px;
        font-weight: 400;
@@ -4208,11 +4236,11 @@ html , body{
     }
     .shadow {
          height: 70px;
-         box-shadow: 0 0px 5px 0px rgba(0,0,0,0.10);
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
          transition: box-shadow 0.3s ease-in-out;
     }
     .shadow:hover {
-        box-shadow: 0 0px 30px 0px rgba(0,0,0,0.30);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
 
     .rounded {
@@ -4262,12 +4290,13 @@ html , body{
     .roundProgressBarWrapper{
         position: relative;
         cursor: pointer;
-    }
-    .roundProgressBarWrapper{
         width: 140px;
         height: 190px;
         float: left;
         margin: 20px 20px 15px;
+    }
+    .roundProgressBarWrapper circle {
+        stroke: #F5F5FE !important;
     }
     .roundProgressBar, .roundProgressBarTeacher, .roundProgressBarStudent, .progressTeacherText, .progressStudentText, .moduleName {
         position: absolute !important;
@@ -4345,7 +4374,7 @@ html , body{
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #66d9c1;
+        background-color: #abe5d9;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;

@@ -24,9 +24,9 @@
 
 <div class="row">
   <div class="col-md-12">
-    <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1">Formateurs</button>
-    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2">Étudiants</button>
-    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3">Modules</button>
+    <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1" [class.bg-dark]="tabSelected != 1">Formateurs</button>
+    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">Étudiants</button>
+    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Modules</button>
   </div>
 </div>
 
@@ -57,7 +57,7 @@
                 </div>
               </td>
               <td>
-                  <button class="btn btn-round bg-dark no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
+                  <button class="btn btn-round bg-purple no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
               </td>
               <td>
                 <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
@@ -83,6 +83,8 @@
               <th scope="col">#</th>
               <th scope="col">Nom</th>
               <th scope="col">Progression</th>
+              <th scope="col">Validées par le formateur</th>
+              <th scope="col">Validées par l'étudiant</th>
               <th></th>
             </tr>
           </thead>
@@ -104,6 +106,12 @@
                   <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
                   <div class="progressTeacherText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
                 </div>
+              </td>
+              <td>
+                  <span class="btn btn-round bg-red no-border left">{{ student.progressions_teacher_validated }} compétences</span>
+              </td>
+              <td>
+                  <span class="btn btn-round bg-purple no-border left">{{ student.progressions_student_validated }} compétences</span>
               </td>
               <td>
                 <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
