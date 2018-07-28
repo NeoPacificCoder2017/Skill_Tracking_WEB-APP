@@ -40,27 +40,19 @@
       <!-- bar-progress -->
       <div class="card" [class.selected]="moduleSelected == 0">
         <div class="roundProgressBarWrapper"  (click)="filterByModule(0)">
-          <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="totalTeacherValidation*100/totalSkills"
-            [max]="max" [color]="'#E689B8'">
-          </round-progress>
-          <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="totalStudentValidation*100/totalSkills"
-            [max]="max" [color]="'#A3A1FB'">
-          </round-progress>
-          <div class="progressTeacherText red">{{ (totalTeacherValidation*100/totalSkills) | number: '1.0-0' }} %</div>
-          <div class="progressStudentText purple">{{ (totalStudentValidation*100/totalSkills) | number: '1.0-0' }} %</div>
+          <round-progress class="roundProgressBarTeacher" [current]="totalTeacherValidation*100/totalSkills" [max]="environment.progressMax" [color]="environment.progressColorTeacher" [radius]="environment.progressRadiusTeacher" [stroke]="environment.progressStrokeTeacher"></round-progress>
+          <round-progress class="roundProgressBarStudent" [current]="totalStudentValidation*100/totalSkills" [max]="environment.progressMax" [color]="environment.progressColorStudent" [radius]="environment.progressRadiusStudent" [stroke]="environment.progressStrokeStudent"></round-progress>
+          <div class="progressTeacherText red">{{ (totalTeacherValidation*100/totalSkills) | number: '1.0-0' }}%</div>
+          <div class="progressStudentText purple">{{ (totalStudentValidation*100/totalSkills) | number: '1.0-0' }}%</div>
           <div class="moduleName">Tout</div>
         </div>
       </div>
       <div class="card" *ngFor="let item of dataStudent" [class.selected]="moduleSelected == item.module.id">
         <div class="roundProgressBarWrapper"  (click)="filterByModule(item.module.id)">
-          <round-progress class="roundProgressBarTeacher" [stroke]="10" [radius]="70" [current]="item.module.progression.teacher*100/item.module.totalSkills"
-            [max]="max" [color]="'#E689B8'">
-          </round-progress>
-          <round-progress class="roundProgressBarStudent" [stroke]="10" [radius]="56" [current]="item.module.progression.student*100/item.module.totalSkills"
-            [max]="max" [color]="'#A3A1FB'">
-          </round-progress>
-          <div class="progressTeacherText red">{{ (item.module.progression.teacher*100/item.module.totalSkills) | number: '1.0-0' }} %</div>
-          <div class="progressStudentText purple">{{ (item.module.progression.student*100/item.module.totalSkills) | number: '1.0-0' }} %</div>
+          <round-progress class="roundProgressBarTeacher" [current]="item.module.progression.teacher*100/item.module.totalSkills" [max]="environment.progressMax" [color]="environment.progressColorTeacher" [radius]="environment.progressRadiusTeacher" [stroke]="environment.progressStrokeTeacher"></round-progress>
+          <round-progress class="roundProgressBarStudent" [current]="item.module.progression.student*100/item.module.totalSkills" [max]="environment.progressMax" [color]="environment.progressColorStudent" [radius]="environment.progressRadiusStudent" [stroke]="environment.progressStrokeStudent"></round-progress>
+          <div class="progressTeacherText red">{{ (item.module.progression.teacher*100/item.module.totalSkills) | number: '1.0-0' }}%</div>
+          <div class="progressStudentText purple">{{ (item.module.progression.student*100/item.module.totalSkills) | number: '1.0-0' }}%</div>
           <div class="moduleName">{{ item.module.name }}</div>
         </div>
       </div>
@@ -96,8 +88,14 @@
           <td>{{ item.progression.teacher_validation_date | date }}</td>
           <td>
             <div class="pull-right">
+<<<<<<< HEAD
               <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="isStudentValidated(item.id)" (change)="onChange(item.id)" >
               <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation, i)" for="toggle{{ item.id }}" class="labChecky" [innerHtml]="stateText(item.id)"></label>
+=======
+              <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
+              <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation)"
+                for="toggle{{ item.id }}" class="labChecky">Validé!</label>
+>>>>>>> 0ddabeb318adced0aac8c5ba7f46364ae9a9a3ac
             </div>
           </td>
         </tr>

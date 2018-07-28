@@ -34,14 +34,14 @@
         <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
           <th></th>
           <th scope="row" width="40" >{{e.id}}</th>
-          <td style="width: 95px;"><img src="{{ environnement.appImageUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
+          <td style="width: 95px;"><img src="{{ environment.appImageUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
           <td><span class="alignleft">{{e.name}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
-              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100"[radius]="40" [stroke]="5"></round-progress>
-              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100"[radius]="32"[stroke]="5"></round-progress>
-              <div class="progressTeacherText red">50 %</div>
-              <div class="progressStudentText purple">80 %</div>
+                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="50" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="80" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                <div class="progressTeacherText red">100%</div>
+                <div class="progressStudentText purple">100%</div>
             </div>
           </td>
           <td><span class="alignleft">{{e.start_at | date}}</span></td>

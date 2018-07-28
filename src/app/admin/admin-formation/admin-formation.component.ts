@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
 import { $ } from '../../../../node_modules/protractor';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-formation',
@@ -12,25 +13,75 @@ import { $ } from '../../../../node_modules/protractor';
 })
 export class AdminFormationComponent implements OnInit {
   formation: any;
-  listModules: any;
+  modules: any;
   idFormation: any;
   dropDown: boolean;
   displayOff: string;
   displayOne: string;
   moduleName: string;
   environment = environment;
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  tabSelected = 1;
+  teachers: [];
+  students: [];
+
+  constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     this.moduleName = '';
-    this.formation = {};
   }
 
   ngOnInit() {
+    this.formation = {};
+    this.teachers = [];
+    this.students = [];
+    this.modules = [];
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
         this.getFormation();
+        this.getTeachers();
+        this.getStudents();
+        this.getModules();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  public getFormation() {
+    this.apiService.get('formation/' + this.idFormation)
+      .subscribe((data) => {
+        this.formation = data;
+        console.log('getFormation', this.formation);
+      });
+  }
+
+  private getTeachers() {
+    this.apiService.get('getTeachersOfFormation/' + this.idFormation)
+      .subscribe((data) => {
+        this.teachers = data;
+        console.log('getTeachers', this.teachers);
+      });
+  }
+  
+  private getStudents() {
+    this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
+      .subscribe((data) => {
+        this.students = data;
+        console.log('getStudents', this.students);
+      });
+  }
+
+  private getModules() {
+    this.apiService.get('getModulesOfFormation/' + this.idFormation)
+      .subscribe((data) => {
+        this.modules = data;
+        console.log('getModules', this.modules);
+      });
+  }
+
+  goToStudentPage(studentId) {
+    this.router.navigate(['/admin/formation/student'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
   }
 
   editeModule(idModule) {
@@ -43,20 +94,6 @@ export class AdminFormationComponent implements OnInit {
   goToSkill(idSkill) {
     console.log('goToSkill', idSkill);
     this.router.navigate(['/admin/skills']);
-  }
-
-  public getFormation(): any {
-    this.apiService.get('formation/' + this.idFormation)
-      .subscribe((data) => {
-        this.formation = data;
-        console.log('formation data', this.formation);
-      });
-    this.apiService.get('modules')
-      .subscribe((data) => {
-        this.listModules = data.data;
-        console.log('listModules data', this.listModules);
-      });
-
   }
 
   addModule(): any {

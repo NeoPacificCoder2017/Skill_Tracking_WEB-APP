@@ -19,10 +19,8 @@
 <div class="row">
   <div class="col-md-12">
     <div class="legende pull-right">
-      <div style="margin-right: 10px">
-        <i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
-      <div>
-        <i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+      <div style="margin-right: 10px"><i class="fa fa-square purple"></i> VALIDATIONS DES FORMATEURS</div>
+      <div><i class="fa fa-square red"></i> VALIDATIONS DES ÉTUDIANTS</div>
     </div>
   </div>
 </div>
@@ -33,53 +31,46 @@
     <table class="table table-borderless space" style="color: #999">
       <thead class="">
         <tr class="tablecolor rad text-row">
-          <th scope="col"></th>
-          <th scope="col">#</th>
-          <th scope="col">Logo</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Progression</th>
-          <th scope="col">Date de début</th>
-          <th scope="col">Date de fin</th>
-          <th scope="col">Nombre d'étudiants</th>
-          <th></th>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Date</th>
+            <th scope="col">Progressions</th>
+            <th scope="col">Effectifs</th>
+            <th scope="col">Formation</th>
+            <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let e of listFormations" (click)="Formation(e.id)" class="shadow bg-white rad text-row">
+        <tr *ngFor="let formation of formations" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40">{{e.id}}</th>
-          <td style="width: 95px;">
-            <img src="{{environment.appUrl}}{{ e.logo }}" class="img-circle" width="100%">
+          <th scope="row" width="40" (click)="showFormation(formation.id)">{{formation.id}}</th>
+          <td style="width: 95px;" (click)="showFormation(formation.id)"><img src="{{environment.appLogoUrl}}{{ formation.logo }}" class="img-circle" width="100%"></td>
+          <td (click)="showFormation(formation.id)"><span class="alignleft">{{formation.name}}</span></td>
+          <td>
+            <span class="alignleft"><i class="fa fa-calendar"></i> Début : {{formation.start_at | date:'shortDate'}}</span><br/>
+            <span class="alignleft"><i class="fa fa-calendar"></i> Fin : {{formation.end_at | date:'shortDate' }}</span>
           </td>
           <td>
-            <span class="alignleft">{{e.name}}</span>
-          </td>
-          <td class="">
-            <div class="roundProgressBarWrapper">
-              <round-progress class="roundProgressBar roundProgressBarTeacher" [color]="'#E689B8'" [current]="50" [max]="100" [radius]="40"
-                [stroke]="5"></round-progress>
-              <round-progress class="roundProgressBar roundProgressBarStudent" [color]="'#A3A1FB'" [current]="80" [max]="100" [radius]="32"
-                [stroke]="5"></round-progress>
-              <div class="progressTeacherText red">50 %</div>
-              <div class="progressStudentText purple">80 %</div>
-            </div>
+              <div class="roundProgressBarWrapper">
+                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="formation.progressions_teacher_validated*100/formation.progressions_total_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="formation.progressions_student_validated*100/formation.progressions_total_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                <div class="progressTeacherText red">{{ (formation.progressions_teacher_validated*100/formation.progressions_total_skills) | number: '1.0-0' }}%</div>
+                <div class="progressStudentText purple">{{ (formation.progressions_student_validated*100/formation.progressions_total_skills) | number: '1.0-0' }}%</div>
+              </div>
           </td>
           <td>
-            <span class="alignleft">{{e.start_at | date}}</span>
+            <span class="btn btn-round bg-green no-border left" *ngIf="formation.total_teachers">{{ formation.total_teachers }} formateurs</span>
+            <span class="btn btn-round bg-green no-border left" *ngIf="formation.total_students">{{ formation.total_students }} étudiants</span>
           </td>
           <td>
-            <span class="alignleft">{{e.end_at | date}}</span>
+            <button class="btn btn-round bg-green no-border left" *ngIf="formation.total_modules">{{ formation.total_modules }} modules</button>
+            <button class="btn btn-round bg-green no-border left" *ngIf="formation.total_skills">{{ formation.total_skills }} compétences</button>
           </td>
-          <td>
-            <a href="" class="btn btn-round bg-green no-border left">20</a>
-          </td>
-          <td>
-            <a href="" class="rounded btn bg-red icon no-border alignright">
-              <i class="glyphicon glyphicon-trash"></i>
-            </a>
-            <button (click)="Formation(e.id)" class="rounded btn bg-blue icon no-border alignright">
-              <i class="glyphicon glyphicon-pencil"></i>
-            </button>
+          <td style="width: 124px;">
+            <button (click)="deleteFormation(formation.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+            <button (click)="showFormation(formation.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
           </td>
         </tr>
         <br>
@@ -98,57 +89,50 @@
         <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
       </div>
       <div class="modal-body">
-        <form class="row">
-          <div class="form-group col-md-5 col-md-offset-3" style="padding-top: 20px;">
-            <label for="name">Nom de la formation :</label>
-            <input type="name" class="form-control" id="name" placeholder="name">
-          </div>
+        
+        <form [formGroup]="newFormationForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
 
-          <div class="form-group col-md-10 col-md-offset-3" style="padding-top: 20px;">
-            <label for="logo">Ajouter un logo :</label>
-            <input type="file" (change)="logo($event)" id="logo">
-          </div>
-
-          <!-- date picker -->
-          <div class="row">
-            <div class="col-md-5 col-md-offset-3">
-              <fieldset>
-                <div class="control-group">
-                  <label for="start_at">Date de début</label>
-                  <div class="controls">
-                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                      <input class="form-control has-feedback-left calendar" id="start_at" name="start_at" placeholder="Date att" aria-describedby="inputSuccess2Status4"
-                        type="text">
-                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                      <span id="inputSuccess2Status4" class="sr-only">(success)</span>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            </div>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Le nom est requis</div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-5 col-md-offset-3">
-              <fieldset>
-                <div class="control-group">
-                    <label for="end_at">Date de fin</label>
-                  <div class="controls">
-                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-                      <input class="form-control has-feedback-left calendar" id="end_at" name="end_at" placeholder="First Name" aria-describedby="inputSuccess2Status3"
-                        value="07/20/2018" type="text">
-                      <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                      <span id="inputSuccess2Status3" class="sr-only">(success)</span>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Date de début</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="start_at" formControlName="start_at" class="form-control col-md-7 col-xs-12 calendar" id="start_at" [ngClass]="{ 'is-invalid': submitted && f.start_at.errors }" placeholder="jj/mm/aaaa">
+            </div>
+            <div *ngIf="submitted && f.start_at.errors" class="invalid-feedback">
+              <div *ngIf="f.start_at.errors.required">La date de début est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_at">Date de fin</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="end_at" formControlName="end_at" class="form-control col-md-7 col-xs-12 calendar" id="end_at" [ngClass]="{ 'is-invalid': submitted && f.end_at.errors }" placeholder="jj/mm/aaaa">
+            </div>
+            <div *ngIf="submitted && f.end_at.errors" class="invalid-feedback">
+              <div *ngIf="f.end_at.errors.required">La date de fin est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo">Image</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="file" (change)="onFileChanged($event)" id="logo">
+            </div>
+            <div *ngIf="submitted && newFormationImage == null" class="invalid-feedback">
+              <div *ngIf="f.end_at.errors.required">Une image est requise</div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
-        <button (click)="createFormation()" type="button" class="btn bg-blue icon no-border">Ajouter</button>
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+        <button  type="button" [disabled]="loading" (click)="createFormation()"class="btn bg-blue icon no-border">Ajouter</button>
       </div>
     </div>
   </div>

@@ -47,7 +47,7 @@ export class TeacherStudentComponent implements OnInit {
       });
   }
 
-  backClicked() {
+  goBack() {
     this.location.back();
   }
 

@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
 @Component({
-  selector: 'app-admin-students',
-  templateUrl: './admin-students.component.html',
-  styleUrls: ['./admin-students.component.css']
+  selector: 'app-admin-formation-student',
+  templateUrl: './admin-formation-student.component.html',
+  styleUrls: ['./admin-formation-student.component.css']
 })
-export class AdminStudentsComponent implements OnInit {
+export class AdminFormationStudentComponent implements OnInit {
 
   environment = environment;
   max = 100;
@@ -39,7 +40,7 @@ export class AdminStudentsComponent implements OnInit {
       .subscribe(params => {
         this.idFormation = params.idFormation;
         this.idStudent = params.idStudent;
-        this.apiService.get('formation/'+this.me.formation_id).subscribe(data => {
+        this.apiService.get('formation/'+this.idFormation).subscribe(data => {
           this.formation = data;
         });
         this.getStudentOfFormation();
