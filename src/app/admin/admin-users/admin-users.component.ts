@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-users',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor() { }
+  environment = environment;
+  users: any;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.get('users').subscribe(
+      data => {
+        console.log('data', data);
+        this.users = data.data;
+      }
+    );
   }
 
 }

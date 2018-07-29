@@ -1,3 +1,49 @@
-<p>
-  admin-users works!
-</p>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des utilisateurs</h3>
+  </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button">Ajouter un utilisateur</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="text-center">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse email</th>
+            <th scope="col">Type d'utilisateur</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{ user.id }}</th>
+          <td>
+            <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appImageUrl }}{{ user.avatar }}" class="img-circle" width="100%"></div>
+            <div class="pull-left">{{ user.lastname }}<br/>{{ user.firstname }}</div>
+          </td>
+          <td class="">{{ user.email }}</td>
+          <td>{{ user.user_type_id }}</td>
+          <td>
+              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
+</div>
