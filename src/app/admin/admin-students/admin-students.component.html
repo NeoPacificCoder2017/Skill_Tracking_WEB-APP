@@ -1,88 +1,56 @@
 <div class="page-title">
-    <div class="title_left">
-      <div id="crop-avatar" class="pull-left">
-        <img class="img-circle img-responsive avatar-view" src="{{ environment.appImageUrl }}{{ student.user_avatar }}" alt="Photo de {{ student.user_firstname }} {{ student.user_lastname }}">
-      </div>
-      <h3 class="pull-left" style="margin: 13px 0 0 10px;">{{ student.user_firstname }} {{ student.user_lastname }}</h3>
-    </div>
-    <div class="title_right">
-        <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
-    </div>
+  <div class="title_left">
+    <h3>Liste des étudiants</h3>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row" style="margin: 50px 0 0 0;">
-    <div class="col-md-12">
-      <div class="scrolling-wrapper">
-        <div class="card" [class.selected]="moduleSelected == 0">
-          <div class="roundProgressBarWrapper"  (click)="filterByModule(0)">
-            <round-progress class="roundProgressBarTeacher" [current]="totalTeacherValidation*100/totalSkills" [max]="environment.progressMax" [color]="environment.progressColorTeacher" [radius]="environment.progressRadiusTeacher" [stroke]="environment.progressStrokeTeacher"></round-progress>
-            <round-progress class="roundProgressBarStudent" [current]="totalStudentValidation*100/totalSkills" [max]="environment.progressMax" [color]="environment.progressColorStudent" [radius]="environment.progressRadiusStudent" [stroke]="environment.progressStrokeStudent"></round-progress>
-            <div class="progressTeacherText red">{{ (totalTeacherValidation*100/totalSkills) | number: '1.0-0' }}%</div>
-            <div class="progressStudentText purple">{{ (totalStudentValidation*100/totalSkills) | number: '1.0-0' }}%</div>
-            <div class="moduleName">Tout</div>
-          </div>
-        </div>
-        <div class="card" *ngFor="let module of modules" [class.selected]="moduleSelected == module.id">
-          <div class="roundProgressBarWrapper"  (click)="filterByModule(module.id)">
-            <round-progress class="roundProgressBarTeacher" [current]="module.progression.teacher*100/module.totalSkills" [max]="environment.progressMax" [color]="environment.progressColorTeacher" [radius]="environment.progressRadiusTeacher" [stroke]="environment.progressStrokeTeacher"></round-progress>
-            <round-progress class="roundProgressBarStudent" [current]="module.progression.student*100/module.totalSkills" [max]="environment.progressMax" [color]="environment.progressColorStudent" [radius]="environment.progressRadiusStudent" [stroke]="environment.progressStrokeStudent"></round-progress>
-            <div class="progressTeacherText red">{{ (module.progression.teacher*100/module.totalSkills) | number: '1.0-0' }}%</div>
-            <div class="progressStudentText purple">{{ (module.progression.student*100/module.totalSkills) | number: '1.0-0' }}%</div>
-            <div class="moduleName">{{ module.name }}</div>
-          </div>
-        </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button">Ajouter un étudian</button>
       </div>
     </div>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row" style="margin: 50px 0 0 0;">
-    <div class="col-md-12">
-      <div class="legende pull-right">
-        <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
-        <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="clearfix"></div>
-  
-  <!-- Liste des formations -->
-  <div class="row" style="margin: 50px 0 0 0;">
-    <div class="col-md-12">
-      <!-- Tableau des formations -->
-      <table class="table table-borderless space" style="color: #999">
-        <thead class="">
-          <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
-              <th scope="col">#</th>
-              <th scope="col">Compétences</th>
-              <th scope="col">Modules</th>
-              <th scope="col">Validés par vous le</th>
-              <th scope="col" class="pull-right">Validation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let skill of skills; let i = index" class="shadow bg-white rad text-row">
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse email</th>
+            <th scope="col">Formations en cours</th>
+            <th scope="col">Compte créé le</th>
             <th></th>
-            <th scope="row" width="40" >{{ skill.id }}</th>
-            <td>{{ skill.name }}</td>
-            <td><span class="alignleft">{{ skill.module_name }}</span></td>
-            <td>{{ skill.progression.teacher_validation_date | date }}</td>
-            <td>
-              <div class="pull-right">
-                <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-                <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
-              </div>
-            </td>
-          </tr>
-          <br>
-        </tbody>
-      </table>
-    </div>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{ student.id }}</th>
+          <td>
+            <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle" width="100%"></div>
+            <div class="pull-left">{{ student.lastname }}<br/>{{ student.firstname }}</div>
+          </td>
+          <td class="">{{ student.email }}</td>
+          <td *ngIf="student.formations">
+            <span *ngFor="let formation of student.formations" class="btn btn-round bg-green no-border left">{{ formation.name }}</span>
+          </td>
+          <td *ngIf="!student.formations">
+            <span>Aucune</span>
+          </td>
+          <td><span class="alignleft">{{ student.created_at | date}}</span></td>
+          <td>
+              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
   </div>
-  
-  
+</div>
