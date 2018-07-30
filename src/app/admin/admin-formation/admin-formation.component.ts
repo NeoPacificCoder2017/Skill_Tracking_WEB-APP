@@ -63,7 +63,7 @@ export class AdminFormationComponent implements OnInit {
         console.log('getTeachers', this.teachers);
       });
   }
-  
+
   private getStudents() {
     this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
       .subscribe((data) => {
