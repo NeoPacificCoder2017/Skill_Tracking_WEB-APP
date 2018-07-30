@@ -85,17 +85,11 @@
           <td>
             <span class="alignleft">{{ item.module_name }}</span>
           </td>
-          <td>{{ item.progression.teacher_validation_date | date }}</td>
+          <td><span *ngIf="item.progression.teacher_validation_date" class="btn btn-round bg-red no-border left">{{ item.progression.teacher_validation_date | date }}</span></td>
           <td>
             <div class="pull-right">
-<<<<<<< HEAD
               <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="isStudentValidated(item.id)" (change)="onChange(item.id)" >
               <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation, i)" for="toggle{{ item.id }}" class="labChecky" [innerHtml]="stateText(item.id)"></label>
-=======
-              <input id="toggle{{ item.id }}" type="checkbox" class="checky" [checked]="item.progression.student_validation">
-              <label (click)="skillValidatedByStudent(item.id, item.progression.student_progression_id, item.progression.student_validation)"
-                for="toggle{{ item.id }}" class="labChecky">Validé!</label>
->>>>>>> 0ddabeb318adced0aac8c5ba7f46364ae9a9a3ac
             </div>
           </td>
         </tr>
