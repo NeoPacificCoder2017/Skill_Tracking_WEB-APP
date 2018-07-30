@@ -42,8 +42,8 @@
   <div class="row" style="margin: 50px 0 0 0;">
     <div class="col-md-12">
       <div class="legende pull-right">
-        <div style="margin-right: 10px"><i class="fa fa-square purple"></i> PROGRESSION SUR LA FORMATION</div>
-        <div><i class="fa fa-square red"></i> PROGRESSION SUR LA MODULE</div>
+        <div style="margin-right: 10px"><i class="fa fa-square purple"></i> VALIDATION DE L'ÉTUDIANT</div>
+        <div><i class="fa fa-square red"></i> VALIDATION DES FORMATEURS</div>
       </div>
     </div>
   </div>
@@ -61,6 +61,7 @@
               <th scope="col">#</th>
               <th scope="col">Compétences</th>
               <th scope="col">Modules</th>
+              <th scope="col">Formateur</th>
               <th scope="col">Validés par le formateur</th>
               <th scope="col">Validés par l'étudiant</th>
           </tr>
@@ -70,7 +71,8 @@
             <th></th>
             <th scope="row" width="40" >{{ skill.id }}</th>
             <td>{{ skill.name }}</td>
-            <td><span class="btn btn-round bg-dark no-border left">{{ skill.module_name }}</span></td>
+            <td><span class="btn btn-round bg-dark no-border right">{{ skill.module_name }}</span></td>
+            <td><span class="btn btn-round bg-dark no-border left">{{ skill.teacher.firstname }} {{ skill.teacher.lastname }}</span></td>
             <td><span class="btn btn-round bg-red no-border left" *ngIf="skill.progression.teacher_validation_date">{{ skill.progression.teacher_validation_date | date }}</span></td>
             <td><span class="btn btn-round bg-purple no-border left" *ngIf="skill.progression.student_validation_date">{{ skill.progression.student_validation_date | date }}</span></td>
           </tr>

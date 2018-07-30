@@ -406,13 +406,13 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #afd6fa
+       color: #8bc0ff
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #abe5d9
+       color: #8d8
    }
    .aero {
        color: #FDDC97
@@ -421,7 +421,7 @@ html , body{
        color: #FDDC97
    }
    .red {
-       color: #fbb6d3
+       color: #e689b8
    }
    .dark {
        color: #C0D2F4
@@ -430,13 +430,13 @@ html , body{
        color: rgb(175, 175, 175);
    }
    .border-blue {
-       border-color: #afd6fa !important
+       border-color: #8bc0ff !important
    }
    .border-purple {
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #abe5d9 !important
+       border-color: #8d8 !important
    }
    .border-yellow {
        border-color: #FDDC97 !important
@@ -445,7 +445,7 @@ html , body{
        border-color: #FDDC97 !important
    }
    .border-red {
-       border-color: #fbb6d3 !important
+       border-color: #e689b8 !important
    }
    .border-dark {
        border-color: #C0D2F4 !important
@@ -456,18 +456,18 @@ html , body{
        color: #788db4
    }
    .bg-green {
-       background: #abe5d9 !important;
-       border: 1px solid #abe5d9 !important;
+       background: #8d8 !important;
+       border: 1px solid #8d8 !important;
        color: #fff
    }
    .bg-red {
-       background: #fbb6d3 !important;
-       border: 1px solid #fbb6d3 !important;
+       background: #e689b8 !important;
+       border: 1px solid #e689b8 !important;
        color: #fff
    }
    .bg-blue {
-       background: #afd6fa !important;
-       border: 1px solid #afd6fa !important;
+       background: #8bc0ff !important;
+       border: 1px solid #8bc0ff !important;
        color: #fff
    }
    .bg-yellow {
@@ -497,7 +497,7 @@ html , body{
    }
    
    .bg-green:hover {
-    background: #2fbfa0 !important;
+    background: #3d993d !important;
    }
    .bg-red:hover {
     background: #f64a91 !important;
@@ -4063,7 +4063,7 @@ html , body{
        border-radius: 0
    }
    .progress-bar-info {
-       background-color: #afd6fa
+       background-color: #8bc0ff
    }
    .progress-bar-success {
        background-color: #26B99A
@@ -4404,6 +4404,10 @@ html , body{
 
     input.checky:checked + label.labChecky {
         background-color: #A3A1FB;
+    }
+
+    input.checky.teacher:checked + label.labChecky {
+        background-color: #e689b8;
     }
 
     input.checky:checked + label.labChecky::before {

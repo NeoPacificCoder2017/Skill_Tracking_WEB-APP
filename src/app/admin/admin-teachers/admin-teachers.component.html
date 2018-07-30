@@ -41,7 +41,7 @@
             </td>
             <td class="">{{ teacher.email }}</td>
             <td *ngIf="teacher.formations">
-              <span *ngFor="let formation of teacher.formations" class="btn btn-round bg-green no-border left">{{ formation.name }}</span>
+              <span *ngFor="let formation of teacher.formations" class="btn btn-round bg-dark no-border left">{{ formation.name }}</span>
             </td>
             <td *ngIf="!teacher.formations">
               <span>Aucune</span>

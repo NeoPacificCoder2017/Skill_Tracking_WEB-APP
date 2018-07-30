@@ -32,8 +32,11 @@
           <th></th>
           <th scope="row" width="40" >{{ user.id }}</th>
           <td>
-            <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appImageUrl }}{{ user.avatar }}" class="img-circle" width="100%"></div>
-            <div class="pull-left">{{ user.lastname }}<br/>{{ user.firstname }}</div>
+            <img src="{{ environment.appImageUrl }}{{ user.avatar }}" class="img-circle pull-left" width="100%">
+            <div class="pull-left" style="margin: 13px 0 0 10px;">
+              <span class="alignleft">{{user.lastname}}</span><br/>
+              <span class="alignleft">{{user.firstname}}</span>
+            </div>
           </td>
           <td class="">{{ user.email }}</td>
           <td>{{ user.user_type_id }}</td>
