@@ -33,8 +33,16 @@
             <th></th>
             <th scope="row" width="40" >{{ teacher.id }}</th>
             <td>
+<<<<<<< HEAD
               <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle" width="100%"></div>
               <div class="pull-left">{{ teacher.lastname }}<br/>{{ teacher.firstname }}</div>
+=======
+              <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" width="100%">
+              <div class="pull-left" style="margin: 13px 0 0 10px;">
+                <span class="alignleft">{{teacher.lastname}}</span><br/>
+                <span class="alignleft">{{teacher.firstname}}</span>
+              </div>
+>>>>>>> edbc08517a2dc6a12831b6adf4398a4283bd32b7
             </td>
             <td class="">{{ teacher.email }}</td>
             <td *ngIf="teacher.formations">
