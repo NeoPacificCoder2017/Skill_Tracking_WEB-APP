@@ -33,16 +33,11 @@
             <th></th>
             <th scope="row" width="40" >{{ teacher.id }}</th>
             <td>
-<<<<<<< HEAD
-              <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle" width="100%"></div>
-              <div class="pull-left">{{ teacher.lastname }}<br/>{{ teacher.firstname }}</div>
-=======
               <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" width="100%">
               <div class="pull-left" style="margin: 13px 0 0 10px;">
                 <span class="alignleft">{{teacher.lastname}}</span><br/>
                 <span class="alignleft">{{teacher.firstname}}</span>
               </div>
->>>>>>> edbc08517a2dc6a12831b6adf4398a4283bd32b7
             </td>
             <td class="">{{ teacher.email }}</td>
             <td *ngIf="teacher.formations">
@@ -62,4 +57,66 @@
       </table>
     </div>
   </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un formateur</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form [formGroup]="newUserForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">Nom</label>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="firstname" aria-describedby="firstnameHelp" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+            </div>
+            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+              <div *ngIf="f.firstname.errors.required">Le nom est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Prénom</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="lastname" class="form-control col-md-7 col-xs-12" id="lastname" aria-describedby="lastnameHelp" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+            </div>
+            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+              <div *ngIf="f.start_at.errors.required">Le prénom est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="email" formControlName="email" class="form-control col-md-7 col-xs-12 calendar" id="email" aria-describedby="lastnameHelp" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            </div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">L'email est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_type_id">Type d'utilisateur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control">
+                <option>1</option>
+              </select>
+            </div>
+            <div *ngIf="submitted && f.user_type_id.errors" class="invalid-feedback">
+              <div *ngIf="f.user_type_id.errors.required">Le type de profile est requise</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+        <button  type="button" [disabled]="loading" (click)="createUser()"class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
   
