@@ -24,7 +24,6 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
-  
   ngOnInit() {
     this.newFormationForm = this.formBuilder.group({
         name: ['', Validators.required],
@@ -44,7 +43,7 @@ export class AdminDashboardComponent implements OnInit {
 
   onFileChanged(event) {
     console.log(event);
-    this.newFormationImage = event.target.files[0]  
+    this.newFormationImage = event.target.files[0];
   }
 
   showFormation(idFormation) {
