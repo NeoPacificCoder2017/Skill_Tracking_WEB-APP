@@ -112,7 +112,7 @@
                   <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progressions_teacher_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
                   <round-progress class="roundProgressBar roundProgressBarStudent" [current]="student.progressions_student_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
                   <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
-                  <div class="progressTeacherText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
+                  <div class="progressStudentText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
                 </div>
               </td>
               <td>

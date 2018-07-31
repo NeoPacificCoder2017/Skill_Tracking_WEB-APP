@@ -1,12 +1,12 @@
 <div class="page-title">
     <div class="title_left">
-      <h3>Liste des formateurs</h3>
+      <h3>Liste des administrateurs</h3>
     </div>
   
     <div class="title_right">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group pull-right">
-          <button class="btn green bg-green" type="button">Ajouter un formateur</button>
+          <button class="btn green bg-green" type="button">Ajouter un administrateur</button>
         </div>
       </div>
     </div>
@@ -23,30 +23,23 @@
               <th scope="col">ID</th>
               <th scope="col">Nom</th>
               <th scope="col">Adresse email</th>
-              <th scope="col">Formations en cours</th>
               <th scope="col">Compte créé le</th>
               <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let teacher of teachers" class="shadow bg-white rad text-row">
+          <tr *ngFor="let admin of admins" class="shadow bg-white rad text-row">
             <th></th>
-            <th scope="row" width="40" >{{ teacher.id }}</th>
+            <th scope="row" width="40" >{{ admin.id }}</th>
             <td>
-              <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" width="100%">
+              <img src="{{ environment.appImageUrl }}{{ admin.avatar }}" class="img-circle pull-left" width="100%">
               <div class="pull-left" style="margin: 13px 0 0 10px;">
-                <span class="alignleft">{{teacher.lastname}}</span><br/>
-                <span class="alignleft">{{teacher.firstname}}</span>
+                <span class="alignleft">{{admin.lastname}}</span><br/>
+                <span class="alignleft">{{admin.firstname}}</span>
               </div>
             </td>
-            <td class="">{{ teacher.email }}</td>
-            <td *ngIf="teacher.formations">
-              <span *ngFor="let formation of teacher.formations" class="btn btn-round bg-dark no-border left">{{ formation.name }}</span>
-            </td>
-            <td *ngIf="!teacher.formations">
-              <span>Aucune</span>
-            </td>
-            <td><span class="alignleft">{{ teacher.created_at | date}}</span></td>
+            <td class="">{{ admin.email }}</td>
+            <td><span class="alignleft">{{ admin.created_at | date}}</span></td>
             <td>
                 <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
                 <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
