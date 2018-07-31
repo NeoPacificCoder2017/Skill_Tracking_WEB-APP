@@ -55,7 +55,7 @@
           </td>
           <td>
             <div class="roundProgressBarWrapper">
-              <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progression.studentValidations*100/student.progression.totalSkills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+              <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progression.studentValidations*100/student.progression.totalSkills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
               <div class="progressTeacherText purple">{{ (student.progression.studentValidations*100/student.progression.totalSkills) | number: '1.0-0' }}%</div>
             </div>
           </td>

@@ -18,6 +18,7 @@ import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.co
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -59,6 +60,7 @@ const routes: Routes = [
       { path: 'admin/formation', component: AdminFormationComponent},
       { path: 'admin/formation/student', component: AdminFormationStudentComponent},
       { path: 'admin/users', component: AdminUsersComponent},
+      { path: 'admin/admin', component: AdminAdminsComponent},
       { path: 'admin/teachers', component: AdminTeachersComponent},
       { path: 'admin/students', component: AdminStudentsComponent},
       { path: 'admin/skills', component: AdminSkillsComponent},

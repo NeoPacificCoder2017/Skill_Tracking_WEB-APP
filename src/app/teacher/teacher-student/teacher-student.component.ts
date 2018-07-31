@@ -40,7 +40,7 @@ export class TeacherStudentComponent implements OnInit {
       .subscribe(params => {
         this.idFormation = params.idFormation;
         this.idStudent = params.idStudent;
-        this.apiService.get('formation/'+this.me.formation_id).subscribe(data => {
+        this.apiService.get('formation/'+this.idFormation).subscribe(data => {
           this.formation = data;
         });
         this.getStudentOfFormation();
@@ -52,7 +52,9 @@ export class TeacherStudentComponent implements OnInit {
   }
 
   public getStudentOfFormation(): any {
-    this.apiService.get('getStudentDatas/' + this.idStudent + '/ofFormation/' + this.idFormation)
+    const url = 'getStudentDatas/' + this.idStudent + '/ofFormation/' + this.idFormation;
+    console.log('getStudentOfFormation url', url);
+    this.apiService.get(url)
       .subscribe((data) => {
         console.log('getStudentOfFormation data', data);
         this.student = data.student;
