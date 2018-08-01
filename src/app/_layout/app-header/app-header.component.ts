@@ -24,7 +24,8 @@ export class AppHeaderComponent implements OnInit {
           'submenus': [
             {'title': 'Administrateur', 'url': 'admin'},
             {'title': 'Formateurs', 'icon': 'fa-user', 'url': 'teachers'},
-            {'title': 'Apprentis', 'icon': 'fa-user', 'url': 'students'}
+            {'title': 'Apprentis', 'icon': 'fa-user', 'url': 'students'},
+            {'title': 'Tout', 'icon': 'fa-user', 'url': 'users'}
           ]
         },
         {'title': 'Reports', 'icon': 'fa-home', 'url': 'reports'},

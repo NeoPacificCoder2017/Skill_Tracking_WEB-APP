@@ -21,12 +21,14 @@ export class AdminDashboardComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(private apiService: ApiService,
+  constructor(
+    private apiService: ApiService,
     private router: Router,
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private ngZone: NgZone) {
-      // this.formations = {};
+    private ngZone: NgZone
+  ) {
+    // this.formations = {};
   }
   ngOnInit() {
     this.newFormationForm = this.formBuilder.group({
