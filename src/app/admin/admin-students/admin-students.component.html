@@ -1,3 +1,59 @@
-<p>
-  admin-students works!
-</p>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des étudiants</h3>
+  </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button">Ajouter un étudiant</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse email</th>
+            <th scope="col">Formations en cours</th>
+            <th scope="col">Compte créé le</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{ student.id }}</th>
+          <td>
+            <img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle pull-left" width="100%">
+            <div class="pull-left" style="margin: 13px 0 0 10px;">
+              <span class="alignleft">{{student.lastname}}</span><br/>
+              <span class="alignleft">{{student.firstname}}</span>
+            </div>
+          </td>
+          <td class="">{{ student.email }}</td>
+          <td *ngIf="student.formations">
+            <span *ngFor="let formation of student.formations" class="btn btn-round bg-dark no-border left">{{ formation.name }}</span>
+          </td>
+          <td *ngIf="!student.formations">
+            <span>Aucune</span>
+          </td>
+          <td><span class="alignleft">{{ student.created_at | date}}</span></td>
+          <td>
+              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
+</div>

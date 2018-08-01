@@ -1,0 +1,37 @@
+<div class="page-title">
+    <div class="title_left">
+      <h3>Liste des compétences</h3>
+    </div>
+  </div>
+  
+  <div>
+    <h4>{{module.module_name}}</h4>
+  </div>
+  
+  <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Intitulé</th>
+            <th scope="col">Obligatoir</th>
+            <th scope="col">Validé par étudiant</th>
+            <th scope="col" class="pull-right">Validés par le formateur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let skill of listSkill" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40" >{{ skill.skill_id }}</th>
+          <td>{{ skill.skill_name }}</td>
+          
+          <td>
+            <div class="pull-right">
+              <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="skill.progression.student_validation">
+              <label for="toggle{{ skill.id }}" class="labChecky">Validé!</label>
+            </div>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>

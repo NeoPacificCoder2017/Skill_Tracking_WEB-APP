@@ -146,7 +146,7 @@ html , body{
        padding: 0 0 4px 0
    }
    .left_col {
-       background: #3F3D99
+       background: #2E1166
    }
    .nav-sm .container.body .col-md-3.left_col {
        min-height: 100%;
@@ -353,7 +353,7 @@ html , body{
        position: fixed
    }
    body .container.body .right_col {
-       background: #F7F7F7
+       background: #f5f5fa
    }
    .nav-md .container.body .right_col {
        padding: 10px 60px 0;
@@ -362,7 +362,7 @@ html , body{
    .nav_title {
        width: 230px;
        float: left;
-       background: #3F3D99;
+       background: #2E1166;
        border-radius: 0;
        height: 57px;
    }
@@ -406,13 +406,13 @@ html , body{
        max-height: 400px !important
    }
    .blue {
-       color: #399af2
+       color: #8bc0ff
    }
    .purple {
        color: #A3A1FB
    }
    .green {
-       color: #66d9c1
+       color: #8d8
    }
    .aero {
        color: #FDDC97
@@ -421,7 +421,7 @@ html , body{
        color: #FDDC97
    }
    .red {
-       color: #fbb6d3
+       color: #e689b8
    }
    .dark {
        color: #C0D2F4
@@ -430,13 +430,13 @@ html , body{
        color: rgb(175, 175, 175);
    }
    .border-blue {
-       border-color: #afd6fa !important
+       border-color: #8bc0ff !important
    }
    .border-purple {
        border-color: #A3A1FB !important
    }
    .border-green {
-       border-color: #66d9c1 !important
+       border-color: #8d8 !important
    }
    .border-yellow {
        border-color: #FDDC97 !important
@@ -445,7 +445,7 @@ html , body{
        border-color: #FDDC97 !important
    }
    .border-red {
-       border-color: #fbb6d3 !important
+       border-color: #e689b8 !important
    }
    .border-dark {
        border-color: #C0D2F4 !important
@@ -456,23 +456,23 @@ html , body{
        color: #788db4
    }
    .bg-green {
-       background: #abe5d9 !important;
-       border: 1px solid #2fbfa0 !important;
+       background: #8d8 !important;
+       border: 1px solid #8d8 !important;
        color: #fff
    }
    .bg-red {
-       background: #E689B8 !important;
-       border: 1px solid #f64a91 !important;
+       background: #e689b8 !important;
+       border: 1px solid #e689b8 !important;
        color: #fff
    }
    .bg-blue {
-       background: #399af2 !important;
-       border: 1px solid #399af2 !important;
+       background: #8bc0ff !important;
+       border: 1px solid #8bc0ff !important;
        color: #fff
    }
    .bg-yellow {
        background: #FDDC97 !important;
-       border: 1px solid #FFCE67 !important;
+       border: 1px solid #FDDC97 !important;
        color: #fff
    }
    .bg-orange {
@@ -482,7 +482,7 @@ html , body{
    }
    .bg-purple {
        background: #A3A1FB !important;
-       border: 1px solid #817EF6 !important;
+       border: 1px solid #A3A1FB !important;
        color: #fff
    }
    .bg-blue-sky {
@@ -491,9 +491,37 @@ html , body{
        color: #fff
    }
    .bg-dark {
-        background: #C0D2F4 !important;
-        border: 1px solid #C0D2F4 !important;
+        background: #788db4 !important;
+        border: 1px solid #788db4 !important;
         color: #fff
+   }
+   
+   .bg-green:hover {
+    background: #3d993d !important;
+   }
+   .bg-red:hover {
+    background: #f64a91 !important;
+   }
+   .bg-blue:hover {
+    background: #399af2 !important;
+   }
+   .bg-yellow:hover {
+    background: #FFCE67 !important;
+   }
+   .bg-orange:hover {
+    background: #FFCE67 !important;
+   }
+   .bg-purple:hover {
+    background: #817EF6 !important;
+   }
+   .bg-blue-sky:hover {
+    background: #399af2 !important;
+   }
+   .bg-dark:hover {
+    background: #788db4 !important;
+   }
+   .btn:hover {
+       color: #fff
    }
    .container {
        width: 100%;
@@ -513,7 +541,7 @@ html , body{
    }
    body {
        color: #73879C;
-       background: #f3f5f7;
+       background: #f5f5fa;
        font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
        font-size: 13px;
        font-weight: 400;
@@ -3489,11 +3517,11 @@ html , body{
    }
    .alignleft {
        float: left;
-       margin-right: 15px
+       margin-right: 5px
    }
    .alignright {
        float: right;
-       margin-left: 15px
+       margin-left: 5px
    }
    .clearfix:after,
    form:after {
@@ -4035,7 +4063,7 @@ html , body{
        border-radius: 0
    }
    .progress-bar-info {
-       background-color: #afd6fa
+       background-color: #8bc0ff
    }
    .progress-bar-success {
        background-color: #26B99A
@@ -4207,12 +4235,12 @@ html , body{
         border: none !important;
     }
     .shadow {
-         height: 70px;
-         box-shadow: 0 0px 5px 0px rgba(0,0,0,0.10);
+         height: 80px;
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
          transition: box-shadow 0.3s ease-in-out;
     }
     .shadow:hover {
-        box-shadow: 0 0px 30px 0px rgba(0,0,0,0.30);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
 
     .rounded {
@@ -4246,7 +4274,7 @@ html , body{
     }
     
     .scrolling-wrapper .card.selected {
-        background: #3F3D99;
+        background: #2E1166;
         color: #fff;
     }
     
@@ -4262,12 +4290,13 @@ html , body{
     .roundProgressBarWrapper{
         position: relative;
         cursor: pointer;
-    }
-    .roundProgressBarWrapper{
         width: 140px;
         height: 190px;
         float: left;
         margin: 20px 20px 15px;
+    }
+    .roundProgressBarWrapper circle {
+        stroke: #DEDDFF !important;
     }
     .roundProgressBar, .roundProgressBarTeacher, .roundProgressBarStudent, .progressTeacherText, .progressStudentText, .moduleName {
         position: absolute !important;
@@ -4308,27 +4337,30 @@ html , body{
     table .roundProgressBarWrapper {
         position: relative;
         margin: 10px 0;
-        height: 80px;
+        height: 60px;
+        width: 60px;
     }
     table .roundProgressBarTeacher {
         left: 0px;
         top: 0px;
     }
     table .roundProgressBarStudent {
-        left: 8px;
-        top: 8px;
+        left: 6px;
+        top: 6px;
     }
     table .progressTeacherText {
-        top: 20px;
-        width: 80px;
+        top: 16px;
+        width: 60px;
         text-align: center;
-        font-size: 13px;
+        font-size: 11px;
+        font-weight: bold;
     }
     table .progressStudentText {
-      top: 40px;
-      width: 80px;
-      text-align: center;
-      font-size: 13px;
+        top: 28px;
+        width: 60px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
     }
 
     input.checky {
@@ -4342,7 +4374,7 @@ html , body{
         padding: 10px 0px 10px 60px;
         border-radius: 100px;
         color: #fff;
-        background-color: #66d9c1;
+        background-color: #788db4;
         white-space: nowrap;
         cursor: pointer;
         -webkit-user-select: none;
@@ -4374,8 +4406,21 @@ html , body{
         background-color: #A3A1FB;
     }
 
+    input.checky.teacher:checked + label.labChecky {
+        background-color: #e689b8;
+    }
+
     input.checky:checked + label.labChecky::before {
         background-color: #fff;
+    }
+
+    .loadingWrapper {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #f3f5f7;
+        z-index: 9;
     }
    /*
    .x_content {

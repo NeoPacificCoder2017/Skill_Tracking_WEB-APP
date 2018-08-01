@@ -22,15 +22,26 @@ import { SiteHeaderComponent } from './_layout/site-header/site-header.component
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
 import { LoginComponent } from './login/login.component';
+/** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { StudentReportComponent } from './student/student-report/student-report.component';
+
+/** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+
+/** ADMIN */
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
+import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
+import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
 import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
+import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +54,7 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
     SiteLayoutComponent,
     LoginComponent,
     StudentDashboardComponent,
+    StudentReportComponent,
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
@@ -50,8 +62,13 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
+    AdminSkillsComponent,
+    AdminFormationComponent,
     TeacherModuleComponent,
-    TeacherStudentComponent
+    TeacherStudentComponent,
+    AdminFormationStudentComponent,
+    AdminUsersComponent,
+    AdminAdminsComponent
   ],
   imports: [
     BrowserModule,

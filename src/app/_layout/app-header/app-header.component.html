@@ -1,4 +1,4 @@
-<div class="col-md-3 left_col">
+<div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
       <div class="navbar nav_title" style="border: 0;">
         <a href="index.html" class="site_title"><img src="assets/images/logo-blanc.png" /> <span>Skills Tracking</span></a>
@@ -24,9 +24,18 @@
         <div class="menu_section">
           <ul class="nav side-menu">
             <li *ngFor="let menu of menus">
-              <a href="{{ menuPrefix }}/{{ menu.url }}">
-                <span><i class="fa {{ menu.icon }}"></i> {{ menu.title }}</span>
+              <a href="{{ menuPrefix }}/{{ menu.url }}" *ngIf="!menu.submenus">
+                <i class="fa {{ menu.icon }}"></i> {{ menu.title }}
               </a>
+              <a *ngIf="menu.submenus">
+                <i class="fa {{ menu.icon }}"></i> {{ menu.title }}
+                <span class="fa fa-chevron-down" *ngIf="menu.submenus"></span>
+              </a>
+              <ul class="nav child_menu" *ngIf="menu.submenus">
+                <li *ngFor="let submenu of menu.submenus">
+                  <a href="{{ menuPrefix }}/{{ submenu.url }}">{{ submenu.title }}</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

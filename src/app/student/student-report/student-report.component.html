@@ -1,0 +1,64 @@
+<form id="search">
+    <!-- champ de recherche par auteur -->
+    <div class="col-xs-12 form-group top_search" id="search_author">
+        <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <select class="form-control">
+            <option></option>
+            <option>MANA Kevin</option>
+            <option>TEPA Vaiarii</option>
+            <option>TKT Cedric</option>
+            <option>TUHITI Christ</option>
+          </select>
+        </div>
+      </div>
+  <!-- champ recherche par date picker -->
+  <div class="col-xs-12 form-group top_search" id="search_date">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+    </div>
+  </div>
+  <!-- champ rechercher -->
+  <div class="col-xs-12 form-group top_search" id="search_field">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Rechercher...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+  </div>
+  <!-- bouton ajouter -->
+  <div class="glyphicon glyphicon-plus"></div>
+
+</form>
+<!-- Liste des formations -->
+<div class="row">
+  <div class="col-md-12">
+    <!-- Tableau des formations -->
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+          <th scope="col"></th>
+          <th scope="col">#</th>
+          <th scope="col">Auteur</th>
+          <th scope="col">Date de création</th>
+          <th scope="col">Dernière modification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+          <td></td>
+          <td scope="row" width="40">{{ item.report_id }}</td>
+          <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
+          <td>
+            <span class="alignleft">{{ item.date }}</span>
+          </td>
+          <td>{{ item.date }}</td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
+</div>

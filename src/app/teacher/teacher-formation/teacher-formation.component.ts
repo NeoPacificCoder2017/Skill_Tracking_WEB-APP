@@ -36,7 +36,7 @@ export class TeacherFormationComponent implements OnInit {
       });
   }
 
-  backClicked() {
+  goBack() {
     this.location.back();
   }
 
