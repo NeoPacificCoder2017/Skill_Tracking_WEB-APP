@@ -133,23 +133,22 @@
   </div>
 </div>
 
-<!-- Liste des formations -->
+<!-- Liste des modules -->
 <div class="row" *ngIf="tabSelected === 3">
   <div class="col-md-12">
 
     <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <form class="input-group pull-right row" style="display: flex;">
-          <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
-          <button (click)="addModule()" class="btn green bg-green" type="button">Ajouter un module</button>
-        </form>
+        <div class="input-group pull-right row" style="display: flex;">
+          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">Ajouter un module</button>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de modules</p>
-          <button class="btn bg-blue">Ajoutez le premier module</button>
+          <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#myModal">Ajoutez le premier module</button>
         </div>
         <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
@@ -187,7 +186,6 @@
                   <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
                 </div>
               </td>
-
             </tr>
             <br>
           </tbody>
@@ -196,3 +194,87 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un module</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form [formGroup]="newModuleForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du module</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            </div>
+            <div *ngIf="submitted && module.name.errors" class="invalid-feedback">
+              <div *ngIf="module.name.errors.required">Le nom est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacher">Nom du formateur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" >
+                  <option *ngFor="let item of teachersAll"[value]="item.id">{{ item.name }}</option>
+              </select>
+              <!-- <select >
+                <option [value]="item.id" *ngFor="let item of teachers">{{ item.name }}</option>
+              </select> -->
+            </div>
+            <div *ngIf="submitted && module.teacher.errors" class="invalid-feedback">
+              <div *ngIf="module.name.errors.required">Le nom du formateur est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Couleur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <!-- <input type="text" placeholder="Sélectionnez une couleur" id="color" name="color" class="form-control" value="{{ $calendar["color"] }}">
+                <select id="colorselector" style="display: none;">
+                    <option ["color"]="#A0522D") data-color="#A0522D" value="106">sienna</option>
+                    <option ["color"]="#CD5C5C") data-color="#CD5C5C" value="47">indianred</option>
+                    <option ["color"]="#FF4500") data-color="#FF4500" value="87">orangered</option>
+                    <option ["color"]="#008B8B") data-color="#008B8B" value="17">darkcyan</option>
+                    <option ["color"]="#B8860B") data-color="#B8860B" value="18">darkgoldenrod</option>
+                    <option ["color"]="#32CD32") data-color="#32CD32" value="68">limegreen</option>
+                    <option ["color"]="#FFD700") data-color="#FFD700" value="42">gold</option>
+                    <option ["color"]="#48D1CC") data-color="#48D1CC" value="77">mediumturquoise</option>
+                    <option ["color"]="#87CEEB") data-color="#87CEEB" value="107">skyblue</option>
+                    <option ["color"]="#FF69B4") data-color="#FF69B4" value="46">hotpink</option>
+                    <option ["color"]="#CD5C5C") data-color="#CD5C5C" value="47">indianred</option>
+                    <option ["color"]="#87CEFA") data-color="#87CEFA" value="64">lightskyblue</option>
+                    <option ["color"]="#6495ED") data-color="#6495ED" value="13">cornflowerblue</option>
+                    <option ["color"]="#DC143C") data-color="#DC143C" value="15">crimson</option>
+                    <option ["color"]="#FF8C00") data-color="#FF8C00" value="24">darkorange</option>
+                    <option ["color"]="#C71585") data-color="#C71585" value="78">mediumvioletred</option>
+                    <option ["color"]="#000000") data-color="#000000" value="123">black</option>
+                </select> -->
+            </div>
+            <div *ngIf="submitted && module.start_at.errors" class="invalid-feedback">
+              <div *ngIf="module.start_at.errors.required">La couleur est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_heure">total d'heure</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="total_heure" class="form-control col-md-7 col-xs-12" id="total_heure" [ngClass]="{ 'is-invalid': submitted && f.total_heure.errors }">
+            </div>
+            <div *ngIf="submitted && module.total_heure.errors" class="invalid-feedback">
+              <div *ngIf="module.total_heure.errors.required">Le total de l'heure est requis</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+        <button  type="button" [disabled]="loading" (click)="addModule()"class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
+

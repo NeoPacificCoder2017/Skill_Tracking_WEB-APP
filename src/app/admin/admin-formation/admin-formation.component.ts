@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
@@ -22,13 +23,29 @@ export class AdminFormationComponent implements OnInit {
   environment = environment;
   tabSelected = 1;
   teachers: any;
+  teachersAll: any;
   students: any;
+  newModuleForm: FormGroup;
+  loading = false;
+  submitted = false;
 
-  constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private location: Location,
+    private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute) {
     this.moduleName = '';
   }
 
   ngOnInit() {
+    this.newModuleForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      teachers: ['', Validators.required],
+      colors: ['', Validators.required],
+      total_hour: ['', Validators.required]
+    });
+    this.getTeachersAll();
     this.formation = {};
     this.teachers = [];
     this.students = [];
@@ -42,6 +59,7 @@ export class AdminFormationComponent implements OnInit {
         this.getModules();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
+    this.getTeachers();
   }
 
   goBack() {
@@ -61,6 +79,13 @@ export class AdminFormationComponent implements OnInit {
       .subscribe((data) => {
         this.teachers = data;
         console.log('getTeachers', this.teachers);
+      });
+  }
+  public getTeachersAll() {
+    this.apiService.get('users/teacher')
+      .subscribe((data) => {
+        this.teachersAll = data.data;
+        console.log('teachersAll', this.teachersAll);
       });
   }
 
@@ -96,13 +121,26 @@ export class AdminFormationComponent implements OnInit {
     this.router.navigate(['/admin/skills']);
   }
 
+
+  // convenience getter for easy access to form fields
+  get module() { return this.newModuleForm.controls; }
+
   addModule(): any {
-    console.log('moduleName', this.moduleName);
-    this.apiService.post('module/create', this.moduleName)
-      .subscribe((data: any) => {
-        console.log('name', name);
-        console.log('Module create', data);
-      });
+    this.submitted = true;
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('name', this.module.name.value);
+    uploadData.append('nameTeacher', this.module.id.value);
+    uploadData.append('color', this.module.color.value);
+    uploadData.append('total_hour', this.module.total_hour.value);
+
+    console.log('uploadData', uploadData);
+    this.apiService.upload('module/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
   }
 
   deleteModule(idModule): any {
