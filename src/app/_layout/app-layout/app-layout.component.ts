@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-app-layout',
@@ -9,25 +10,23 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class AppLayoutComponent implements OnInit {
 
-  isLogged = false;
-
+  me: any;
+  environment = environment;
 
   constructor(private authService: AuthService, private router: Router) {
-    // localStorage.removeItem('user');
+    
   }
 
   ngOnInit() {
-    this.isLogged = this.authService.isLogged();
-    console.log('AppLayoutComponent ngOnInit this.isLogged', this.isLogged);
-    if (!this.isLogged) { this.router.navigate(['/login']); }
+    this.me = this.authService.me();
+    console.log('AppLayoutComponent ngOnInit this.me', this.me)
+    if (!this.me) { this.router.navigate(['/login']); }
   }
 
   logout() {
     console.log('logout launched');
-    this.authService.logout().subscribe((data) => {
-      console.log('logout test', data);
-      this.router.navigate(['/login']);
-    });
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

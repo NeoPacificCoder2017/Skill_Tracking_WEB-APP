@@ -41,11 +41,23 @@ export class ApiService {
     return this.http.post(apiUrl + url, data, this.httpOptions);
   }
 
+  upload (url, data): any {
+    this.me = JSON.parse(localStorage.getItem('user'));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.me.token
+      })
+
+    };
+    return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+  }
+
   put (url, data): any {
     return this.http.put(apiUrl + url, data, this.httpOptions);
   }
 
   delete (url): any {
-    return this.http.delete(apiUrl + url, this.httpOptions);
+    return this.http.delete(apiUrl + url, this.httpOptions).pipe(map(data => {return data;}));
   }
 }

@@ -5,11 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-teacher-student',
-  templateUrl: './teacher-student.component.html',
-  styleUrls: ['./teacher-student.component.css']
+  selector: 'app-admin-formation-student',
+  templateUrl: './admin-formation-student.component.html',
+  styleUrls: ['./admin-formation-student.component.css']
 })
-export class TeacherStudentComponent implements OnInit {
+export class AdminFormationStudentComponent implements OnInit {
 
   environment = environment;
   max = 100;
@@ -52,9 +52,7 @@ export class TeacherStudentComponent implements OnInit {
   }
 
   public getStudentOfFormation(): any {
-    const url = 'getStudentDatas/' + this.idStudent + '/ofFormation/' + this.idFormation;
-    console.log('getStudentOfFormation url', url);
-    this.apiService.get(url)
+    this.apiService.get('getStudentDatas/' + this.idStudent + '/ofFormation/' + this.idFormation)
       .subscribe((data) => {
         console.log('getStudentOfFormation data', data);
         this.student = data.student;
@@ -153,5 +151,5 @@ export class TeacherStudentComponent implements OnInit {
   stateText(skillId){
     return (this.selectedSkills.indexOf(skillId) >= 0)?"validé":"à valider";
   }
-}
 
+}
