@@ -30,11 +30,15 @@ export class AdminFormationComponent implements OnInit {
   submitted = false;
 
   constructor(private location: Location,
+<<<<<<< HEAD
     private apiService: ApiService,
     private router: Router,
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
+=======
+    private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+>>>>>>> d9fea8132f8b4890bdfbf27699cb92d2175e4ced
     this.moduleName = '';
   }
 

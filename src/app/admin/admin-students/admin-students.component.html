@@ -6,7 +6,7 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button class="btn green bg-green" type="button">Ajouter un étudiant</button>
+        <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">Ajouter un étudiant</button>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
           </td>
           <td><span class="alignleft">{{ student.created_at | date}}</span></td>
           <td>
-              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-red icon no-border alignright" (click)="deleteUser(student.id)"><i class="glyphicon glyphicon-trash"></i></a>
               <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
           </td>
         </tr>
@@ -57,3 +57,111 @@
     </table>
   </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un étudiant</h4>
+      </div>
+      <div class="modal-body">
+<!-- lastname etudiant -->
+        <form [formGroup]="newStudentForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Nom</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="lastname" class="form-control col-md-7 col-xs-12" id="lastname" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.lastname.errors }">
+            </div>
+            <div *ngIf="submitted && s.lastname.errors" class="invalid-feedback">
+              <div *ngIf="s.lastname.errors.required">Le nom est requis</div>
+            </div>
+          </div>
+<!-- firstname étudiant -->
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">Prénom</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="firstname" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.firstname.errors }">
+            </div>
+            <div *ngIf="submitted && s.firstname.errors" class="invalid-feedback">
+              <div *ngIf="s.firstname.errors.required">Le prénom est requis</div>
+            </div>
+          </div>
+<!-- email de l'étudiant -->
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="email" formControlName="email" class="form-control col-md-7 col-xs-12" id="email" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.email.errors }">
+            </div>
+            <div *ngIf="submitted && s.email.errors" class="invalid-feedback">
+              <div *ngIf="s.email.errors.required">L'email est requis</div>
+            </div>
+          </div>
+<!-- password -->
+          <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mot de passe</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="password" formControlName="password" class="form-control col-md-7 col-xs-12" id="password" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.password.errors }">
+              </div>
+              <div *ngIf="submitted && s.password.errors" class="invalid-feedback">
+                <div *ngIf="s.password.errors.required">Le mot de passe est requis</div>
+              </div>
+            </div>
+<!-- c_password -->
+          <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="c_password">Confirmer mot de passe</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="password" formControlName="c_password" class="form-control col-md-7 col-xs-12" id="c_password" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.c_password.errors }">
+              </div>
+              <div *ngIf="submitted && s.c_password.errors" class="invalid-feedback">
+                <div *ngIf="s.c_password.errors.required">Confirmer mot de passe</div>
+              </div>
+            </div>
+<!-- selected formations -->
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation_id" >Formation</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" formControlName="formation_id">
+                <option value="formation_id.id" *ngFor="let formation_id of formations">{{ formation_id.name }}</option>
+              </select>
+              <div *ngIf="submitted && s.formation_id.errors" class="invalid-feedback">
+                <div *ngIf="s.formation_id.errors.required">Veuillez sélectionner une formation</div>
+              </div>
+            </div>
+          </div>
+<!-- gender -->
+          <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control" formControlName="gender">
+                      <option>Homme</option>
+                      <option>Femme</option>
+                  </select></div>
+              <div *ngIf="submitted && s.gender.errors" class="invalid-feedback">
+                <div *ngIf="s.gender.errors.required">Le genre est requis</div>
+              </div>
+          </div>
+<!-- avatar -->
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Photo</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="file" (change)="onFileChanged($event)" id="avatar">
+            </div>
+            <div *ngIf="submitted && newStudentImage == null" class="invalid-feedback">
+              <div *ngIf="s.file.errors.required">Une photo est requise</div>
+            </div>
+          </div>
+<!-- user_type_id étudiant -->
+          <!-- <input type="hidden" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="user_type_id"  [value]="3" > -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+        <button  type="button" [disabled]="loading" (click)="createStudent()" class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
+

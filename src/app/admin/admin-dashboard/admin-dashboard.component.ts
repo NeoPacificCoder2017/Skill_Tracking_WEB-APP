@@ -48,6 +48,7 @@ export class AdminDashboardComponent implements OnInit {
         this.formations = data;
       }
     );
+<<<<<<< HEAD
     this.apiService.get('getTotalFormations').subscribe(data => { this.totalFormations = data; });
     this.apiService.get('getTotalStudents').subscribe(data => { this.totalStudents = data; });
     this.apiService.get('getTotalTeachers').subscribe(data => { this.totalTeachers = data; });
@@ -55,6 +56,15 @@ export class AdminDashboardComponent implements OnInit {
     this.apiService.get('getTotalSkills').subscribe(data => { this.totalSkills = data; });
     this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => { this.totalSkillsValidatedByStudents = data; });
     this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => { this.totalSkillsValidatedByTeachers = data; });
+=======
+    this.apiService.get('getTotalFormations').subscribe(data => {this.totalFormations = data;});
+    this.apiService.get('getTotalStudents').subscribe(data => {this.totalStudents = data; });
+    this.apiService.get('getTotalTeachers').subscribe(data => {this.totalTeachers = data;});
+    this.apiService.get('getTotalModules').subscribe(data => {this.totalModules = data;});
+    this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;});
+    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;});
+    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;});
+>>>>>>> d9fea8132f8b4890bdfbf27699cb92d2175e4ced
   }
 
   // convenience getter for easy access to form fields
@@ -73,7 +83,6 @@ export class AdminDashboardComponent implements OnInit {
 
   createFormation(): any {
     this.submitted = true;
-
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
       return;
     }
