@@ -69,7 +69,7 @@ export class AdminTeachersComponent implements OnInit {
     uploadData.append('user_type_id', this.f.user_type_id.value);
 
     console.log('uploadData', uploadData);
-    console.log('this.newTeacherImage', this.newTeacherImage)
+    console.log('this.newTeacherImage', this.newTeacherImage);
     this.apiService.upload('register', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;

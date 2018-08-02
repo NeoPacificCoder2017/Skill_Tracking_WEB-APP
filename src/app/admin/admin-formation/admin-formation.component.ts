@@ -45,7 +45,6 @@ export class AdminFormationComponent implements OnInit {
       colors: ['', Validators.required],
       total_hour: ['', Validators.required]
     });
-    this.getTeachersAll();
     this.formation = {};
     this.teachers = [];
     this.students = [];
@@ -57,9 +56,9 @@ export class AdminFormationComponent implements OnInit {
         this.getTeachers();
         this.getStudents();
         this.getModules();
+        this.getTeachersAll();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
-    this.getTeachers();
   }
 
   goBack() {
