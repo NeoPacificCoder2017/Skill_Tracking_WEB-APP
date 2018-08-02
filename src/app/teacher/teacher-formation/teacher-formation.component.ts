@@ -18,7 +18,13 @@ export class TeacherFormationComponent implements OnInit {
   formation: any; // formation détail
   environment = environment;
 
-  constructor(private location: Location, private route: ActivatedRoute, private apiService: ApiService, private router: Router, private http: HttpClient) {
+  constructor(
+    private location: Location,
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient
+  ) {
     this.formation = {};
   }
 
