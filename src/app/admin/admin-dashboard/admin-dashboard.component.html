@@ -89,7 +89,7 @@
         <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
       </div>
       <div class="modal-body">
-        
+
         <form [formGroup]="newFormationForm" class="form-horizontal form-label-left">
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
@@ -125,7 +125,7 @@
               <input type="file" (change)="onFileChanged($event)" id="logo">
             </div>
             <div *ngIf="submitted && newFormationImage == null" class="invalid-feedback">
-              <div *ngIf="f.end_at.errors.required">Une image est requise</div>
+              <div *ngIf="f.file.errors.required">Une image est requise</div>
             </div>
           </div>
         </form>

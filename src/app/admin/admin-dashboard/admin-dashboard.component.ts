@@ -21,7 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
+  constructor( private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
@@ -54,7 +54,6 @@ export class AdminDashboardComponent implements OnInit {
 
   createFormation(): any {
     this.submitted = true;
-    
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
         return;
     }
