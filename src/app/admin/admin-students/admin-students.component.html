@@ -48,7 +48,7 @@
           </td>
           <td><span class="alignleft">{{ student.created_at | date}}</span></td>
           <td>
-              <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="" class="rounded btn bg-red icon no-border alignright" (click)="deleteUser(student.id)"><i class="glyphicon glyphicon-trash"></i></a>
               <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
           </td>
         </tr>
@@ -121,12 +121,14 @@
             </div>
 <!-- selected formations -->
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formations" >Formation</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation_id" >Formation</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select >
-                <option [value]="item.id" *ngFor="let item of formations">{{ item.name }}</option>
+              <select class="form-control" formControlName="formation_id">
+                <option value="formation_id.id" *ngFor="let formation_id of formations">{{ formation_id.name }}</option>
               </select>
-              <div *ngIf="s.formations.errors.required">Veuillez sélectionner une formation</div>
+              <div *ngIf="submitted && s.formation_id.errors" class="invalid-feedback">
+                <div *ngIf="s.formation_id.errors.required">Veuillez sélectionner une formation</div>
+              </div>
             </div>
           </div>
 <!-- gender -->
@@ -152,7 +154,7 @@
             </div>
           </div>
 <!-- user_type_id étudiant -->
-          <input type="hidden" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="user_type_id"  [value]="3" >
+          <!-- <input type="hidden" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="user_type_id"  [value]="3" > -->
         </form>
       </div>
       <div class="modal-footer">

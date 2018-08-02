@@ -24,7 +24,8 @@ export class AdminFormationComponent implements OnInit {
   teachers: any;
   students: any;
 
-  constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private location: Location,
+    private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     this.moduleName = '';
   }
 

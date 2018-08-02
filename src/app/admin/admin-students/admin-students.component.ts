@@ -30,9 +30,8 @@ export class AdminStudentsComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       c_password: ['', Validators.required],
-      formations: ['', Validators.required],
+      formation_id: ['', Validators.required],
       gender: ['', Validators.required],
-      user_type_id: ['3']
     });
 
     this.apiService.get('getAllFormationsForAdmin').subscribe(
@@ -59,6 +58,9 @@ export class AdminStudentsComponent implements OnInit {
     this.newStudentImage = event.target.files[0];
   }
 
+  addStudentToFormation(): any {
+  }
+
   createStudent(): any {
     this.submitted = true;
     if (this.newStudentForm.invalid && this.newStudentImage == null) {
@@ -72,14 +74,13 @@ export class AdminStudentsComponent implements OnInit {
     uploadData.append('email', this.s.email.value);
     uploadData.append('password', this.s.password.value);
     uploadData.append('c_password', this.s.password.value);
-    uploadData.append('formations', this.s.formations.value);
+    uploadData.append('formation_id', this.s.formation_id.value);
     uploadData.append('gender', this.s.gender.value);
     uploadData.append('avatar', this.newStudentImage, this.newStudentImage.name);
-    uploadData.append('user_type_id', this.s.user_type_id.value);
 
     console.log('uploadData', uploadData);
     console.log('this.newStudentImage', this.newStudentImage);
-    this.apiService.upload('register', uploadData)
+    this.apiService.upload('createStudent', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
@@ -94,4 +95,6 @@ export class AdminStudentsComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+
 }
