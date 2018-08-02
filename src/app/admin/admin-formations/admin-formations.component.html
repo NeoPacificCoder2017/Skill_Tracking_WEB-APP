@@ -125,7 +125,7 @@
               <input type="file" (change)="onFileChanged($event)" id="logo">
             </div>
             <div *ngIf="submitted && newFormationImage == null" class="invalid-feedback">
-              <div *ngIf="f.end_at.errors.required">Une image est requise</div>
+              <div>Une image est requise</div>
             </div>
           </div>
         </form>
