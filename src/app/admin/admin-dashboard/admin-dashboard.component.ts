@@ -21,13 +21,15 @@ export class AdminDashboardComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(
-    private apiService: ApiService,
-    private router: Router,
-    private http: HttpClient,
-    private formBuilder: FormBuilder,
-    private ngZone: NgZone
-  ) {
+  totalFormations: Number;
+  totalStudents: Number;
+  totalTeachers: Number;
+  totalModules: Number;
+  totalSkills: Number;
+  totalSkillsValidatedByStudents: Number;
+  totalSkillsValidatedByTeachers: Number;
+
+  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
@@ -42,6 +44,13 @@ export class AdminDashboardComponent implements OnInit {
         this.formations = data;
       }
     );
+    this.apiService.get('getTotalFormations').subscribe(data => {this.totalFormations = data;});
+    this.apiService.get('getTotalStudents').subscribe(data => {this.totalStudents = data;});
+    this.apiService.get('getTotalTeachers').subscribe(data => {this.totalTeachers = data;});
+    this.apiService.get('getTotalModules').subscribe(data => {this.totalModules = data;});
+    this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;});
+    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;});
+    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;});
   }
 
   // convenience getter for easy access to form fields

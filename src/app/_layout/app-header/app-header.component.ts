@@ -16,7 +16,7 @@ export class AppHeaderComponent implements OnInit {
       'name': 'admin',
       'links': [
         {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
-        // {"title": "Formations", "icon": "fa-graduation-cap", "url": "formations"},
+        {"title": "Formations", "icon": "fa-graduation-cap", "url": "formations"},
         {
           'title': 'Utilisateurs',
           'icon': 'fa-user',
