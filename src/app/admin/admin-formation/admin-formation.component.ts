@@ -41,7 +41,7 @@ export class AdminFormationComponent implements OnInit {
   ngOnInit() {
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
-      teachers: ['', Validators.required],
+      teachersAll: ['', Validators.required],
       colors: ['', Validators.required],
       total_hour: ['', Validators.required]
     });
@@ -129,7 +129,7 @@ export class AdminFormationComponent implements OnInit {
     this.loading = true;
     const uploadData = new FormData();
     uploadData.append('name', this.module.name.value);
-    uploadData.append('nameTeacher', this.module.id.value);
+    uploadData.append('teacherName', this.module.teachersAll.value);
     uploadData.append('color', this.module.color.value);
     uploadData.append('total_hour', this.module.total_hour.value);
 

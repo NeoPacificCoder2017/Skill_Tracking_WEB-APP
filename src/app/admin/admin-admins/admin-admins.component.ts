@@ -37,6 +37,11 @@ export class AdminAdminsComponent implements OnInit {
     );
   }
 
+  // showFormation(idFormation) {
+  //   console.log('Formation', idFormation);
+  //   this.router.navigate(['/admin/formation'], { queryParams: { idFormation: idFormation } });
+  // }
+
   get f() { return this.newAdminForm.controls; }
 
   onFileChanged(event) {
@@ -67,6 +72,14 @@ export class AdminAdminsComponent implements OnInit {
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
+      this.ngOnInit();
+    });
+  }
+
+  deleteAdmin(idAdmin): any {
+    console.log('user :', idAdmin);
+    this.apiService.delete('user/' + idAdmin)
+    .subscribe(data => {
       this.ngOnInit();
     });
   }

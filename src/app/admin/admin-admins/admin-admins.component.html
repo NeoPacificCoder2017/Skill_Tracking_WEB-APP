@@ -41,7 +41,7 @@
             <td class="">{{ admin.email }}</td>
             <td><span class="alignleft">{{ admin.created_at | date}}</span></td>
             <td>
-                <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+                <a (click)="deleteAdmin()" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
                 <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
             </td>
           </tr>
@@ -133,9 +133,10 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_type_id">Type d'utilisateur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select class="form-control" formControlName="user_type_id">
-                <option [value]=0 disabled="true">Admnistrateur</option>
-                <option [value]=1  disabled="true">Etudiant</option>
-                <option [value]=2>Formateur</option>
+                <option [value]=0 >type utilisateur</option>
+                <option [value]=1 >admin</option>
+                <option [value]=2>teacher</option>
+                <option [value]=3>student</option>
               </select>
             </div>
           </div>
@@ -143,7 +144,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
-        <button  type="button" [disabled]="loading" (click)="createTeacher()" class="btn bg-blue icon no-border">Ajouter</button>
+        <button  type="button" [disabled]="loading" (click)="createAdmin()" class="btn bg-blue icon no-border">Ajouter</button>
       </div>
     </div>
   </div>

@@ -29,14 +29,18 @@ export class AdminDashboardComponent implements OnInit {
   totalSkillsValidatedByStudents: Number;
   totalSkillsValidatedByTeachers: Number;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
+  constructor(private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
     this.newFormationForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        start_at: ['', Validators.required],
-        end_at: ['', Validators.required]
+      name: ['', Validators.required],
+      start_at: ['', Validators.required],
+      end_at: ['', Validators.required]
     });
     this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
@@ -44,13 +48,13 @@ export class AdminDashboardComponent implements OnInit {
         this.formations = data;
       }
     );
-    this.apiService.get('getTotalFormations').subscribe(data => {this.totalFormations = data;});
-    this.apiService.get('getTotalStudents').subscribe(data => {this.totalStudents = data;});
-    this.apiService.get('getTotalTeachers').subscribe(data => {this.totalTeachers = data;});
-    this.apiService.get('getTotalModules').subscribe(data => {this.totalModules = data;});
-    this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;});
-    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;});
-    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;});
+    this.apiService.get('getTotalFormations').subscribe(data => { this.totalFormations = data; });
+    this.apiService.get('getTotalStudents').subscribe(data => { this.totalStudents = data; });
+    this.apiService.get('getTotalTeachers').subscribe(data => { this.totalTeachers = data; });
+    this.apiService.get('getTotalModules').subscribe(data => { this.totalModules = data; });
+    this.apiService.get('getTotalSkills').subscribe(data => { this.totalSkills = data; });
+    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => { this.totalSkillsValidatedByStudents = data; });
+    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => { this.totalSkillsValidatedByTeachers = data; });
   }
 
   // convenience getter for easy access to form fields
@@ -71,7 +75,7 @@ export class AdminDashboardComponent implements OnInit {
     this.submitted = true;
 
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
-        return;
+      return;
     }
 
     this.loading = true;
@@ -86,18 +90,18 @@ export class AdminDashboardComponent implements OnInit {
     console.log('uploadData', uploadData);
     console.log('this.newFormationImage', this.newFormationImage);
     this.apiService.upload('formation/create', uploadData)
-    .subscribe(data => {
-      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-      element.click();
-      this.ngOnInit();
-    });
+      .subscribe(data => {
+        const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+        element.click();
+        this.ngOnInit();
+      });
   }
 
   deleteFormation(idFormation): any {
     this.apiService.delete('formation/' + idFormation)
-    .subscribe(data => {
-      this.ngOnInit();
-    });
+      .subscribe(data => {
+        this.ngOnInit();
+      });
   }
 
 }
