@@ -19,21 +19,23 @@ export class AdminUsersComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder) { }
+  constructor(
+    private apiService: ApiService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.newUserForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', Validators.required],
-      profile_type_id: ['', Validators.required]
-  });
     this.apiService.get('users').subscribe(
       data => {
         console.log('data', data);
         this.users = data.data;
       }
     );
+    this.newUserForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      profile_type_id: ['', Validators.required]
+    });
   }
 
   get f() { return this.newUserForm.controls; }
