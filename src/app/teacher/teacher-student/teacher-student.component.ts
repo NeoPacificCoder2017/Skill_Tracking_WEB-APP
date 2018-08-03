@@ -61,6 +61,8 @@ export class TeacherStudentComponent implements OnInit {
         this.modules = data.modules;
         console.log('student', this.student);
         console.log('modules', this.modules);
+        this.skills = [];
+        this.allSkills = [];
         for (let i = 0; i < this.modules.length; i++) {
           for (let j = 0; j < this.modules[i].skills.length; j++) {
             this.totalSkills++;
@@ -93,8 +95,9 @@ export class TeacherStudentComponent implements OnInit {
     console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation',
                 this.skills[skillIndex].progression.student_validation);
 
+    this.getStudentOfFormation();
     this.updateSkillsArray(skillId, teacherValidation);
-
+    this.filterByModule(this.moduleSelected);
     const datas = { progression_id: progressionId, teacher_validation: teacherValidation };
 
     this.apiService.put('progression/updateTeacherValidation', datas)
