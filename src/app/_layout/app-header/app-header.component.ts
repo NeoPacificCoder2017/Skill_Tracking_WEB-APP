@@ -40,7 +40,7 @@ export class AppHeaderComponent implements OnInit {
         // {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
         // {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
         {'title': 'Reports', 'icon': 'fa-clipboard', 'url': 'reports'},
-        {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
+        // {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
       ]
     },
     {

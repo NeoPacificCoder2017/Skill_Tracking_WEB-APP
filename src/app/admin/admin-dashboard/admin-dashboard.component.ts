@@ -70,7 +70,6 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['/admin/formation'], { queryParams: { idFormation: idFormation } });
   }
 
-
   createFormation(): any {
     this.submitted = true;
     if (this.newFormationForm.invalid && this.newFormationImage == null) {

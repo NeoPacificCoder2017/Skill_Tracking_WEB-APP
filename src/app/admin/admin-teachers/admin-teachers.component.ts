@@ -56,8 +56,6 @@ export class AdminTeachersComponent implements OnInit {
       return;
     }
     this.loading = true;
-    // const start_at = this.f.start_at.value.split('/');
-    // const end_at = this.f.end_at.value.split('/');
     const uploadData = new FormData();
     uploadData.append('firstname', this.f.firstname.value);
     uploadData.append('lastname', this.f.lastname.value);
@@ -78,8 +76,8 @@ export class AdminTeachersComponent implements OnInit {
     });
   }
 
-  deleteUser(idTeacher): any {
-    this.apiService.delete('user/' + idTeacher)
+  deleteTeacher(idTeacher): any {
+    this.apiService.delete('admin/teachers' + idTeacher)
     .subscribe(data => {
       this.ngOnInit();
     });
