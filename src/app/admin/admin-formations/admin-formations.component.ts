@@ -22,7 +22,8 @@ export class AdminFormationsComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
+  constructor(private apiService: ApiService,
+     private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
@@ -33,7 +34,7 @@ export class AdminFormationsComponent implements OnInit {
     });
     this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
-        console.log('data', data);
+        console.log('dataFormations', data);
         this.formations = data;
       }
     );

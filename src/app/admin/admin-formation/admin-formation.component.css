@@ -4,3 +4,14 @@
     margin: auto auto;
     width: 50%;
 }
+
+#colorSelectBtn {
+    top: 2px;
+    right: 12px;
+    padding: 4px;
+	width: 40px;
+	height: 30px;
+	background: #f00;
+	position: absolute;
+
+}

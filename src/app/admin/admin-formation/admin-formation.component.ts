@@ -28,26 +28,27 @@ export class AdminFormationComponent implements OnInit {
   newModuleForm: FormGroup;
   loading = false;
   submitted = false;
+  colorsPanel = ['#A0522D', '#CD5C5C', '#FF4500', '#008B8B', '#B8860B', '#32CD32',
+  '#FFD700', '#48D1CC', '#87CEEB', '#FF69B4', '#CD5C5C', '#87CEFA', '#6495ED',
+  '#DC143C', '#FF8C00', '#C71585', '#000000'];
+  showColorsPanel = 0;
+  selectedColor: string;
 
   constructor(private location: Location,
-<<<<<<< HEAD
     private apiService: ApiService,
     private router: Router,
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
-=======
-    private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
->>>>>>> d9fea8132f8b4890bdfbf27699cb92d2175e4ced
     this.moduleName = '';
   }
 
   ngOnInit() {
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
-      teachersAll: ['', Validators.required],
+      teacherAll: ['', Validators.required],
       colors: ['', Validators.required],
-      total_hour: ['', Validators.required]
+      total_heure: ['', Validators.required]
     });
     this.formation = {};
     this.teachers = [];
@@ -60,7 +61,7 @@ export class AdminFormationComponent implements OnInit {
         this.getTeachers();
         this.getStudents();
         this.getModules();
-        this.getTeachersAll();
+        this.getTeacherAll();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
@@ -84,12 +85,13 @@ export class AdminFormationComponent implements OnInit {
         console.log('getTeachers', this.teachers);
       });
   }
-  public getTeachersAll() {
+  public getTeacherAll() {
     this.apiService.get('users/teacher')
-      .subscribe((data) => {
+    .subscribe( data => {
+        console.log('data', data);
         this.teachersAll = data.data;
-        console.log('teachersAll', this.teachersAll);
-      });
+      }
+    );
   }
 
   private getStudents() {
@@ -125,6 +127,7 @@ export class AdminFormationComponent implements OnInit {
   }
 
 
+
   // convenience getter for easy access to form fields
   get module() { return this.newModuleForm.controls; }
 
@@ -133,9 +136,9 @@ export class AdminFormationComponent implements OnInit {
     this.loading = true;
     const uploadData = new FormData();
     uploadData.append('name', this.module.name.value);
-    uploadData.append('teacherName', this.module.teachersAll.value);
+    uploadData.append('teacherAll', this.module.teachersAll.value);
     uploadData.append('color', this.module.color.value);
-    uploadData.append('total_hour', this.module.total_hour.value);
+    uploadData.append('total_heure', this.module.total_heure.value);
 
     console.log('uploadData', uploadData);
     this.apiService.upload('module/create', uploadData)
@@ -152,5 +155,14 @@ export class AdminFormationComponent implements OnInit {
       .subscribe((data) => {
         console.log('Module deleted');
       });
+  }
+
+  openColorsPanel () {
+    this.showColorsPanel = 1;
+  }
+
+  selectColor(index) {
+    this.selectedColor = this.colorsPanel[index];
+    this.showColorsPanel = 0;
   }
 }

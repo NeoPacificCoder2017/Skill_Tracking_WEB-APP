@@ -71,6 +71,7 @@ export class AdminStudentsComponent implements OnInit {
     uploadData.append('password', this.s.password.value);
     uploadData.append('c_password', this.s.password.value);
     uploadData.append('formation_id', this.s.formation_id.value);
+    console.log('formation-id', this.s.formation_id.value);
     uploadData.append('gender', this.s.gender.value);
     uploadData.append('avatar', this.newStudentImage, this.newStudentImage.name);
 
@@ -84,10 +85,11 @@ export class AdminStudentsComponent implements OnInit {
     });
   }
 
-  deleteUser(idStudent): any {
-    this.apiService.delete('user/' + idStudent)
+  deleteUser(idUser): any {
+    console.log('idUser', idUser);
+    this.apiService.delete('user/' + idUser)
     .subscribe(data => {
-      console.log('idStudent', idStudent);
+      console.log('idUser', idUser);
       this.ngOnInit();
     });
   }

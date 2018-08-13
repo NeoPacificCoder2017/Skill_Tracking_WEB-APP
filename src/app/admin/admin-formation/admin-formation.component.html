@@ -217,43 +217,29 @@
               <div *ngIf="module.name.errors.required">Le nom est requis</div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacher">Nom du formateur</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" >
-                  <option *ngFor="let item of teachersAll" [value]="item.id">{{ item.name }}</option>
-              </select>
-              <!-- <select >
-                <option [value]="item.id" *ngFor="let item of teachers">{{ item.name }}</option>
-              </select> -->
-            </div>
-            <div *ngIf="submitted && module.teacher.errors" class="invalid-feedback">
-              <div *ngIf="module.name.errors.required">Le nom du formateur est requis</div>
+         <!-- selected teachers -->
+         <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacherAll" >Formateur</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <select class="form-control" formControlName="teachersAll">
+              <option value="teacherAll.id" *ngFor="let teacherAll of teachersAll">{{ teacherAll.name }}</option>
+            </select>
+            <div *ngIf="submitted && module.teacherAll.errors" class="invalid-feedback">
+              <div *ngIf="module.teacherAll.errors.required">Veuillez sélectionner un formateur</div>
             </div>
           </div>
+        </div>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Couleur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <!-- <input type="text" placeholder="Sélectionnez une couleur" id="color" name="color" class="form-control" value="{{ $calendar["color"] }}">
-                <select id="colorselector" style="display: none;">
-                    <option ["color"]="#A0522D") data-color="#A0522D" value="106">sienna</option>
-                    <option ["color"]="#CD5C5C") data-color="#CD5C5C" value="47">indianred</option>
-                    <option ["color"]="#FF4500") data-color="#FF4500" value="87">orangered</option>
-                    <option ["color"]="#008B8B") data-color="#008B8B" value="17">darkcyan</option>
-                    <option ["color"]="#B8860B") data-color="#B8860B" value="18">darkgoldenrod</option>
-                    <option ["color"]="#32CD32") data-color="#32CD32" value="68">limegreen</option>
-                    <option ["color"]="#FFD700") data-color="#FFD700" value="42">gold</option>
-                    <option ["color"]="#48D1CC") data-color="#48D1CC" value="77">mediumturquoise</option>
-                    <option ["color"]="#87CEEB") data-color="#87CEEB" value="107">skyblue</option>
-                    <option ["color"]="#FF69B4") data-color="#FF69B4" value="46">hotpink</option>
-                    <option ["color"]="#CD5C5C") data-color="#CD5C5C" value="47">indianred</option>
-                    <option ["color"]="#87CEFA") data-color="#87CEFA" value="64">lightskyblue</option>
-                    <option ["color"]="#6495ED") data-color="#6495ED" value="13">cornflowerblue</option>
-                    <option ["color"]="#DC143C") data-color="#DC143C" value="15">crimson</option>
-                    <option ["color"]="#FF8C00") data-color="#FF8C00" value="24">darkorange</option>
-                    <option ["color"]="#C71585") data-color="#C71585" value="78">mediumvioletred</option>
-                    <option ["color"]="#000000") data-color="#000000" value="123">black</option>
-                </select> -->
+              <input [(ngModel)]="selectedColor"  type="text" placeholder="Sélectionnez une couleur" class="form-control" value="">
+                <div id="colorSelectBtn" (click)="openColorsPanel()"></div>
+                <div *ngIf="showColorsPanel" id="colorsPanel" >
+                  <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; trackBy index' (click)="selectColor(index)"></div>
+                </div>
+
+
+
             </div>
             <div *ngIf="submitted && module.start_at.errors" class="invalid-feedback">
               <div *ngIf="module.start_at.errors.required">La couleur est requis</div>
