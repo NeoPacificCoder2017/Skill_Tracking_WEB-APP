@@ -1,34 +1,63 @@
 <!-- top tiles -->
-<div class="row tile_count">
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Formations</span>
-    <div class="count">{{ totalFormations }}</div>
-    <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+<div class="row">
+  <div class="col-md-9">
+    <div class="row tile_count">
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Formations</span>
+        <div class="count">{{ totalFormations }}</div>
+        <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-clock-o"></i> Total Apprentis</span>
+        <div class="count">{{ totalStudents }}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Formateurs</span>
+        <div class="count green">{{ totalTeachers }}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+      </div>
+    </div>
+    <div class="row tile_count">
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Modules</span>
+        <div class="count">{{ totalModules }}</div>
+        <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Compétences</span>
+        <div class="count">{{ totalSkills }}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
+        <div class="count">7,325</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+      </div>
+    </div>
   </div>
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-clock-o"></i> Total Apprentis</span>
-    <div class="count">{{ totalStudents }}</div>
-    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
-  </div>
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Formateurs</span>
-    <div class="count green">{{ totalTeachers }}</div>
-    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-  </div>
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Modules</span>
-    <div class="count">{{ totalModules }}</div>
-    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-  </div>
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Compétences</span>
-    <div class="count">{{ totalSkills }}</div>
-    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-  </div>
-  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-    <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-    <div class="count">7,325</div>
-    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+  <div class="col-md-3">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Compétences</h2>
+      </div>
+      <div class="x_content">
+        <div class="roundProgressBarWrapper">
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progression.teacher_validated*100/progression.skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <round-progress class="roundProgressBar roundProgressBarStudent" [current]="progression.student_validated*100/progression.skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+          <div class="progressTeacherText red">{{ (progression.teacher_validated*100/progression.skills) | number: '1.0-0' }}%</div>
+          <div class="progressStudentText purple">{{ (progression.student_validated*100/progression.skills) | number: '1.0-0' }}%</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- /top tiles -->
+<div class="row">
+  <div class="col-md-6">
+    <div mk-morris-js [options]="chartBarOptions" [data]="teachersDataGraph" type="Bar"></div>
+  </div>
+  <div class="col-md-6">
+    <div mk-morris-js [options]="chartBarOptions" [data]="studentsDataGraph" type="Bar"></div>
+  </div>
+</div>

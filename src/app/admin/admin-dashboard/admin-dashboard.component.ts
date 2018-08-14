@@ -5,6 +5,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
+
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -29,6 +31,11 @@ export class AdminDashboardComponent implements OnInit {
   totalSkillsValidatedByStudents: Number;
   totalSkillsValidatedByTeachers: Number;
 
+  progression = {};
+  teachersDataGraph = [];
+  studentsDataGraph = [];
+  chartBarOptions = {};
+
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
@@ -51,6 +58,36 @@ export class AdminDashboardComponent implements OnInit {
     this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;});
     this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;});
     this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;});
+  
+    this.progression = {
+      teacher_validated: 40,
+      student_validated: 20,
+      skills: 80
+    }
+
+    this.studentsDataGraph = [
+      { y: '2006', a: 100, b: 90 },
+      { y: '2007', a: 75,  b: 65 },
+      { y: '2008', a: 50,  b: 40 },
+      { y: '2009', a: 75,  b: 65 },
+      { y: '2010', a: 50,  b: 40 },
+      { y: '2011', a: 75,  b: 65 },
+      { y: '2012', a: 100, b: 90 }
+    ];
+
+    this.teachersDataGraph = [
+      { y: '2006', a: 100, b: 90 },
+      { y: '2007', a: 75,  b: 65 },
+      { y: '2008', a: 50,  b: 40 },
+      { y: '2009', a: 75,  b: 65 },
+      { y: '2010', a: 50,  b: 40 },
+      { y: '2011', a: 75,  b: 65 },
+      { y: '2012', a: 100, b: 90 }
+    ];
+
+    this.chartBarOptions = {
+      barColors: ['#F00','#FF0']
+    }
   }
 
   // convenience getter for easy access to form fields
