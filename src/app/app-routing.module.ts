@@ -1,4 +1,3 @@
-import { StudentReportComponent } from './student/student-report/student-report.component';
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,6 +18,7 @@ import { AdminStudentsComponent } from './admin/admin-students/admin-students.co
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
+import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -27,7 +27,9 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
-import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
+import { StudentReportComponent } from './student/student-report/student-report.component';
+import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
+import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,8 @@ const routes: Routes = [
       // ROUTES STUDENT
       { path: 'student/dashboard', component: StudentDashboardComponent},
       { path: 'student/reports', component: StudentReportComponent},
+      { path: 'student/report', component: StudentDetailReportComponent},
+      { path: 'student/report/create', component: StudentCreateReportComponent},
 
       // ROUTES TEACHER
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},

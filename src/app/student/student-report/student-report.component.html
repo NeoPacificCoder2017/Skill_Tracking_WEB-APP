@@ -1,15 +1,24 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des rapports</h3>
+  </div>
+
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un rapport</button>
+      </div>
+    </div>
+  </div>
+</div>
 <form id="search">
-    <!-- champ de recherche par auteur -->
+    <!-- champ de recherche par auteur a mettre dynamiquement -->
     <div class="col-xs-12 form-group top_search" id="search_author">
         <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
         <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
         <div class="col-md-9 col-sm-9 col-xs-12">
-          <select class="form-control">
-            <option></option>
-            <option>MANA Kevin</option>
-            <option>TEPA Vaiarii</option>
-            <option>TKT Cedric</option>
-            <option>TUHITI Christ</option>
+          <select class="form-control" formControlName="student_id">
+            <option value="student_id.id" *ngFor="let student_id of dataStudent">{{ student_id.studentLastname }} {{ student_id.studentFirstname }}</option>
           </select>
         </div>
       </div>
@@ -29,8 +38,6 @@
       </span>
     </div>
   </div>
-  <!-- bouton ajouter -->
-  <div class="glyphicon glyphicon-plus"></div>
 
 </form>
 <!-- Liste des formations -->
@@ -45,10 +52,12 @@
           <th scope="col">Auteur</th>
           <th scope="col">Date de création</th>
           <th scope="col">Dernière modification</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item.report_id)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
@@ -56,6 +65,9 @@
             <span class="alignleft">{{ item.created_date }}</span>
           </td>
           <td>{{ item.last_edit_date }}</td>
+          <!-- <td style="width: 124px;">
+            <button (click)="showReport(item.report_id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+          </td> -->
         </tr>
         <br>
       </tbody>
