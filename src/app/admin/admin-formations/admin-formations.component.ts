@@ -70,7 +70,7 @@ export class AdminFormationsComponent implements OnInit {
     uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.newFormationImage',this.newFormationImage)
+    console.log('this.newFormationImage',this.newFormationImage);
     this.apiService.upload('formation/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;

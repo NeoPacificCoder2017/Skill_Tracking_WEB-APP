@@ -211,47 +211,44 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du module</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && m.name.errors }">
             </div>
-            <div *ngIf="submitted && module.name.errors" class="invalid-feedback">
-              <div *ngIf="module.name.errors.required">Le nom est requis</div>
-            </div>
-          </div>
-         <!-- selected teachers -->
-         <div class="form-group">
-          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacherAll" >Formateur</label>
-          <div class="col-md-6 col-sm-6 col-xs-12">
-            <select class="form-control" formControlName="teachersAll">
-              <option value="teacherAll.id" *ngFor="let teacherAll of teachersAll">{{ teacherAll.name }}</option>
-            </select>
-            <div *ngIf="submitted && module.teacherAll.errors" class="invalid-feedback">
-              <div *ngIf="module.teacherAll.errors.required">Veuillez sélectionner un formateur</div>
+            <div *ngIf="submitted && m.name.errors" class="invalid-feedback">
+              <div *ngIf="m.name.errors.required">Le nom est requis</div>
             </div>
           </div>
-        </div>
+          <!-- selected teachers -->
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Couleur</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacher" >Formateur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input [(ngModel)]="selectedColor"  type="text" placeholder="Sélectionnez une couleur" class="form-control" value="">
-                <div id="colorSelectBtn" (click)="openColorsPanel()"></div>
-                <div *ngIf="showColorsPanel" id="colorsPanel" >
-                  <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; trackBy index' (click)="selectColor(index)"></div>
-                </div>
-
-
-
+              <select class="form-control" formControlName="teacher">
+                <option value="teacherAll.id" *ngFor="let teacherAll of teachersAll">{{ teacherAll.lastname }}</option>
+              </select>
+              <div *ngIf="submitted && m.teacher.errors" class="invalid-feedback">
+                <div *ngIf="m.teacher.errors.required">Veuillez sélectionner un formateur</div>
+              </div>
             </div>
-            <div *ngIf="submitted && module.start_at.errors" class="invalid-feedback">
-              <div *ngIf="module.start_at.errors.required">La couleur est requis</div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Couleur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input (click)="openColorsPanel()" formControlName="color"  type="text" placeholder="Sélectionnez une couleur" class="form-control" value="">
+                <div id="colorSelectBtn"></div>
+                <div *ngIf="showColorsPanel" id="colorsPanel">
+                  <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; index as index' (click)="selectColor(index)"></div>
+                </div>
+            </div>
+            <div *ngIf="submitted && m.color.errors" class="invalid-feedback">
+              <div *ngIf="m.color.errors.required">La couleur est requis</div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_heure">total d'heure</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" formControlName="total_heure" class="form-control col-md-7 col-xs-12" id="total_heure" [ngClass]="{ 'is-invalid': submitted && f.total_heure.errors }">
+              <input type="text" formControlName="total_heure" class="form-control col-md-7 col-xs-12" id="total_heure" [ngClass]="{ 'is-invalid': submitted && m.total_heure.errors }">
             </div>
-            <div *ngIf="submitted && module.total_heure.errors" class="invalid-feedback">
-              <div *ngIf="module.total_heure.errors.required">Le total de l'heure est requis</div>
+            <div *ngIf="submitted && m.total_heure.errors" class="invalid-feedback">
+              <div *ngIf="m.total_heure.errors.required">Le total de l'heure est requis</div>
             </div>
           </div>
         </form>

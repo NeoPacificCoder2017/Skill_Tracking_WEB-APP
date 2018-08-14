@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
-import { $ } from '../../../../node_modules/protractor';
 import { Location } from '@angular/common';
 
 @Component({
@@ -30,14 +28,13 @@ export class AdminFormationComponent implements OnInit {
   submitted = false;
   colorsPanel = ['#A0522D', '#CD5C5C', '#FF4500', '#008B8B', '#B8860B', '#32CD32',
   '#FFD700', '#48D1CC', '#87CEEB', '#FF69B4', '#CD5C5C', '#87CEFA', '#6495ED',
-  '#DC143C', '#FF8C00', '#C71585', '#000000'];
+  '#DC143C', '#FF8C00', '#C71585', '#000000', '#118e2c', '#c43403', '#620793'];
   showColorsPanel = 0;
   selectedColor: string;
 
   constructor(private location: Location,
     private apiService: ApiService,
     private router: Router,
-    private http: HttpClient,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
     this.moduleName = '';
@@ -46,8 +43,8 @@ export class AdminFormationComponent implements OnInit {
   ngOnInit() {
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
-      teacherAll: ['', Validators.required],
-      colors: ['', Validators.required],
+      teacher: ['', Validators.required],
+      color: ['', Validators.required],
       total_heure: ['', Validators.required]
     });
     this.formation = {};
@@ -86,10 +83,10 @@ export class AdminFormationComponent implements OnInit {
       });
   }
   public getTeacherAll() {
-    this.apiService.get('users/teacher')
-    .subscribe( data => {
-        console.log('data', data);
+    this.apiService.get('users/teacher').subscribe(
+      data => {
         this.teachersAll = data.data;
+        console.log('teachersAll', this.teachersAll);
       }
     );
   }
@@ -126,19 +123,21 @@ export class AdminFormationComponent implements OnInit {
     this.router.navigate(['/admin/skills']);
   }
 
-
-
   // convenience getter for easy access to form fields
-  get module() { return this.newModuleForm.controls; }
+  get m() { return this.newModuleForm.controls; }
 
   addModule(): any {
     this.submitted = true;
+
+    if (this.newModuleForm.invalid == null) {
+      return;
+    }
     this.loading = true;
     const uploadData = new FormData();
-    uploadData.append('name', this.module.name.value);
-    uploadData.append('teacherAll', this.module.teachersAll.value);
-    uploadData.append('color', this.module.color.value);
-    uploadData.append('total_heure', this.module.total_heure.value);
+    uploadData.append('name', this.m.name.value);
+    uploadData.append('teacher', this.m.teacher.value);
+    uploadData.append('color', this.m.color.value);
+    uploadData.append('total_heure', this.m.total_heure.value);
 
     console.log('uploadData', uploadData);
     this.apiService.upload('module/create', uploadData)
@@ -157,12 +156,17 @@ export class AdminFormationComponent implements OnInit {
       });
   }
 
-  openColorsPanel () {
+  openColorsPanel() {
     this.showColorsPanel = 1;
+    console.log('showColorPanel', this.showColorsPanel);
   }
 
   selectColor(index) {
     this.selectedColor = this.colorsPanel[index];
+    this.m.color.value = this.selectedColor;
     this.showColorsPanel = 0;
+    console.log('index', index);
+    console.log('selectedColor', this.selectedColor);
+    console.log('showColorsPanel', this.showColorsPanel);
   }
 }
