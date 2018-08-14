@@ -106,7 +106,7 @@ export class AdminDashboardComponent implements OnInit {
 
   createFormation(): any {
     this.submitted = true;
-    
+
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
         return;
     }
@@ -124,7 +124,7 @@ export class AdminDashboardComponent implements OnInit {
     console.log('this.newFormationImage',this.newFormationImage)
     this.apiService.upload('formation/create', uploadData)
     .subscribe(data => {
-      let element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
       this.ngOnInit();
     });

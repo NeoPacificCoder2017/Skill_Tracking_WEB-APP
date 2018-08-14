@@ -12,15 +12,15 @@ export const environment = {
 
   tableProgressRadiusTeacher: 30,
   tableProgressRadiusStudent: 24,
-  tableProgressColorTeacher: "#E689B8",
-  tableProgressColorStudent: "#A3A1FB",
+  tableProgressColorTeacher: '#E689B8',
+  tableProgressColorStudent: '#A3A1FB',
   tableProgressStrokeTeacher: 4,
   tableProgressStrokeStudent: 4,
 
   progressRadiusTeacher: 70,
   progressRadiusStudent: 56,
-  progressColorTeacher: "#E689B8",
-  progressColorStudent: "#A3A1FB",
+  progressColorTeacher: '#E689B8',
+  progressColorStudent: '#A3A1FB',
   progressStrokeTeacher: 10,
   progressStrokeStudent: 10,
 
