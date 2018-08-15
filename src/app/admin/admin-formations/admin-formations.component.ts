@@ -21,7 +21,7 @@ export class AdminFormationsComponent implements OnInit {
   loading = false;
   submitted = false;
   newFormationImage: File;
-
+  
   constructor(private apiService: ApiService,
      private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};

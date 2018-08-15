@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { forEach } from '../../../../node_modules/@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-teacher-student',
@@ -15,7 +16,7 @@ export class TeacherStudentComponent implements OnInit {
   max = 100;
   dataStudent: any;
   allSkills = [];
-  skills = [];
+  skills: any[] = [];
   modules: any;
   idFormation: number;
   idStudent: number;
@@ -81,7 +82,6 @@ export class TeacherStudentComponent implements OnInit {
         }
         console.log('this.skills', this.skills);
         console.log('this.totalStudentValidation', this.totalStudentValidation);
-        console.log('this.totalTeacherValidation', this.totalTeacherValidation);
         console.log('this.totalTeacherValidation', this.totalTeacherValidation);
       });
   }
@@ -158,8 +158,16 @@ export class TeacherStudentComponent implements OnInit {
     return (this.selectedSkills.indexOf(skillId) >= 0) ? 'validé' : 'à valider' ;
   }
 
-  moduleValidated(idFormation, idStudent) {
-
+  validatedAllModules() {
+    for (let i = 0; i < this.skills.length; i++ ) {
+      if ( this.skills[i].progression.teacher_validation === 0) {
+        this.skillValidatedByTeacher(this.skills[i].id,
+          this.skills[i].progression.student_progression_id,
+          this.skills[i].progression.teacher_validation,
+          i);
+          this.stateText(this.skills[i].id);
+      }
+    }
   }
 }
 
