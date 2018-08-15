@@ -25,9 +25,12 @@ export class AppHeaderComponent implements OnInit {
             {'title': 'Administrateur', 'url': 'admin'},
             {'title': 'Formateurs', 'icon': 'fa-user', 'url': 'teachers'},
             {'title': 'Apprentis', 'icon': 'fa-user', 'url': 'students'},
-            {'title': 'Tout', 'icon': 'fa-user', 'url': 'users'}
+            {'title': 'Organisms', 'icon': 'fa-user', 'url': 'organisms'},
+            {'title': 'Entreprise', 'icon': 'fa-user', 'url': 'entreprise'}
           ]
         },
+        {'title': 'Reports', 'icon': 'fa-home', 'url': 'reports'},
+        {'title': 'Planning', 'icon': 'fa-home', 'url': 'planning'},
       ]
     },
     {

@@ -23,20 +23,19 @@ export class StudentReportComponent implements OnInit {
       this.formation = data;
     });
     this.getReports();
-    // this.getSelectedStudentsSearch();
+
   }
-
-  // public getSelectedStudentsSearch(idStudent) {
-  //   this.apiService.get('getStudentDatas/' + this.idStudent + '/ofFormation/' + this.idFormation)
-  //   .subscribe((data) => {
-  //     console.log('getStudentOfFormation data', data);
-  // }
-
 
   public getReports() {
     this.apiService.get('report/getStudentsReportByFormation').subscribe(data => {
       this.dataReport = data.data;
-      console.log('dataRport', data);
+      console.log('data Report', data);
+    });
+  }
+
+  getSelectedStudentsSearch(formation_id) {
+    this.apiService.get('getStudentsOfAFormation/' + this.formation.formation_id).subscribe(data => {
+      console.log('getStudentOfFormation data', data);
     });
   }
 

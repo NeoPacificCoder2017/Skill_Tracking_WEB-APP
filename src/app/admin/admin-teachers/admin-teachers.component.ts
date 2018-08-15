@@ -28,11 +28,10 @@ export class AdminTeachersComponent implements OnInit {
     this.newTeacherForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      c_password: ['', Validators.required],
-      gender: ['', Validators.required],
-      user_type_id: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      c_password: ['', [Validators.required, Validators.minLength(6)]],
+      gender: ['', Validators.required]
     });
     this.apiService.get('users/teacher').subscribe(
       data => {
@@ -52,7 +51,7 @@ export class AdminTeachersComponent implements OnInit {
   createTeacher(): any {
     this.submitted = true;
 
-    if (this.newTeacherForm.invalid == null) {
+    if (this.newTeacherForm.invalid == null && this.newTeacherImage == null) {
       return;
     }
     this.loading = true;
@@ -64,16 +63,22 @@ export class AdminTeachersComponent implements OnInit {
     uploadData.append('c_password', this.f.c_password.value);
     uploadData.append('avatar', this.newTeacherImage, this.newTeacherImage.name);
     uploadData.append('gender', this.f.gender.value);
-    uploadData.append('user_type_id', this.f.user_type_id.value);
+    uploadData.append('user_type_id', "2");
 
     console.log('uploadData', uploadData);
     console.log('this.newTeacherImage', this.newTeacherImage);
     this.apiService.upload('register', uploadData)
-    .subscribe(data => {
+    .subscribe(
+      data => {
+      console.log('createTeacher data', data);
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
       this.ngOnInit();
-    });
+      },
+      error => {
+        console.log('error ',error);
+      }
+    );
   }
 
   deleteTeacher(idTeacher): any {

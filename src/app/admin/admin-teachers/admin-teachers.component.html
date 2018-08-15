@@ -155,6 +155,9 @@
                   <option [value]=2>Formateur</option>
                 </select>
               </div>
+              <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Le genre est requis</div>
+              </div>
             </div>
           </form>
         </div>
