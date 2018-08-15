@@ -133,23 +133,22 @@
   </div>
 </div>
 
-<!-- Liste des formations -->
+<!-- Liste des modules -->
 <div class="row" *ngIf="tabSelected === 3">
   <div class="col-md-12">
 
     <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <form class="input-group pull-right row" style="display: flex;">
-          <input type="text rounded" [(ngModel)]="moduleName"  name="moduleName" class="form-control col-md-2" placeholder="module">
-          <button (click)="addModule()" class="btn green bg-green" type="button">Ajouter un module</button>
-        </form>
+        <div class="input-group pull-right row" style="display: flex;">
+          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">Ajouter un module</button>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de modules</p>
-          <button class="btn bg-blue">Ajoutez le premier module</button>
+          <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#myModal">Ajoutez le premier module</button>
         </div>
         <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
@@ -187,7 +186,6 @@
                   <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
                 </div>
               </td>
-
             </tr>
             <br>
           </tbody>
@@ -196,3 +194,70 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un module</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form [formGroup]="newModuleForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du module</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && m.name.errors }">
+            </div>
+            <div *ngIf="submitted && m.name.errors" class="invalid-feedback">
+              <div *ngIf="m.name.errors.required">Le nom est requis</div>
+            </div>
+          </div>
+          <!-- selected teachers -->
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacher" >Formateur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" formControlName="teacher">
+                <option value="teacherAll.id" *ngFor="let teacherAll of teachersAll">{{ teacherAll.lastname }}</option>
+              </select>
+              <div *ngIf="submitted && m.teacher.errors" class="invalid-feedback">
+                <div *ngIf="m.teacher.errors.required">Veuillez sélectionner un formateur</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Couleur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input (click)="openColorsPanel()" formControlName="color"  type="text" placeholder="Sélectionnez une couleur" class="form-control" value="">
+                <div id="colorSelectBtn"></div>
+                <div *ngIf="showColorsPanel" id="colorsPanel">
+                  <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; index as index' (click)="selectColor(index)"></div>
+                </div>
+            </div>
+            <div *ngIf="submitted && m.color.errors" class="invalid-feedback">
+              <div *ngIf="m.color.errors.required">La couleur est requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_heure">total d'heure</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="total_heure" class="form-control col-md-7 col-xs-12" id="total_heure" [ngClass]="{ 'is-invalid': submitted && m.total_heure.errors }">
+            </div>
+            <div *ngIf="submitted && m.total_heure.errors" class="invalid-feedback">
+              <div *ngIf="m.total_heure.errors.required">Le total de l'heure est requis</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+        <button  type="button" [disabled]="loading" (click)="addModule()"class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
+

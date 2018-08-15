@@ -22,7 +22,8 @@ export class AdminFormationsComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
+  constructor(private apiService: ApiService,
+     private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
@@ -33,7 +34,7 @@ export class AdminFormationsComponent implements OnInit {
     });
     this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
-        console.log('data', data);
+        console.log('dataFormations', data);
         this.formations = data;
       }
     );
@@ -55,7 +56,6 @@ export class AdminFormationsComponent implements OnInit {
 
   createFormation(): any {
     this.submitted = true;
-    
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
         return;
     }
@@ -70,10 +70,10 @@ export class AdminFormationsComponent implements OnInit {
     uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.newFormationImage',this.newFormationImage)
+    console.log('this.newFormationImage',this.newFormationImage);
     this.apiService.upload('formation/create', uploadData)
     .subscribe(data => {
-      let element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
       this.ngOnInit();
     });

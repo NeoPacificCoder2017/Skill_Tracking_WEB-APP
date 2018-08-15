@@ -35,12 +35,12 @@ export class AdminFormationStudentComponent implements OnInit {
 
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
-    console.log('this.me',this.me);
+    console.log('this.me', this.me);
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
         this.idStudent = params.idStudent;
-        this.apiService.get('formation/'+this.idFormation).subscribe(data => {
+        this.apiService.get('formation/' + this.idFormation).subscribe(data => {
           this.formation = data;
         });
         this.getStudentOfFormation();
@@ -64,10 +64,10 @@ export class AdminFormationStudentComponent implements OnInit {
             this.totalSkills++;
             this.modules[i].skills[j]['module_id'] = this.modules[i].id;
             this.modules[i].skills[j]['module_name'] = this.modules[i].name;
-            if(this.modules[i].skills[j]['progression']['student_validation']){
+            if (this.modules[i].skills[j]['progression']['student_validation']) {
               this.totalStudentValidation++;
             }
-            if(this.modules[i].skills[j]['progression']['teacher_validation']){
+            if (this.modules[i].skills[j]['progression']['teacher_validation']) {
               this.selectedSkills.push(this.modules[i].skills[j]['id']);
               this.totalTeacherValidation++;
             }
@@ -88,7 +88,8 @@ export class AdminFormationStudentComponent implements OnInit {
     console.log('skillValidatedByTeacher progressionId', progressionId);
     console.log('skillValidatedByTeacher teacherValidation', teacherValidation);
     this.skills[skillIndex].progression.student_validation = teacherValidation;
-    console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation', this.skills[skillIndex].progression.student_validation);
+    console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation',
+      this.skills[skillIndex].progression.student_validation);
 
     this.updateSkillsArray(skillId, teacherValidation);
 
@@ -149,7 +150,7 @@ export class AdminFormationStudentComponent implements OnInit {
   }
 
   stateText(skillId){
-    return (this.selectedSkills.indexOf(skillId) >= 0)?"validé":"à valider";
+    return (this.selectedSkills.indexOf(skillId) >= 0) ? "validé" : "à valider";
   }
 
 }
