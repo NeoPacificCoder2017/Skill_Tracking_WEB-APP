@@ -30,11 +30,21 @@ export class AdminDashboardComponent implements OnInit {
   totalSkills: Number;
   totalSkillsValidatedByStudents: Number;
   totalSkillsValidatedByTeachers: Number;
+  totalProgressions: Number;
+  totalMales: Number;
+  totalFemales: Number;
+  totalBusinesses: Number;
+  totalFormationsHours: Number;
 
-  progression = {};
-  teachersDataGraph = [];
-  studentsDataGraph = [];
-  chartBarOptions = {};
+  progression = {
+    teacher_validated: 40,
+    student_validated: 20,
+    skills: 80
+  };
+  yearsGraph = [];
+  teachersDataGraph = {};
+  studentsDataGraph = {};
+  skillsDataGraph = {};
 
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
@@ -45,49 +55,173 @@ export class AdminDashboardComponent implements OnInit {
         start_at: ['', Validators.required],
         end_at: ['', Validators.required]
     });
-    this.apiService.get('getAllFormationsForAdmin').subscribe(
-      data => {
-        console.log('data', data);
-        this.formations = data;
-      }
-    );
+    this.apiService.get('getAllFormationsForAdmin').subscribe(data => {this.formations = data;});
     this.apiService.get('getTotalFormations').subscribe(data => {this.totalFormations = data;});
     this.apiService.get('getTotalStudents').subscribe(data => {this.totalStudents = data;});
     this.apiService.get('getTotalTeachers').subscribe(data => {this.totalTeachers = data;});
     this.apiService.get('getTotalModules').subscribe(data => {this.totalModules = data;});
-    this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;});
-    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;});
-    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;});
-  
-    this.progression = {
-      teacher_validated: 40,
-      student_validated: 20,
-      skills: 80
-    }
+    this.apiService.get('getTotalSkills').subscribe(data => {this.totalSkills = data;console.log('getTotalSkills data', data)});
+    this.apiService.get('getTotalProgressions').subscribe(data => {this.totalProgressions = data;console.log('totalProgressions data', data)});
+    this.apiService.get('getTotalSkillsValidatedByStudents').subscribe(data => {this.totalSkillsValidatedByStudents = data;console.log('totalSkillsValidatedByStudents data', data)});
+    this.apiService.get('getTotalSkillsValidatedByTeachers').subscribe(data => {this.totalSkillsValidatedByTeachers = data;console.log('totalSkillsValidatedByTeachers data', data)});
+    this.apiService.get('getTotalMales').subscribe(data => {this.totalMales = data;});
+    this.apiService.get('getTotalFemales').subscribe(data => {this.totalFemales = data;});
+    this.apiService.get('getTotalBusinesses').subscribe(data => {this.totalBusinesses = data;console.log('totalBusinesses', this.totalBusinesses);});
+    this.apiService.get('getTotalFormationsHours').subscribe(data => {this.totalFormationsHours = data;console.log('totalFormationsHours', this.totalFormationsHours);});
+    this.apiService.get('getTotalFormationsHours').subscribe(data => {this.totalFormationsHours = data;console.log('totalFormationsHours', this.totalFormationsHours);});
+    
+    this.retrieveStudentsGraphData();
+    this.retrieveTeachersGraphData();
+    this.retrieveSkills();
+  }
 
-    this.studentsDataGraph = [
-      { y: '2006', a: 100, b: 90 },
-      { y: '2007', a: 75,  b: 65 },
-      { y: '2008', a: 50,  b: 40 },
-      { y: '2009', a: 75,  b: 65 },
-      { y: '2010', a: 50,  b: 40 },
-      { y: '2011', a: 75,  b: 65 },
-      { y: '2012', a: 100, b: 90 }
-    ];
+  retrieveStudentsGraphData() {
+    this.apiService.get('getTotalStudentsByYear').subscribe(
+      totalStudentsByYear => {
+        const studentsGraph = [];
+        const studentsMaleGraph = [];
+        const studentsFemaleGraph = [];
+        
+        for(let i = 0; i < totalStudentsByYear.length; i++) {
+          this.yearsGraph.push(totalStudentsByYear[i].year); 
+          studentsGraph.push(totalStudentsByYear[i].total); 
+        }
+        this.apiService.get('getTotalStudentsMaleByYear').subscribe(
+          totalStudentsMaleByYear => {
+            for(let i = 0; i < totalStudentsMaleByYear.length; i++) studentsMaleGraph.push(totalStudentsMaleByYear[i].total);
+            this.apiService.get('getTotalStudentsFemaleByYear').subscribe(
+              totalStudentsFemaleByYear => {
+                for(let i = 0; i < totalStudentsFemaleByYear.length; i++) studentsFemaleGraph.push(totalStudentsFemaleByYear[i].total);
+                this.studentsDataGraph = {
+                  labels: this.yearsGraph,
+                  datasets: [
+                    {
+                      label: 'Hommes',
+                      data: studentsMaleGraph,
+                      fill: false,
+                      backgroundColor: "rgba(75, 192, 192, 0.2)"
+                    },
+                    {
+                      label: 'Total',
+                      data: studentsGraph,
+                      fill: false,
+                      backgroundColor: "rgba(255, 99, 132, 0.2)"
+                    },
+                    {
+                      label: 'Femmes',
+                      data: studentsFemaleGraph,
+                      fill: false,
+                      backgroundColor: "rgba(54, 162, 235, 0.2)"
+                    },
+                  ],
+                };
+              }
+            );
+          }
+        );
+      }
+    );
+  }
 
-    this.teachersDataGraph = [
-      { y: '2006', a: 100, b: 90 },
-      { y: '2007', a: 75,  b: 65 },
-      { y: '2008', a: 50,  b: 40 },
-      { y: '2009', a: 75,  b: 65 },
-      { y: '2010', a: 50,  b: 40 },
-      { y: '2011', a: 75,  b: 65 },
-      { y: '2012', a: 100, b: 90 }
-    ];
+  retrieveTeachersGraphData() {
+    this.apiService.get('getTotalTeachersByYear').subscribe(
+      totalTeachersByYear => {
+        const teachersGraph = [];
+        const teachersMaleGraph = [];
+        const teachersFemaleGraph = [];
+        
+        for(let i = 0; i < totalTeachersByYear.length; i++) teachersGraph.push(totalTeachersByYear[i].total);
+        this.apiService.get('getTotalTeachersMaleByYear').subscribe(
+          totalTeachersMaleByYear => {
+            
+            for(let i = 0; i < totalTeachersMaleByYear.length; i++) teachersMaleGraph.push(totalTeachersMaleByYear[i].total);
+            this.apiService.get('getTotalTeachersFemaleByYear').subscribe(
+              totalTeachersFemaleByYear => {
+                for(let i = 0; i < totalTeachersFemaleByYear.length; i++) teachersFemaleGraph.push(totalTeachersFemaleByYear[i].total);
+                this.teachersDataGraph = {
+                  labels: this.yearsGraph,
+                  options: {
+                    legend: {
+                      display: false,
+                    }
+                  },
+                  datasets: [
+                    {
+                      label: 'Hommes',
+                      data: teachersMaleGraph,
+                      fill: false,
+                      backgroundColor: "rgba(75, 192, 192, 0.2)"
+                    },
+                    {
+                      label: 'Total',
+                      data: teachersGraph,
+                      fill: false,
+                      backgroundColor: "rgba(255, 99, 132, 0.2)"
+                    },
+                    {
+                      label: 'Femmes',
+                      data: teachersFemaleGraph,
+                      fill: false,
+                      backgroundColor: "rgba(54, 162, 235, 0.2)"
+                    },
+                  ],
+                };
+              }
+            );
+          }
+        );
+      }
+    );
+  }
 
-    this.chartBarOptions = {
-      barColors: ['#F00','#FF0']
-    }
+  retrieveSkills() {
+    //getTotalSkillsValidatedByStudentsByMonthOfYear
+    const labels = [];
+    const studentsSkillsValidatedGraph = [];
+    const teachersSkillsValidatedGraph = [];
+    this.apiService.get('getTotalSkillsValidatedByStudentsByMonthOfYear/2018').subscribe(
+      dataStudents => {
+        for(let i = 0; i < dataStudents.length; i++){
+          labels.push(dataStudents[i].month);
+          studentsSkillsValidatedGraph.push(dataStudents[i].total);
+        }
+        console.log('studentsSkillsValidatedGraph', studentsSkillsValidatedGraph);
+        this.apiService.get('getTotalSkillsValidatedByTeachersByMonthOfYear/2018').subscribe(
+          dataTeachers => {
+            console.log('')
+            for(let i = 0; i < dataTeachers.length; i++) teachersSkillsValidatedGraph.push(dataTeachers[i].total);
+            console.log('teachersSkillsValidatedGraph', teachersSkillsValidatedGraph);
+            this.skillsDataGraph = {
+              labels: labels,
+              options: {
+                legend: {
+                  display: false,
+                }
+              },
+              datasets: [
+                {
+                  label: 'Formateurs',
+                  data: teachersSkillsValidatedGraph,
+                  fill: true,
+                  backgroundColor: "rgba(230, 137, 184, 0.3)",
+                  borderColor: "rgba(219, 87, 153, 1)",
+                  borderWidth: 1
+                },
+                {
+                  label: 'Etudiants',
+                  data: studentsSkillsValidatedGraph,
+                  fill: true,
+                  backgroundColor: "rgba(222, 221, 255, 0.3)",
+                  borderColor: "rgba(161, 158, 255, 1)",
+                  borderWidth: 1
+                },
+              ],
+            };
+          }
+        )
+      }
+    );
+    
   }
 
   // convenience getter for easy access to form fields
