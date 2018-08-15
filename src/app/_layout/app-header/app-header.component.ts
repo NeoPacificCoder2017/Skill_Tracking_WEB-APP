@@ -16,7 +16,7 @@ export class AppHeaderComponent implements OnInit {
       'name': 'admin',
       'links': [
         {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
-        {"title": "Formations", "icon": "fa-graduation-cap", "url": "formations"},
+        {'title': 'Formations', 'icon': 'fa-graduation-cap', 'url': 'formations'},
         {
           'title': 'Utilisateurs',
           'icon': 'fa-user',
@@ -37,7 +37,7 @@ export class AppHeaderComponent implements OnInit {
         // {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
         // {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
         {'title': 'Reports', 'icon': 'fa-clipboard', 'url': 'reports'},
-        // {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
+        {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
       ]
     },
     {
