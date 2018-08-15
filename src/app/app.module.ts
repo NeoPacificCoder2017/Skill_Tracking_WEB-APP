@@ -43,6 +43,7 @@ import { AdminFormationStudentComponent } from './admin/admin-formation-student/
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 
+import { ChartjsModule } from '@ctrl/ngx-chartjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,8 @@ import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RoundProgressModule
+    RoundProgressModule,
+    ChartjsModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
