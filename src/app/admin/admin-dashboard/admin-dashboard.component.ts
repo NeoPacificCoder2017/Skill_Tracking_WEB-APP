@@ -28,9 +28,9 @@ export class AdminDashboardComponent implements OnInit {
   totalTeachers: Number;
   totalModules: Number;
   totalSkills: Number;
-  totalSkillsValidatedByStudents: Number;
-  totalSkillsValidatedByTeachers: Number;
-  totalProgressions: Number;
+  totalSkillsValidatedByStudents = 0;
+  totalSkillsValidatedByTeachers = 0;
+  totalProgressions = 0;
   totalMales: Number;
   totalFemales: Number;
   totalBusinesses: Number;
