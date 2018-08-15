@@ -46,6 +46,7 @@ import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings
 import { AdminOrganismsComponent } from './admin/admin-organisms/admin-organisms.component';
 import { AdminBusinessComponent } from './admin/admin-business/admin-business.component';
 
+import { ChartjsModule } from '@ctrl/ngx-chartjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +83,8 @@ import { AdminBusinessComponent } from './admin/admin-business/admin-business.co
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RoundProgressModule
+    RoundProgressModule,
+    ChartjsModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
