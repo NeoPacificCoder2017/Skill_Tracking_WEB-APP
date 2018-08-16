@@ -31,7 +31,7 @@ export class AdminSkillsComponent implements OnInit {
             this.module = data;
             console.log('module data', this.module);
           });
-        this.apiService.get('skills')
+          this.apiService.get('skills')
           .subscribe((data) => {
             this.listSkill = data.data;
             console.log('listSkill data', this.listSkill);

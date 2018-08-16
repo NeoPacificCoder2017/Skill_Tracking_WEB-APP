@@ -85,12 +85,11 @@ export class AdminStudentsComponent implements OnInit {
     });
   }
 
-  deleteUser(idUser): any {
-    console.log('idUser', idUser);
-    this.apiService.delete('user/' + idUser)
+  deleteStudent(idStudent): any {
+    this.apiService.delete('student/' + idStudent)
     .subscribe(data => {
-      console.log('idUser', idUser);
       this.ngOnInit();
+      console.log('data', data);
     });
   }
 

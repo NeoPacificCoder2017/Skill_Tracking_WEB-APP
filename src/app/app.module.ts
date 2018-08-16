@@ -47,6 +47,7 @@ import { AdminOrganismsComponent } from './admin/admin-organisms/admin-organisms
 import { AdminBusinessComponent } from './admin/admin-business/admin-business.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
     AdminOrganismsComponent,
-    AdminBusinessComponent
+    AdminBusinessComponent,
+    AdminReportsComponent
   ],
   imports: [
     BrowserModule,
