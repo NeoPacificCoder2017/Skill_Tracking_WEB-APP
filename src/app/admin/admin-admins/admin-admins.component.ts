@@ -76,9 +76,9 @@ export class AdminAdminsComponent implements OnInit {
     });
   }
 
-  deleteAdmin(idAdmin): any {
-    console.log('user :', idAdmin);
-    this.apiService.delete('user/' + idAdmin)
+  deleteAdmin(idUser): any {
+    console.log('user :', idUser);
+    this.apiService.delete('user/' + idUser)
     .subscribe(data => {
       this.ngOnInit();
     });

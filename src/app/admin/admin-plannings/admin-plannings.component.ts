@@ -17,7 +17,7 @@ export class AdminPlanningsComponent implements OnInit {
   newPlanningForm: FormGroup;
   loading = false;
   submitted = false;
-  file_url: File;
+  filename: File;
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -26,7 +26,7 @@ export class AdminPlanningsComponent implements OnInit {
 
   ngOnInit() {
     this.newPlanningForm = this.formBuilder.group({
-      formation: ['', Validators.required],
+      formation_id: ['', Validators.required],
       file_name: ['', Validators.required],
   });
     this.apiService.get('calendars')
@@ -50,23 +50,23 @@ export class AdminPlanningsComponent implements OnInit {
 
   onFileChanged(event) {
     console.log(event);
-    this.file_url = event.target.files[0];
+    this.filename = event.target.files[0];
   }
 
   createCalendar(): any {
     this.submitted = true;
-    if (this.newPlanningForm.invalid && this.file_url == null) {
+    if (this.newPlanningForm.invalid && this.filename == null) {
         return;
     }
 
     this.loading = true;
     const uploadData = new FormData();
-    uploadData.append('formation', this.plan.formation.value);
+    uploadData.append('formation', this.plan.formation_id.value);
     uploadData.append('description', this.plan.file_name.value);
-    uploadData.append('url', this.file_url, this.file_url.name);
+    uploadData.append('url', this.filename, this.filename.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.file_url', this.file_url);
+    console.log('this.filename', this.filename);
     this.apiService.upload('calendar/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;

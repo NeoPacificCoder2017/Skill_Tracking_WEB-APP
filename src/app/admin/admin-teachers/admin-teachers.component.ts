@@ -17,6 +17,7 @@ export class AdminTeachersComponent implements OnInit {
   loading = false;
   submitted = false;
   newTeacherImage: File;
+  usertypes: any;
 
   constructor(
     private apiService: ApiService,
@@ -31,12 +32,13 @@ export class AdminTeachersComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       c_password: ['', [Validators.required, Validators.minLength(6)]],
-      gender: ['', Validators.required]
+      gender: ['', Validators.required],
+      user_type_id: ['', Validators.required]
     });
     this.apiService.get('users/teacher').subscribe(
       data => {
-        console.log('data', data);
         this.teachers = data.data;
+        console.log('teachers', data);
       }
     );
   }
@@ -63,7 +65,7 @@ export class AdminTeachersComponent implements OnInit {
     uploadData.append('c_password', this.f.c_password.value);
     uploadData.append('avatar', this.newTeacherImage, this.newTeacherImage.name);
     uploadData.append('gender', this.f.gender.value);
-    uploadData.append('user_type_id', "2");
+    uploadData.append('user_type_id', this.f.user_type_id.value);
 
     console.log('uploadData', uploadData);
     console.log('this.newTeacherImage', this.newTeacherImage);
@@ -76,15 +78,16 @@ export class AdminTeachersComponent implements OnInit {
       this.ngOnInit();
       },
       error => {
-        console.log('error ',error);
+        console.log('error ', error);
       }
     );
   }
 
-  deleteTeacher(idTeacher): any {
-    this.apiService.delete('admin/teachers' + idTeacher)
+  deleteTeacher(idUser): any {
+    this.apiService.delete('user' + idUser)
     .subscribe(data => {
       this.ngOnInit();
+      console.log('user :', idUser);
     });
   }
 

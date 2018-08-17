@@ -52,13 +52,13 @@
           <form [formGroup]="newPlanningForm" class="form-horizontal form-label-left">
             <!-- selected teachers -->
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation" >Formations</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation_id" >Formations</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select class="form-control" formControlName="formation">
+                  <select class="form-control" formControlName="formation_id">
                     <option value="formation.id" *ngFor="let formation of formations">{{ formation.name }}</option>
                   </select>
-                  <div *ngIf="submitted && plan.formation.errors" class="invalid-feedback">
-                    <div *ngIf="plan.formation.errors.required">Veuillez sélectionner une formation</div>
+                  <div *ngIf="submitted && plan.formation_id.errors" class="invalid-feedback">
+                    <div *ngIf="plan.formation_id.errors.required">Veuillez sélectionner une formation</div>
                   </div>
                 </div>
               </div>
@@ -72,9 +72,9 @@
                 </div>
               </div>
               <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file_url">Fichier PDF</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="filename">Fichier PDF</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="file" (change)="onFileChanged($event)" id="file_url">
+                <input type="file" (change)="onFileChanged($event)" id="filename">
               </div>
               <div *ngIf="submitted && newPlanningForm == null" class="invalid-feedback">
                 <div>Un PDF est requise</div>
