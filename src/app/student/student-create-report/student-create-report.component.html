@@ -1,3 +1,42 @@
-<p>
-créer un rapport
+<div class="page-title">
+
+  <div class="title_left">
+    <h3>Créer un rapport</h3>
+  </div>
+
+  <!-- bouton sauvegarder -->
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button type="button" class="btn green bg-green" (click)="saveReport()">Sauvegarder</button>
+      </div>
+    </div>
+
+  <!-- ajouter un titre au rapport -->
+    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+      <input type="text" placeholder="Ajoutez un titre" class="form-control">
+    </div>
+
+  <!-- ajouter une note au rapport -->
+    <div class="col-xs-12 col-sm-6 emphasis">
+      <p class="ratings">
+        <a>4.0</a>
+        <a href="#"><span class="fa fa-star"></span></a>
+        <a href="#"><span class="fa fa-star"></span></a>
+        <a href="#"><span class="fa fa-star"></span></a>
+        <a href="#"><span class="fa fa-star"></span></a>
+        <a href="#"><span class="fa fa-star-o"></span></a>
 </p>
+    </div>
+  <!-- rediger un rapport -->
+    <div class="x_content">
+      <div [froalaEditor]>
+        <h3>Objectif de la journée :</h3><br>
+        <h3>Succès :</h3><br>
+        <h3>Difficultés :</h3><br>
+        <h3>Outils et méthodes utilisés :</h3><br>
+        <h3>Compétences acquises :</h3><br>
+        <h3>Recommandations :</h3><br>
+      </div>
+    </div>
+</div>
