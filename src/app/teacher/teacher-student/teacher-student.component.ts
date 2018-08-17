@@ -123,13 +123,11 @@ export class TeacherStudentComponent implements OnInit {
 
   filterByModule(moduleId) {
     console.log('filterByModule moduleId', moduleId);
-    console.log('filterByModule this.allSkills', this.allSkills);
+    // console.log('filterByModule this.allSkills', this.allSkills);
     this.skills = [];
     this.moduleSelected = moduleId;
     if (this.moduleSelected === 0) {
       this.skills = this.allSkills;
-    console.log('filterByModule this.skills', this.skills[0].progression);
-
     } else {
       console.log('filterByModule moduleId', moduleId);
       for (let i = 0; i < this.allSkills.length; i++) {

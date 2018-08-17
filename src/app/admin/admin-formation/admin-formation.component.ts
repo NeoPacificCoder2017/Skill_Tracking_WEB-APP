@@ -136,7 +136,7 @@ export class AdminFormationComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('name', this.m.name.value);
     uploadData.append('teacher', this.m.teacher.value);
-    uploadData.append('color', this.m.color.value);
+    uploadData.append('color', this.m.selectedColor.value);
     uploadData.append('total_heure', this.m.total_heure.value);
 
     console.log('uploadData', uploadData);
@@ -163,7 +163,7 @@ export class AdminFormationComponent implements OnInit {
 
   selectColor(index) {
     this.selectedColor = this.colorsPanel[index];
-    this.m.color.value = this.selectedColor;
+    // this.m.color.value = this.selectedColor;
     this.showColorsPanel = 0;
     console.log('index', index);
     console.log('selectedColor', this.selectedColor);
