@@ -97,13 +97,16 @@ export class TeacherStudentComponent implements OnInit {
 
     this.getStudentOfFormation();
     this.updateSkillsArray(skillId, teacherValidation);
-    this.filterByModule(this.moduleSelected);
+    // this.filterByModule(this.moduleSelected);
+
     const datas = { progression_id: progressionId, teacher_validation: teacherValidation };
 
     this.apiService.put('progression/updateTeacherValidation', datas)
     .subscribe(data => {
       console.log('skillValidatedByTeacher data', data);
     });
+
+    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
   }
 
   updateSkillsArray(skillId, teacherValidation) {

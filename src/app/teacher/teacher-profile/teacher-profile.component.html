@@ -1,0 +1,29 @@
+<div class="title_right">
+  <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir en arrière</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <img src="{{ environment.appImageUrl }}{{ me.avatar }}" alt="Photo de {{ me.firstname }} {{ me.lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+  </div>
+</div>
+<div class="row" style="margin-bottom: 10px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h3 style="margin: 13px 0 0 10px;">{{ me.firstname }} {{ me.lastname }}</h3>
+  </div>
+</div>
+<div class="row" style="margin-bottom: 50px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h4 style="margin: 5px 0 0 5px;">{{ me.email }} | {{ me.phone_number }} | {{ me.birthday_date }} | {{ me.gender }}</h4>
+  </div>
+</div>
+
+
+<div>
+  <div class="nav-menu" style="text-align: center;">
+    <a (click)="tabSelected = 1">Formations</a>
+    <a (click)="tabSelected = 2">Compétences</a>
+    <a (click)="tabSelected = 3">Rapports</a>
+  </div>
+</div>
+

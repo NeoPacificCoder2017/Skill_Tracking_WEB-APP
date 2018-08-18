@@ -1,0 +1,20 @@
+.nav-menu {
+  background: rgb(224, 224, 224);
+  display: flex;
+  justify-content: space-evenly;
+  font-family: inherit;
+  font-size: large;
+  height: 50px;
+}
+.nav-menu a{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav-menu a:hover{
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgb(155, 155, 155);
+  height: 50px;
+  width: 20%;
+}

@@ -14,12 +14,11 @@ export class AppLayoutComponent implements OnInit {
   environment = environment;
 
   constructor(private authService: AuthService, private router: Router) {
-    
   }
 
   ngOnInit() {
     this.me = this.authService.me();
-    console.log('AppLayoutComponent ngOnInit this.me', this.me)
+    console.log('AppLayoutComponent ngOnInit this.me', this.me);
     if (!this.me) { this.router.navigate(['/login']); }
   }
 
@@ -27,6 +26,10 @@ export class AppLayoutComponent implements OnInit {
     console.log('logout launched');
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  redirectProfile() {
+    this.router.navigate(['/teacher/profile']);
   }
 
 }
