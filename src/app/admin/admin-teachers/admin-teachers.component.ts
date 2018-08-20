@@ -33,6 +33,8 @@ export class AdminTeachersComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       c_password: ['', [Validators.required, Validators.minLength(6)]],
       gender: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      birthday_date: ['', Validators.required],
       user_type_id: ['', Validators.required]
     });
     this.apiService.get('users/teacher').subscribe(
@@ -57,12 +59,15 @@ export class AdminTeachersComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const birthday_date = this.f.birthday_date.value.split('/');
     const uploadData = new FormData();
     uploadData.append('firstname', this.f.firstname.value);
     uploadData.append('lastname', this.f.lastname.value);
     uploadData.append('email', this.f.email.value);
     uploadData.append('password', this.f.password.value);
     uploadData.append('c_password', this.f.c_password.value);
+    uploadData.append('phone_number', this.f.phone_number.value);
+    uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
     uploadData.append('avatar', this.newTeacherImage, this.newTeacherImage.name);
     uploadData.append('gender', this.f.gender.value);
     uploadData.append('user_type_id', this.f.user_type_id.value);
@@ -84,10 +89,10 @@ export class AdminTeachersComponent implements OnInit {
   }
 
   deleteTeacher(idUser): any {
-    this.apiService.delete('user' + idUser)
+    this.apiService.delete('user/' + idUser)
     .subscribe(data => {
       this.ngOnInit();
-      console.log('user :', idUser);
+      console.log('user:', data);
     });
   }
 
