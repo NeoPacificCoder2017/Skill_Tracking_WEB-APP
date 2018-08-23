@@ -43,10 +43,10 @@ import { AdminFormationStudentComponent } from './admin/admin-formation-student/
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/admin-formation-teacher.component';
 import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
-import { AdminOrganismsComponent } from './admin/admin-organisms/admin-organisms.component';
-import { AdminBusinessComponent } from './admin/admin-business/admin-business.component';
+
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,8 +74,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    AdminOrganismsComponent,
-    AdminBusinessComponent
+    AdminReportsComponent
   ],
   imports: [
     BrowserModule,

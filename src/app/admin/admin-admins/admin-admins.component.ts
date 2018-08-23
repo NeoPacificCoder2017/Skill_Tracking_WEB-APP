@@ -76,11 +76,11 @@ export class AdminAdminsComponent implements OnInit {
     });
   }
 
-  deleteAdmin(idAdmin): any {
-    console.log('user :', idAdmin);
-    this.apiService.delete('user/' + idAdmin)
+  deleteAdmin(idUser): any {
+    this.apiService.delete('user/' + idUser)
     .subscribe(data => {
       this.ngOnInit();
+      console.log('user:', data);
     });
   }
 

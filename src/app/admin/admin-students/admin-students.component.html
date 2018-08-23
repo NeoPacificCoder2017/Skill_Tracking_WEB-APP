@@ -48,7 +48,7 @@
           </td>
           <td><span class="alignleft">{{ student.created_at | date}}</span></td>
           <td>
-              <a class="rounded btn bg-red icon no-border alignright" (click)="deleteUser()"><i class="glyphicon glyphicon-trash"></i></a>
+              <a class="rounded btn bg-red icon no-border alignright" (click)="deleteStudent(student.id)"><i class="glyphicon glyphicon-trash"></i></a>
               <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
           </td>
         </tr>
@@ -117,6 +117,27 @@
               </div>
               <div *ngIf="submitted && s.c_password.errors" class="invalid-feedback">
                 <div *ngIf="s.c_password.errors.required">Confirmer mot de passe</div>
+              </div>
+            </div>
+<!-- téléphone -->
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone_number">Téléphone</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" formControlName="phone_number" class="form-control col-md-7 col-xs-12 " id="phone_number" aria-describedby="phone_numberHelp"
+                  [ngClass]="{ 'is-invalid': submitted && s.phone_number.errors }">
+              </div>
+              <div *ngIf="submitted && s.phone_number.errors" class="invalid-feedback">
+                <div *ngIf="s.phone_number.errors.required">La confirmation du téléphone est requis</div>
+              </div>
+            </div>
+<!-- birthday_date -->
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday_date">Date de naissance</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="birthday_date" formControlName="birthday_date" class="form-control col-md-7 col-xs-12 calendar" id="birthday_date" [ngClass]="{ 'is-invalid': submitted && s.birthday_date.errors }" placeholder="jj/mm/aaaa">
+              </div>
+              <div *ngIf="submitted && s.birthday_date.errors" class="invalid-feedback">
+                <div *ngIf="s.birthday_date.errors.required">La date de naissance est requis</div>
               </div>
             </div>
 <!-- selected formations -->
