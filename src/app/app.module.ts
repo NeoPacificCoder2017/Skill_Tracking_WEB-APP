@@ -46,7 +46,9 @@ import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings
 
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,7 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
-    AdminDashboardComponent,
+    AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
@@ -74,7 +76,9 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    AdminReportsComponent
+    AdminOrganismsComponent,
+    AdminBusinessComponent,
+    TeacherProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -97,13 +97,16 @@ export class TeacherStudentComponent implements OnInit {
 
     this.getStudentOfFormation();
     this.updateSkillsArray(skillId, teacherValidation);
-    this.filterByModule(this.moduleSelected);
+    // this.filterByModule(this.moduleSelected);
+
     const datas = { progression_id: progressionId, teacher_validation: teacherValidation };
 
     this.apiService.put('progression/updateTeacherValidation', datas)
     .subscribe(data => {
       console.log('skillValidatedByTeacher data', data);
     });
+
+    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
   }
 
   updateSkillsArray(skillId, teacherValidation) {
@@ -123,13 +126,11 @@ export class TeacherStudentComponent implements OnInit {
 
   filterByModule(moduleId) {
     console.log('filterByModule moduleId', moduleId);
-    console.log('filterByModule this.allSkills', this.allSkills);
+    // console.log('filterByModule this.allSkills', this.allSkills);
     this.skills = [];
     this.moduleSelected = moduleId;
     if (this.moduleSelected === 0) {
       this.skills = this.allSkills;
-    console.log('filterByModule this.skills', this.skills[0].progression);
-
     } else {
       console.log('filterByModule moduleId', moduleId);
       for (let i = 0; i < this.allSkills.length; i++) {
