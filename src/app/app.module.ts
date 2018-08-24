@@ -29,6 +29,9 @@ import { StudentReportComponent } from './student/student-report/student-report.
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
+import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
+import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -37,20 +40,15 @@ import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.co
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
-import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
-import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/admin-formation-teacher.component';
 import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
-<<<<<<< HEAD
-import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
-=======
-import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
->>>>>>> f9bbf3340d2fec4b6b3fc223b2f42c879b11d111
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +64,7 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     TeacherDashboardComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
-    AdminDashboardComponent,
+    AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
@@ -78,13 +76,7 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-<<<<<<< HEAD
-    AdminOrganismsComponent,
-    AdminBusinessComponent,
     TeacherProfileComponent
-=======
-    AdminReportsComponent
->>>>>>> f9bbf3340d2fec4b6b3fc223b2f42c879b11d111
   ],
   imports: [
     BrowserModule,
