@@ -22,8 +22,50 @@
 <div>
   <div class="nav-menu" style="text-align: center;">
     <a (click)="tabSelected = 1">Formations</a>
-    <a (click)="tabSelected = 2">Compétences</a>
-    <a (click)="tabSelected = 3">Rapports</a>
+    <!-- <a (click)="tabSelected = 2">Compétences</a>
+    <a (click)="tabSelected = 3">Rapports</a> -->
   </div>
 </div>
 
+<!-- Liste des formations -->
+<div class="row" *ngIf="tabSelected === 1">
+    <div class="col-md-12">
+        <!-- Tableau des formations -->
+        <table class="table table-borderless space" style="color: #999">
+          <thead class="">
+            <tr class="tablecolor rad text-row">
+                <th scope="col"></th>
+                <th scope="col">#</th>
+                <th scope="col">Logo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <!-- <th scope="col">Nombre d'étudiant</th> -->
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
+              <th></th>
+              <th scope="row" width="40" >{{e.id}}</th>
+              <td style="width: 95px;"><img src="{{ environment.appLogoUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
+              <td><span class="alignleft">{{e.name}}</span></td>
+              <!-- <td class="">
+                <div class="roundProgressBarWrapper">
+                    <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="50" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                    <round-progress class="roundProgressBar roundProgressBarStudent" [current]="80" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                    <div class="progressTeacherText red">100%</div>
+                    <div class="progressStudentText purple">100%</div>
+                </div>
+              </td> -->
+              <td><span class="alignleft">{{e.start_at | date}}</span></td>
+              <td><span class="alignleft">{{e.end_at | date}}</span></td>
+              <!-- <td><a href="" class="btn btn-round bg-dark no-border left">20</a></td> -->
+              <!-- <td>
+              </td> -->
+            </tr>
+            <br>
+          </tbody>
+        </table>
+      </div>
+</div>
