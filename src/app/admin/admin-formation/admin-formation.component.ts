@@ -45,7 +45,7 @@ export class AdminFormationComponent implements OnInit {
       name: ['', Validators.required],
       teacher: ['', Validators.required],
       color: ['', Validators.required],
-      total_heure: ['', Validators.required]
+      total_hours: ['', Validators.required]
     });
     this.formation = {};
     this.teachers = [];
@@ -136,8 +136,9 @@ export class AdminFormationComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('name', this.m.name.value);
     uploadData.append('teacher', this.m.teacher.value);
-    uploadData.append('color', this.m.selectedColor.value);
-    uploadData.append('total_heure', this.m.total_heure.value);
+    uploadData.append('color', this.m.color.value);
+    uploadData.append('total_hours', this.m.total_hours.value);
+
 
     console.log('uploadData', uploadData);
     this.apiService.upload('module/create', uploadData)

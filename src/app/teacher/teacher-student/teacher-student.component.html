@@ -79,7 +79,7 @@
           <td>
             <div class="pull-right">
               <input id="toggle{{ skill.id }}" type="checkbox" class="checky teacher" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-              <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
+              <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
             </div>
           </td>
         </tr>
