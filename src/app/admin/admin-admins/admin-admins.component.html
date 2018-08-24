@@ -41,8 +41,8 @@
             <td class="">{{ admin.email }}</td>
             <td><span class="alignleft">{{ admin.created_at | date}}</span></td>
             <td>
-                <a (click)="deleteAdmin()" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-                <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+                <a (click)="deleteAdmin(admin.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
+                <a (click)="showAdmin(admin.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
             </td>
           </tr>
           <br>

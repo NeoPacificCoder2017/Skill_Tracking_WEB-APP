@@ -243,12 +243,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_heure">total d'heure</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_hours">total d'heure</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" formControlName="total_heure" class="form-control col-md-7 col-xs-12" id="total_heure" [ngClass]="{ 'is-invalid': submitted && m.total_heure.errors }">
+              <input type="text" formControlName="total_hours" class="form-control col-md-7 col-xs-12" id="total_hours" [ngClass]="{ 'is-invalid': submitted && m.total_hours.errors }">
             </div>
-            <div *ngIf="submitted && m.total_heure.errors" class="invalid-feedback">
-              <div *ngIf="m.total_heure.errors.required">Le total de l'heure est requis</div>
+            <div *ngIf="submitted && m.total_hours.errors" class="invalid-feedback">
+              <div *ngIf="m.total_hours.errors.required">Le total de l'heure est requis</div>
             </div>
           </div>
         </form>

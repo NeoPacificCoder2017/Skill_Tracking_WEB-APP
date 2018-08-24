@@ -1,3 +1,91 @@
-<p>
-  admin-plannings works!
-</p>
+<div class="row page-title ">
+  <div class="title_left">
+    <h3>Liste des plannings</h3>
+  </div>
+  <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group pull-right">
+          <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">Ajouter un planning</button>
+        </div>
+      </div>
+    </div>
+</div> 
+  
+<table class="table table-borderless space" style="color: #999">
+  <thead class="">
+    <tr class="tablecolor rad text-row">
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">Formation</th>
+        <th scope="col"></th>
+        <th scope="col">Description</th>
+        <th scope="col" class="pull-right">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let calend of calendars" class="shadow bg-white rad text-row">
+      <th></th>
+      <th scope="row" width="40" >{{ calend.id }}</th>
+      <td>{{ calend.name }}</td>
+      <th></th>
+      <td>{{ calend.file_name }}</td>
+      <td>
+          <a (click)="deleteCalendar(calendarId)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
+          <a (click)="editeCalendar(calendarId)" class="rounded btn bg-blue icon no-border alignright"><i class="fa fa-edit"></i></a>
+          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+      </td>
+    </tr>
+    <br>
+  </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Ajouter un planning</h4>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="newPlanningForm" class="form-horizontal form-label-left">
+            <!-- selected teachers -->
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation_id" >Formations</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control" formControlName="formation_id">
+                    <option value="formation.id" *ngFor="let formation of formations">{{ formation.name }}</option>
+                  </select>
+                  <div *ngIf="submitted && plan.formation_id.errors" class="invalid-feedback">
+                    <div *ngIf="plan.formation_id.errors.required">Veuillez sélectionner une formation</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file_name">Description</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" formControlName="file_name" class="form-control col-md-7 col-xs-12" id="file_name" aria-describedby="file_nameHelp" [ngClass]="{ 'is-invalid': submitted && plan.file_name.errors }">
+                </div>
+                <div *ngIf="submitted && plan.file_name.errors" class="invalid-feedback">
+                  <div *ngIf="plan.file_name.errors.required">La description est requis</div>
+                </div>
+              </div>
+              <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="filename">Fichier PDF</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" (change)="onFileChanged($event)" id="filename">
+              </div>
+              <div *ngIf="submitted && newPlanningForm == null" class="invalid-feedback">
+                <div>Un PDF est requise</div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+          <button  type="button" [disabled]="loading" (click)="createCalendar()" class="btn bg-blue icon no-border">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>

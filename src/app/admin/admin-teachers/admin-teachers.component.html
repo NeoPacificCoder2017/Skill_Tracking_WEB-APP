@@ -106,7 +106,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Moot de passe</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mot de passe</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="password" formControlName="password" class="form-control col-md-7 col-xs-12 " id="password" aria-describedby="passwordnameHelp"
                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
@@ -123,6 +123,25 @@
               </div>
               <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
                 <div *ngIf="f.c_password.errors.required">La confirmation du mot de passe est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone_number">Téléphone</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" formControlName="phone_number" class="form-control col-md-7 col-xs-12 " id="phone_number" aria-describedby="phone_numberHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }">
+              </div>
+              <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+                <div *ngIf="f.phone_number.errors.required">La confirmation du téléphone est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday_date">Date de naissance</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="birthday_date" formControlName="birthday_date" class="form-control col-md-7 col-xs-12 calendar" id="birthday_date" [ngClass]="{ 'is-invalid': submitted && f.birthday_date.errors }" placeholder="jj/mm/aaaa">
+              </div>
+              <div *ngIf="submitted && f.birthday_date.errors" class="invalid-feedback">
+                <div *ngIf="f.birthday_date.errors.required">La date de naissance est requis</div>
               </div>
             </div>
             <div class="form-group">
@@ -148,13 +167,14 @@
                 </div>
               </div>
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_type_id">Type d'utilisateur</label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="form-control" formControlName="user_type_id">
-                  <option [value]=0 disabled="true">Admnistrateur</option>
-                  <option [value]=1 disabled="true">Etudiant</option>
-                  <option [value]=2>Formateur</option>
-                </select>
-              </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" formControlName="user_type_id">
+                <option [value]=0 >type utilisateur</option>
+                <option [value]=1 >admin</option>
+                <option [value]=2>teacher</option>
+                <option [value]=3>student</option>
+              </select>
+            </div>
               <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">Le genre est requis</div>
               </div>
