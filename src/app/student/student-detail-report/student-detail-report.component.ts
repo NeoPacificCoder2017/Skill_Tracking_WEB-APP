@@ -11,10 +11,13 @@ import { ApiService } from '../../services/api/api.service';
 })
 export class StudentDetailReportComponent implements OnInit {
 
+  dataDetailReport: any;
+
   constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
 
+  }
 
 }
 

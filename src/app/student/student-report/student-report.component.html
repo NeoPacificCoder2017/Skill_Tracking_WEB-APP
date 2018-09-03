@@ -2,7 +2,7 @@
   <div class="title_left">
     <h3>Liste des rapports</h3>
   </div>
-
+<!-- bouton ajouter -->
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
@@ -11,17 +11,21 @@
     </div>
   </div>
 </div>
+
+<div class="clearfix"></div>
+<!-- CHAMPS RECHERCHE -->
 <form id="search">
-    <!-- champ de recherche par auteur a mettre dynamiquement -->
-    <div class="col-xs-12 form-group top_search" id="search_author">
-        <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
-        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <select class="form-control" formControlName="student_id">
-            <option value="student_id.id" *ngFor="let student_id of dataStudent">{{ student_id.studentLastname }} {{ student_id.studentFirstname }}</option>
-          </select>
-        </div>
+  <!-- champ de recherche par auteur a mettre dynamiquement -->
+  <div class="col-xs-12 form-group top_search" id="search_author">
+      <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
+      <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+      <div class="col-md-9 col-sm-9 col-xs-12">
+        <select class="form-control">
+          <option value="student_id.id" *ngFor="let student_id of dataStudent">{{ student_id.studentLastname }} {{ student_id.studentFirstname }}</option>
+        </select>
       </div>
+  </div>
+
   <!-- champ recherche par date picker -->
   <div class="col-xs-12 form-group top_search" id="search_date">
     <div class="col-md-9 col-sm-9 col-xs-9">
@@ -29,6 +33,7 @@
       <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
     </div>
   </div>
+
   <!-- champ rechercher -->
   <div class="col-xs-12 form-group top_search" id="search_field">
     <div class="input-group">
@@ -57,7 +62,7 @@
       </thead>
       <tbody>
 
-        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item.report_id)">
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" data-toggle="modal" data-target="#myModal" (click)="viewReport(item.report_id, item.report_rate, item.report_title, item.student_id, item.text, item.created_date, item.last_edit_date, item.is_daily)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
@@ -65,12 +70,40 @@
             <span class="alignleft">{{ item.created_date }}</span>
           </td>
           <td>{{ item.last_edit_date }}</td>
-          <!-- <td style="width: 124px;">
-            <button (click)="showReport(item.report_id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
-          </td> -->
+          <td></td>
+
         </tr>
         <br>
       </tbody>
     </table>
+  </div>
+</div>
+<!-- MODAL -->
+<!-- Modal header -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Détail du rapport</h4>
+      </div>
+<!-- Modal body -->
+      <div class="modal-body">
+        <div class="bs-example" data-example-id="simple-jumbotron">
+            <div class="jumbotron" >
+              <h1 for="report_title">{{ dataDetailReport.report_title }}</h1>
+              <p for="rate_report"> / 20 </p>
+              <p for="text">eryrut</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+        <button  type="button" [disabled]="loading" (click)="updateReport()" class="btn bg-blue icon no-border">Modifier</button>
+      </div>
+    </div>
   </div>
 </div>

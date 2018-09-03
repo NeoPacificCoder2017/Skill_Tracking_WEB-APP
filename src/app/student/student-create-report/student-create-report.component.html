@@ -1,5 +1,4 @@
 <div class="page-title">
-
   <div class="title_left">
     <h3>Créer un rapport</h3>
   </div>
@@ -8,30 +7,39 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button type="button" class="btn green bg-green" (click)="saveReport()">Sauvegarder</button>
+        <button type="button" class="btn green bg-green" id="submit" (click)="saveReport()">Sauvegarder</button>
       </div>
     </div>
-
+  </div>
+<form [formGroup]="newReportForm" class="form-horizontal form-label-left">
   <!-- ajouter un titre au rapport -->
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="report_title">Titre :</label>
     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-      <input type="text" placeholder="Ajoutez un titre" class="form-control">
+      <input type="text" formControlName="report_title" placeholder="Ajoutez un titre..." class="form-control" id="report_title" >
     </div>
+  </div>
 
   <!-- ajouter une note au rapport -->
-    <div class="col-xs-12 col-sm-6 emphasis">
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="report_rate">Notation :</label>
+    <div class="col-xs-12 col-sm-6 emphasis" id="report_rate">
       <p class="ratings">
-        <a>4.0</a>
-        <a href="#"><span class="fa fa-star"></span></a>
-        <a href="#"><span class="fa fa-star"></span></a>
-        <a href="#"><span class="fa fa-star"></span></a>
-        <a href="#"><span class="fa fa-star"></span></a>
-        <a href="#"><span class="fa fa-star-o"></span></a>
-</p>
+        <a><span class="fa fa-star"></span></a>
+        <a><span class="fa fa-star"></span></a>
+        <a><span class="fa fa-star"></span></a>
+        <a><span class="fa fa-star"></span></a>
+        <a><span class="fa fa-star-o"></span></a>
+        <a> / 5</a>
+      </p>
     </div>
+  </div>
+
   <!-- rediger un rapport -->
+  <div class="form-group">
     <div class="x_content">
-      <div [froalaEditor]>
-        <h3>Objectif de la journée :</h3><br>
+      <div [froalaEditor] id="text">
+        <h3>Objectif(s) de la journée :</h3><br>
         <h3>Succès :</h3><br>
         <h3>Difficultés :</h3><br>
         <h3>Outils et méthodes utilisés :</h3><br>
@@ -39,4 +47,7 @@
         <h3>Recommandations :</h3><br>
       </div>
     </div>
+  </div>
+
+  </form>
 </div>

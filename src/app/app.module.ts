@@ -9,6 +9,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -80,7 +81,9 @@ import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RoundProgressModule
+    RoundProgressModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
