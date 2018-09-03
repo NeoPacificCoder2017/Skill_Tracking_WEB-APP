@@ -50,7 +50,10 @@ export class ApiService {
       })
 
     };
-    return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+    // tslint:disable-next-line:no-shadowed-variable
+    return this.http.post(apiUrl + url, data, httpOptions).pipe(map( data => {
+      return  data;
+    }));
   }
 
   put (url, data): any {
@@ -58,6 +61,8 @@ export class ApiService {
   }
 
   delete (url): any {
-    return this.http.delete(apiUrl + url, this.httpOptions).pipe(map(data => {return data;}));
+    return this.http.delete(apiUrl + url, this.httpOptions).pipe(map(data => {
+      return data;
+    }));
   }
 }

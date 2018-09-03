@@ -30,6 +30,7 @@ import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profi
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
+import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
       { path: 'teacher/formation', component: TeacherFormationComponent},
       { path: 'teacher/student', component: TeacherStudentComponent},
       { path: 'teacher/profile', component: TeacherProfileComponent},
+      { path: 'teacher/planning', component: TeacherPlanningComponent},
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},

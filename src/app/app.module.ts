@@ -32,6 +32,7 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
 import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
+import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -70,6 +71,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     TeacherFormationComponent,
     TeacherModuleComponent,
     TeacherDashboardComponent,
+    TeacherPlanningComponent,
 
     AdminDashboardComponent,
     AdminReportsComponent,
@@ -81,7 +83,8 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminFormationStudentComponent,
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
-    AdminPlanningsComponent
+    AdminPlanningsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     FormsModule,
     ReactiveFormsModule,
     RoundProgressModule,
-    ChartjsModule
+    ChartjsModule,
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
