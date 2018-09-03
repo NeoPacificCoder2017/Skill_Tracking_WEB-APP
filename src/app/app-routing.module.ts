@@ -20,12 +20,17 @@ import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.componen
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
+import { AdminProfileStudentComponent } from './admin/admin-profile-student/admin-profile-student.component';
+import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
+import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
+import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -55,6 +60,7 @@ const routes: Routes = [
       { path: 'teacher/formation', component: TeacherFormationComponent},
       { path: 'teacher/student', component: TeacherStudentComponent},
       { path: 'teacher/profile', component: TeacherProfileComponent},
+      { path: 'teacher/planning', component: TeacherPlanningComponent},
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
@@ -67,6 +73,10 @@ const routes: Routes = [
       { path: 'admin/skills', component: AdminSkillsComponent},
       { path: 'admin/plannings', component: AdminPlanningsComponent},
       { path: 'admin/reports', component: AdminReportsComponent},
+      { path: 'admin/profileStudent', component: AdminProfileStudentComponent},
+      { path: 'admin/profile', component: AdminProfileComponent},
+      { path: 'admin/profileTeacher', component: AdminProfileTeacherComponent},
+      { path: 'admin/profileAdmin', component: AdminProfileAdminComponent},
     ]
   },
 

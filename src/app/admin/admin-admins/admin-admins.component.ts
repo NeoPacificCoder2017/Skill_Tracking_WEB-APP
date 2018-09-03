@@ -26,6 +26,8 @@ export class AdminAdminsComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       c_password: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      birthday_date: ['', Validators.required],
       gender: ['', Validators.required],
       user_type_id: ['', Validators.required]
     });
@@ -56,12 +58,15 @@ export class AdminAdminsComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const birthday_date = this.f.birthday_date.value.split('/');
     const uploadData = new FormData();
     uploadData.append('firstname', this.f.firstname.value);
     uploadData.append('lastname', this.f.lastname.value);
     uploadData.append('email', this.f.email.value);
     uploadData.append('password', this.f.password.value);
     uploadData.append('c_password', this.f.c_password.value);
+    uploadData.append('phone_number', this.f.phone_number.value);
+    uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
     uploadData.append('avatar', this.newAdminImage, this.newAdminImage.name);
     uploadData.append('gender', this.f.gender.value);
     uploadData.append('user_type_id', this.f.user_type_id.value);

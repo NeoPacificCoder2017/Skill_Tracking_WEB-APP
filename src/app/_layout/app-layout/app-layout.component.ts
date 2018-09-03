@@ -29,7 +29,7 @@ export class AppLayoutComponent implements OnInit {
   }
 
   redirectProfile() {
-    this.router.navigate(['/teacher/profile']);
+    this.router.navigate(['/admin/profile']);
   }
 
 }

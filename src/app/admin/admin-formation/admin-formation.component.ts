@@ -111,6 +111,11 @@ export class AdminFormationComponent implements OnInit {
     this.router.navigate(['/admin/formation/student'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
   }
 
+  profileTeacher(idTeacher) {
+    console.log('teacher', idTeacher);
+    this.router.navigate(['admin/profileTeacher'], { queryParams: { idTeacher: idTeacher } });
+  }
+
   editeModule(idModule) {
     console.log('idModule', idModule);
     this.dropDown = !this.dropDown;
