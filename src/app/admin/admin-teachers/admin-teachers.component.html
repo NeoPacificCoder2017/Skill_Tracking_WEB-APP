@@ -1,63 +1,68 @@
 <div class="page-title">
-    <div class="title_left">
-      <h3>Liste des formateurs</h3>
-    </div>
+  <div class="title_left">
+    <h3>Liste des formateurs</h3>
+  </div>
 
-    <div class="title_right">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <div class="input-group pull-right">
-          <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">
-            Ajouter un formateur
-          </button>
-        </div>
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">
+          Ajouter un formateur
+        </button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-borderless space" style="color: #999">
-        <thead class="">
-          <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
-              <th scope="col">ID</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Adresse email</th>
-              <th scope="col">Formations en cours</th>
-              <th scope="col">Compte créé le</th>
-              <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let teacher of teachers" class="shadow bg-white rad text-row">
-            <th></th>
-            <th scope="row" width="40" >{{ teacher.id }}</th>
-            <td>
-              <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;"><img src="{{ environment.appUrl }}uploads/images/{{ teacher.avatar }}" class="img-circle" width="100%"></div>
-              <div class="pull-left">{{ teacher.lastname }}<br/>{{ teacher.firstname }}</div>
-            </td>
-            <td class="">{{ teacher.email }}</td>
-            <td *ngIf="teacher.formations">
-              <span *ngFor="let formation of teacher.formations" class="btn btn-round bg-green no-border left">{{ formation.name }}</span>
-            </td>
-            <td *ngIf="!teacher.formations">
-              <span>Aucune</span>
-            </td>
-            <td><span class="alignleft">{{ teacher.created_at | date}}</span></td>
-            <td>
-                <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-                <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
-            </td>
-          </tr>
-          <br>
-        </tbody>
-      </table>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+          <th scope="col"></th>
+          <th scope="col">ID</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Adresse email</th>
+          <th scope="col">Formations en cours</th>
+          <th scope="col">Compte créé le</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers" class="shadow bg-white rad text-row">
+          <th></th>
+          <th scope="row" width="40">{{ teacher.id }}</th>
+          <td>
+            <div class="pull-left" style="width: 55px; margin: 0 10px 0 0;">
+              <img src="{{ environment.appUrl }}uploads/images/{{ teacher.avatar }}" class="img-circle" width="100%">
+            </div>
+            <div class="pull-left">{{ teacher.lastname }}
+              <br/>{{ teacher.firstname }}</div>
+          </td>
+          <td class="">{{ teacher.email }}</td>
+          <td *ngIf="teacher.formations">
+            <span *ngFor="let formation of teacher.formations" class="btn btn-round bg-green no-border left">{{ formation.name }}</span>
+          </td>
+          <td *ngIf="!teacher.formations">
+            <span>Aucune</span>
+          </td>
+          <td>
+            <span class="alignleft">{{ teacher.created_at | date}}</span>
+          </td>
+          <td style="width: 124px;">
+            <button (click)="deleteTeacher(teacher.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+            <button (click)="showFormation(formation.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+          </td>
+        </tr>
+        <br>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,7 +78,8 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">Nom</label>
 
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="firstname" aria-describedby="firstnameHelp" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                <input type="text" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="firstname" aria-describedby="firstnameHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
               </div>
               <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
                 <div *ngIf="f.firstname.errors.required">Le nom est requis</div>
@@ -82,7 +88,8 @@
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Prénom</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" formControlName="lastname" class="form-control col-md-7 col-xs-12" id="lastname" aria-describedby="lastnameHelp" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                <input type="text" formControlName="lastname" class="form-control col-md-7 col-xs-12" id="lastname" aria-describedby="lastnameHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
               </div>
               <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
                 <div *ngIf="f.lastname.errors.required">Le prénom est requis</div>
@@ -91,48 +98,83 @@
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="email" formControlName="email" class="form-control col-md-7 col-xs-12 " id="email" aria-describedby="emailnameHelp" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <input type="email" formControlName="email" class="form-control col-md-7 col-xs-12 " id="email" aria-describedby="emailnameHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
               </div>
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                 <div *ngIf="f.email.errors.required">L'email est requis</div>
               </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mot de passe</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="password" formControlName="password" class="form-control col-md-7 col-xs-12 " id="password" aria-describedby="passwordnameHelp" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                </div>
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                  <div *ngIf="f.password.errors.required">Le mot de passe est requis</div>
-                  <div *ngIf="f.password.errors.minlength">Le mot de passe est trop court</div>
-                </div>
-              </div>
-              <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="c_password">Confirmation du mot de passe</label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" formControlName="c_password" class="form-control col-md-7 col-xs-12 " id="c_password" aria-describedby="c_passwordnameHelp" [ngClass]="{ 'is-invalid': submitted && f.c_password.errors }">
-                  </div>
-                  <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
-                    <div *ngIf="f.c_password.errors.required">La confirmation du mot de passe est requis</div>
-                  </div>
-                </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Photo de profil</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="file" (change)="onFileChanged($event)" id="avatar">
-                </div>
-                <div *ngIf="submitted && newTeacherImage == null" class="invalid-feedback">
-                  <div>Une image est requise</div>
-                </div>
-              </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mot de passe</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="form-control" formControlName="gender">
-                  <option>Homme</option>
-                  <option>Femme</option>
-                </select>
+                <input type="password" formControlName="password" class="form-control col-md-7 col-xs-12 " id="password" aria-describedby="passwordnameHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
               </div>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Le mot de passe est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="c_password">Confirmation du mot de passe</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="password" formControlName="c_password" class="form-control col-md-7 col-xs-12 " id="c_password" aria-describedby="c_passwordnameHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.c_password.errors }">
+              </div>
+              <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
+                <div *ngIf="f.c_password.errors.required">La confirmation du mot de passe est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone_number">Téléphone</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" formControlName="phone_number" class="form-control col-md-7 col-xs-12 " id="phone_number" aria-describedby="phone_numberHelp"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }">
+              </div>
+              <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+                <div *ngIf="f.phone_number.errors.required">La confirmation du téléphone est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday_date">Date de naissance</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="birthday_date" formControlName="birthday_date" class="form-control col-md-7 col-xs-12 calendar" id="birthday_date" [ngClass]="{ 'is-invalid': submitted && f.birthday_date.errors }" placeholder="jj/mm/aaaa">
+              </div>
+              <div *ngIf="submitted && f.birthday_date.errors" class="invalid-feedback">
+                <div *ngIf="f.birthday_date.errors.required">La date de naissance est requis</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Photo de profil</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" (change)="onFileChanged($event)" id="avatar">
+              </div>
+              <div *ngIf="submitted && newTeacherImage == null" class="invalid-feedback">
+                <div *ngIf="f.avatar.errors.required">Une image est requise</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control" formControlName="gender">
+                    <option>Homme</option>
+                    <option>Femme</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                  <div *ngIf="f.gender.errors.required">Le genre est requis</div>
+                </div>
+              </div>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_type_id">Type d'utilisateur</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <select class="form-control" formControlName="user_type_id">
+                <option [value]=0 >type utilisateur</option>
+                <option [value]=1 >admin</option>
+                <option [value]=2>teacher</option>
+                <option [value]=3>student</option>
+              </select>
+            </div>
               <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">Le genre est requis</div>
               </div>
@@ -141,7 +183,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
-          <button  type="button" [disabled]="loading" (click)="createTeacher()" class="btn bg-blue icon no-border">Ajouter</button>
+          <button type="button" [disabled]="loading" (click)="createTeacher()" class="btn bg-blue icon no-border">Ajouter</button>
         </div>
       </div>
     </div>

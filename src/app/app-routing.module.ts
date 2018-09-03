@@ -16,14 +16,16 @@ import { AdminFormationComponent } from './admin/admin-formation/admin-formation
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
+import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
+import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -56,14 +58,13 @@ const routes: Routes = [
       { path: 'teacher/dashboard', component: TeacherDashboardComponent},
       { path: 'teacher/formation', component: TeacherFormationComponent},
       { path: 'teacher/student', component: TeacherStudentComponent},
-
+      { path: 'teacher/profile', component: TeacherProfileComponent},
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
       { path: 'admin/formations', component: AdminFormationsComponent},
       { path: 'admin/formation', component: AdminFormationComponent},
       { path: 'admin/formation/student', component: AdminFormationStudentComponent},
-      { path: 'admin/users', component: AdminUsersComponent},
       { path: 'admin/admin', component: AdminAdminsComponent},
       { path: 'admin/teachers', component: AdminTeachersComponent},
       { path: 'admin/students', component: AdminStudentsComponent},

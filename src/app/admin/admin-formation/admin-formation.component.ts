@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
-import { $ } from '../../../../node_modules/protractor';
 import { Location } from '@angular/common';
 
 @Component({
@@ -22,14 +21,32 @@ export class AdminFormationComponent implements OnInit {
   environment = environment;
   tabSelected = 1;
   teachers: any;
+  teachersAll: any;
   students: any;
+  newModuleForm: FormGroup;
+  loading = false;
+  submitted = false;
+  colorsPanel = ['#A0522D', '#CD5C5C', '#FF4500', '#008B8B', '#B8860B', '#32CD32',
+  '#FFD700', '#48D1CC', '#87CEEB', '#FF69B4', '#CD5C5C', '#87CEFA', '#6495ED',
+  '#DC143C', '#FF8C00', '#C71585', '#000000', '#118e2c', '#c43403', '#620793'];
+  showColorsPanel = 0;
+  selectedColor: string;
 
   constructor(private location: Location,
-    private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+    private apiService: ApiService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute) {
     this.moduleName = '';
   }
 
   ngOnInit() {
+    this.newModuleForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      teacher: ['', Validators.required],
+      color: ['', Validators.required],
+      total_hours: ['', Validators.required]
+    });
     this.formation = {};
     this.teachers = [];
     this.students = [];
@@ -41,6 +58,7 @@ export class AdminFormationComponent implements OnInit {
         this.getTeachers();
         this.getStudents();
         this.getModules();
+        this.getTeacherAll();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
@@ -63,6 +81,14 @@ export class AdminFormationComponent implements OnInit {
         this.teachers = data;
         console.log('getTeachers', this.teachers);
       });
+  }
+  public getTeacherAll() {
+    this.apiService.get('users/teacher').subscribe(
+      data => {
+        this.teachersAll = data.data;
+        console.log('teachersAll', this.teachersAll);
+      }
+    );
   }
 
   private getStudents() {
@@ -97,13 +123,30 @@ export class AdminFormationComponent implements OnInit {
     this.router.navigate(['/admin/skills']);
   }
 
+  // convenience getter for easy access to form fields
+  get m() { return this.newModuleForm.controls; }
+
   addModule(): any {
-    console.log('moduleName', this.moduleName);
-    this.apiService.post('module/create', this.moduleName)
-      .subscribe((data: any) => {
-        console.log('name', name);
-        console.log('Module create', data);
-      });
+    this.submitted = true;
+
+    if (this.newModuleForm.invalid == null) {
+      return;
+    }
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('name', this.m.name.value);
+    uploadData.append('teacher', this.m.teacher.value);
+    uploadData.append('color', this.m.color.value);
+    uploadData.append('total_hours', this.m.total_hours.value);
+
+
+    console.log('uploadData', uploadData);
+    this.apiService.upload('module/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
   }
 
   deleteModule(idModule): any {
@@ -112,5 +155,19 @@ export class AdminFormationComponent implements OnInit {
       .subscribe((data) => {
         console.log('Module deleted');
       });
+  }
+
+  openColorsPanel() {
+    this.showColorsPanel = 1;
+    console.log('showColorPanel', this.showColorsPanel);
+  }
+
+  selectColor(index) {
+    this.selectedColor = this.colorsPanel[index];
+    // this.m.color.value = this.selectedColor;
+    this.showColorsPanel = 0;
+    console.log('index', index);
+    console.log('selectedColor', this.selectedColor);
+    console.log('showColorsPanel', this.showColorsPanel);
   }
 }

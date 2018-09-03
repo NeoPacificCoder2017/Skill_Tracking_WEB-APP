@@ -1,0 +1,77 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des rapports</h3>
+  </div>
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button (click)="goToAddReport" class="btn green bg-green">
+          Ajouter un rapport
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<form id="search" class="row">
+  <!-- champ de recherche par auteur -->
+  <div class="col-md-3 form-group top_search filterStyle" id="search_author">
+    <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
+    <div class="">
+      <select class="form-control">
+        <option>Etudiant</option>
+        <option>MANA Kevin</option>
+        <option>TEPA Vaiarii</option>
+        <option>TKT Cedric</option>
+        <option>TUHITI Christ</option>
+      </select>
+    </div>
+  </div>
+  <!-- champ recherche par date picker -->
+  <div class="col-md-3 form-group top_search filterStyle" id="search_date">
+    <div class="">
+      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+    </div>
+  </div>
+  <!-- champ rechercher -->
+  <div class="col-md-4 form-group top_search filterStyle" id="search_field">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Rechercher...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+  </div>
+  <!-- bouton ajouter -->
+  <!-- <div class="glyphicon glyphicon-plus"></div> -->
+
+</form>
+<!-- Liste des formations -->
+<div class="row">
+<div class="col-md-12">
+  <!-- Tableau des formations -->
+  <table class="table table-borderless space" style="color: #999">
+    <thead class="">
+      <tr class="tablecolor rad text-row">
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">Etudiant</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Dernière modification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+        <td></td>
+        <td scope="row" width="40">{{ item.report_id }}</td>
+        <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
+        <td>
+          <span class="alignleft">{{ item.created_date }}</span>
+        </td>
+        <td>{{ item.last_edit_date }}</td>
+      </tr>
+      <br>
+    </tbody>
+  </table>
+</div>
+</div>

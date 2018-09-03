@@ -22,7 +22,8 @@ export class AdminFormationsComponent implements OnInit {
   submitted = false;
   newFormationImage: File;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
+  constructor(private apiService: ApiService,
+     private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) {
     // this.formations = {};
   }
   ngOnInit() {
@@ -33,7 +34,7 @@ export class AdminFormationsComponent implements OnInit {
     });
     this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
-        console.log('data', data);
+        console.log('dataFormations', data);
         this.formations = data;
       }
     );
@@ -55,7 +56,6 @@ export class AdminFormationsComponent implements OnInit {
 
   createFormation(): any {
     this.submitted = true;
-    
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
         return;
     }
@@ -65,15 +65,15 @@ export class AdminFormationsComponent implements OnInit {
     const end_at = this.f.end_at.value.split('/');
     const uploadData = new FormData();
     uploadData.append('name', this.f.name.value);
-    uploadData.append('start_at', start_at[2]+'-'+start_at[1]+'-'+start_at[0]+' 00:00:00:00');
-    uploadData.append('end_at', end_at[2]+'-'+end_at[1]+'-'+end_at[0]+' 00:00:00:00');
+    uploadData.append('start_at', start_at[2] + '-' + start_at[1] + '-' + start_at[0] + ' 00:00:00:00');
+    uploadData.append('end_at', end_at[2] + '-' + end_at[1] + '-' + end_at[0] + ' 00:00:00:00');
     uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.newFormationImage',this.newFormationImage)
+    console.log('this.newFormationImage', this.newFormationImage);
     this.apiService.upload('formation/create', uploadData)
     .subscribe(data => {
-      let element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
       this.ngOnInit();
     });

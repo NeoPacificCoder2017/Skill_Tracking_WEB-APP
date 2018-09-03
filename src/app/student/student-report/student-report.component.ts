@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api/api.service';
-import { $ } from '../../../../node_modules/protractor';
+// import { $ } from '../../../../node_modules/protractor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 

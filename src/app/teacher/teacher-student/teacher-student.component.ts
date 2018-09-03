@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { forEach } from '../../../../node_modules/@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-teacher-student',
@@ -15,7 +16,7 @@ export class TeacherStudentComponent implements OnInit {
   max = 100;
   dataStudent: any;
   allSkills = [];
-  skills = [];
+  skills: any[] = [];
   modules: any;
   idFormation: number;
   idStudent: number;
@@ -35,12 +36,12 @@ export class TeacherStudentComponent implements OnInit {
 
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
-    console.log('this.me',this.me);
+    console.log('this.me', this.me);
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
         this.idStudent = params.idStudent;
-        this.apiService.get('formation/'+this.idFormation).subscribe(data => {
+        this.apiService.get('formation/' + this.idFormation).subscribe(data => {
           this.formation = data;
         });
         this.getStudentOfFormation();
@@ -68,10 +69,10 @@ export class TeacherStudentComponent implements OnInit {
             this.totalSkills++;
             this.modules[i].skills[j]['module_id'] = this.modules[i].id;
             this.modules[i].skills[j]['module_name'] = this.modules[i].name;
-            if(this.modules[i].skills[j]['progression']['student_validation']){
+            if (this.modules[i].skills[j]['progression']['student_validation']) {
               this.totalStudentValidation++;
             }
-            if(this.modules[i].skills[j]['progression']['teacher_validation']){
+            if (this.modules[i].skills[j]['progression']['teacher_validation']) {
               this.selectedSkills.push(this.modules[i].skills[j]['id']);
               this.totalTeacherValidation++;
             }
@@ -82,7 +83,6 @@ export class TeacherStudentComponent implements OnInit {
         console.log('this.skills', this.skills);
         console.log('this.totalStudentValidation', this.totalStudentValidation);
         console.log('this.totalTeacherValidation', this.totalTeacherValidation);
-        console.log('this.totalTeacherValidation', this.totalTeacherValidation);
       });
   }
 
@@ -92,17 +92,21 @@ export class TeacherStudentComponent implements OnInit {
     console.log('skillValidatedByTeacher progressionId', progressionId);
     console.log('skillValidatedByTeacher teacherValidation', teacherValidation);
     this.skills[skillIndex].progression.student_validation = teacherValidation;
-    console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation', this.skills[skillIndex].progression.student_validation);
+    console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation',
+                this.skills[skillIndex].progression.student_validation);
 
     this.getStudentOfFormation();
     this.updateSkillsArray(skillId, teacherValidation);
-    this.filterByModule(this.moduleSelected);
+    // this.filterByModule(this.moduleSelected);
+
     const datas = { progression_id: progressionId, teacher_validation: teacherValidation };
 
     this.apiService.put('progression/updateTeacherValidation', datas)
     .subscribe(data => {
       console.log('skillValidatedByTeacher data', data);
     });
+
+    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
   }
 
   updateSkillsArray(skillId, teacherValidation) {
@@ -122,13 +126,11 @@ export class TeacherStudentComponent implements OnInit {
 
   filterByModule(moduleId) {
     console.log('filterByModule moduleId', moduleId);
-    console.log('filterByModule this.allSkills', this.allSkills);
+    // console.log('filterByModule this.allSkills', this.allSkills);
     this.skills = [];
     this.moduleSelected = moduleId;
     if (this.moduleSelected === 0) {
       this.skills = this.allSkills;
-    console.log('filterByModule this.skills', this.skills[0].progression);
-
     } else {
       console.log('filterByModule moduleId', moduleId);
       for (let i = 0; i < this.allSkills.length; i++) {
@@ -141,20 +143,32 @@ export class TeacherStudentComponent implements OnInit {
 
   onChange(skillId) {
     console.log('onChange');
-    let index = this.selectedSkills.indexOf(skillId);
-    if (index == -1) {
+    const index = this.selectedSkills.indexOf(skillId);
+    if (index === -1) {
       this.selectedSkills.push(skillId);
     } else {
       this.selectedSkills.splice(index, 1);
     }
   }
 
-  isTeacherValidated(skillId){
+  isTeacherValidated(skillId) {
     return this.selectedSkills.indexOf(skillId) >= 0;
   }
 
-  stateText(skillId){
-    return (this.selectedSkills.indexOf(skillId) >= 0)?"validé":"à valider";
+  stateText(skillId) {
+    return (this.selectedSkills.indexOf(skillId) >= 0) ? 'validé' : 'à valider' ;
+  }
+
+  validatedAllModules() {
+    for (let i = 0; i < this.skills.length; i++ ) {
+      if ( this.skills[i].progression.teacher_validation === 0) {
+        this.skillValidatedByTeacher(this.skills[i].id,
+          this.skills[i].progression.student_progression_id,
+          this.skills[i].progression.teacher_validation,
+          i);
+          this.stateText(this.skills[i].id);
+      }
+    }
   }
 }
 
