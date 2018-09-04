@@ -21,6 +21,9 @@ import { SiteFooterComponent } from './_layout/site-footer/site-footer.component
 import { SiteHeaderComponent } from './_layout/site-header/site-header.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
+// Npm
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -85,6 +88,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
 
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,

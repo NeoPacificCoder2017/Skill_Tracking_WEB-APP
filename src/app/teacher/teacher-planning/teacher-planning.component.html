@@ -17,14 +17,23 @@
   </thead>
   <tbody>
     <tr *ngFor="let calend of calendars" class="shadow bg-white rad text-row">
-      <th></th>
-      <th scope="row" width="40" >{{ calend.id }}</th>
-      <td>{{ calend.name }}</td>
-      <th></th>
-      <td>{{ calend.file_name }}</td>
-      <td>
-        <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
-      </td>
+        <th></th>
+        <th scope="row" width="40" >{{ calend.id }}</th>
+        <td>{{ calend.name }}</td>
+        <th></th>
+        <td>{{ calend.file_name }}</td>
+        <td>
+          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+          <!-- <pdf-viewer src="{{calend.file_url}}" render-text="true">
+            <i class="fa fa-view">
+          </pdf-viewer> -->
+        </td>
+
+          <pdf-viewer src="{{calend.file_url}}" render-text="true">
+          </pdf-viewer>
+
+
+
     </tr>
     <br>
   </tbody>
