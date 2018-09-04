@@ -76,8 +76,6 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    AdminOrganismsComponent,
-    AdminBusinessComponent,
     TeacherProfileComponent
   ],
   imports: [
