@@ -163,8 +163,9 @@ export class AdminFormationComponent implements OnInit {
   }
 
   selectColor(index) {
+    console.log('this.newModuleForm.controls', this.newModuleForm.controls);
     this.selectedColor = this.colorsPanel[index];
-    // this.m.color.value = this.selectedColor;
+    this.newModuleForm.controls.color.value = this.selectedColor;
     this.showColorsPanel = 0;
     console.log('index', index);
     console.log('selectedColor', this.selectedColor);

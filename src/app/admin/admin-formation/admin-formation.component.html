@@ -232,7 +232,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Couleur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input (click)="openColorsPanel()" formControlName="color"  type="text" placeholder="Sélectionnez une couleur" class="form-control" value="">
+              <input (click)="openColorsPanel()" formControlName="color"  type="text" placeholder="Sélectionnez une couleur" class="form-control">
                 <div id="colorSelectBtn"></div>
                 <div *ngIf="showColorsPanel" id="colorsPanel">
                   <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; index as index' (click)="selectColor(index)"></div>
