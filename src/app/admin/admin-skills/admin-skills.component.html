@@ -6,6 +6,7 @@
 <br>
 <div class="row" style="padding-top: 25px;">
   <h4>{{ module.module_name }}</h4>
+  <h4>{{ module.module_id }}</h4>
 </div>
   
 <table class="table table-borderless space" style="color: #999">
@@ -22,15 +23,15 @@
   <tbody>
     <tr *ngFor="let skill of listSkill" class="shadow bg-white rad text-row">
       <th></th>
-      <th scope="row" width="40" >{{ skill.skill_id }}</th>
-      <td>{{ skill.skill_name }}</td>
+      <th scope="row" width="40" >{{ skill.id }}</th>
+      <td>{{ skill.name }}</td>
       <td>
-        <div class="">
-          <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="skill.progression.student_validation">
-          <label for="toggle{{ skill.id }}" class="labChecky">Obligation!</label>
+        <div class="pull-right">
+          <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
+          <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
         </div>
       </td>
-      <!-- <td>
+      <td>
         <div class="roundProgressBarWrapper">
           <round-progress class="roundProgressBar roundProgressBarStudent" [current]="student.progressions_student_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
           <div class="progressStudentText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
@@ -41,7 +42,7 @@
           <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progressions_teacher_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
           <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
         </div>
-      </td> -->
+      </td>
     </tr>
     <br>
   </tbody>

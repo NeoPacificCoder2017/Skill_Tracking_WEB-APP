@@ -30,7 +30,6 @@ export class AppHeaderComponent implements OnInit {
           ]
         },
         {'title': 'Reports', 'icon': 'fa-home', 'url': 'reports'},
-        {'title': 'Plannings', 'icon': 'fa-calendar', 'url': 'plannings'},
       ]
     },
     {

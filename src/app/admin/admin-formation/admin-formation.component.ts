@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class AdminFormationComponent implements OnInit {
   formation: any;
   modules: any;
+  calendars: any;
   idFormation: any;
   dropDown: boolean;
   displayOff: string;
@@ -51,6 +52,7 @@ export class AdminFormationComponent implements OnInit {
     this.teachers = [];
     this.students = [];
     this.modules = [];
+    this.calendars = [];
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
@@ -59,6 +61,7 @@ export class AdminFormationComponent implements OnInit {
         this.getStudents();
         this.getModules();
         this.getTeacherAll();
+        this.getPlannings();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
@@ -107,8 +110,21 @@ export class AdminFormationComponent implements OnInit {
       });
   }
 
+  private getPlannings() {
+    this.apiService.get('calendars')
+      .subscribe((data) => {
+        this.calendars = data;
+        console.log('getPlannings', this.calendars);
+      });
+  }
+
   goToStudentPage(studentId) {
-    this.router.navigate(['/admin/formation/student'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
+    this.router.navigate(['/admin/studentModule'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
+  }
+
+  profileTeacher(idTeacher) {
+    console.log('teacher', idTeacher);
+    this.router.navigate(['admin/profileTeacher'], { queryParams: { idTeacher: idTeacher } });
   }
 
   editeModule(idModule) {

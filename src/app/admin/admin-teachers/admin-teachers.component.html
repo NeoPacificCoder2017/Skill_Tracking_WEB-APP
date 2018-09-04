@@ -51,9 +51,10 @@
           <td>
             <span class="alignleft">{{ teacher.created_at | date}}</span>
           </td>
-          <td style="width: 124px;">
+          <td style="width: 150px;">
             <button (click)="deleteTeacher(teacher.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
             <button (click)="showFormation(formation.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button (click)="showToProfileTeacher(teacher.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
           </td>
         </tr>
         <br>
@@ -76,7 +77,6 @@
           <form [formGroup]="newTeacherForm" class="form-horizontal form-label-left">
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">Nom</label>
-
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" formControlName="firstname" class="form-control col-md-7 col-xs-12" id="firstname" aria-describedby="firstnameHelp"
                   [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
@@ -154,27 +154,13 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select class="form-control" formControlName="gender">
-                    <option>Homme</option>
-                    <option>Femme</option>
-                  </select>
-                </div>
-                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
-                  <div *ngIf="f.gender.errors.required">Le genre est requis</div>
-                </div>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <select class="form-control" formControlName="gender">
+                  <option>Homme</option>
+                  <option>Femme</option>
+                </select>
               </div>
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user_type_id">Type d'utilisateur</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" formControlName="user_type_id">
-                <option [value]=0 >type utilisateur</option>
-                <option [value]=1 >admin</option>
-                <option [value]=2>teacher</option>
-                <option [value]=3>student</option>
-              </select>
-            </div>
               <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
                 <div *ngIf="f.gender.errors.required">Le genre est requis</div>
               </div>

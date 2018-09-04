@@ -39,8 +39,8 @@
       <tbody>
         <tr *ngFor="let student of students" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" (click)="showStudent(student.id)">{{student.id}}</th>
-          <td (click)="showStudent(student.id)">
+          <th scope="row" width="40">{{student.id}}</th>
+          <td>
             <img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle pull-left" width="100%">
             <div class="pull-left" style="margin: 13px 0 0 10px;">
               <span class="alignleft">{{student.lastname}}</span><br/>

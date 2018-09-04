@@ -2,15 +2,6 @@
   <div class="title_left">
     <h3>Liste des rapports</h3>
   </div>
-  <div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <div class="input-group pull-right">
-        <button (click)="goToAddReport" class="btn green bg-green">
-          Ajouter un rapport
-        </button>
-      </div>
-    </div>
-  </div>
 </div>
 <form id="search" class="row">
   <!-- champ de recherche par auteur -->
@@ -55,20 +46,21 @@
       <tr class="tablecolor rad text-row">
         <th scope="col"></th>
         <th scope="col">#</th>
+        <th scope="col">Nom</th>
         <th scope="col">Etudiant</th>
         <th scope="col">Date de création</th>
-        <th scope="col">Dernière modification</th>
+        
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+      <tr *ngFor="let item of reports" class="shadow bg-white rad text-row">
         <td></td>
         <td scope="row" width="40">{{ item.report_id }}</td>
+        <td>{{ item.title }}</td>
         <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
         <td>
-          <span class="alignleft">{{ item.created_date }}</span>
+          <span class="alignleft">{{ item.date }}</span>
         </td>
-        <td>{{ item.last_edit_date }}</td>
       </tr>
       <br>
     </tbody>
