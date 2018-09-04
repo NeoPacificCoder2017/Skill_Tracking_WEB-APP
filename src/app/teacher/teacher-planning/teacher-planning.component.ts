@@ -14,8 +14,6 @@ export class TeacherPlanningComponent implements OnInit {
 
   environment = environment;
   calendars: any;
-  formationId: number;
-
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
@@ -24,18 +22,9 @@ export class TeacherPlanningComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.route.queryParams
-    //   .subscribe(params => {
-    //     this.formationId = params.formationId;
-    //     console.log('this.formationId', this.formationId);
-    //   });
-    this.getCalendar();
-  }
-
-  getCalendar() {
-    this.apiService.get('teachers/calendar')
+    this.apiService.get('calendars')
     .subscribe((data) => {
-      this.calendars = data;
+      this.calendars = data.data;
       console.log('calendars data', this.calendars);
     });
   }
