@@ -15,9 +15,6 @@ export class TeacherPlanningComponent implements OnInit {
   page = 1;
   environment = environment;
   calendars: any;
-  formationId: number;
-  filePdf = '';
-
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
@@ -26,11 +23,6 @@ export class TeacherPlanningComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.route.queryParams
-    //   .subscribe(params => {
-    //     this.formationId = params.formationId;
-    //     console.log('this.formationId', this.formationId);
-    //   });
     this.getCalendar();
   }
 
@@ -40,15 +32,5 @@ export class TeacherPlanningComponent implements OnInit {
       this.calendars = data;
       console.log('calendars data', this.calendars);
     });
-  }
-
-  viewCalendar() {
-    if (typeof (FileReader) !== 'undefined' ) {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.filePdf = e.target.result;
-      };
-    }
   }
 }

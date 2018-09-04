@@ -22,7 +22,7 @@ import { SiteHeaderComponent } from './_layout/site-header/site-header.component
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
 // Npm
-import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -81,7 +81,6 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
-    TeacherPlanningComponent,
 
     AdminDashboardComponent,
     AdminReportsComponent,
@@ -98,11 +97,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
-    AdminStudentModuleComponent,
-    
-    PdfViewerComponent,
-
-    
+    AdminStudentModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +107,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     ReactiveFormsModule,
     RoundProgressModule,
     ChartjsModule,
-    PdfViewerModule,
+    PdfViewerModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]

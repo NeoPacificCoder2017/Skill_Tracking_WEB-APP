@@ -3,7 +3,7 @@
     <h3>Liste des plannings</h3>
   </div>
 </div>
-  
+
 <table class="table table-borderless space" style="color: #999">
   <thead class="">
     <tr class="tablecolor rad text-row">
@@ -25,11 +25,24 @@
         <td>
           <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
         </td>
-
-          <pdf-viewer src="{{calend.file_url}}" render-text="true">
-          </pdf-viewer>
-
     </tr>
+
+
     <br>
   </tbody>
 </table>
+
+<pdf-viewer
+    src="http://skillstracking.motjo.io/uploads/calendars/npc.pdf"
+    render-text="true"
+    show-all="true"
+    >
+</pdf-viewer>
+
+<!-- <pdf-viewer
+    src="/assets/pdfgratuit.pdf"
+    render-text="true"
+    show-all="true"
+    >
+</pdf-viewer> -->
+
