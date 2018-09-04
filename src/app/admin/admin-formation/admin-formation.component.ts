@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./admin-formation.component.css']
 })
 export class AdminFormationComponent implements OnInit {
+  formations: any;
   formation: any;
   modules: any;
   calendars: any;
@@ -32,6 +33,9 @@ export class AdminFormationComponent implements OnInit {
   '#DC143C', '#FF8C00', '#C71585', '#000000', '#118e2c', '#c43403', '#620793'];
   showColorsPanel = 0;
   selectedColor: string;
+  newPlanningForm: FormGroup;
+  filename: File;
+  formation_id: any = 1;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -48,6 +52,9 @@ export class AdminFormationComponent implements OnInit {
       color: ['', Validators.required],
       total_hours: ['', Validators.required]
     });
+    this.newPlanningForm = this.formBuilder.group({
+      file_name: ['', Validators.required],
+    });
     this.formation = {};
     this.teachers = [];
     this.students = [];
@@ -62,6 +69,7 @@ export class AdminFormationComponent implements OnInit {
         this.getModules();
         this.getTeacherAll();
         this.getPlannings();
+        this.formationAll();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
@@ -76,6 +84,14 @@ export class AdminFormationComponent implements OnInit {
         this.formation = data;
         console.log('getFormation', this.formation);
       });
+  }
+
+  private formationAll() {
+    this.apiService.get('formations')
+    .subscribe((data) => {
+      this.formations = data.data;
+      console.log('formations data', this.formations);
+    });
   }
 
   private getTeachers() {
@@ -111,7 +127,7 @@ export class AdminFormationComponent implements OnInit {
   }
 
   private getPlannings() {
-    this.apiService.get('calendars')
+    this.apiService.get('getPlanningForAdmin')
       .subscribe((data) => {
         this.calendars = data;
         console.log('getPlannings', this.calendars);
@@ -157,6 +173,36 @@ export class AdminFormationComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     this.apiService.upload('module/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
+  // convenience getter for easy access to form fields
+  get plan() { return this.newPlanningForm.controls; }
+
+  onFileChanged(event) {
+    console.log(event);
+    this.filename = event.target.files[0];
+  }
+
+  createCalendar(): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) {
+        return;
+    }
+
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation', this.formation_id);
+    uploadData.append('description', this.plan.file_name.value);
+    uploadData.append('file_url', this.filename, this.filename.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.filename', this.filename);
+    this.apiService.upload('calendar/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
