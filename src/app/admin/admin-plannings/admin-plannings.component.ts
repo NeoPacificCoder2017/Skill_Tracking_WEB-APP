@@ -28,7 +28,7 @@ export class AdminPlanningsComponent implements OnInit {
     this.newPlanningForm = this.formBuilder.group({
       formation_id: ['', Validators.required],
       file_name: ['', Validators.required],
-  });
+    });
     this.apiService.get('calendars')
     .subscribe((data) => {
       this.calendars = data.data;
