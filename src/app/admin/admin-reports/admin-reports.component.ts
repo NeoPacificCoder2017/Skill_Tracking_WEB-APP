@@ -24,7 +24,7 @@ export class AdminReportsComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.apiService.get('reports').subscribe(
+    this.apiService.get('reports/allDate/allUser').subscribe(
       data => {
         this.reports = data;
         console.log('reports', data);

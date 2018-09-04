@@ -18,6 +18,7 @@ export class TeacherPlanningComponent implements OnInit {
   formationId: number;
   filePdf = '';
 
+
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,

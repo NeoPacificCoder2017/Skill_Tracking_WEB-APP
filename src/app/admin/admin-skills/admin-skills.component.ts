@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 export class AdminSkillsComponent implements OnInit {
   listSkill: any;
   environment = environment;
-  idModule: any;
+  idModule: number;
   module: any;
   constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -21,24 +21,22 @@ export class AdminSkillsComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.idModule = params.idModule;
-        this.getModule();
-        this.getSkills();
-      });
-  }
-
-  public getModule(): any {
-    this.apiService.get('module/' + this.idModule)
+        this.apiService.get('module/' + this.idModule)
       .subscribe((data) => {
         this.module = data;
         console.log('module data', this.module);
+        console.log('moduleId', this.idModule);
+      });
+        this.getSkillsByModule();
       });
   }
 
-  public getSkills(): any {
+  public getSkillsByModule(): any {
     this.apiService.get('skillsByModule/' + this.idModule)
       .subscribe((data) => {
-        this.listSkill = data.data;
-        console.log('listSkill data', this.listSkill);
+        this.listSkill = data;
+        console.log('idModule', this.idModule);
+        console.log('getListSkill', this.listSkill);
       });
   }
 }

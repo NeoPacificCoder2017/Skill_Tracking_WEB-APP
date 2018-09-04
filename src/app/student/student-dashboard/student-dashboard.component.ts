@@ -23,6 +23,8 @@ export class StudentDashboardComponent implements OnInit {
   totalStudentValidation = 0;
   totalTeacherValidation = 0;
   me: any;
+  formations: any;
+  selectedFormation: any;
 
   constructor(private apiService: ApiService) {
     this.formation = {};
@@ -31,11 +33,32 @@ export class StudentDashboardComponent implements OnInit {
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
     console.log('this.me', this.me);
-    this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
+    this.selectedFormation = this.me.formation_id;
+
+    this.apiService.get('studentsFormation').subscribe(data => {
+      console.log('StudentDashboardComponent studentsFormation data', data);
+      this.formations = data;
+    })
+
+    this.getFormationDatas();
+  }
+  
+  getFormationDatas() {
+
+    this.totalSkills = 0;
+    this.totalStudentValidation = 0;
+    this.totalTeacherValidation = 0;
+
+    this.allSkills = [];
+    this.skills = [];
+
+    this.apiService.get('formation/' + this.selectedFormation).subscribe(data => {
+      console.log('StudentDashboardComponent formation data', data);
       this.formation = data;
     });
 
-    this.apiService.get('getFormations').subscribe(data => {
+    const url = (this.selectedFormation)?'getFormationForAdmin/'+this.selectedFormation:'getFormations';
+    this.apiService.get(url).subscribe(data => {
       console.log('StudentDashboardComponent getFormation data', data);
       this.dataStudent = data;
       for (let i = 0; i < this.dataStudent.length; i++) {
@@ -133,5 +156,10 @@ export class StudentDashboardComponent implements OnInit {
 
   stateText(skillId) {
     return (this.selectedSkills.indexOf(skillId) >= 0) ? 'validé' : 'à valider';
+  }
+
+  selectFormation() {
+    console.log('selected', this.selectedFormation);
+    this.getFormationDatas();
   }
 }

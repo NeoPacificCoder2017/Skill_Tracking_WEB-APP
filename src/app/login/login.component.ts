@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     const me = this.authService.me();
     if (me) { this.router.navigate([this.redirect[me.user_type_id] + '/dashboard']); }
-    
+
     this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
         password: ['', Validators.required]

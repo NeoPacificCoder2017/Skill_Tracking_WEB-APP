@@ -32,7 +32,7 @@
       <td>
           <a (click)="deleteCalendar(calendarId)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
           <a (click)="editeCalendar(calendarId)" class="rounded btn bg-blue icon no-border alignright"><i class="fa fa-edit"></i></a>
-          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+          <!-- <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a> -->
       </td>
     </tr>
     <br>
@@ -85,6 +85,7 @@
         <div class="modal-footer">
           <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
           <button  type="button" [disabled]="loading" (click)="createCalendar()" class="btn bg-blue icon no-border">Ajouter</button>
+          <button *ngIf=""  type="button" [disabled]="loading" (click)="editeCalendar(id)" class="btn bg-blue icon no-border">Ajouter</button>
         </div>
       </div>
     </div>

@@ -75,6 +75,28 @@ export class AdminPlanningsComponent implements OnInit {
     });
   }
 
+  editeCalendar(idCalendar): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) {
+        return;
+    }
+
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation', this.plan.formation_id.value);
+    uploadData.append('description', this.plan.file_name.value);
+    uploadData.append('url', this.filename, this.filename.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.filename', this.filename);
+    this.apiService.upload('calendar/' + idCalendar, uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
   deleteCalendar(idCalendar): any {
     this.apiService.delete('calendar/' + idCalendar)
     .subscribe(data => {

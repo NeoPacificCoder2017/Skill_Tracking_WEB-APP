@@ -1,0 +1,53 @@
+<div class="title_right">
+  <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir en arrière</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <img src="{{ environment.appImageUrl }}{{ avatar }}" alt="Photo de {{ firstname }} {{ lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+  </div>
+</div>
+<div class="row" style="margin-bottom: 10px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h3 style="margin: 13px 0 0 10px;">{{ firstname }} {{ lastname }}</h3>
+  </div>
+</div>
+<div class="row" style="margin-bottom: 50px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h4 style="margin: 5px 0 0 5px;">{{ email }} | {{ phone_number }} | {{ birthday_date }} | {{ gender }}</h4>
+  </div>
+</div>
+
+
+
+<!-- Liste des formations -->
+<div class="row" *ngIf="tabSelected === 1">
+    <div class="col-md-12">
+        <!-- Tableau des formations -->
+        <table class="table table-borderless space" style="color: #999">
+          <thead class="">
+            <tr class="tablecolor rad text-row">
+                <th scope="col"></th>
+                <th scope="col">#</th>
+                <th scope="col">Logo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <!-- <th scope="col">Nombre d'étudiant</th> -->
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
+              <th></th>
+              <th scope="row" width="40" >{{e.id}}</th>
+              <td style="width: 95px;"><img src="{{ environment.appLogoUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
+              <td><span class="alignleft">{{e.name}}</span></td>
+              <td><span class="alignleft">{{e.start_at | date}}</span></td>
+              <td><span class="alignleft">{{e.end_at | date}}</span></td>
+            </tr>
+            <br>
+          </tbody>
+        </table>
+      </div>
+</div>
