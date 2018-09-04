@@ -52,6 +52,7 @@ import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admi
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
-    TeacherPlanningComponent
+    TeacherPlanningComponent,
+    AdminStudentModuleComponent
   ],
   imports: [
     BrowserModule,

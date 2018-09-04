@@ -16,6 +16,7 @@ export class AdminAdminsComponent implements OnInit {
   loading = false;
   submitted = false;
   newAdminImage: File;
+  user_type_id: any = 1;
 
   constructor(private apiService: ApiService, private formBuilder: FormBuilder) { }
 
@@ -29,7 +30,6 @@ export class AdminAdminsComponent implements OnInit {
       phone_number: ['', Validators.required],
       birthday_date: ['', Validators.required],
       gender: ['', Validators.required],
-      user_type_id: ['', Validators.required]
     });
     this.apiService.get('users/admin').subscribe(
       data => {
@@ -69,7 +69,7 @@ export class AdminAdminsComponent implements OnInit {
     uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
     uploadData.append('avatar', this.newAdminImage, this.newAdminImage.name);
     uploadData.append('gender', this.f.gender.value);
-    uploadData.append('user_type_id', this.f.user_type_id.value);
+    uploadData.append('user_type_id', this.user_type_id);
 
     console.log('uploadData', uploadData);
     console.log('this.newAdminImage', this.newAdminImage);

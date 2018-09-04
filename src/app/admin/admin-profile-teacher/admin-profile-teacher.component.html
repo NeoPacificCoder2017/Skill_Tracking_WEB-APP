@@ -4,28 +4,21 @@
 
 <div class="row">
   <div class="col-md-12">
-    <img src="{{ environment.appImageUrl }}{{ me.avatar }}" alt="Photo de {{ me.firstname }} {{ me.lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+    <img src="{{ environment.appImageUrl }}{{ avatar }}" alt="Photo de {{ firstname }} {{ lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 10px;">
   <div class="col-md-12" style="text-align: center;">
-    <h3 style="margin: 13px 0 0 10px;">{{ me.firstname }} {{ me.lastname }}</h3>
+    <h3 style="margin: 13px 0 0 10px;">{{ firstname }} {{ lastname }}</h3>
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
   <div class="col-md-12" style="text-align: center;">
-    <h4 style="margin: 5px 0 0 5px;">{{ me.email }} | {{ me.phone_number }} | {{ me.birthday_date }} | {{ me.gender }}</h4>
+    <h4 style="margin: 5px 0 0 5px;">{{ email }} | {{ phone_number }} | {{ birthday_date }} | {{ gender }}</h4>
   </div>
 </div>
 
 
-<div>
-  <div class="nav-menu" style="text-align: center;">
-    <a (click)="tabSelected = 1">Formations</a>
-    <!-- <a (click)="tabSelected = 2">Compétences</a>
-    <a (click)="tabSelected = 3">Rapports</a> -->
-  </div>
-</div>
 
 <!-- Liste des formations -->
 <div class="row" *ngIf="tabSelected === 1">
@@ -50,19 +43,8 @@
               <th scope="row" width="40" >{{e.id}}</th>
               <td style="width: 95px;"><img src="{{ environment.appLogoUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
               <td><span class="alignleft">{{e.name}}</span></td>
-              <!-- <td class="">
-                <div class="roundProgressBarWrapper">
-                    <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="50" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-                    <round-progress class="roundProgressBar roundProgressBarStudent" [current]="80" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
-                    <div class="progressTeacherText red">100%</div>
-                    <div class="progressStudentText purple">100%</div>
-                </div>
-              </td> -->
               <td><span class="alignleft">{{e.start_at | date}}</span></td>
               <td><span class="alignleft">{{e.end_at | date}}</span></td>
-              <!-- <td><a href="" class="btn btn-round bg-dark no-border left">20</a></td> -->
-              <!-- <td>
-              </td> -->
             </tr>
             <br>
           </tbody>
