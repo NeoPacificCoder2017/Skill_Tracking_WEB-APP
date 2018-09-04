@@ -16,6 +16,7 @@ export class TeacherPlanningComponent implements OnInit {
   calendars: any;
   formationId: number;
 
+
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,

@@ -49,9 +49,14 @@ import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.componen
 import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/admin-formation-teacher.component';
 import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
-
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
+import { AdminProfileStudentComponent } from './admin/admin-profile-student/admin-profile-student.component';
+import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
+import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
+import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+
 
 @NgModule({
   declarations: [
@@ -75,6 +80,8 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     TeacherModuleComponent,
     TeacherDashboardComponent,
     TeacherPlanningComponent,
+    TeacherProfileComponent,
+    TeacherPlanningComponent,
 
     AdminDashboardComponent,
     AdminReportsComponent,
@@ -87,8 +94,15 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-
+    AdminProfileComponent,
+    AdminProfileStudentComponent,
+    AdminProfileTeacherComponent,
+    AdminProfileAdminComponent,
+    AdminStudentModuleComponent,
+    
     PdfViewerComponent,
+
+    
   ],
   imports: [
     BrowserModule,

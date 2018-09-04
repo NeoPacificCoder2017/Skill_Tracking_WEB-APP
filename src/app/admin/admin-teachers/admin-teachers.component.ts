@@ -17,7 +17,7 @@ export class AdminTeachersComponent implements OnInit {
   loading = false;
   submitted = false;
   newTeacherImage: File;
-  usertypes: any;
+  user_type_id: any = 2;
 
   constructor(
     private apiService: ApiService,
@@ -35,7 +35,7 @@ export class AdminTeachersComponent implements OnInit {
       gender: ['', Validators.required],
       phone_number: ['', Validators.required],
       birthday_date: ['', Validators.required],
-      user_type_id: ['', Validators.required]
+      // user_type_id: ['', Validators.required]
     });
     this.apiService.get('users/teacher').subscribe(
       data => {
@@ -43,6 +43,10 @@ export class AdminTeachersComponent implements OnInit {
         console.log('teachers', data);
       }
     );
+  }
+
+  showToProfileTeacher(teacherId) {
+    this.router.navigate(['/admin/profileTeacher'], {queryParams : { idTeacher : teacherId}});
   }
 
   get f() { return this.newTeacherForm.controls; }
@@ -70,7 +74,7 @@ export class AdminTeachersComponent implements OnInit {
     uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
     uploadData.append('avatar', this.newTeacherImage, this.newTeacherImage.name);
     uploadData.append('gender', this.f.gender.value);
-    uploadData.append('user_type_id', this.f.user_type_id.value);
+    uploadData.append('user_type_id', this.user_type_id);
 
     console.log('uploadData', uploadData);
     console.log('this.newTeacherImage', this.newTeacherImage);
