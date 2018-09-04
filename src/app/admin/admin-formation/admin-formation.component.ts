@@ -150,9 +150,9 @@ export class AdminFormationComponent implements OnInit {
     this.displayOne = this.dropDown ? 'inline' : 'inline';
   }
 
-  goToSkill(idSkill) {
-    console.log('goToSkill', idSkill);
-    this.router.navigate(['/admin/skills']);
+  goToSkill(moduleId) {
+    console.log('goToSkill', moduleId);
+    this.router.navigate(['/admin/skills'], { queryParams: { idModule: moduleId } });
   }
 
   // convenience getter for easy access to form fields
@@ -197,8 +197,8 @@ export class AdminFormationComponent implements OnInit {
 
     this.loading = true;
     const uploadData = new FormData();
-    uploadData.append('formation', this.formation_id);
-    uploadData.append('description', this.plan.file_name.value);
+    uploadData.append('formation_id', this.formation_id);
+    uploadData.append('file_name', this.plan.file_name.value);
     uploadData.append('file_url', this.filename, this.filename.name);
 
     console.log('uploadData', uploadData);
