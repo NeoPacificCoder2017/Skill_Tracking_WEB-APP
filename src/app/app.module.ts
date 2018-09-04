@@ -53,7 +53,7 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
-
+import {AtomSpinnerModule} from 'angular-epic-spinners'
 
 @NgModule({
   declarations: [
@@ -97,7 +97,8 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
     FormsModule,
     ReactiveFormsModule,
     RoundProgressModule,
-    ChartjsModule
+    ChartjsModule,
+    AtomSpinnerModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]

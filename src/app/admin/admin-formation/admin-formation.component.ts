@@ -155,7 +155,6 @@ export class AdminFormationComponent implements OnInit {
     uploadData.append('color', this.m.color.value);
     uploadData.append('total_hours', this.m.total_hours.value);
 
-
     console.log('uploadData', uploadData);
     this.apiService.upload('module/create', uploadData)
     .subscribe(data => {
