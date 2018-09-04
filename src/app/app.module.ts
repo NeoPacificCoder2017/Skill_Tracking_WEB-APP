@@ -21,6 +21,9 @@ import { SiteFooterComponent } from './_layout/site-footer/site-footer.component
 import { SiteHeaderComponent } from './_layout/site-header/site-header.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
+// Npm
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -29,6 +32,8 @@ import { StudentReportComponent } from './student/student-report/student-report.
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
+import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
+import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
@@ -39,8 +44,6 @@ import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.co
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
-import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
-import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/admin-formation-teacher.component';
@@ -50,9 +53,9 @@ import { AdminProfileComponent } from './admin/admin-profile/admin-profile.compo
 import { AdminProfileStudentComponent } from './admin/admin-profile-student/admin-profile-student.component';
 import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
+import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
-import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 
 @NgModule({
@@ -61,34 +64,45 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
     AppLayoutComponent,
     AppHeaderComponent,
     AppFooterComponent,
+
     SiteFooterComponent,
     SiteHeaderComponent,
     SiteLayoutComponent,
+
     LoginComponent,
+
     StudentDashboardComponent,
     StudentReportComponent,
-    TeacherDashboardComponent,
-    AdminDashboardComponent,
+
+    TeacherProfileComponent,
+    TeacherStudentComponent,
     TeacherFormationComponent,
+    TeacherModuleComponent,
+    TeacherDashboardComponent,
+    TeacherPlanningComponent,
+    TeacherProfileComponent,
+    TeacherPlanningComponent,
+
+    AdminDashboardComponent,
     AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
     AdminSkillsComponent,
     AdminFormationComponent,
-    TeacherModuleComponent,
-    TeacherStudentComponent,
     AdminFormationStudentComponent,
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    TeacherProfileComponent,
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
-    TeacherPlanningComponent,
-    AdminStudentModuleComponent
+    AdminStudentModuleComponent,
+    
+    PdfViewerComponent,
+
+    
   ],
   imports: [
     BrowserModule,
@@ -97,7 +111,7 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
     FormsModule,
     ReactiveFormsModule,
     RoundProgressModule,
-    ChartjsModule
+    ChartjsModule,
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]

@@ -36,6 +36,7 @@ import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-pla
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
+import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
 const routes: Routes = [
   {
