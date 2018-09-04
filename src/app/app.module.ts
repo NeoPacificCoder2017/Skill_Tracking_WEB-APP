@@ -22,7 +22,7 @@ import { SiteHeaderComponent } from './_layout/site-header/site-header.component
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
 // Npm
-import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -98,6 +98,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     ReactiveFormsModule,
     RoundProgressModule,
     ChartjsModule,
+    PdfViewerModule,
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
