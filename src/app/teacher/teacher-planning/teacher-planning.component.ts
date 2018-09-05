@@ -15,7 +15,7 @@ export class TeacherPlanningComponent implements OnInit {
   page = 1;
   environment = environment;
   calendars: any;
-  pdfSrc: string = 'http://skillstracking.motjo.io/uploads/calendars/npc.pdf';
+  pdfSrc = 'http://skillstracking.motjo.io/uploads/calendars/npc.pdf';
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
