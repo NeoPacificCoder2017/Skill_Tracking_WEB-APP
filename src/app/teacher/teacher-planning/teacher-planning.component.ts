@@ -15,7 +15,8 @@ export class TeacherPlanningComponent implements OnInit {
   page = 1;
   environment = environment;
   calendars: any;
-  pdfSrc = 'http://skillstracking.motjo.io/uploads/calendars/npc.pdf';
+  // tslint:disable-next-line:no-inferrable-types
+  pdfSrc: string = 'http://skillstracking.motjo.io/uploads/calendars/npc.pdf';
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
@@ -30,7 +31,7 @@ export class TeacherPlanningComponent implements OnInit {
   getCalendar() {
     this.apiService.get('teachers/calendar')
     .subscribe((data) => {
-      this.calendars = data.data;
+      this.calendars = data;
       console.log('calendars data', this.calendars);
     });
   }

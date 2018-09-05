@@ -58,6 +58,7 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +94,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
     TeacherPlanningComponent,
-    AdminStudentModuleComponent
+    AdminStudentModuleComponent,
+    TeacherReportsComponent
   ],
   imports: [
     BrowserModule,
