@@ -22,6 +22,7 @@ export class StudentCreateReportComponent implements OnInit {
   options: any;
   loading = false;
   submitted = false;
+  isDaily = 0;
 
   constructor (
     private apiService: ApiService,
@@ -33,30 +34,32 @@ export class StudentCreateReportComponent implements OnInit {
 
   ngOnInit() {
     this.newReportForm = this.formBuilder.group({
-      report_title: [''],
-      report_rate: [''],
-      text: ['']
+      title: ['', null],
+      rate: ['', null],
+      text: ['', null],
+      is_daily: ['', null],
+      created_date: ['', null]
     });
   }
   get f() { return this.newReportForm.controls; }
 
   saveReport(): any {
+    console.log('this.f', this.f);
     this.submitted = true;
     this.loading = true;
     const created_date = this.f.created_date.value.split('/');
     const uploadData = new FormData;
-    uploadData.append('report_title', this.f.report_title.value);
-    uploadData.append('report_rate', this.f.report_rate.value);
+    uploadData.append('title', this.f.title.value);
+    uploadData.append('rate', this.f.rate.value);
     uploadData.append('text', this.f.text.value);
+    uploadData.append('is_daily', this.f.is_daily.value);
+    uploadData.append('created_date', created_date);
 
     console.log('uploaData', uploadData);
     this.apiService.upload('report/create', uploadData).subscribe(data => {
+      console.log('sauvegarder');
       this.ngOnInit();
     });
-    console.log('sauvegarder');
   }
 
-  updateReport() {
-    return null;
-  }
 }

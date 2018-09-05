@@ -11,43 +11,49 @@
       </div>
     </div>
   </div>
-<form [formGroup]="newReportForm" class="form-horizontal form-label-left">
-  <!-- ajouter un titre au rapport -->
-  <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="report_title">Titre :</label>
-    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-      <input type="text" formControlName="report_title" placeholder="Ajoutez un titre..." class="form-control" id="report_title" >
-    </div>
-  </div>
-
-  <!-- ajouter une note au rapport -->
-  <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="report_rate">Notation :</label>
-    <div class="col-xs-12 col-sm-6 emphasis" id="report_rate">
-      <p class="ratings">
-        <a><span class="fa fa-star"></span></a>
-        <a><span class="fa fa-star"></span></a>
-        <a><span class="fa fa-star"></span></a>
-        <a><span class="fa fa-star"></span></a>
-        <a><span class="fa fa-star-o"></span></a>
-        <a> / 5</a>
-      </p>
-    </div>
-  </div>
-
-  <!-- rediger un rapport -->
-  <div class="form-group">
-    <div class="x_content">
-      <div [froalaEditor] id="text">
-        <h3>Objectif(s) de la journée :</h3><br>
-        <h3>Succès :</h3><br>
-        <h3>Difficultés :</h3><br>
-        <h3>Outils et méthodes utilisés :</h3><br>
-        <h3>Compétences acquises :</h3><br>
-        <h3>Recommandations :</h3><br>
+  <!-- formulaire -->
+  <form [formGroup]="newReportForm" class="form-horizontal form-label-left">
+    <!-- ajouter un titre au rapport -->
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Titre :</label>
+      <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+        <input type="text" formControlName="title" placeholder="Ajoutez un titre..." class="form-control" id="title" >
       </div>
     </div>
-  </div>
+
+    <!-- ajouter une note au rapport -->
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rate">Notation :</label>
+      <div class="col-xs-12 col-sm-6 emphasis" id="rate">
+        <input type="number" id="number" formControlName="rate" class="form-control col-md-7 col-xs-12">
+      </div>
+    </div>
+    <!-- date -->
+    <div class="form-group">
+      <div class="col-md-9 col-sm-9 col-xs-9">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="created_date">Date de création du rapport :</label>
+        <input type="date" formControlName="created_date">
+      </div>
+    </div>
+    <!-- journalier -->
+    <div class="form-group">
+      <label>
+        <input formControlName="is_daily" type="checkbox" checked /> Journalier
+      </label>
+    </div>
+    <!-- rediger un rapport -->
+    <div class="form-group">
+      <div class="x_content" >
+        <div [froalaEditor] id="text" formControlName="text">
+          <h3>Objectif(s) de la journée :</h3><br>
+          <h3>Succès :</h3><br>
+          <h3>Difficultés :</h3><br>
+          <h3>Outils et méthodes utilisés :</h3><br>
+          <h3>Compétences acquises :</h3><br>
+          <h3>Recommandations :</h3><br>
+        </div>
+      </div>
+    </div>
 
   </form>
 </div>

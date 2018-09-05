@@ -48,7 +48,7 @@ import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/
 import { AdminPlanningsComponent } from './admin/admin-plannings/admin-plannings.component';
 
 
-// import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 
@@ -91,8 +91,8 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     ReactiveFormsModule,
     RoundProgressModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
-    // ChartjsModule
+    FroalaViewModule.forRoot(),
+    ChartjsModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
