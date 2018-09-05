@@ -2,8 +2,8 @@
   <div class="title_left">
     <h3>Liste des plannings</h3>
   </div>
-</div> 
-  
+</div>
+
 <table class="table table-borderless space" style="color: #999">
   <thead class="">
     <tr class="tablecolor rad text-row">
@@ -17,15 +17,21 @@
   </thead>
   <tbody>
     <tr *ngFor="let calend of calendars" class="shadow bg-white rad text-row">
-      <th></th>
-      <th scope="row" width="40" >{{ calend.id }}</th>
-      <td>{{ calend.name }}</td>
-      <th></th>
-      <td>{{ calend.file_name }}</td>
-      <td>
-        <!-- <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a> -->
-      </td>
+        <th></th>
+        <th scope="row" width="40" >{{ calend.id }}</th>
+        <td>{{ calend.name }}</td>
+        <th></th>
+        <td>{{ calend.file_name }}</td>
+        <td>
+          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+        </td>
     </tr>
+
+
     <br>
   </tbody>
 </table>
+<pdf-viewer [src]="pdfSrc" 
+              [render-text]="true"
+              style="display: block;"
+  ></pdf-viewer>
