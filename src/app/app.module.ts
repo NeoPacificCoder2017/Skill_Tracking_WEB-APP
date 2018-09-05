@@ -22,7 +22,7 @@ import { SiteHeaderComponent } from './_layout/site-header/site-header.component
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
 // Npm
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -32,8 +32,6 @@ import { StudentReportComponent } from './student/student-report/student-report.
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
-import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
-import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 
@@ -44,6 +42,8 @@ import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.co
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
 import { AdminFormationComponent } from './admin/admin-formation/admin-formation.component';
+import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
+import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 import { AdminAdminsComponent } from './admin/admin-admins/admin-admins.component';
 import { AdminFormationTeacherComponent } from './admin/admin-formation-teacher/admin-formation-teacher.component';
@@ -53,53 +53,58 @@ import { AdminProfileComponent } from './admin/admin-profile/admin-profile.compo
 import { AdminProfileStudentComponent } from './admin/admin-profile-student/admin-profile-student.component';
 import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
-import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+<<<<<<< HEAD
 import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 
 
+=======
+import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
+import {AtomSpinnerModule} from 'angular-epic-spinners'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+>>>>>>> a6469eb1709e4febf84935cf62bd5720615bf0ef
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
     AppHeaderComponent,
     AppFooterComponent,
-
     SiteFooterComponent,
     SiteHeaderComponent,
     SiteLayoutComponent,
-
     LoginComponent,
-
     StudentDashboardComponent,
     StudentReportComponent,
-
-    TeacherProfileComponent,
-    TeacherStudentComponent,
-    TeacherFormationComponent,
-    TeacherModuleComponent,
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
-
     AdminDashboardComponent,
+    TeacherFormationComponent,
     AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
     AdminSkillsComponent,
     AdminFormationComponent,
+    TeacherModuleComponent,
+    TeacherStudentComponent,
     AdminFormationStudentComponent,
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
+    TeacherProfileComponent,
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
+<<<<<<< HEAD
     AdminStudentModuleComponent,
     TeacherReportsComponent
+=======
+    TeacherPlanningComponent,
+    AdminStudentModuleComponent
+>>>>>>> a6469eb1709e4febf84935cf62bd5720615bf0ef
   ],
   imports: [
     BrowserModule,
@@ -109,9 +114,11 @@ import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-repor
     ReactiveFormsModule,
     RoundProgressModule,
     ChartjsModule,
+    AtomSpinnerModule,
     PdfViewerModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
