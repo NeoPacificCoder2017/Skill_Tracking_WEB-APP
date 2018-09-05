@@ -25,6 +25,7 @@ export class StudentReportComponent implements OnInit {
   report: any;
   displayViewReport = 0;
   displayEditReport = 0;
+
   constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router,
     private froalaEditorModule: FroalaEditorModule,
     private froalaViewModule: FroalaViewModule) {
