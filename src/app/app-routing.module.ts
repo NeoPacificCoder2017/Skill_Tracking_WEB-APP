@@ -25,6 +25,7 @@ import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admi
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
+import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -32,10 +33,10 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
+import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
-import { AdminFormationStudentComponent } from './admin/admin-formation-student/admin-formation-student.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,8 @@ const routes: Routes = [
       { path: 'teacher/student', component: TeacherStudentComponent},
       { path: 'teacher/profile', component: TeacherProfileComponent},
       { path: 'teacher/planning', component: TeacherPlanningComponent},
+      { path: 'teacher/reports', component: TeacherReportsComponent},
+
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
