@@ -21,6 +21,9 @@ import { SiteFooterComponent } from './_layout/site-footer/site-footer.component
 import { SiteHeaderComponent } from './_layout/site-header/site-header.component';
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
+// Npm
+
+
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -54,7 +57,7 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 import {AtomSpinnerModule} from 'angular-epic-spinners'
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +71,8 @@ import {AtomSpinnerModule} from 'angular-epic-spinners'
     StudentDashboardComponent,
     StudentReportComponent,
     TeacherDashboardComponent,
+    TeacherPlanningComponent,
+    TeacherProfileComponent,
     AdminDashboardComponent,
     TeacherFormationComponent,
     AdminReportsComponent,
@@ -98,9 +103,11 @@ import {AtomSpinnerModule} from 'angular-epic-spinners'
     ReactiveFormsModule,
     RoundProgressModule,
     ChartjsModule,
-    AtomSpinnerModule
+    AtomSpinnerModule,
+    PdfViewerModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
