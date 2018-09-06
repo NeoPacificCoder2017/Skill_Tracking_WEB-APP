@@ -2,11 +2,13 @@
   <div class="title_left">
     <h3>Liste des compétences</h3>
   </div>
+  <div class="title_right">
+      <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la formation</button>
+  </div>
 </div> 
 <br>
 <div class="row" style="padding-top: 25px;">
   <h4>{{ module.module_name }}</h4>
-  <h4>{{ module.module_id }}</h4>
 </div>
   
 <table class="table table-borderless space" style="color: #999">
@@ -15,8 +17,8 @@
         <th scope="col"></th>
         <th scope="col">#</th>
         <th scope="col">Intitulé</th>
-        <th scope="col">Obligatoir</th>
-        <th scope="col">Validé par étudiant</th>
+        <th scope="col">Obligatoire</th>
+        <th scope="col">Validé par les étudiants</th>
         <th scope="col" class="pull-right">Validés par le formateur</th>
     </tr>
   </thead>
@@ -26,21 +28,21 @@
       <th scope="row" width="40" >{{ skill.id }}</th>
       <td>{{ skill.name }}</td>
       <td>
-        <div class="pull-right">
-          <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-          <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
+        <div class="pull-left">
+          <!-- <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="skillObligationByAdmin(skill.id)" (change)="onChange(skill.id)"> -->
+          <!-- <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                         -->
         </div>
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarStudent" [current]="student.progressions_student_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
-          <div class="progressStudentText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText red">{{ (progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progressions_teacher_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-          <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_student*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText purple">{{ (progresseBySkill.validated_by_student*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
     </tr>

@@ -29,6 +29,9 @@ import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { StudentReportComponent } from './student/student-report/student-report.component';
+import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
+import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
+import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
 
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -73,6 +76,9 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     LoginComponent,
     StudentDashboardComponent,
     StudentReportComponent,
+    StudentDetailReportComponent,
+    StudentCreateReportComponent,
+    StudentPlanningComponent,
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
@@ -106,6 +112,8 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     FormsModule,
     ReactiveFormsModule,
     RoundProgressModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     ChartjsModule,
     AtomSpinnerModule,
     PdfViewerModule,

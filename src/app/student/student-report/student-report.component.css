@@ -4,35 +4,3 @@
   display: flex;
   border-collapse: separate;
 } */
-
-#search {
-  width: 988px;  /* c'est divisible par 4 */
-  margin-left: auto;
-  margin-right: auto;
-  }
-
-#search_field {
-	float: left;
-	width: 422px;
-	height: 79px;
-  margin-top: 10px;
-  /* margin-bottom: 5px */
-}
-
-#search_date {
-
-	float: center;
-	width: 271px;
-	height: 313px;
-	margin-top: 10px;
-}
-#search_author {
-
-	float: left;
-	width: 250px;
-	height: 213px;
-	margin-top: 10px;
-}
-.row{
-  padding: auto;
-}
