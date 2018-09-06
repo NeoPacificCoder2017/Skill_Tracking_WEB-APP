@@ -15,12 +15,11 @@
 <div class="clearfix"></div>
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
+
   <!-- champ de recherche par auteur a mettre dynamiquement -->
-  <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
-    <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
-    <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-    <div class="col-md-9 col-sm-9 col-xs-12">
-      <select class="form-control">
+  <div class="col-md-5 col-sm-5 col-xs-12 form-group" id="search_author">
+    <div class="input-group">
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
         <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
       </select>
     </div>
@@ -29,8 +28,7 @@
   <!-- champ recherche par date picker -->
   <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
     <div class="col-md-9 col-sm-9 col-xs-9">
-      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
-      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+      <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
     </div>
   </div>
 
@@ -45,6 +43,7 @@
           <th scope="col"></th>
           <th scope="col">#</th>
           <th scope="col">Auteur</th>
+          <th scope="col">Titre du rapport</th>
           <th scope="col">Date de création</th>
           <th scope="col">Dernière modification</th>
           <th></th>
@@ -56,10 +55,11 @@
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
+          <td>{{item.report_title}}</td>
           <td>
-            <span class="alignleft">{{ item.created_date }}</span>
+            <span class="alignleft">{{ item.created_date  | date:format }}</span>
           </td>
-          <td>{{ item.last_edit_date }}</td>
+          <td>{{ item.last_edit_date | date:format }}</td>
           <td></td>
 
         </tr>
@@ -71,6 +71,7 @@
 <div id="viewReport" *ngIf="displayViewReport">
 
   <button type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
+
   <!-- div sans formulaire si consultation-->
   <div id="viewOnly" *ngIf="!displayEditReport">
     <div class="item">
@@ -99,6 +100,7 @@
       </div>
     </div>
   </div>
+
   <!-- div avec formulaire si rapport appartient a l etudiant connecte -->
   <div id='editReport' *ngIf="displayEditReport">
     <!-- titre -->
