@@ -15,12 +15,12 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <img src="{{ environment.appImageUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <img src="{{ environment.appLogoUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
-  <div class="col-md-12" style="text-align: center;">
+  <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
     <h3>Formation : {{ formation.name }}</h3>
     <button class="btn bg-dark "><i class="fa fa-calendar"></i> début : {{ formation.start_at | date }}</button>
     <button class="btn bg-dark "><i class="fa fa-calendar"></i> fin : {{ formation.end_at | date }}</button>
