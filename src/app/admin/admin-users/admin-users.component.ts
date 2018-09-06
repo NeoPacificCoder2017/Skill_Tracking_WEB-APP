@@ -21,7 +21,8 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    ) { }
 
   ngOnInit() {
     this.apiService.get('users').subscribe(

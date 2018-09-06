@@ -73,7 +73,7 @@ export class AdminDashboardComponent implements OnInit {
     this.apiService.get('getTotalBusinesses').subscribe(data => {this.totalBusinesses = data;console.log('totalBusinesses', this.totalBusinesses);});
     this.apiService.get('getTotalFormationsHours').subscribe(data => {this.totalFormationsHours = data;console.log('totalFormationsHours', this.totalFormationsHours);});
     this.apiService.get('getTotalFormationsHours').subscribe(data => {this.totalFormationsHours = data;console.log('totalFormationsHours', this.totalFormationsHours);});
-    
+
     this.retrieveStudentsGraphData();
     this.retrieveTeachersGraphData();
     this.retrieveSkills();
@@ -85,10 +85,10 @@ export class AdminDashboardComponent implements OnInit {
         const studentsGraph = [];
         const studentsMaleGraph = [];
         const studentsFemaleGraph = [];
-        
+
         for(let i = 0; i < totalStudentsByYear.length; i++) {
-          this.yearsGraph.push(totalStudentsByYear[i].year); 
-          studentsGraph.push(totalStudentsByYear[i].total); 
+          this.yearsGraph.push(totalStudentsByYear[i].year);
+          studentsGraph.push(totalStudentsByYear[i].total);
         }
         this.apiService.get('getTotalStudentsMaleByYear').subscribe(
           totalStudentsMaleByYear => {
@@ -133,11 +133,11 @@ export class AdminDashboardComponent implements OnInit {
         const teachersGraph = [];
         const teachersMaleGraph = [];
         const teachersFemaleGraph = [];
-        
+
         for(let i = 0; i < totalTeachersByYear.length; i++) teachersGraph.push(totalTeachersByYear[i].total);
         this.apiService.get('getTotalTeachersMaleByYear').subscribe(
           totalTeachersMaleByYear => {
-            
+
             for(let i = 0; i < totalTeachersMaleByYear.length; i++) teachersMaleGraph.push(totalTeachersMaleByYear[i].total);
             this.apiService.get('getTotalTeachersFemaleByYear').subscribe(
               totalTeachersFemaleByYear => {
