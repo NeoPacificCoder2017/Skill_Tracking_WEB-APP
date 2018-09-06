@@ -22,7 +22,6 @@ export class TeacherReportsComponent implements OnInit {
   report: any;
   displayViewReport = 0;
   displayEditReport = 0;
-  formation_id: number;
 
   constructor(
     private apiService: ApiService,
@@ -40,15 +39,15 @@ export class TeacherReportsComponent implements OnInit {
         this.formation = data;
         console.log('formation_id data', this.formation);
       });
-      this.getReports(this.formation_id);
+      this.getReports();
 
     }
 
     // recuperer la liste des rapports d une formation
-    public getReports(formation_id) {
-      this.apiService.get('reportsByFormation/' + formation_id ).subscribe(data => {
-        this.dataReport = data.data;
-        console.log('data Report', data);
+    public getReports() {
+      this.apiService.get('report/reportsAvailableForTeacher').subscribe(data => {
+        this.dataReport = data;
+        console.log('data Report', this.dataReport);
         this.generateStudentsList();
       });
     }
@@ -64,7 +63,6 @@ export class TeacherReportsComponent implements OnInit {
     }
 
     generateStudentsList() {
-      console.log('generateStudentsList');
       console.log('generateStudentsList this.dataReport', this.dataReport);
       for (let i = 0; i < this.dataReport.length; i++) {
         const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;

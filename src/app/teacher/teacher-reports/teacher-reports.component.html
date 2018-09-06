@@ -47,11 +47,11 @@
         <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
-          <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
+          <td>{{ item.student.firstname }} {{ item.student.lastname }}</td>
           <td>
-            <span class="alignleft">{{ item.created_date }}</span>
+            <span class="alignleft">{{ item.report_date }}</span>
           </td>
-          <td>{{ item.last_edit_date }}</td>
+          <td>{{ item.update_at }}</td>
           <td></td>
 
         </tr>
