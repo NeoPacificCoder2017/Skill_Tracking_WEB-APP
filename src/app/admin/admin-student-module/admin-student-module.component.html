@@ -48,10 +48,6 @@
     </div>
   </div>
   
-  <div class="title_right" style="margin: 30px 0 0 0;" *ngIf="moduleSelected != 0">
-    <button class="btn bg-purple pull-right" (click)="validatedAllModules()"> Valider toutes les compétences</button>
-  </div>
-  
   <div class="clearfix"></div>
   
   <!-- Liste des formations -->
@@ -65,8 +61,8 @@
               <th scope="col">#</th>
               <th scope="col">Compétences</th>
               <th scope="col">Modules</th>
-              <th scope="col">Validés par vous le</th>
-              <th scope="col" class="pull-right">Validation</th>
+              <th scope="col">Date validés par le formateur</th>
+              <th scope="col">Date validés par l'étudiant</th>
           </tr>
         </thead>
         <tbody>
@@ -76,12 +72,7 @@
             <td>{{ skill.name }}</td>
             <td><span class="alignleft">{{ skill.module_name }}</span></td>
             <td>{{ skill.progression.teacher_validation_date | date }}</td>
-            <td>
-              <div class="pull-right">
-                <input id="toggle{{ skill.id }}" type="checkbox" class="checky teacher" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-                <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
-              </div>
-            </td>
+            <td>{{ skill.progression.student_validation_date | date }}</td>
           </tr>
           <br>
         </tbody>
