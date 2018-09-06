@@ -22,7 +22,8 @@ import { SiteHeaderComponent } from './_layout/site-header/site-header.component
 import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
 
 // Npm
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -36,6 +37,7 @@ import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profi
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
+import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -57,8 +59,8 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AtomSpinnerModule } from 'angular-epic-spinners';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +108,9 @@ import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-repor
     RoundProgressModule,
     ChartjsModule,
     AtomSpinnerModule,
-    PdfViewerModule
+    PdfViewerModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
