@@ -28,7 +28,7 @@ export class AdminPlanningsComponent implements OnInit {
     this.newPlanningForm = this.formBuilder.group({
       formation_id: ['', Validators.required],
       file_name: ['', Validators.required],
-  });
+    });
     this.apiService.get('calendars')
     .subscribe((data) => {
       this.calendars = data.data;
@@ -68,6 +68,28 @@ export class AdminPlanningsComponent implements OnInit {
     console.log('uploadData', uploadData);
     console.log('this.filename', this.filename);
     this.apiService.upload('calendar/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
+  editeCalendar(idCalendar): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) {
+        return;
+    }
+
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation', this.plan.formation_id.value);
+    uploadData.append('description', this.plan.file_name.value);
+    uploadData.append('url', this.filename, this.filename.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.filename', this.filename);
+    this.apiService.upload('calendar/' + idCalendar, uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
