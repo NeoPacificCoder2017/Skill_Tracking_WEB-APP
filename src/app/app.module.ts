@@ -56,8 +56,8 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
-import {AtomSpinnerModule} from 'angular-epic-spinners'
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {AtomSpinnerModule} from 'angular-epic-spinners';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,8 +103,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ReactiveFormsModule,
     RoundProgressModule,
     ChartjsModule,
-    AtomSpinnerModule,
-    PdfViewerModule
+    AtomSpinnerModule
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]

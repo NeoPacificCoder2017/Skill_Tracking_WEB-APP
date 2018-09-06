@@ -11,6 +11,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./admin-formation.component.css']
 })
 export class AdminFormationComponent implements OnInit {
+  newFormationImage: File;
+  newFormationForm: FormGroup;
   formations: any;
   formation: any;
   modules: any;
@@ -36,6 +38,7 @@ export class AdminFormationComponent implements OnInit {
   newPlanningForm: FormGroup;
   filename: File;
   formation_id: any = 1;
+  totalSkills: any;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -46,6 +49,11 @@ export class AdminFormationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newFormationForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      start_at: ['', Validators.required],
+      end_at: ['', Validators.required]
+  });
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
       teacher: ['', Validators.required],
@@ -209,6 +217,40 @@ export class AdminFormationComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+   // convenience getter for easy access to form fields
+   get f() { return this.newFormationForm.controls; }
+
+   onFileFormationChanged(event) {
+     console.log(event);
+     this.newFormationImage = event.target.files[0];
+   }
+
+  editeFormation(idFormation): any {
+    this.submitted = true;
+    if (this.newFormationForm.invalid && this.newFormationImage == null) {
+        return;
+    }
+
+    this.loading = true;
+    const start_at = this.f.start_at.value.split('/');
+    const end_at = this.f.end_at.value.split('/');
+    const uploadData = new FormData();
+    uploadData.append('name', this.f.name.value);
+    uploadData.append('start_at', start_at[2] + '-' + start_at[1] + '-' + start_at[0] + ' 00:00:00:00');
+    uploadData.append('end_at', end_at[2] + '-' + end_at[1] + '-' + end_at[0] + ' 00:00:00:00');
+    uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.newFormationImage', this.newFormationImage);
+    this.apiService.upload('formation/' + idFormation, uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
 
   deleteModule(idModule): any {
     console.log('idModule', idModule);
