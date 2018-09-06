@@ -9,6 +9,7 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -28,6 +29,9 @@ import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { StudentReportComponent } from './student/student-report/student-report.component';
+import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
+import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
+import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
 
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -56,7 +60,7 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
-import {AtomSpinnerModule} from 'angular-epic-spinners'
+import {AtomSpinnerModule} from 'angular-epic-spinners';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   declarations: [
@@ -70,6 +74,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     LoginComponent,
     StudentDashboardComponent,
     StudentReportComponent,
+    StudentDetailReportComponent,
+    StudentCreateReportComponent,
+    StudentPlanningComponent,
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
@@ -102,6 +109,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsModule,
     ReactiveFormsModule,
     RoundProgressModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     ChartjsModule,
     AtomSpinnerModule,
     PdfViewerModule
