@@ -81,7 +81,7 @@ export class AdminStudentsComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.newStudentImage', this.newStudentImage);
-    this.apiService.upload('createStudent', uploadData)
+    this.apiService.post('createStudent', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
@@ -109,7 +109,7 @@ export class AdminStudentsComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.newStudentImage', this.newStudentImage);
-    this.apiService.upload('user/update', uploadData)
+    this.apiService.post('user/update', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();

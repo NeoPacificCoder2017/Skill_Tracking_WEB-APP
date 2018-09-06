@@ -73,7 +73,7 @@ export class AdminAdminsComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.newAdminImage', this.newAdminImage);
-    this.apiService.upload('register', uploadData)
+    this.apiService.post('register', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();

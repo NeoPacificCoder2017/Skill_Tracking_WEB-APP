@@ -41,7 +41,7 @@ export class ApiService {
     return this.http.post(apiUrl + url, data, this.httpOptions);
   }
 
-  upload (url, data): any {
+  upload (url, data, method): any {
     this.me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {
       headers: new HttpHeaders({
@@ -50,7 +50,12 @@ export class ApiService {
       })
 
     };
-    return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+    if (method = 'put') {
+      return this.http.put(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+    } else {
+      return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+    }
+
   }
 
   put (url, data): any {

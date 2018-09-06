@@ -67,7 +67,7 @@ export class AdminPlanningsComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.filename', this.filename);
-    this.apiService.upload('calendar/create', uploadData)
+    this.apiService.post('calendar/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
@@ -89,7 +89,7 @@ export class AdminPlanningsComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.filename', this.filename);
-    this.apiService.upload('calendar/' + idCalendar, uploadData)
+    this.apiService.post('calendar/' + idCalendar, uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();

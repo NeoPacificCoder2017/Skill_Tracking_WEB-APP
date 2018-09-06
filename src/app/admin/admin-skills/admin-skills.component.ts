@@ -18,6 +18,7 @@ export class AdminSkillsComponent implements OnInit {
   module: any;
   progresseBySkill: any;
   skills: any;
+  selectedSkills: number[] = [0];
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -60,4 +61,30 @@ export class AdminSkillsComponent implements OnInit {
     this.location.back();
   }
 
+  onChange(skillId) {
+    console.log('onChange');
+    const index = this.selectedSkills.indexOf(skillId);
+    if (index === -1) {
+      this.selectedSkills.push(skillId);
+    } else {
+      this.selectedSkills.splice(index, 1);
+    }
+  }
+
+  isAdminValidated(skillId) {
+    return this.selectedSkills.indexOf(skillId) >= 0;
+  }
+
+  stateText(skillId) {
+    return (this.selectedSkills.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
+  }
+
+  skillObligationByAdmin() {
+    for (let i = 0; i < this.skills.length; i++ ) {
+      if ( this.skills[i].progression.teacher_validation === 0) {
+        // this.skillValidatedByTeacher(this.skills[i].id);
+        //   this.stateText(this.skills[i].id);
+      }
+    }
+  }
 }

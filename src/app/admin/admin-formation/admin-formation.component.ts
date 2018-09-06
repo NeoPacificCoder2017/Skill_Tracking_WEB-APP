@@ -40,6 +40,20 @@ export class AdminFormationComponent implements OnInit {
   formation_id: any = 1;
   totalSkills: any;
 
+  // format de la date de formation start_at
+  dateSplitedStart: any;
+  dateStart: any;
+  yearStart: any;
+  monthStart: any;
+  daysStart: any;
+
+  // format de la date de formation start_at
+  dateSplitedEnd: any;
+  dateEnd: any;
+  yearEnd: any;
+  monthEnd: any;
+  daysEnd: any;
+
   constructor(private location: Location,
     private apiService: ApiService,
     private router: Router,
@@ -91,6 +105,32 @@ export class AdminFormationComponent implements OnInit {
       .subscribe((data) => {
         this.formation = data;
         console.log('getFormation', this.formation);
+        // changement du format de la date de début de la formation
+        this.dateSplitedStart = data.start_at.split(' ');
+        this.dateStart = this.dateSplitedStart[0].split('-');
+        this.yearStart = this.dateStart[0];
+        this.monthStart = this.dateStart[1];
+        this.daysStart = this.dateStart[2];
+
+        console.log('dateSplitedStart', this.dateSplitedStart);
+        console.log('dateStart', this.dateStart);
+        console.log('yearStart', this.yearStart);
+        console.log('monthStart', this.monthStart);
+        console.log('daysStart', this.daysStart);
+
+        // changement du format de la date de fin de la formation
+        this.dateSplitedEnd = data.end_at.split(' ');
+        this.dateEnd = this.dateSplitedEnd[0].split('-');
+        this.yearEnd = this.dateEnd[0];
+        this.monthEnd = this.dateEnd[1];
+        this.daysEnd = this.dateEnd[2];
+
+        console.log('dateSplitedEnd', this.dateSplitedEnd);
+        console.log('dateEnd', this.dateEnd);
+        console.log('yearEnd', this.yearEnd);
+        console.log('monthEnd', this.monthEnd);
+        console.log('daysEnd', this.daysEnd);
+
       });
   }
 
@@ -151,13 +191,6 @@ export class AdminFormationComponent implements OnInit {
     this.router.navigate(['admin/profileTeacher'], { queryParams: { idTeacher: idTeacher } });
   }
 
-  editeModule(idModule) {
-    console.log('idModule', idModule);
-    this.dropDown = !this.dropDown;
-    this.displayOff = this.dropDown ? 'inline' : 'none';
-    this.displayOne = this.dropDown ? 'inline' : 'inline';
-  }
-
   goToSkill(moduleId) {
     console.log('goToSkill', moduleId);
     this.router.navigate(['/admin/skills'], { queryParams: { idModule: moduleId } });
@@ -180,7 +213,7 @@ export class AdminFormationComponent implements OnInit {
     uploadData.append('total_hours', this.m.total_hours.value);
 
     console.log('uploadData', uploadData);
-    this.apiService.upload('module/create', uploadData)
+    this.apiService.post('module/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
@@ -188,47 +221,47 @@ export class AdminFormationComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
-  get plan() { return this.newPlanningForm.controls; }
+  // // convenience getter for easy access to form fields
+  // get plan() { return this.newPlanningForm.controls; }
 
-  onFileChanged(event) {
+  // onFileChanged(event) {
+  //   console.log(event);
+  //   this.filename = event.target.files[0];
+  // }
+
+  // createCalendar(): any {
+  //   this.submitted = true;
+  //   if (this.newPlanningForm.invalid && this.filename == null) {
+  //       return;
+  //   }
+
+  //   this.loading = true;
+  //   const uploadData = new FormData();
+  //   uploadData.append('formation_id', this.formation_id);
+  //   uploadData.append('file_name', this.plan.file_name.value);
+  //   uploadData.append('file_url', this.filename, this.filename.name);
+
+  //   console.log('uploadData', uploadData);
+  //   console.log('this.filename', this.filename);
+  //   this.apiService.post('calendar/create', uploadData)
+  //   .subscribe(data => {
+  //     const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+  //     element.click();
+  //     this.ngOnInit();
+  //   });
+  // }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.newFormationForm.controls; }
+
+  onFileFormationChanged(event) {
     console.log(event);
     this.filename = event.target.files[0];
   }
 
-  createCalendar(): any {
-    this.submitted = true;
-    if (this.newPlanningForm.invalid && this.filename == null) {
-        return;
-    }
-
-    this.loading = true;
-    const uploadData = new FormData();
-    uploadData.append('formation_id', this.formation_id);
-    uploadData.append('file_name', this.plan.file_name.value);
-    uploadData.append('file_url', this.filename, this.filename.name);
-
-    console.log('uploadData', uploadData);
-    console.log('this.filename', this.filename);
-    this.apiService.upload('calendar/create', uploadData)
-    .subscribe(data => {
-      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-      element.click();
-      this.ngOnInit();
-    });
-  }
-
-   // convenience getter for easy access to form fields
-   get f() { return this.newFormationForm.controls; }
-
-   onFileFormationChanged(event) {
-     console.log(event);
-     this.newFormationImage = event.target.files[0];
-   }
-
   editeFormation(idFormation): any {
     this.submitted = true;
-    if (this.newFormationForm.invalid && this.newFormationImage == null) {
+    if (this.newFormationForm.invalid && this.filename == null) {
         return;
     }
 
@@ -239,11 +272,11 @@ export class AdminFormationComponent implements OnInit {
     uploadData.append('name', this.f.name.value);
     uploadData.append('start_at', start_at[2] + '-' + start_at[1] + '-' + start_at[0] + ' 00:00:00:00');
     uploadData.append('end_at', end_at[2] + '-' + end_at[1] + '-' + end_at[0] + ' 00:00:00:00');
-    uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
+    uploadData.append('logo', this.filename, this.filename.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.newFormationImage', this.newFormationImage);
-    this.apiService.upload('formation/' + idFormation, uploadData)
+    console.log('this.filename', this.filename);
+    this.apiService.post('editFormation/' + idFormation, uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
