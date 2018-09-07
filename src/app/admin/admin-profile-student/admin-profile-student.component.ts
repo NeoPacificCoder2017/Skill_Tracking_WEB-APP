@@ -12,17 +12,37 @@ import { Location } from '@angular/common';
 })
 export class AdminProfileStudentComponent implements OnInit {
 
+  idStudent: any;
+  profileStudent: any;
+  environment = environment;
+
   constructor(private location: Location,
     private apiService: ApiService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.profileStudent = {};
+     }
 
   ngOnInit() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.idStudent = params.idStudent;
+        this.getProfileStudent();
+      });
   }
 
   goBack() {
     this.location.back();
+  }
+
+  getProfileStudent(): any {
+    this.apiService.get('studentProfil/' + this.idStudent)
+      .subscribe((data) => {
+        console.log('idStudent', this.idStudent);
+        this.profileStudent = data;
+        console.log('getProfileStudent', this.profileStudent);
+      });
   }
 
 }

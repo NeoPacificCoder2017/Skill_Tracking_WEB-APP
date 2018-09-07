@@ -1,3 +1,25 @@
-<p>
-  admin-profile-admin works!
-</p>
+<div class="page-title">
+  <div class="title_left">
+    <h3></h3>
+  </div>
+  <div class="title_right">
+    <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
+    <button data-toggle="modal" data-target="#modalFormation" class="rounded btn bg-blue icon no-border alignright" style="margin: 9px;"><i class="glyphicon glyphicon-pencil"></i></button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <img src="{{ environment.appImageUrl }}{{ profileAdmin.avatar }}" alt="Photo de {{ profileAdmin.firstname }} {{ profileAdmin.lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+  </div>
+</div>
+<div class="row" style="margin-bottom: 10px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h3 style="margin: 13px 0 0 10px;">{{ profileAdmin.firstname }} {{ profileAdmin.lastname }}</h3>
+  </div>
+</div>
+<div class="row" style="margin-bottom: 50px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h4 style="margin: 5px 0 0 5px;">{{ profileAdmin.email }} | {{ profileAdmin.phone_number }} | {{ profileAdmin.birthday_date }} | {{ profileAdmin.gender }}</h4>
+  </div>
+</div>

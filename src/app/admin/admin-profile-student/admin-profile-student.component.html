@@ -4,23 +4,23 @@
   </div>
   <div class="title_right">
     <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
-    <button data-toggle="modal" data-target="#modalFormation" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+    <button data-toggle="modal" data-target="#modalFormation" class="rounded btn bg-blue icon no-border alignright" style="margin: 9px;"><i class="glyphicon glyphicon-pencil"></i></button>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <img src="{{ environment.appImageUrl }}{{ avatar }}" alt="Photo de {{ firstname }} {{ lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
+    <img src="{{ environment.appImageUrl }}{{ profileStudent.avatar }}" alt="Photo de {{ profileStudent.firstname }} {{ profileStudent.lastname }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 10px;">
   <div class="col-md-12" style="text-align: center;">
-    <h3 style="margin: 13px 0 0 10px;">{{ firstname }} {{ lastname }}</h3>
+    <h3 style="margin: 13px 0 0 10px;">{{ profileStudent.firstname }} {{ profileStudent.lastname }}</h3>
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
   <div class="col-md-12" style="text-align: center;">
-    <h4 style="margin: 5px 0 0 5px;">{{ email }} | {{ phone_number }} | {{ birthday_date }} | {{ gender }}</h4>
+    <h4 style="margin: 5px 0 0 5px;">{{ profileStudent.email }} | {{ profileStudent.phone_number }} | {{ profileStudent.birthday_date }} | {{ profileStudent.gender }}</h4>
   </div>
 </div>
 
@@ -30,8 +30,8 @@
 <div class="row">
   <div class="col-md-12">
     <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1" [class.bg-dark]="tabSelected != 1">Formation</button>
-    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">Étudiants</button>
-    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Modules</button>
+    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">compétences</button>
+    <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Rapports</button>
   </div>
 </div>
 
