@@ -37,7 +37,6 @@ export class AdminFormationComponent implements OnInit {
   selectedColor: string;
   newPlanningForm: FormGroup;
   filename: File;
-  formation_id: any = 1;
   totalSkills: any;
   
   constructor(private location: Location,
@@ -133,7 +132,8 @@ export class AdminFormationComponent implements OnInit {
     }
     
     private getPlannings() {
-      this.apiService.get('getCalendarOfFormation/'+this.formation_id)
+      console.log('this.idFormation', this.idFormation);
+      this.apiService.get('getCalendarOfFormation/'+this.idFormation)
       .subscribe((data) => {
         this.calendar = data;
         console.log('getPlannings', this.calendar);
@@ -202,17 +202,19 @@ export class AdminFormationComponent implements OnInit {
       
       this.loading = true;
       const uploadData = new FormData();
-      uploadData.append('formation_id', this.formation_id);
+      uploadData.append('formation_id', this.idFormation);
       uploadData.append('file_name', this.filename.name);
       uploadData.append('file_url', this.filename, this.filename.name);
       
       console.log('uploadData', uploadData);
       console.log('this.filename', this.filename);
+      console.log('idFormation', this.idFormation);
       this.apiService.upload('calendar/create', uploadData)
       .subscribe(data => {
         const element: HTMLElement = document.getElementById('closeModalCalendar') as HTMLElement;
         element.click();
-        this.deleteOldCalendar();
+        if(this.calendar) this.deleteOldCalendar();
+        else this.ngOnInit();
       });
     }
 
