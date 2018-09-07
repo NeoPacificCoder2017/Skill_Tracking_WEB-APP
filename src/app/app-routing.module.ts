@@ -85,7 +85,8 @@ const routes: Routes = [
       { path: 'admin/profileTeacher', component: AdminProfileTeacherComponent},
       { path: 'admin/profileAdmin', component: AdminProfileAdminComponent},
       { path: 'admin/studentModule', component: AdminStudentModuleComponent},
-    ]
+    ],
+    runGuardsAndResolvers: 'always'
   },
 
   // DEFAULT
