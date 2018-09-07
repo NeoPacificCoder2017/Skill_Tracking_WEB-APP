@@ -16,6 +16,7 @@ export class AdminProfileTeacherComponent implements OnInit {
   environment = environment;
   dataTeacher: any;
   idTeacher: any;
+  teacherProfile: any;
   tabSelected = 1;
 
   constructor(private location: Location,
@@ -23,13 +24,15 @@ export class AdminProfileTeacherComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
-   ) { }
+   ) { 
+    this.teacherProfile = {};
+   }
 
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
         this.idTeacher = params.idTeacher;
-        this.getFormations();
+        this.getprofileTeacher();
       });
   }
 
@@ -37,11 +40,11 @@ export class AdminProfileTeacherComponent implements OnInit {
     this.location.back();
   }
 
-  public getFormations(): any {
-    this.apiService.get('teacher/myFormations')
+  public getprofileTeacher(): any {
+    this.apiService.get('studentProfil/' + this.idTeacher)
     .subscribe((data) => {
-      this.listFormations = data.data;
-      console.log('this.listFormations', this.listFormations);
+      this.teacherProfile = data;
+      console.log('getprofileTeacher', this.teacherProfile);
     });
   }
 

@@ -1,2 +1,20 @@
-<router-outlet></router-outlet>
+
+    
+   <router-outlet>
+    <div id="loadingWrapper" class="loadingWrapper" *ngIf="!onlineOffline">
+        <div class="loadingBoxWrapper">
+            <div class="loadingBox">
+            <app-scaling-squares-spinner
+            [animationDuration]="1250"
+            [size]="65"
+            [color]="'#A3A1FB'"
+            ></app-scaling-squares-spinner>
+        </div>
+        <div class="loadingBoxText">
+            Il semblerait qu'il y ait un problème de connexion.<br /><br />
+            <button class="btn bg-purple" (click)="reloadPage()">Réessayer</button>
+        </div>
+    </div>
+    </div>
+   </router-outlet>
 

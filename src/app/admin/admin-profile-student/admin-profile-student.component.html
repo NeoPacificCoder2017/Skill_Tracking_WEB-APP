@@ -30,44 +30,29 @@
 <div class="row">
   <div class="col-md-12">
     <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1" [class.bg-dark]="tabSelected != 1">Formation</button>
-    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">compétences</button>
+    <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">Compétences validées</button>
     <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Rapports</button>
   </div>
 </div>
 
-<!-- Liste des Teachers -->
+<!-- Liste des Formations -->
 <div class="row" *ngIf="tabSelected === 1">
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <div *ngIf="teachers.length == 0" class="mid_center" style="margin-top: 50px;">
-          <p>Il n'y a pas encore de formateurs</p>
-          <button class="btn bg-blue">Ajoutez le premier formateur</button>
-        </div>
-        <table *ngIf="teachers.length > 0" class="table table-borderless space" style="color: #999">
+        <table class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
-              <th scope="col">Modules</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let teacher of teachers" class="shadow bg-white rad text-row">
+            <tr *ngFor="let formation of profileStudent.formations" class="shadow bg-white rad text-row">
               <th></th>
-              <th scope="row" width="40" >{{ teacher.id }}</th>
-              <td>
-                <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" width="100%">
-                <div class="pull-left" style="margin: 13px 0 0 10px;">
-                  <span class="alignleft">{{teacher.lastname}}</span><br/>
-                  <span class="alignleft">{{teacher.firstname}}</span>
-                </div>
-              </td>
-              <td>
-                  <button class="btn btn-round bg-purple no-border left" *ngFor="let module of teacher.modules">{{ module.name }}</button>
-              </td>
+              <th scope="row" width="40" >{{ formation.id }}</th>
+              <td>{{ formation.name }}</td>
             </tr>
           </tbody>
         </table>
@@ -130,46 +115,26 @@
   </div>
 </div>
 
-<!-- Liste des modules -->
+<!-- Liste des rapports -->
 <div class="row" *ngIf="tabSelected === 3">
   <div class="col-md-12">
-    <div class="row" *ngIf="modules.length > 0">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <div class="input-group pull-right row" style="display: flex;">
-          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#ModalModule">Ajouter un module</button>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
-        <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
-          <p>Il n'y a pas encore de modules</p>
-          <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#ModalModule">Ajoutez le premier module</button>
-        </div>
-        <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
+        <table class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
               <th scope="col">#</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col">Intitulé</th>
-              <th scope="col">Nombre de compétence</th>
-              <th></th>
+              <th scope="col">Titre</th>
+              <th scope="col">Date de création</th>
+              <th scope="col">Date de modification</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let module of modules" class="shadow bg-white rad text-row">
-              <th></th>
-              <th scope="row" width="40" >{{module.id}}</th>
-              <td></td>
-              <td></td>
-
-              <td class="">
-                <a [ngStyle]="{display:displayOff}"><span class="alignleft">{{module.name}}</span></a>
-                <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.name}}"></div>
-              </td>
-              <td><a class="btn btn-round bg-green no-border left">{{ module.skills.length }}</a></td>
+            <tr *ngFor="let report of reportStudent" class="shadow bg-white rad text-row">
+              <th scope="row" width="40" >{{report.id}}</th>
+              <td class="">{{report.title}}</td>
+              <td class="">{{report.created_at | date}}</td>
+              <td class="">{{report.updated_at | date}}</td>
             </tr>
             <br>
           </tbody>

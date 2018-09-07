@@ -12,8 +12,12 @@ import { Location } from '@angular/common';
 })
 export class AdminProfileStudentComponent implements OnInit {
 
+  tabSelected = 1;
   idStudent: any;
   profileStudent: any;
+  formationStudent: any;
+  skillsStudent: any;
+  reportStudent: any;
   environment = environment;
 
   constructor(private location: Location,
@@ -29,6 +33,8 @@ export class AdminProfileStudentComponent implements OnInit {
       .subscribe(params => {
         this.idStudent = params.idStudent;
         this.getProfileStudent();
+        this.getReportStudent();
+        this.getSkillStudentValidated();
       });
   }
 
@@ -42,6 +48,24 @@ export class AdminProfileStudentComponent implements OnInit {
         console.log('idStudent', this.idStudent);
         this.profileStudent = data;
         console.log('getProfileStudent', this.profileStudent);
+      });
+  }
+
+  getReportStudent(): any {
+    this.apiService.get('reportForAdminByStudentId/' + this.idStudent)
+      .subscribe((data) => {
+        console.log('idStudent', this.idStudent);
+        this.reportStudent = data;
+        console.log('getReportStudent', this.reportStudent);
+      });
+  }
+
+  getSkillStudentValidated(): any {
+    this.apiService.get('getProgressionForAdminByStudentId/' + this.idStudent)
+      .subscribe((data) => {
+        console.log('idStudent', this.idStudent);
+        this.skillsStudent = data;
+        console.log('getSkillStudentValidated', this.skillsStudent);
       });
   }
 
