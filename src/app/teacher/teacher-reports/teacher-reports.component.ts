@@ -21,7 +21,6 @@ export class TeacherReportsComponent implements OnInit {
   students = [];
   report: any;
   displayViewReport = 0;
-  displayEditReport = 0;
 
   constructor(
     private apiService: ApiService,
@@ -43,7 +42,7 @@ export class TeacherReportsComponent implements OnInit {
 
     }
 
-    // recuperer la liste des rapports d une formation
+    // recuperer la liste des rapports des toutes formations confondues
     public getReports() {
       this.apiService.get('report/reportsAvailableForTeacher').subscribe(data => {
         this.dataReport = data;
@@ -80,18 +79,6 @@ export class TeacherReportsComponent implements OnInit {
       this.displayViewReport = 1;
       console.log('displayViewReport', this.displayViewReport);
       this.report = item;
-      this.displayEditReport = (this.me.user_id === this.report.student_id) ? 1 : 0;
-
-      //     this.dataDetailReport.report_id = report_id;
-      //     this.dataDetailReport.report_title = report_title;
-      //     this.dataDetailReport.report_rate = report_rate;
-      //     this.dataDetailReport.student_id = student_id;
-      //     this.dataDetailReport.text = text;
-      //     this.dataDetailReport.created_date = created_date;
-      //     this.dataDetailReport.last_edit_date = last_edit_date;
-      //     this.dataDetailReport.is_daily = is_daily;
-      // return this.dataDetailReport[];
-      // this.router.navigate(['/student/report'], {queryParams : { report_id : report_id }} );
     }
 
     closeViewReport() {
