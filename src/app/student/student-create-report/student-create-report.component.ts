@@ -64,7 +64,7 @@ export class StudentCreateReportComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     this.apiService.post('report/create', uploadData).subscribe(data => {
-      console.log('sauvegarder');
+      console.log('sauvegardé');
       this.ngOnInit();
     });
   }
