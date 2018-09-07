@@ -62,7 +62,7 @@ export class StudentCreateReportComponent implements OnInit {
     uploadData.append('is_daily', this.f.is_daily.value);
     uploadData.append('date', created_date);
 
-    console.log('uploaData', uploadData);
+    console.log('uploadData', uploadData);
     this.apiService.post('report/create', uploadData).subscribe(data => {
       console.log('sauvegarder');
       this.ngOnInit();
