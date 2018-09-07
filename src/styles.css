@@ -4448,14 +4448,26 @@ html , body{
         background: #f3f5f7;
         z-index: 9;
     }
-    .loadingBox {
-        width: 60px;
-        height: 60px;
+    .loadingBoxWrapper {
+        width: 100%;
+        height: 200px;
         position: absolute;
         top: 50%;
+        margin-top: -100px;
+    }
+    .loadingBox {
+        width: 65px;
+        height: 65px;
+        position: relative;
+        top: 0;
         left: 50%;
-        margin-left: -60px;
-        margin-top: -60px;
+        margin-left: -32.5px;
+    }
+    .loadingBoxText {
+        width: 100%;
+        text-align: center;
+        clear: both;
+        margin-top: 30px;
     }
    /*
    .x_content {

@@ -9,12 +9,12 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
     <img src="{{ environment.appLogoUrl }}{{ formation.logo }}" style="height: 200px; width: 200px; margin: 0 auto;" class="img-circle img-responsive" />
   </div>
 </div>
 <div class="row" style="margin-bottom: 50px;">
-  <div class="col-md-12" style="text-align: center;">
+  <div class="col-md-12 col-sd-12 col-xs-12" style="text-align: center;">
     <h3>Formation : {{ formation.name }}</h3>
     <button class="btn bg-dark "><i class="fa fa-calendar"></i> début : {{ formation.start_at | date }}</button>
     <button class="btn bg-dark "><i class="fa fa-calendar"></i> fin : {{ formation.end_at | date }}</button>
@@ -24,7 +24,7 @@
 <div class="clearfix"></div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
     <button class="btn" (click)="tabSelected = 1" [class.bg-purple]="tabSelected == 1" [class.bg-dark]="tabSelected != 1">Formateurs</button>
     <button class="btn" (click)="tabSelected = 2" [class.bg-purple]="tabSelected == 2" [class.bg-dark]="tabSelected != 2">Étudiants</button>
     <button class="btn" (click)="tabSelected = 3" [class.bg-purple]="tabSelected == 3" [class.bg-dark]="tabSelected != 3">Modules</button>
@@ -34,9 +34,9 @@
 
 <!-- Liste des Teachers -->
 <div class="row" *ngIf="tabSelected === 1">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="teachers.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de formateurs</p>
           <button class="btn bg-blue">Ajoutez le premier formateur</button>
@@ -79,9 +79,9 @@
 
 <!-- Liste des Students -->
 <div class="row" *ngIf="tabSelected === 2">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore d'apprentis</p>
           <button class="btn bg-blue">Ajoutez le premier apprenti</button>
@@ -137,7 +137,7 @@
 
 <!-- Liste des modules -->
 <div class="row" *ngIf="tabSelected === 3">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
     <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group pull-right row" style="display: flex;">
@@ -146,7 +146,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de modules</p>
           <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#ModalModule">Ajoutez le premier module</button>
@@ -198,7 +198,7 @@
 
 <!-- Liste des Plannings -->
 <div class="row" *ngIf="tabSelected === 4">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sd-12 col-xs-12">
       <div class="row" *ngIf="modules.length > 0">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
           <div class="input-group pull-right row" style="display: flex;">
@@ -207,38 +207,15 @@
         </div>
       </div>
     <div class="row">
-      <div class="col-md-12">
-        <div *ngIf="calendars.length == 0" class="mid_center" style="margin-top: 50px;">
+      <div class="col-md-12 col-sd-12 col-xs-12">
+        <div *ngIf="!calendar" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de planning</p>
           <button class="btn bg-blue">Ajoutez le premier planning</button>
         </div>
-        
-        <table *ngIf="calendars.length > 0" class="table table-borderless space" style="color: #999">
-          <thead class="">
-            <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
-              <th scope="col">#</th>
-              <th scope="col">Formation</th>
-              <th scope="col"></th>
-              <th scope="col">Description</th>
-              <th scope="col" class="pull-right">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let calend of calendars" class="shadow bg-white rad text-row">
-              <th></th>
-              <th scope="row" width="40" >{{ calend.id }}</th>
-              <td>{{ calend.name }}</td>
-              <th></th>
-              <td>{{ calend.file_name }}</td>
-              <td>
-                <a (click)="deleteCalendar(calendarId)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-                <a (click)="editeCalendar(calendarId)" class="rounded btn bg-blue icon no-border alignright"><i class="fa fa-edit"></i></a>
-                <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="mid_center" style="margin-top: 50px;">
+          <div><i class="fa fa-file-pdf-o purple" style="font-size: 50px; margin: 20px 0;"></i></div>
+          <a href="{{ environment.appCalendarUrl }}{{ calendar.file_url }}" target="_blank" class="btn bg-purple">Télécharger</a>
+          <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Modifier le planning</button>
       </div>
     </div>
   </div>
@@ -383,29 +360,19 @@
         <div class="modal-body">
           <form [formGroup]="newPlanningForm" class="form-horizontal form-label-left">
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file_name">Description</label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" formControlName="file_name" class="form-control col-md-7 col-xs-12" id="file_name" aria-describedby="file_nameHelp" [ngClass]="{ 'is-invalid': submitted && plan.file_name.errors }">
-              </div>
-              <div *ngIf="submitted && plan.file_name.errors" class="invalid-feedback">
-                <div *ngIf="plan.file_name.errors.required">La description est requis</div>
-              </div>
-            </div>
-            <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file_url">Fichier PDF</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="file" (change)="onFileChanged($event)" id="file_url">
               </div>
               <div *ngIf="submitted && filename == null" class="invalid-feedback">
-                <div>Un PDF est requise</div>
+                <div>Un PDF est requis</div>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
+          <button type="button" id="closeModalCalendar" class="btn bg-red icon no-border" data-dismiss="modal">Close</button>
           <button  type="button" [disabled]="loading" (click)="createCalendar()" class="btn bg-blue icon no-border">Ajouter</button>
-          <button *ngIf=""  type="button" [disabled]="loading" (click)="editeCalendar(id)" class="btn bg-blue icon no-border">editer</button>
         </div>
       </div>
     </div>
