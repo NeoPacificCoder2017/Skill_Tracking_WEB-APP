@@ -1,0 +1,94 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3 *ngIf="!displayViewReport">Liste des rapports</h3>
+  </div>
+
+
+<div class="clearfix"></div>
+<!-- CHAMPS RECHERCHE -->
+<div class="row" *ngIf="!displayViewReport">
+  <!-- champ de recherche par auteur a mettre dynamiquement -->
+  <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
+    <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
+    <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+      <select class="form-control">
+        <option value="student_id.id" *ngFor="let student of students">{{ student.lastname }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- champ recherche par date picker -->
+  <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+    </div>
+  </div>
+
+</div>
+<!-- Liste des Rapports -->
+<div class="row" *ngIf="!displayViewReport">
+  <div class="col-md-12 col-xd-12">
+    <!-- Tableaux des Rapports -->
+    <table class="table table-borderless space" style="color: #999">
+      <thead class="">
+        <tr class="tablecolor rad text-row">
+          <th scope="col"></th>
+          <th scope="col">#</th>
+          <th scope="col">Titre</th>
+          <th scope="col">Auteur</th>
+          <th scope="col">Date de création</th>
+          <th scope="col">Dernière modification</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
+          <td></td>
+          <td scope="row" width="40">{{ item.report_id }}</td>
+          <td>{{ item.report_title }}</td>
+          <td>{{ item.student.firstname }} {{ item.student.lastname }}</td>
+          <td>
+            <span class="alignleft">{{ item.report_date }}</span>
+          </td>
+          <td>{{ item.update_at }}</td>
+          <td></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="viewReport" *ngIf="displayViewReport">
+
+  <button style="margin-bottom: 50px;" type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
+  <!-- div sans formulaire si consultation-->
+
+  <div>
+
+  </div>
+
+  <div class="container" id="viewOnly">
+    <div class="item row">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12  " for="name">Titre <span>*</span></label>
+      <div class=" col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
+    </div>
+    <div class="item row">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.report_rate}} </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="pull-right row">
+        <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
+      </div>
+    </div>
+    <div class="item row">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span></label>
+      <div class="col-md-12 col-sm-12 col-xs-12 row"> {{report.report_text}} </div>
+    </div>
+  </div>
+</div>

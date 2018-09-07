@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-skills',
@@ -15,30 +16,48 @@ export class AdminSkillsComponent implements OnInit {
   environment = environment;
   idModule: any;
   module: any;
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
+  progresseBySkill: any;
+  skills: any;
+
+  constructor(private location: Location,
+    private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute) {
+      this.module = {};
+      this.progresseBySkill = {};
+      this.skills = {};
+    }
 
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
         this.idModule = params.idModule;
-        this.getModule();
-        this.getSkills();
+
+        this.apiService.get('module/' + this.idModule)
+        .subscribe((data) => {
+          this.module = data;
+          console.log('id :', this.idModule);
+          console.log('module', this.module);
+        });
+
+        this.apiService.get('skillsByModule/' + this.idModule)
+        .subscribe((data) => {
+          this.listSkill = data[0].skills;
+          console.log('getListSkill', this.listSkill);
+        });
+
+        this.apiService.get('progressionsBySkills')
+        .subscribe((data) => {
+          this.progresseBySkill = data;
+          console.log('progressionsBySkills', this.progresseBySkill);
+        });
+
       });
   }
 
-  public getModule(): any {
-    this.apiService.get('module/' + this.idModule)
-      .subscribe((data) => {
-        this.module = data;
-        console.log('module data', this.module);
-      });
+  goBack() {
+    this.location.back();
   }
 
-  public getSkills(): any {
-    this.apiService.get('skillsByModule/' + this.idModule)
-      .subscribe((data) => {
-        this.listSkill = data.data;
-        console.log('listSkill data', this.listSkill);
-      });
-  }
 }

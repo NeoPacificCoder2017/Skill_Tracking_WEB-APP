@@ -1,41 +1,41 @@
-<form id="search">
-    <!-- champ de recherche par auteur -->
-    <div class="col-xs-12 form-group top_search" id="search_author">
-        <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
-        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <select class="form-control">
-            <option></option>
-            <option>MANA Kevin</option>
-            <option>TEPA Vaiarii</option>
-            <option>TKT Cedric</option>
-            <option>TUHITI Christ</option>
-          </select>
-        </div>
-      </div>
-  <!-- champ recherche par date picker -->
-  <div class="col-xs-12 form-group top_search" id="search_date">
-    <div class="col-md-9 col-sm-9 col-xs-9">
-      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
-      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
-    </div>
-  </div>
-  <!-- champ rechercher -->
-  <div class="col-xs-12 form-group top_search" id="search_field">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Rechercher...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Liste des rapports</h3>
   </div>
   <!-- bouton ajouter -->
-  <div class="glyphicon glyphicon-plus"></div>
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group pull-right">
+        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un rapport</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-</form>
+<div class="clearfix"></div>
+<!-- CHAMPS RECHERCHE -->
+<div class="row" *ngIf="!displayViewReport">
+
+  <!-- champ de recherche par auteur a mettre dynamiquement -->
+  <div class="col-md-5 col-sm-5 col-xs-12 form-group" id="search_author">
+    <div class="input-group">
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
+        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- champ recherche par date picker -->
+  <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
+    <div class="col-md-9 col-sm-9 col-xs-9">
+      <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
+    </div>
+  </div>
+
+</div>
 <!-- Liste des formations -->
-<div class="row">
-  <div class="col-md-12">
+<div class="row" *ngIf="!displayViewReport">
+  <div class="col-md-12 col-xd-12">
     <!-- Tableau des formations -->
     <table class="table table-borderless space" style="color: #999">
       <thead class="">
@@ -43,22 +43,98 @@
           <th scope="col"></th>
           <th scope="col">#</th>
           <th scope="col">Auteur</th>
+          <th scope="col">Titre du rapport</th>
           <th scope="col">Date de création</th>
           <th scope="col">Dernière modification</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row">
+
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
+          <td>{{item.report_title}}</td>
           <td>
-            <span class="alignleft">{{ item.created_date }}</span>
+            <span class="alignleft">{{ item.created_date  | date:format }}</span>
           </td>
-          <td>{{ item.last_edit_date }}</td>
+          <td>{{ item.last_edit_date | date:format }}</td>
+          <td></td>
+
         </tr>
-        <br>
       </tbody>
     </table>
   </div>
 </div>
+
+<div id="viewReport" *ngIf="displayViewReport">
+
+  <button type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
+
+  <!-- div sans formulaire si consultation-->
+  <div id="viewOnly" *ngIf="!displayEditReport">
+    <div class="item">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span>*</span></label>
+      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
+    </div>
+    <div class="item">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        {{report.report_rate}}
+      </div>
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+      <div class="pull-right">
+        <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item">
+        <label class="col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          {{report.text}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- div avec formulaire si rapport appartient a l etudiant connecte -->
+  <div id='editReport' *ngIf="displayEditReport">
+    <!-- titre -->
+    <div class="item form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span class="required">*</span></label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="" required="required" type="text">
+      </div>
+    </div>
+    <!-- rating -->
+    <div class="item form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+      </div>
+    </div>
+    <div>
+      <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="pull-right">
+          <input id="toggle{{ report.is_daily }}" type="checkbox" class="checky" [checked]="report.is_daily">
+          <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group modal-body">
+      <div class="x_content jumbotron">
+        <div [froalaEditor] id="text" [(froalaModel)]="report.text">
+        </div>
+      </div>
+      <div>
+        <button  type="button" [disabled]="loading" (click)="saveReport()" class="btn bg-blue icon no-border">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+

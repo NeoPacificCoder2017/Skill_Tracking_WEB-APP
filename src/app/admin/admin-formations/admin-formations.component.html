@@ -70,7 +70,6 @@
           </td>
           <td style="width: 124px;">
             <button (click)="deleteFormation(formation.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
-            <button (click)="showFormation(formation.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
           </td>
         </tr>
         <br>
@@ -133,6 +132,7 @@
       <div class="modal-footer">
         <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
         <button  type="button" [disabled]="loading" (click)="createFormation()"class="btn bg-blue icon no-border">Ajouter</button>
+        <button  type="button" [disabled]="loading" (click)="editeFormation(id)"class="btn bg-blue icon no-border">modifier</button>
       </div>
     </div>
   </div>

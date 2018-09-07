@@ -11,7 +11,7 @@
           <input type="email" formControlName="username" class="form-in" id="email" aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">L'email est requis</div>
-        </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Entrez votre mot de passe</label>

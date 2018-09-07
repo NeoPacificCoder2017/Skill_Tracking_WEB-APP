@@ -30,10 +30,14 @@
               "node_modules/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
               "node_modules/gentelella/vendors/jqvmap/dist/jqvmap.min.css",
               "node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "./node_modules/froala-editor/css/froala_style.min.css",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
 
+              "./node_modules/jquery/dist/jquery.min.js",
               "node_modules/gentelella/vendors/jquery/dist/jquery.min.js",
               "node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/gentelella/vendors/fastclick/lib/fastclick.js",
@@ -58,7 +62,8 @@
               "node_modules/gentelella/vendors/moment/min/moment.min.js",
               "node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js",
               "node_modules/gentelella/build/js/custom.min.js",
-              "src/assets/js/scripts.js"
+              "src/assets/js/scripts.js",
+              "./node_modules/froala-editor/js/froala_editor.pkgd.min.js"
             ]
           },
           "configurations": {

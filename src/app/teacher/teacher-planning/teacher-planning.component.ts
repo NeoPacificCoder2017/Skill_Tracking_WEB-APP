@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../services/api/api.service';
+import { environment } from '../../../environments/environment';
+>>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 
 @Component({
   selector: 'app-teacher-planning',
@@ -7,9 +15,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherPlanningComponent implements OnInit {
 
+<<<<<<< HEAD
   constructor() { }
 
   ngOnInit() {
   }
 
+=======
+  page = 1;
+  environment = environment;
+  calendars: any;
+  // tslint:disable-next-line:no-inferrable-types
+  pdfSrc: string = 'http://skillstracking.motjo.io/uploads/calendars/npc.pdf';
+
+  constructor(private apiService: ApiService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.getCalendar();
+  }
+
+  getCalendar() {
+    this.apiService.get('teachers/calendar')
+    .subscribe((data) => {
+      this.calendars = data;
+      console.log('calendars data', this.calendars);
+    });
+  }
+>>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 }

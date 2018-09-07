@@ -11,8 +11,12 @@ import { Location } from '@angular/common';
   styleUrls: ['./admin-formation.component.css']
 })
 export class AdminFormationComponent implements OnInit {
+  newFormationImage: File;
+  newFormationForm: FormGroup;
+  formations: any;
   formation: any;
   modules: any;
+  calendars: any;
   idFormation: any;
   dropDown: boolean;
   displayOff: string;
@@ -31,6 +35,10 @@ export class AdminFormationComponent implements OnInit {
   '#DC143C', '#FF8C00', '#C71585', '#000000', '#118e2c', '#c43403', '#620793'];
   showColorsPanel = 0;
   selectedColor: string;
+  newPlanningForm: FormGroup;
+  filename: File;
+  formation_id: any = 1;
+  totalSkills: any;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -41,16 +49,25 @@ export class AdminFormationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newFormationForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      start_at: ['', Validators.required],
+      end_at: ['', Validators.required]
+  });
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
       teacher: ['', Validators.required],
       color: ['', Validators.required],
       total_hours: ['', Validators.required]
     });
+    this.newPlanningForm = this.formBuilder.group({
+      file_name: ['', Validators.required],
+    });
     this.formation = {};
     this.teachers = [];
     this.students = [];
     this.modules = [];
+    this.calendars = [];
     this.route.queryParams
       .subscribe(params => {
         this.idFormation = params.idFormation;
@@ -59,6 +76,8 @@ export class AdminFormationComponent implements OnInit {
         this.getStudents();
         this.getModules();
         this.getTeacherAll();
+        this.getPlannings();
+        this.formationAll();
       });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
@@ -73,6 +92,14 @@ export class AdminFormationComponent implements OnInit {
         this.formation = data;
         console.log('getFormation', this.formation);
       });
+  }
+
+  private formationAll() {
+    this.apiService.get('formations')
+    .subscribe((data) => {
+      this.formations = data.data;
+      console.log('formations data', this.formations);
+    });
   }
 
   private getTeachers() {
@@ -107,8 +134,21 @@ export class AdminFormationComponent implements OnInit {
       });
   }
 
+  private getPlannings() {
+    this.apiService.get('getPlanningForAdmin')
+      .subscribe((data) => {
+        this.calendars = data;
+        console.log('getPlannings', this.calendars);
+      });
+  }
+
   goToStudentPage(studentId) {
-    this.router.navigate(['/admin/formation/student'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
+    this.router.navigate(['/admin/studentModule'], {queryParams : { idFormation : this.idFormation, idStudent : studentId}});
+  }
+
+  profileTeacher(idTeacher) {
+    console.log('teacher', idTeacher);
+    this.router.navigate(['admin/profileTeacher'], { queryParams: { idTeacher: idTeacher } });
   }
 
   editeModule(idModule) {
@@ -118,9 +158,9 @@ export class AdminFormationComponent implements OnInit {
     this.displayOne = this.dropDown ? 'inline' : 'inline';
   }
 
-  goToSkill(idSkill) {
-    console.log('goToSkill', idSkill);
-    this.router.navigate(['/admin/skills']);
+  goToSkill(moduleId) {
+    console.log('goToSkill', moduleId);
+    this.router.navigate(['/admin/skills'], { queryParams: { idModule: moduleId } });
   }
 
   // convenience getter for easy access to form fields
@@ -136,8 +176,11 @@ export class AdminFormationComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('name', this.m.name.value);
     uploadData.append('teacher', this.m.teacher.value);
+<<<<<<< HEAD
     uploadData.append('color', this.m.color.value);
     uploadData.append('total_hours', this.m.total_hours.value);
+=======
+>>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
     uploadData.append('color', this.m.color.value);
     uploadData.append('total_hours', this.m.total_hours.value);
 
@@ -149,6 +192,70 @@ export class AdminFormationComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  // convenience getter for easy access to form fields
+  get plan() { return this.newPlanningForm.controls; }
+
+  onFileChanged(event) {
+    console.log(event);
+    this.filename = event.target.files[0];
+  }
+
+  createCalendar(): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) {
+        return;
+    }
+
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation_id', this.formation_id);
+    uploadData.append('file_name', this.plan.file_name.value);
+    uploadData.append('file_url', this.filename, this.filename.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.filename', this.filename);
+    this.apiService.upload('calendar/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
+   // convenience getter for easy access to form fields
+   get f() { return this.newFormationForm.controls; }
+
+   onFileFormationChanged(event) {
+     console.log(event);
+     this.newFormationImage = event.target.files[0];
+   }
+
+  editeFormation(idFormation): any {
+    this.submitted = true;
+    if (this.newFormationForm.invalid && this.newFormationImage == null) {
+        return;
+    }
+
+    this.loading = true;
+    const start_at = this.f.start_at.value.split('/');
+    const end_at = this.f.end_at.value.split('/');
+    const uploadData = new FormData();
+    uploadData.append('name', this.f.name.value);
+    uploadData.append('start_at', start_at[2] + '-' + start_at[1] + '-' + start_at[0] + ' 00:00:00:00');
+    uploadData.append('end_at', end_at[2] + '-' + end_at[1] + '-' + end_at[0] + ' 00:00:00:00');
+    uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
+
+    console.log('uploadData', uploadData);
+    console.log('this.newFormationImage', this.newFormationImage);
+    this.apiService.upload('formation/' + idFormation, uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
+
 
   deleteModule(idModule): any {
     console.log('idModule', idModule);
@@ -164,8 +271,9 @@ export class AdminFormationComponent implements OnInit {
   }
 
   selectColor(index) {
+    console.log('this.newModuleForm.controls', this.newModuleForm.controls);
     this.selectedColor = this.colorsPanel[index];
-    // this.m.color.value = this.selectedColor;
+    // this.newModuleForm.controls.color.value = this.selectedColor;
     this.showColorsPanel = 0;
     console.log('index', index);
     console.log('selectedColor', this.selectedColor);
