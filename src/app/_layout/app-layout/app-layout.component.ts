@@ -12,10 +12,9 @@ export class AppLayoutComponent implements OnInit {
 
   me: any;
   environment = environment;
-  public display: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.display = false;
+
   }
 
   ngOnInit() {
