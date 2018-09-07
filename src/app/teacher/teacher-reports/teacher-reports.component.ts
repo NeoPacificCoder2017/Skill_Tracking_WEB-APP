@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
 import { Router } from '@angular/router';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-teacher-reports',
@@ -21,11 +22,13 @@ export class TeacherReportsComponent implements OnInit {
   students = [];
   report: any;
   displayViewReport = 0;
+  selectedStudent: any;
+  selectedFormation: any;
+  formations: any;
 
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder,
-    private router: Router,
+    private filter: FilterPipe,
   ) {
       this.formation = {};
       this.report = {title : '', rate : '', text : ''};
@@ -39,7 +42,16 @@ export class TeacherReportsComponent implements OnInit {
         console.log('formation_id data', this.formation);
       });
       this.getReports();
+      this.getFormations();
 
+    }
+
+    getFormations(): any {
+      this.apiService.get('teacher/myFormations')
+      .subscribe((data) => {
+        this.formations = data.data;
+        console.log('formations data', this.formations);
+      });
     }
 
     // recuperer la liste des rapports des toutes formations confondues
@@ -64,8 +76,8 @@ export class TeacherReportsComponent implements OnInit {
     generateStudentsList() {
       console.log('generateStudentsList this.dataReport', this.dataReport);
       for (let i = 0; i < this.dataReport.length; i++) {
-        const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
-        console.log('generateStudentsList this.students.indexOf(studentName) ' + i, this.students.indexOf(studentName));
+        const studentName = this.dataReport[i].student.firstname + ' ' + this.dataReport[i].student.lastname;
+        console.log('studentName: ', studentName);
         if (this.students.indexOf(studentName) === -1)  {
           this.students.push(studentName);
         }

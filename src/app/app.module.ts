@@ -24,6 +24,7 @@ import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component
 // Npm
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -119,6 +120,7 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     PdfViewerModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    FilterPipeModule,
   ],
   providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
