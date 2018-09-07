@@ -51,6 +51,11 @@ export class AdminStudentsComponent implements OnInit {
 
   }
 
+  showToProfileStudent(idStudent) {
+    console.log('idStudent', idStudent);
+    this.router.navigate(['admin/profileStudent'], { queryParams: { idStudent: idStudent } });
+  }
+
   // convenience getter for easy access to form fields
   get s() { return this.newStudentForm.controls; }
 

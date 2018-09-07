@@ -175,10 +175,10 @@ export class AdminFormationComponent implements OnInit {
   }
 
   private getPlannings() {
-    this.apiService.get('getPlanningForAdmin')
+    this.apiService.get('calandars')
       .subscribe((data) => {
         this.calendars = data;
-        console.log('getPlannings', this.calendars);
+        console.log('calandars', this.calendars);
       });
   }
 
@@ -221,35 +221,35 @@ export class AdminFormationComponent implements OnInit {
     });
   }
 
-  // // convenience getter for easy access to form fields
-  // get plan() { return this.newPlanningForm.controls; }
+  // convenience getter for easy access to form fields
+  get plan() { return this.newPlanningForm.controls; }
 
-  // onFileChanged(event) {
-  //   console.log(event);
-  //   this.filename = event.target.files[0];
-  // }
+  onFileChanged(event) {
+    console.log(event);
+    this.filename = event.target.files[0];
+  }
 
-  // createCalendar(): any {
-  //   this.submitted = true;
-  //   if (this.newPlanningForm.invalid && this.filename == null) {
-  //       return;
-  //   }
+  createCalendar(): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) {
+        return;
+    }
 
-  //   this.loading = true;
-  //   const uploadData = new FormData();
-  //   uploadData.append('formation_id', this.formation_id);
-  //   uploadData.append('file_name', this.plan.file_name.value);
-  //   uploadData.append('file_url', this.filename, this.filename.name);
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation_id', this.formation_id);
+    uploadData.append('file_name', this.plan.file_name.value);
+    uploadData.append('file_url', this.filename, this.filename.name);
 
-  //   console.log('uploadData', uploadData);
-  //   console.log('this.filename', this.filename);
-  //   this.apiService.post('calendar/create', uploadData)
-  //   .subscribe(data => {
-  //     const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-  //     element.click();
-  //     this.ngOnInit();
-  //   });
-  // }
+    console.log('uploadData', uploadData);
+    console.log('this.filename', this.filename);
+    this.apiService.post('calendar/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
+  }
 
   // convenience getter for easy access to form fields
   get f() { return this.newFormationForm.controls; }

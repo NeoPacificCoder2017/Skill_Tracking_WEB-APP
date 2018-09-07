@@ -18,7 +18,7 @@ export class AdminAdminsComponent implements OnInit {
   newAdminImage: File;
   user_type_id: any = 1;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private apiService: ApiService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.newAdminForm = this.formBuilder.group({
@@ -39,10 +39,10 @@ export class AdminAdminsComponent implements OnInit {
     );
   }
 
-  // showFormation(idFormation) {
-  //   console.log('Formation', idFormation);
-  //   this.router.navigate(['/admin/formation'], { queryParams: { idFormation: idFormation } });
-  // }
+  showToProfileAdmin(idAdmin) {
+    console.log('idAdmin', idAdmin);
+    this.router.navigate(['admin/profileAdmin'], { queryParams: { idAdmin: idAdmin } });
+  }
 
   get f() { return this.newAdminForm.controls; }
 

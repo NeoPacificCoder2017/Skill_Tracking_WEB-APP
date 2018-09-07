@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from './../../../environments/environment';
-import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-profile-teacher',
@@ -15,15 +15,22 @@ export class AdminProfileTeacherComponent implements OnInit {
   listFormations: any;
   environment = environment;
   dataTeacher: any;
+  idTeacher: any;
   tabSelected = 1;
 
   constructor(private location: Location,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
    ) { }
 
   ngOnInit() {
-    this.getFormations();
+    this.route.queryParams
+      .subscribe(params => {
+        this.idTeacher = params.idTeacher;
+        this.getFormations();
+      });
   }
 
   goBack() {
