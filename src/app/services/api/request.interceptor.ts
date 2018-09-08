@@ -21,6 +21,8 @@ export class RequestInterceptor implements HttpInterceptor {
     return next.handle(request).do((event: HttpEvent<any>) => {}, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         // do error handling here
+        console.log('ERROR -------------', err);
+        // alert('souci internet')
       }
     });
   }

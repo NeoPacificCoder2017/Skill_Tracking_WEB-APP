@@ -1,10 +1,9 @@
 <div class="page-title">
   <div class="title_left">
-    <h3></h3>
+      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
   </div>
   <div class="title_right">
-    <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
-    <button data-toggle="modal" data-target="#modalFormation" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></button>
+    <button data-toggle="modal" data-target="#modalFormation" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Editer la formation</button>
   </div>
 </div>
 
@@ -156,10 +155,10 @@
             <tr class="tablecolor rad text-row">
               <th scope="col"></th>
               <th scope="col">#</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
               <th scope="col">Intitulé</th>
               <th scope="col">Nombre de compétence</th>
+              <th scope="col">Formateur</th>
+              <th scope="col"></th>
               <th></th>
             </tr>
           </thead>
@@ -167,14 +166,20 @@
             <tr *ngFor="let module of modules" class="shadow bg-white rad text-row">
               <th></th>
               <th scope="row" width="40" >{{module.id}}</th>
-              <td></td>
-              <td></td>
               
               <td class="">
                 <a [ngStyle]="{display:displayOff}"><span class="alignleft">{{module.name}}</span></a>
                 <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.name}}"></div>
               </td>
               <td><a class="btn btn-round bg-green no-border left">{{ module.skills.length }}</a></td>
+              <td>
+                <img src="{{ environment.appImageUrl }}{{ module.teacher.avatar }}" class="img-circle pull-left" width="100%">
+                <div class="pull-left" style="margin: 13px 0 0 10px;">
+                  <span class="alignleft">{{module.teacher.lastname}}</span><br/>
+                  <span class="alignleft">{{module.teacher.firstname}}</span>
+                </div>
+              </td>
+              <td></td>
               <td>
                 <div [ngStyle]="{display:displayOff}">
                   <button (click)="deleteModule(module.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
@@ -209,7 +214,8 @@
       <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Modifier le planning</button>
     </div>
   </div>
-</div>  
+</div>
+
 <!-- Modal Formation-->
 <div class="modal fade" id="modalFormation" tabindex="-1" role="dialog" aria-labelledby="modalFormationLabel">
   <div class="modal-dialog" role="document">
@@ -296,11 +302,27 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="teacher" >Formateur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" formControlName="teacher">
-                <option value="teacherAll.id" *ngFor="let teacherAll of teachersAll">{{ teacherAll.lastname }}</option>
-              </select>
-              <div *ngIf="submitted && m.teacher.errors" class="invalid-feedback">
-                <div *ngIf="m.teacher.errors.required">Veuillez sélectionner un formateur</div>
+              <div (click)="showTeachersPanel = 1" style="height: 35px; cursor: pointer;">
+                <div *ngIf="!selectedTeacher.id">Sélectionnez un formateur</div>
+                <div *ngIf="selectedTeacher.id">
+                    <img src="{{ environment.appImageUrl }}{{ selectedTeacher.avatar }}" class="img-circle pull-left" style="width: 35px">
+                    <div class="pull-left" style="margin: 7px 0 0 10px;">
+                      <span class="alignleft">{{selectedTeacher.lastname}}</span>
+                      <span class="alignleft">{{selectedTeacher.firstname}}</span>
+                    </div>
+                  </div>
+              </div>
+              <div *ngIf="showTeachersPanel" id="teachersPanel">
+                <div class="teacherBlock" *ngFor='let teacher of teachersAll; index as index' (click)="selectTeacher(index)">
+                  <img src="{{ environment.appImageUrl }}{{ teacher.avatar }}" class="img-circle pull-left" style="width: 35px">
+                  <div class="pull-left" style="margin: 7px 0 0 10px;">
+                    <span class="alignleft">{{teacher.lastname}}</span>
+                    <span class="alignleft">{{teacher.firstname}}</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="submitted && selectedTeacher.id == null" class="invalid-feedback">
+                <div>Veuillez sélectionner un formateur</div>
               </div>
             </div>
           </div>
@@ -308,7 +330,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Couleur</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input (click)="openColorsPanel()" formControlName="color"  type="text" placeholder="Sélectionnez une couleur" class="form-control">
-              <div id="colorSelectBtn"></div>
+              <div id="colorSelectBtn" [style.background]="selectedColor"></div>
               <div *ngIf="showColorsPanel" id="colorsPanel">
                 <div class="colorBlock" [style.background]="color" *ngFor='let color of colorsPanel; index as index' (click)="selectColor(index)"></div>
               </div>
@@ -318,7 +340,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_hours">total d'heure</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="total_hours">Total d'heure</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" formControlName="total_hours" class="form-control col-md-7 col-xs-12" id="total_hours" [ngClass]="{ 'is-invalid': submitted && m.total_hours.errors }">
             </div>
@@ -329,7 +351,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+        <button type="button" id="closeModalModule" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
         <button  type="button" [disabled]="loading" (click)="addModule()"class="btn bg-blue icon no-border">Ajouter</button>
       </div>
     </div>
