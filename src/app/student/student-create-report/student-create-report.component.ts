@@ -54,20 +54,15 @@ export class StudentCreateReportComponent implements OnInit {
     this.loading = true;
     const uploadData = new FormData();
     uploadData.append('title', this.f.title.value);
-    console.log('title', this.f.title.value);
     uploadData.append('student_id', this.me.student_id);
-    console.log('student_id', this.me.student_id);
     uploadData.append('rate', this.f.rate.value);
-    console.log('rate', this.f.rate.value);
     uploadData.append('text', this.f.text.value);
-    console.log('text', this.f.text.value);
     uploadData.append('is_daily', (this.f.is_daily.value) ? '1' : '0');
-    console.log('is_daily', this.f.is_daily.value);
     uploadData.append('date', this.f.created_date.value);
-    console.log('date', this.f.created_date.value);
 
     console.log('uploadData', uploadData);
-    this.apiService.post('report/create', uploadData).subscribe(data => {
+    this.apiService.post('report/create', uploadData)
+    .subscribe(data => {
       // this.ngOnInit();
       console.log('sauvegardé');
     });
