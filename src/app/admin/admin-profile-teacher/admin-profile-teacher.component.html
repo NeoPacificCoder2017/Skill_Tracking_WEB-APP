@@ -33,24 +33,22 @@
         <table class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
-                <th scope="col"></th>
-                <th scope="col">#</th>
-                <th scope="col">Logo</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Date de début</th>
-                <th scope="col">Date de fin</th>
-                <!-- <th scope="col">Nombre d'étudiant</th> -->
-                <th></th>
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col">Logo</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Date de début</th>
+              <th scope="col">Date de fin</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let e of listFormations" (click)="goToFormation(e.id)" class="shadow bg-white rad text-row">
+            <tr *ngFor="let e of teacherProfile.formations" class="shadow bg-white rad text-row">
               <th></th>
               <th scope="row" width="40" >{{e.id}}</th>
               <td style="width: 95px;"><img src="{{ environment.appLogoUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
-              <td><span class="alignleft">{{e.name}}</span></td>
-              <td><span class="alignleft">{{e.start_at | date}}</span></td>
-              <td><span class="alignleft">{{e.end_at | date}}</span></td>
+              <td><span class="alignleft">{{e.formation_name}}</span></td>
+              <td><span class="alignleft">{{e.start_at}}</span></td>
+              <td><span class="alignleft">{{e.end_at}}</span></td>
             </tr>
             <br>
           </tbody>

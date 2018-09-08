@@ -41,9 +41,9 @@ export class AdminProfileTeacherComponent implements OnInit {
   }
 
   public getprofileTeacher(): any {
-    this.apiService.get('studentProfil/' + this.idTeacher)
+    this.apiService.get('teacherProfil/' + this.idTeacher)
     .subscribe((data) => {
-      this.teacherProfile = data;
+      this.teacherProfile = data[0];
       console.log('getprofileTeacher', this.teacherProfile);
     });
   }

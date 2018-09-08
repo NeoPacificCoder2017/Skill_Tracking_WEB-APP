@@ -41,72 +41,51 @@
     <div class="row">
       <div class="col-md-12">
         <table class="table table-borderless space" style="color: #999">
-          <thead class="">
-            <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let formation of profileStudent.formations" class="shadow bg-white rad text-row">
-              <th></th>
-              <th scope="row" width="40" >{{ formation.id }}</th>
-              <td>{{ formation.name }}</td>
-            </tr>
-          </tbody>
+            <thead class="">
+                <tr class="tablecolor rad text-row">
+                  <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Logo</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Date de début</th>
+                  <th scope="col">Date de fin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of profileStudent.formations" class="shadow bg-white rad text-row">
+                  <th></th>
+                  <th scope="row" width="40" >{{e.id}}</th>
+                  <td style="width: 95px;"><img src="{{ environment.appLogoUrl }}{{ e.logo }}" class="img-circle" width="100%"></td>
+                  <td><span class="alignleft">{{e.name}}</span></td>
+                  <td><span class="alignleft">{{e.start_at}}</span></td>
+                  <td><span class="alignleft">{{e.end_at}}</span></td>
+                </tr>
+                <br>
+              </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Liste des Students -->
+<!-- Liste des Compétences validé par l'étudiant et le foramteur -->
 <div class="row" *ngIf="tabSelected === 2">
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
-        <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
-          <p>Il n'y a pas encore d'apprentis</p>
-          <button class="btn bg-blue">Ajoutez le premier apprenti</button>
-        </div>
-        <table *ngIf="students.length > 0" class="table table-borderless space" style="color: #999">
+        <table class="table table-borderless space" style="color: #999">
           <thead class="">
             <tr class="tablecolor rad text-row">
-              <th scope="col"></th>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
-              <th scope="col">Progression</th>
-              <th scope="col">Validées par le formateur</th>
-              <th scope="col">Validées par l'étudiant</th>
-              <th></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of students" class="shadow bg-white rad text-row">
+            <tr *ngFor="let skills of skillsStudent" class="shadow bg-white rad text-row">
               <th></th>
-              <th scope="row" width="40" >{{ student.user_id }}</th>
-              <td>
-                <img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle pull-left" width="100%">
-                <div class="pull-left" style="margin: 13px 0 0 10px;">
-                  <span class="alignleft">{{student.lastname}}</span><br/>
-                  <span class="alignleft">{{student.firstname}}</span>
-                </div>
-              </td>
-              <td>
-                <div class="roundProgressBarWrapper">
-                  <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="student.progressions_teacher_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-                  <round-progress class="roundProgressBar roundProgressBarStudent" [current]="student.progressions_student_validated*100/student.total_student_skills" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
-                  <div class="progressTeacherText red">{{ (student.progressions_teacher_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
-                  <div class="progressStudentText purple">{{ (student.progressions_student_validated*100/student.total_student_skills) | number: '1.0-0' }}%</div>
-                </div>
-              </td>
-              <td>
-                  <span class="btn btn-round bg-red no-border left">{{ student.progressions_teacher_validated }} compétences</span>
-              </td>
-              <td>
-                  <span class="btn btn-round bg-purple no-border left">{{ student.progressions_student_validated }} compétences</span>
-              </td>
+              <th scope="row" width="40" >{{ skills.user_id }}</th>
+              
             </tr>
           </tbody>
         </table>
