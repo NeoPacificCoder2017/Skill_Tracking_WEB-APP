@@ -13,19 +13,20 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 })
 export class StudentReportComponent implements OnInit {
 
+  newReportForm: FormGroup;
   formation: any;
   me: any;
   dataDetailReport: any;
   dataReport: any;
   dataStudent: any;
-  newReportForm: FormGroup;
+  report: any;
+  selectedStudent: any;
   submitted: false;
   loading: false;
   students = [];
-  report: any;
+  allReports = [];
   displayViewReport = 0;
   displayEditReport = 0;
-  selectedStudent: any;
 
   constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router,
     private froalaEditorModule: FroalaEditorModule,
@@ -54,24 +55,28 @@ export class StudentReportComponent implements OnInit {
       });
     }
 
-    // recupere la liste des etudiants d une formation
-    getSelectedStudentsSearch(formation_id) {
-      this.apiService.get('getStudentsOfAFormation/' + this.me.formation_id).subscribe(
-        data => {
-          this.dataStudent = data.data;
-          console.log('getStudentOfFormation data', data);
-        }
-      );
-    }
+    // // recupere la liste des etudiants d une formation
+    // getSelectedStudentsSearch(formation_id) {
+    //   this.apiService.get('getStudentsOfAFormation/' + this.me.formation_id).subscribe(
+    //     data => {
+    //       this.dataStudent = data.data;
+    //       console.log('getStudentOfFormation data', data);
+    //     }
+    //   );
+    // }
 
     generateStudentsList() {
       console.log('generateStudentsList');
       console.log('generateStudentsList this.dataReport', this.dataReport);
       for (let i = 0; i < this.dataReport.length; i++) {
         const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
-        console.log('generateStudentsList this.students.indexOf(studentName) ' + i, this.students.indexOf(studentName));
-        if (this.students.indexOf(studentName) === -1)  {
-          this.students.push(studentName);
+        const studentId = this.dataReport[i].student_id;
+        const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
+        if (position === -1)  {
+          this.students.push({
+            studentName: studentName,
+            studentId: studentId
+          });
         }
       }
       console.log('generateStudentsList this.students', this.students);
@@ -84,18 +89,6 @@ export class StudentReportComponent implements OnInit {
       console.log('displayViewReport', this.displayViewReport);
       this.report = item;
       this.displayEditReport = (this.me.user_id === this.report.student_id) ? 1 : 0;
-
-      //     this.dataDetailReport.report_id = report_id;
-      //     this.dataDetailReport.report_title = report_title;
-      //     this.dataDetailReport.report_rate = report_rate;
-      //     this.dataDetailReport.student_id = student_id;
-      //     this.dataDetailReport.text = text;
-      //     this.dataDetailReport.created_date = created_date;
-      //     this.dataDetailReport.last_edit_date = last_edit_date;
-      //     this.dataDetailReport.is_daily = is_daily;
-
-      // return this.dataDetailReport[];
-      // this.router.navigate(['/student/report'], {queryParams : { report_id : report_id }} );
     }
 
     closeViewReport() {
@@ -115,7 +108,13 @@ export class StudentReportComponent implements OnInit {
     stateText() {
       return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
     }
+
     saveReport() {
       return null;
+    }
+
+    filterByStudent() {
+      console.log('filterByStudent studentId ',  this.selectedStudent);
+      console.log('filterByStudent this.allReports', this.allReports);
     }
   }
