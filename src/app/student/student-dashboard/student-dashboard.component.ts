@@ -42,7 +42,7 @@ export class StudentDashboardComponent implements OnInit {
 
     this.getFormationDatas();
   }
-  
+
   getFormationDatas() {
 
     this.totalSkills = 0;
