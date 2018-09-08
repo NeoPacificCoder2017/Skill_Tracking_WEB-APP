@@ -6,14 +6,11 @@
 }
 
 #colorSelectBtn {
-    top: 2px;
-    right: 12px;
-    padding: 4px;
-	width: 40px;
-	height: 30px;
-	background: #f00;
-	position: absolute;
-
+    top: 3px;
+    right: 13px;
+    width: 35px;
+    height: 29px;
+    position: absolute;
 }
 
 #colorsPanel {
@@ -26,4 +23,29 @@
     height: 30px;
     margin: 10px;
     float: left;
+}
+
+#teachersPanel {
+    width: calc(100%-20px);
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background: #fff;
+    z-index: 9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+}
+
+.teacherBlock {
+    width: 100%;
+    float: left;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.teacherBlock:hover {
+    background: #F1F1F1;
 }

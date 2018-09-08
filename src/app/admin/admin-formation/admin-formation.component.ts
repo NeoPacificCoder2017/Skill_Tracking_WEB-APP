@@ -38,6 +38,8 @@ export class AdminFormationComponent implements OnInit {
   newPlanningForm: FormGroup;
   filename: File;
   totalSkills: any;
+  showTeachersPanel = 0;
+  selectedTeacher: any;
   
   constructor(private location: Location,
     private apiService: ApiService,
@@ -45,6 +47,7 @@ export class AdminFormationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
       this.moduleName = '';
+      this.selectedTeacher = { id: null, avatar: null, firstname: null, lastname: null};
     }
     
     ngOnInit() {
@@ -55,7 +58,6 @@ export class AdminFormationComponent implements OnInit {
       });
       this.newModuleForm = this.formBuilder.group({
         name: ['', Validators.required],
-        teacher: ['', Validators.required],
         color: ['', Validators.required],
         total_hours: ['', Validators.required]
       });
@@ -173,15 +175,18 @@ export class AdminFormationComponent implements OnInit {
       this.loading = true;
       const uploadData = new FormData();
       uploadData.append('name', this.m.name.value);
-      uploadData.append('teacher', this.m.teacher.value);
+      uploadData.append('formation_id', this.idFormation);
+      uploadData.append('teacher_id', this.selectedTeacher.id);
       uploadData.append('color', this.m.color.value);
       uploadData.append('total_hours', this.m.total_hours.value);
       
       console.log('uploadData', uploadData);
       this.apiService.upload('module/create', uploadData)
       .subscribe(data => {
-        const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+        const element: HTMLElement = document.getElementById('closeModalModule') as HTMLElement;
         element.click();
+        this.selectedTeacher = { id: null, avatar: null, firstname: null, lastname: null};
+        this.selectedColor = '';
         this.ngOnInit();
       });
     }
@@ -196,19 +201,14 @@ export class AdminFormationComponent implements OnInit {
     
     createCalendar(): any {
       this.submitted = true;
-      if (this.newPlanningForm.invalid && this.filename == null) {
-        return;
-      }
-      
+      if (this.newPlanningForm.invalid && this.filename == null) return;
+
       this.loading = true;
       const uploadData = new FormData();
       uploadData.append('formation_id', this.idFormation);
       uploadData.append('file_name', this.filename.name);
       uploadData.append('file_url', this.filename, this.filename.name);
       
-      console.log('uploadData', uploadData);
-      console.log('this.filename', this.filename);
-      console.log('idFormation', this.idFormation);
       this.apiService.upload('calendar/create', uploadData)
       .subscribe(data => {
         const element: HTMLElement = document.getElementById('closeModalCalendar') as HTMLElement;
@@ -261,24 +261,28 @@ export class AdminFormationComponent implements OnInit {
     
     deleteModule(idModule): any {
       console.log('idModule', idModule);
-      this.apiService.delete('module/' + { params: {idModule: idModule}})
+      this.apiService.delete('module/' + idModule)
       .subscribe((data) => {
         console.log('Module deleted');
+        this.ngOnInit();
       });
     }
     
     openColorsPanel() {
       this.showColorsPanel = 1;
-      console.log('showColorPanel', this.showColorsPanel);
     }
     
     selectColor(index) {
-      console.log('this.newModuleForm.controls', this.newModuleForm.controls);
       this.selectedColor = this.colorsPanel[index];
-      // this.newModuleForm.controls.color.value = this.selectedColor;
+      this.newModuleForm.controls['color'].setValue(this.selectedColor);
       this.showColorsPanel = 0;
-      console.log('index', index);
-      console.log('selectedColor', this.selectedColor);
-      console.log('showColorsPanel', this.showColorsPanel);
+    }
+
+    selectTeacher(index) {
+      this.showTeachersPanel = 0;
+      this.selectedTeacher.id = this.teachersAll[index].id;
+      this.selectedTeacher.avatar = this.teachersAll[index].avatar;
+      this.selectedTeacher.lastname = this.teachersAll[index].lastname;
+      this.selectedTeacher.firstname = this.teachersAll[index].firstname;
     }
   }
