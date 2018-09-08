@@ -185,9 +185,25 @@ export class AdminFormationComponent implements OnInit {
         this.ngOnInit();
       });
     }
+  //   this.loading = true;
+  //   const uploadData = new FormData();
+  //   uploadData.append('name', this.m.name.value);
+  //   uploadData.append('teacher', this.m.teacher.value);
+  //   uploadData.append('color', this.m.color.value);
+  //   uploadData.append('total_hours', this.m.total_hours.value);
 
-    // convenience getter for easy access to form fields
-    get plan() { return this.newPlanningForm.controls; }
+  //   console.log('uploadData', uploadData);
+  //   this.apiService.upload('module/create', uploadData)
+  //   .subscribe(data => {
+  //     const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+  //     element.click();
+  //     this.ngOnInit();
+  //   });
+  // }
+
+    getplan() {
+      return this.newPlanningForm.controls;
+    }
 
     onFileChanged(event) {
       console.log(event);
