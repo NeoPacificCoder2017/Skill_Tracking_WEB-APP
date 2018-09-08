@@ -13,12 +13,8 @@ export class TeacherReportsComponent implements OnInit {
 
   formation: any;
   me: any;
-  dataDetailReport: any;
   dataReport: any;
   dataStudent: any;
-  newReportForm: FormGroup;
-  submitted: false;
-  loading: false;
   students = [];
   report: any;
   displayViewReport = 0;

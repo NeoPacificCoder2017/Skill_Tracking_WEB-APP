@@ -91,7 +91,7 @@
   <div class="container" id="viewOnly">
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12  " for="name">Titre <span>*</span></label>
-      <div class=" col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
+      <h4 class=" col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </h4>
     </div>
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span>
@@ -105,7 +105,8 @@
     </div>
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span></label>
-      <div class="col-md-12 col-sm-12 col-xs-12 row"> {{report.report_text}} </div>
     </div>
+    <textarea readonly="true" class="col-md-12 col-sm-12 col-xs-12 row"> {{report.report_text}} </textarea>
+
   </div>
 </div>
