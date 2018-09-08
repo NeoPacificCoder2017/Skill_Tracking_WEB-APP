@@ -23,7 +23,7 @@
         <th></th>
         <td>{{ calend.file_name }}</td>
         <td>
-          <a class="rounded btn bg-green icon no-border alignright" ><i class="fa fa-download"></i></a>
+          <a href="{{ environment.appCalendarUrl }}{{ calend.file_url }}" target="_blank" class="rounded btn bg-green icon no-border alignright" ><i class="fa fa-download"></i></a>
         </td>
     </tr>
 
@@ -31,7 +31,3 @@
     <br>
   </tbody>
 </table>
-<pdf-viewer [src]="pdfSrc"
-              [render-text]="true"
-              style="display: block;"
-  ></pdf-viewer>
