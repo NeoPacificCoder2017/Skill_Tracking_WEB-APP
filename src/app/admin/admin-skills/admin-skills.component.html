@@ -8,7 +8,7 @@
 </div> 
 <br>
 <div class="row" style="padding-top: 25px;">
-  <h4>{{ module.module_name }}</h4>
+  <h4 style="text-align: center;">{{ module.name }} || total heure: {{ module.total_hours }}h</h4>
 </div>
   
 <table class="table table-borderless space" style="color: #999">
@@ -29,8 +29,8 @@
       <td>{{ skill.name }}</td>
       <td>
         <div class="pull-left">
-          <!-- <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="skillObligationByAdmin(skill.id)" (change)="onChange(skill.id)"> -->
-          <!-- <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                         -->
+          <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="is_mandatory(skill.id)" (change)="onChange(skill.id)">
+          <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
         </div>
       </td>
       <td>

@@ -42,7 +42,7 @@
             <td><span class="alignleft">{{ admin.created_at | date}}</span></td>
             <td>
                 <a (click)="deleteAdmin(admin.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></a>
-                <a (click)="showAdmin(admin.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-pencil"></i></a>
+                <button (click)="showToProfileAdmin(admin.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
             </td>
           </tr>
           <br>

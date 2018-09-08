@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from './../../../environments/environment';
-import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-profile-teacher',
@@ -15,26 +15,36 @@ export class AdminProfileTeacherComponent implements OnInit {
   listFormations: any;
   environment = environment;
   dataTeacher: any;
+  idTeacher: any;
+  teacherProfile: any;
   tabSelected = 1;
 
   constructor(private location: Location,
     private apiService: ApiService,
-    private router: Router
-   ) { }
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+   ) { 
+    this.teacherProfile = {};
+   }
 
   ngOnInit() {
-    this.getFormations();
+    this.route.queryParams
+      .subscribe(params => {
+        this.idTeacher = params.idTeacher;
+        this.getprofileTeacher();
+      });
   }
 
   goBack() {
     this.location.back();
   }
 
-  public getFormations(): any {
-    this.apiService.get('teacher/myFormations')
+  public getprofileTeacher(): any {
+    this.apiService.get('studentProfil/' + this.idTeacher)
     .subscribe((data) => {
-      this.listFormations = data.data;
-      console.log('this.listFormations', this.listFormations);
+      this.teacherProfile = data;
+      console.log('getprofileTeacher', this.teacherProfile);
     });
   }
 

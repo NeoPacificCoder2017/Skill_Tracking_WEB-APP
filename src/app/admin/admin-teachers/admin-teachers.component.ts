@@ -78,7 +78,7 @@ export class AdminTeachersComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.newTeacherImage', this.newTeacherImage);
-    this.apiService.upload('register', uploadData)
+    this.apiService.post('register', uploadData)
     .subscribe(
       data => {
       console.log('createTeacher data', data);

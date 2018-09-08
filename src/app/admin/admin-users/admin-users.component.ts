@@ -53,7 +53,7 @@ export class AdminUsersComponent implements OnInit {
     uploadData.append('profile_type_id', this.f.profile_type_id.value);
 
     console.log('uploadData', uploadData);
-    this.apiService.upload('user/create', uploadData)
+    this.apiService.post('user/create', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
