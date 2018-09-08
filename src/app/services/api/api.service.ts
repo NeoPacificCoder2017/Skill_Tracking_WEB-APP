@@ -41,21 +41,14 @@ export class ApiService {
     return this.http.post(apiUrl + url, data, this.httpOptions);
   }
 
-  upload (url, data, method): any {
+  upload (url, data): any {
     this.me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + this.me.token
       })
-
     };
-    if (method = 'put') {
-      return this.http.put(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
-    } else {
-      return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
-    }
-
   }
 
   put (url, data): any {
