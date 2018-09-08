@@ -25,7 +25,7 @@ export class ApiService {
     if (this.me) {
       this.httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
           'Authorization': 'Bearer ' + this.me.token
         })
 
@@ -41,7 +41,7 @@ export class ApiService {
     return this.http.post(apiUrl + url, data, this.httpOptions);
   }
 
-  upload (url, data, method): any {
+  upload (url, data): any {
     this.me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {
       headers: new HttpHeaders({
@@ -50,11 +50,8 @@ export class ApiService {
       })
 
     };
-    if (method = 'put') {
-      return this.http.put(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
-    } else {
-      return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
-    }
+    
+    return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
 
   }
 
