@@ -36,14 +36,14 @@
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-          <div class="progressTeacherText red">{{ (progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="skill.validated_by_teacher*100/skill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText red">{{ (skill.validated_by_teacher*100/skill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_student*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-          <div class="progressTeacherText purple">{{ (progresseBySkill.validated_by_student*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="skill.validated_by_student*100/skill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText purple">{{ (skill.validated_by_student*100/skill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
       <td>
