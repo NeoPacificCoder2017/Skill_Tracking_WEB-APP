@@ -46,6 +46,9 @@
           <div class="progressTeacherText purple">{{ (progresseBySkill.validated_by_student*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
+      <td>
+        <button (click)="deletedSkill(skill.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+      </td>
     </tr>
     <br>
   </tbody>
