@@ -6,7 +6,7 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">Ajouter un étudiant</button>
+        <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">Ajouter un Étudiant</button>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter un étudiant</h4>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un Étudiant</h4>
       </div>
       <div class="modal-body">
         <!-- lastname etudiant -->
@@ -117,7 +117,7 @@
               <input type="password" formControlName="c_password" class="form-control col-md-7 col-xs-12" id="c_password" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && s.c_password.errors }">
             </div>
             <div *ngIf="submitted && s.c_password.errors" class="invalid-feedback">
-              <div *ngIf="s.c_password.errors.required">Confirmer mot de passe</div>
+              <div *ngIf="s.c_password.errors.required">La confimration du mot de passe est requise</div>
             </div>
           </div>
           <!-- téléphone -->
@@ -128,7 +128,7 @@
                 [ngClass]="{ 'is-invalid': submitted && s.phone_number.errors }">
             </div>
             <div *ngIf="submitted && s.phone_number.errors" class="invalid-feedback">
-              <div *ngIf="s.phone_number.errors.required">La confirmation du téléphone est requis</div>
+              <div *ngIf="s.phone_number.errors.required">La confirmation du téléphone est requise</div>
             </div>
           </div>
           <!-- birthday_date -->
@@ -138,7 +138,7 @@
               <input type="birthday_date" formControlName="birthday_date" class="form-control col-md-7 col-xs-12 calendar" id="birthday_date" [ngClass]="{ 'is-invalid': submitted && s.birthday_date.errors }" placeholder="jj/mm/aaaa">
             </div>
             <div *ngIf="submitted && s.birthday_date.errors" class="invalid-feedback">
-              <div *ngIf="s.birthday_date.errors.required">La date de naissance est requis</div>
+              <div *ngIf="s.birthday_date.errors.required">La date de naissance est requise</div>
             </div>
           </div>
           <!-- selected formations -->
