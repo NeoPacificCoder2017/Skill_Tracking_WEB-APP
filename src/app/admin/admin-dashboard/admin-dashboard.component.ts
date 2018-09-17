@@ -264,7 +264,7 @@ export class AdminDashboardComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.newFormationImage', this.newFormationImage);
-    this.apiService.post('formation/create', uploadData)
+    this.apiService.upload('formation/create', uploadData)
       .subscribe(data => {
         const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
         element.click();
