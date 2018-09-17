@@ -23,6 +23,7 @@ export class AdminSkillsComponent implements OnInit {
   newSkillForm: FormGroup;
   loading = false;
   submitted = false;
+  ValueIsMandotry: any = 0;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -77,10 +78,10 @@ export class AdminSkillsComponent implements OnInit {
     this.submitted = true;
 
     this.loading = true;
-    const start_at = this.f.start_at.value.split('/');
-    const end_at = this.f.end_at.value.split('/');
     const uploadData = new FormData();
     uploadData.append('name', this.f.name.value);
+    uploadData.append('module_id', this.idModule, );
+    uploadData.append('is_mandatory', this.ValueIsMandotry);
 
     this.apiService.post('skill/create', uploadData)
     .subscribe(data => {
@@ -115,5 +116,13 @@ export class AdminSkillsComponent implements OnInit {
         //   this.stateText(this.skills[i].id);
       }
     }
+  }
+
+  deletedSkill(idSkill): any {
+    this.apiService.delete('skill/' + idSkill)
+    .subscribe(data => {
+      this.ngOnInit();
+      console.log('SkillDeleted:', data);
+    });
   }
 }
