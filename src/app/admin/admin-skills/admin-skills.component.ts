@@ -23,6 +23,7 @@ export class AdminSkillsComponent implements OnInit {
   newSkillForm: FormGroup;
   loading = false;
   submitted = false;
+  ValueIsMandotry: any = 0;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -50,17 +51,18 @@ export class AdminSkillsComponent implements OnInit {
           console.log('module', this.module);
         });
 
-        this.apiService.get('skillsByModule/' + this.idModule)
+        this.apiService.get('progressionsBySkillsOfModule/' + this.idModule)
         .subscribe((data) => {
-          this.listSkill = data[0].skills;
+          console.log('getListSkill data', data);
+          this.listSkill = data;
           console.log('getListSkill', this.listSkill);
         });
 
-        this.apiService.get('progressionsBySkills')
-        .subscribe((data) => {
-          this.progresseBySkill = data;
-          console.log('progressionsBySkills', this.progresseBySkill);
-        });
+        // this.apiService.get('progressionsBySkillsOfModule')
+        // .subscribe((data) => {
+        //   this.progresseBySkill = data;
+        //   console.log('progressionsBySkills', this.progresseBySkill);
+        // });
 
       });
   }
@@ -76,10 +78,10 @@ export class AdminSkillsComponent implements OnInit {
     this.submitted = true;
 
     this.loading = true;
-    const start_at = this.f.start_at.value.split('/');
-    const end_at = this.f.end_at.value.split('/');
     const uploadData = new FormData();
     uploadData.append('name', this.f.name.value);
+    uploadData.append('module_id', this.idModule, );
+    uploadData.append('is_mandatory', this.ValueIsMandotry);
 
     this.apiService.post('skill/create', uploadData)
     .subscribe(data => {
@@ -114,5 +116,13 @@ export class AdminSkillsComponent implements OnInit {
         //   this.stateText(this.skills[i].id);
       }
     }
+  }
+
+  deletedSkill(idSkill): any {
+    this.apiService.delete('skill/' + idSkill)
+    .subscribe(data => {
+      this.ngOnInit();
+      console.log('SkillDeleted:', data);
+    });
   }
 }
