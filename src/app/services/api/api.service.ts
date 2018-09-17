@@ -48,9 +48,8 @@ export class ApiService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + this.me.token
       })
-
     };
-    
+
     return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
 
   }

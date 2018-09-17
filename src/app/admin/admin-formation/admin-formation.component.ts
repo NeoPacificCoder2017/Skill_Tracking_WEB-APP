@@ -137,7 +137,6 @@ export class AdminFormationComponent implements OnInit {
       console.log('formations data', this.formations);
     });
   }
-
   private getTeachers() {
     this.apiService.get('getTeachersOfFormation/' + this.idFormation)
     .subscribe((data) => {
@@ -145,7 +144,6 @@ export class AdminFormationComponent implements OnInit {
       console.log('getTeachers', this.teachers);
     });
   }
-
   public getTeacherAll() {
     this.apiService.get('users/teacher')
     .subscribe(data => {
@@ -153,7 +151,6 @@ export class AdminFormationComponent implements OnInit {
       console.log('teachersAll', this.teachersAll);
     });
   }
-
   private getStudents() {
     this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
     .subscribe((data) => {
@@ -200,9 +197,8 @@ export class AdminFormationComponent implements OnInit {
     console.log('goToSkill', moduleId);
     this.router.navigate(['/admin/skills'], { queryParams: { idModule: moduleId } });
   }
-
   // convenience getter for easy access to form fields
-  get plan() { return this.newPlanningForm.controls; }
+  get plan() { return this.newPlanningForm.controls; };
 
   onFileChanged(event) {
     console.log(event);
@@ -235,7 +231,6 @@ export class AdminFormationComponent implements OnInit {
       this.ngOnInit();
     });
   }
-
   createCalendar(): any {
     this.submitted = true;
     if (this.newPlanningForm.invalid && this.filename == null) return;
@@ -287,7 +282,7 @@ export class AdminFormationComponent implements OnInit {
 
     console.log('uploadData', uploadData);
     console.log('this.filename', this.filename);
-    this.apiService.post('editFormation/' + idFormation, uploadData)
+    this.apiService.upload('editFormation/' + idFormation, uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
