@@ -79,11 +79,18 @@
 <!-- Liste des Students -->
 <div class="row" *ngIf="tabSelected === 2">
   <div class="col-md-12 col-sd-12 col-xs-12">
+    <div class="row" *ngIf="students.length > 0">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group pull-right row" style="display: flex;">
+          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalStudent">Ajouter des étudiants</button>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore d'apprentis</p>
-          <button class="btn bg-blue">Ajoutez le premier apprenti</button>
+          <button class="btn bg-blue" data-toggle="modal" data-target="#modalStudent">Ajoutez le premier apprenti</button>
         </div>
         <table *ngIf="students.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
@@ -123,7 +130,7 @@
                 <span class="btn btn-round bg-purple no-border left">{{ student.progressions_student_validated }} compétences</span>
               </td>
               <td>
-                <button class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+                <button (click)="deleteStudent(student.user_id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
                 <button (click)="goToStudentPage(student.user_id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
               </td>
             </tr>
@@ -215,7 +222,7 @@
   </div>
 </div>
 
-<!-- Modal Formation-->
+<!-- Modal Formation -->
 <div class="modal fade" id="modalFormation" tabindex="-1" role="dialog" aria-labelledby="modalFormationLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -232,7 +239,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
             
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" value="{{ formation.name }}">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
             </div>
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
               <div *ngIf="f.name.errors.required">Le nom est requis</div>
@@ -241,7 +248,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Date de début</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="start_at" formControlName="start_at" class="form-control col-md-7 col-xs-12 calendar" id="start_at" [ngClass]="{ 'is-invalid': submitted && f.start_at.errors }" placeholder="jj/mm/aaaa" value="{{ formation.start_at }}">
+              <input type="date" data-inputmask="'mask': '99/99/9999'" formControlName="start_at" class="form-control col-md-7 col-xs-12 calendar" id="start_at" [ngClass]="{ 'is-invalid': submitted && f.start_at.errors }" >
             </div>
             <div *ngIf="submitted && f.start_at.errors" class="invalid-feedback">
               <div *ngIf="f.start_at.errors.required">La date de début est requis</div>
@@ -250,7 +257,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_at">Date de fin</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="end_at" formControlName="end_at" class="form-control col-md-7 col-xs-12 calendar" id="end_at" [ngClass]="{ 'is-invalid': submitted && f.end_at.errors }" placeholder="jj/mm/aaaa" value="{{ formation.end_at | date }}">
+              <input type="date" data-inputmask="'mask': '99/99/9999'" formControlName="end_at" class="form-control col-md-7 col-xs-12 calendar" id="end_at" [ngClass]="{ 'is-invalid': submitted && f.end_at.errors }" >
             </div>
             <div *ngIf="submitted && f.end_at.errors" class="invalid-feedback">
               <div *ngIf="f.end_at.errors.required">La date de fin est requis</div>
@@ -275,6 +282,36 @@
   </div>
 </div>
 
+
+
+<!-- Modal Student -->
+<div class="modal fade" id="modalStudent" tabindex="-1" role="dialog" aria-labelledby="modalStudentLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalStudentLabel">Ajouter des étudiants</h4>
+      </div>
+      <div class="modal-body">
+        <div id="studentsPanel">
+          <div class="studentBlock" *ngFor='let student of newStudents; index as index'>
+            <img src="{{ environment.appImageUrl }}{{ student.avatar }}" class="img-circle pull-left" style="width: 35px">
+            <div class="pull-left" style="margin: 7px 0 0 10px;">
+              <span class="alignleft">{{student.lastname}}</span>
+              <span class="alignleft">{{student.firstname}}</span>
+            </div>
+            <button (click)="addStudentToFormation(student.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModalStudent" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Module -->
 <div class="modal fade" id="ModalModule" tabindex="-1" role="dialog" aria-labelledby="ModalModuleLabel">
