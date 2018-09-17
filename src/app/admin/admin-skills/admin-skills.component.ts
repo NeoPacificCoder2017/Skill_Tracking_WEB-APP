@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
@@ -19,11 +20,15 @@ export class AdminSkillsComponent implements OnInit {
   progresseBySkill: any;
   skills: any;
   selectedSkills: number[] = [0];
+  newSkillForm: FormGroup;
+  loading = false;
+  submitted = false;
 
   constructor(private location: Location,
     private apiService: ApiService,
     private router: Router,
     private http: HttpClient,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
       this.module = {};
       this.progresseBySkill = {};
@@ -31,6 +36,9 @@ export class AdminSkillsComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.newSkillForm = this.formBuilder.group({
+      name: ['', Validators.required],
+    });
     this.route.queryParams
       .subscribe(params => {
         this.idModule = params.idModule;
@@ -59,6 +67,26 @@ export class AdminSkillsComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.newSkillForm.controls; }
+
+  createSkill(): any {
+    this.submitted = true;
+
+    this.loading = true;
+    const start_at = this.f.start_at.value.split('/');
+    const end_at = this.f.end_at.value.split('/');
+    const uploadData = new FormData();
+    uploadData.append('name', this.f.name.value);
+
+    this.apiService.post('skill/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      element.click();
+      this.ngOnInit();
+    });
   }
 
   onChange(skillId) {
