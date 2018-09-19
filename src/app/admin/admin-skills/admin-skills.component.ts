@@ -51,17 +51,18 @@ export class AdminSkillsComponent implements OnInit {
           console.log('module', this.module);
         });
 
-        this.apiService.get('skillsByModule/' + this.idModule)
+        this.apiService.get('progressionsBySkillsOfModule/' + this.idModule)
         .subscribe((data) => {
-          this.listSkill = data[0].skills;
+          console.log('getListSkill data', data);
+          this.listSkill = data;
           console.log('getListSkill', this.listSkill);
         });
 
-        this.apiService.get('progressionsBySkills')
-        .subscribe((data) => {
-          this.progresseBySkill = data;
-          console.log('progressionsBySkills', this.progresseBySkill);
-        });
+        // this.apiService.get('progressionsBySkillsOfModule')
+        // .subscribe((data) => {
+        //   this.progresseBySkill = data;
+        //   console.log('progressionsBySkills', this.progresseBySkill);
+        // });
 
       });
   }
