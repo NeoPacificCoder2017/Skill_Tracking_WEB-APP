@@ -32,6 +32,7 @@
     "jquery": "^3.3.1",
     "materialize-css": "^1.0.0-rc.2",
     "ng2-pdf-viewer": "^5.1.2",
+    "ngx-filter-pipe": "^2.1.0",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

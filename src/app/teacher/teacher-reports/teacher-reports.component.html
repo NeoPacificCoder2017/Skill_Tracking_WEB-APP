@@ -1,25 +1,41 @@
 <div class="page-title">
   <div class="title_left">
-    <h3 *ngIf="!displayViewReport">Liste des rapports</h3>
+    <h3 *ngIf="!displayViewReport"  style="margin-bottom: 80px;">Liste des rapports</h3>
   </div>
 
 
 <div class="clearfix"></div>
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
-  <!-- champ de recherche par auteur a mettre dynamiquement -->
+
+  <!-- champ de recherche par FORMATION a mettre dynamiquement -->
   <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
     <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
-    <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Formation</label>
     <div class="col-md-9 col-sm-9 col-xs-12">
       <select class="form-control">
-        <option value="student_id.id" *ngFor="let student of students">{{ student.lastname }}</option>
+        <option value="0" >All</option>
+        <option *ngFor="let f of formations" value="f.id" >{{ f.name }}</option>
       </select>
     </div>
   </div>
 
+  <!-- champ de recherche par AUTEUR a mettre dynamiquement -->
+  <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
+    <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Auteur</label>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+      <select class="form-control">
+          <option value="0" >All</option>
+        <option *ngFor="let s of students" value="student_id.id" >{{ s }}</option>
+      </select>
+    </div>
+  </div>
+
+
   <!-- champ recherche par date picker -->
   <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
+    <label>Date</label>
     <div class="col-md-9 col-sm-9 col-xs-9">
       <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
       <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
@@ -67,6 +83,7 @@
   <button style="margin-bottom: 50px;" type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
   <!-- div sans formulaire si consultation-->
 
+  <!-- Info de l'étudiant -->
   <div>
 
   </div>
@@ -74,7 +91,7 @@
   <div class="container" id="viewOnly">
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12  " for="name">Titre <span>*</span></label>
-      <div class=" col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
+      <h4 class=" col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </h4>
     </div>
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span>
@@ -88,7 +105,8 @@
     </div>
     <div class="item row">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span></label>
-      <div class="col-md-12 col-sm-12 col-xs-12 row"> {{report.report_text}} </div>
     </div>
+    <textarea readonly="true" class="col-md-12 col-sm-12 col-xs-12 row"> {{report.report_text}} </textarea>
+
   </div>
 </div>

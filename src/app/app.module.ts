@@ -24,6 +24,7 @@ import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component
 // Npm
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -61,6 +62,16 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
+=======
+import { AtomSpinnerModule } from 'angular-epic-spinners';
+
+>>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
+
+>>>>>>> 0409112367cf51c65a2946992ba2b78ea7e3820d
 import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 
@@ -116,6 +127,14 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     ChartjsModule,
+<<<<<<< HEAD
+=======
+    AtomSpinnerModule,
+    PdfViewerModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+    FilterPipeModule,
+>>>>>>> 0409112367cf51c65a2946992ba2b78ea7e3820d
     ScalingSquaresSpinnerModule
   ],
   providers: [
