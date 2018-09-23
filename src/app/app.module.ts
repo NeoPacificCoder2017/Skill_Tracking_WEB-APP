@@ -7,7 +7,7 @@ import localeFrExtra from '@angular/common/locales/extra/fr';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { AppRoutingModule } from './/app-routing.module';
@@ -61,9 +61,10 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
-import { AtomSpinnerModule } from 'angular-epic-spinners';
+import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 
-
+import { RequestInterceptor } from './services/api/request.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,12 +116,17 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     ChartjsModule,
-    AtomSpinnerModule,
-    PdfViewerModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
+    ScalingSquaresSpinnerModule
   ],
-  providers: [ApiService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [
+    ApiService,
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 

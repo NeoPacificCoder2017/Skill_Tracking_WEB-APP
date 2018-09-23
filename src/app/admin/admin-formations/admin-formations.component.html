@@ -7,7 +7,7 @@
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
         <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">
-          Ajouter une formation
+          Ajouter une Formation
         </button>
       </div>
     </div>
@@ -45,9 +45,9 @@
       <tbody>
         <tr *ngFor="let formation of formations" class="shadow bg-white rad text-row">
           <th></th>
-          <th scope="row" width="40" (click)="showFormation(formation.id)">{{formation.id}}</th>
-          <td style="width: 95px;" (click)="showFormation(formation.id)"><img src="{{environment.appLogoUrl}}{{ formation.logo }}" class="img-circle" width="100%"></td>
-          <td (click)="showFormation(formation.id)"><span class="alignleft">{{formation.name}}</span></td>
+          <th scope="row" width="40">{{formation.id}}</th>
+          <td style="width: 95px;"><img src="{{environment.appLogoUrl}}{{ formation.logo }}" class="img-circle" width="100%"></td>
+          <td><span class="alignleft">{{formation.name}}</span></td>
           <td>
             <span class="alignleft"><i class="fa fa-calendar"></i> Début : {{formation.start_at | date:'shortDate'}}</span><br/>
             <span class="alignleft"><i class="fa fa-calendar"></i> Fin : {{formation.end_at | date:'shortDate' }}</span>
@@ -70,6 +70,7 @@
           </td>
           <td style="width: 124px;">
             <button (click)="deleteFormation(formation.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
+            <button (click)="showFormation(formation.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
           </td>
         </tr>
         <br>
@@ -85,10 +86,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une Formation</h4>
       </div>
       <div class="modal-body">
-        
+
         <form [formGroup]="newFormationForm" class="form-horizontal form-label-left">
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
@@ -132,7 +133,6 @@
       <div class="modal-footer">
         <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
         <button  type="button" [disabled]="loading" (click)="createFormation()"class="btn bg-blue icon no-border">Ajouter</button>
-        <button  type="button" [disabled]="loading" (click)="editeFormation(id)"class="btn bg-blue icon no-border">modifier</button>
       </div>
     </div>
   </div>

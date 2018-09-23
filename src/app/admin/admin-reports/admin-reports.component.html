@@ -3,43 +3,31 @@
     <h3>Liste des rapports</h3>
   </div>
 </div>
-<form id="search" class="row">
+
+<div class="clearfix"></div>
+
+<!-- CHAMPS RECHERCHE -->
+<div class="row" *ngIf="!displayViewReport">
   <!-- champ de recherche par auteur -->
-  <div class="col-md-3 form-group top_search filterStyle" id="search_author">
+  <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
     <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
-      <select class="form-control">
-        <option>Etudiant</option>
-        <option>MANA Kevin</option>
-        <option>TEPA Vaiarii</option>
-        <option>TKT Cedric</option>
-        <option>TUHITI Christ</option>
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
+        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
       </select>
     </div>
   </div>
   <!-- champ recherche par date picker -->
-  <div class="col-md-3 form-group top_search filterStyle" id="search_date">
+  <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
     <div class="">
-      <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
-      <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+      <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
     </div>
   </div>
-  <!-- champ rechercher -->
-  <div class="col-md-4 form-group top_search filterStyle" id="search_field">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Rechercher...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div>
-  </div>
-  <!-- bouton ajouter -->
-  <!-- <div class="glyphicon glyphicon-plus"></div> -->
+</div>
 
-</form>
 <!-- Liste des formations -->
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 col-xd-12">
   <!-- Tableau des formations -->
   <table class="table table-borderless space" style="color: #999">
     <thead class="">
@@ -49,6 +37,7 @@
         <th scope="col">Nom</th>
         <th scope="col">Etudiant</th>
         <th scope="col">Date de création</th>
+        <th scope="col">Action</th>
         
       </tr>
     </thead>
@@ -60,6 +49,9 @@
         <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
         <td>
           <span class="alignleft">{{ item.date }}</span>
+        </td>
+        <td>
+          <button (click)="goToSkill(module.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
         </td>
       </tr>
       <br>

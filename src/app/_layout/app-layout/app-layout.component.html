@@ -1,14 +1,4 @@
     <app-app-header></app-app-header>
-    
-    <div id="loadingWrapper" class="loadingWrapper" *ngIf = "display">
-        <div class="loadingBox">
-            <app-atom-spinner
-                [animationDuration]="1000"
-                [size]="60"
-                [color]="'#ff1d5e'">
-            </app-atom-spinner>
-        </div>
-    </div>
     <!-- top navigation -->
     <div class="top_nav">
         <div class="nav_menu">
@@ -24,7 +14,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
                             <li>
-                                <a (click)="redirectProfile()"> Profile</a>
+                                <a (click)="redirectProfile()"> Profil</a>
                             </li>
                             <li>
                             <a href="javascript:;">
@@ -36,7 +26,7 @@
                                 <a href="javascript:;">Help</a>
                             </li>
                             <li>
-                                <a (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                <a (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a>
                             </li>
                         </ul>
                     </li>

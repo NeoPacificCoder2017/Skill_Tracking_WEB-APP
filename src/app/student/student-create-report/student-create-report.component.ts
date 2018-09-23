@@ -19,6 +19,7 @@ export class StudentCreateReportComponent implements OnInit {
   hovered = 0;
   readonly = false;
   placeHolderText: any;
+  me: any;
   // options: any = {
   //   pluginsEnabled: ['image', 'link', 'codeView'],
   // };
@@ -35,17 +36,14 @@ export class StudentCreateReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.options.froalaEditor({
-    //   pluginsEnabled: ['image', 'link', 'codeView'],
-    //   spellcheck: true
-    // });
-
+    this.me = JSON.parse(localStorage.getItem('user'));
+    console.log('this.me', this.me);
     this.newReportForm = this.formBuilder.group({
-      title: ['', null],
-      rate: ['', null],
-      text: ['', null],
-      is_daily: ['', null],
-      created_date: ['', null]
+      title: ['', Validators.required],
+      rate: ['', Validators.required],
+      text: ['', Validators.required],
+      is_daily: ['', Validators.required],
+      created_date: ['', Validators.required]
     });
   }
   get f() { return this.newReportForm.controls; }
@@ -54,18 +52,19 @@ export class StudentCreateReportComponent implements OnInit {
     console.log('this.f', this.f);
     this.submitted = true;
     this.loading = true;
-    const created_date = this.f.created_date.value.split('/');
     const uploadData = new FormData();
     uploadData.append('title', this.f.title.value);
+    uploadData.append('student_id', this.me.student_id);
     uploadData.append('rate', this.f.rate.value);
     uploadData.append('text', this.f.text.value);
-    uploadData.append('is_daily', this.f.is_daily.value);
-    uploadData.append('date', created_date);
+    uploadData.append('is_daily', (this.f.is_daily.value) ? '1' : '0');
+    uploadData.append('date', this.f.created_date.value);
 
-    console.log('uploaData', uploadData);
-    this.apiService.post('report/create', uploadData).subscribe(data => {
-      console.log('sauvegarder');
+    console.log('uploadData', uploadData);
+    this.apiService.post('report/create', uploadData)
+    .subscribe(data => {
       this.ngOnInit();
+      console.log('sauvegardé');
     });
   }
 

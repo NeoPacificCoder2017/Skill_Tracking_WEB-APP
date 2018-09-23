@@ -1,16 +1,17 @@
-<div class="row page-title ">
+<div class="page-title">
   <div class="title_left">
-    <h3>Liste des compétences</h3>
+      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la liste des modules</button>
   </div>
   <div class="title_right">
-      <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la formation</button>
+    <button data-toggle="modal" data-target="#modalSkill" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Ajouter une compétence</button>
   </div>
-</div> 
+</div>
 <br>
 <div class="row" style="padding-top: 25px;">
-  <h4>{{ module.module_name }}</h4>
+  <h2 style="text-align: center;">Liste des compétences</h2>
+  <h4 style="text-align: center;">{{ module.name }} || total heure: {{ module.total_hours }}h</h4>
 </div>
-  
+
 <table class="table table-borderless space" style="color: #999">
   <thead class="">
     <tr class="tablecolor rad text-row">
@@ -18,7 +19,7 @@
         <th scope="col">#</th>
         <th scope="col">Intitulé</th>
         <th scope="col">Obligatoire</th>
-        <th scope="col">Validé par les étudiants</th>
+        <th scope="col">Validés par les étudiants</th>
         <th scope="col" class="pull-right">Validés par le formateur</th>
     </tr>
   </thead>
@@ -29,23 +30,58 @@
       <td>{{ skill.name }}</td>
       <td>
         <div class="pull-left">
-          <!-- <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="skillObligationByAdmin(skill.id)" (change)="onChange(skill.id)"> -->
-          <!-- <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                         -->
+          <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="isAdminValidated(skill.id)" (change)="onChange(skill.id)">
+          <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
         </div>
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-          <div class="progressTeacherText red">{{ (progresseBySkill.validated_by_teacher*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="skill.validated_by_teacher*100/skill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText red">{{ (skill.validated_by_teacher*100/skill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
       <td>
         <div class="roundProgressBarWrapper">
-          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="progresseBySkill.validated_by_student*100/progresseBySkill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-          <div class="progressTeacherText purple">{{ (progresseBySkill.validated_by_student*100/progresseBySkill.toValidate) | number: '1.0-0' }}%</div>
+          <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="skill.validated_by_student*100/skill.toValidate" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+          <div class="progressTeacherText purple">{{ (skill.validated_by_student*100/skill.toValidate) | number: '1.0-0' }}%</div>
         </div>
+      </td>
+      <td>
+        <button (click)="deletedSkill(skill.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
       </td>
     </tr>
     <br>
   </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="modalSkill" tabindex="-1" role="dialog" aria-labelledby="modalSkillLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalSkillLabel">Ajouter une compétence</h4>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="newSkillForm" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la compétence</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            </div>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Le nom est requis</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
+        <button  type="button" [disabled]="loading" (click)="createSkill()"class="btn bg-blue icon no-border">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>

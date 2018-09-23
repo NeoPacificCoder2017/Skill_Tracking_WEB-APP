@@ -16,7 +16,7 @@ export class AdminFormationComponent implements OnInit {
   formations: any;
   formation: any;
   modules: any;
-  calendars: any;
+  calendar: any;
   idFormation: any;
   dropDown: boolean;
   displayOff: string;
@@ -37,8 +37,26 @@ export class AdminFormationComponent implements OnInit {
   selectedColor: string;
   newPlanningForm: FormGroup;
   filename: File;
-  formation_id: any = 1;
   totalSkills: any;
+
+  // format de la date de formation start_at
+  dateSplitedStart: any;
+  dateStart: any;
+  yearStart: any;
+  monthStart: any;
+  daysStart: any;
+
+  // format de la date de formation start_at
+  dateSplitedEnd: any;
+  dateEnd: any;
+  yearEnd: any;
+  monthEnd: any;
+  daysEnd: any;
+
+  showTeachersPanel = 0;
+  selectedTeacher: any;
+
+  newStudents: any;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -46,17 +64,17 @@ export class AdminFormationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
     this.moduleName = '';
-  }
+    this.selectedTeacher = { id: null, avatar: null, firstname: null, lastname: null};
+    }
 
   ngOnInit() {
     this.newFormationForm = this.formBuilder.group({
       name: ['', Validators.required],
       start_at: ['', Validators.required],
       end_at: ['', Validators.required]
-  });
+    });
     this.newModuleForm = this.formBuilder.group({
       name: ['', Validators.required],
-      teacher: ['', Validators.required],
       color: ['', Validators.required],
       total_hours: ['', Validators.required]
     });
@@ -66,19 +84,19 @@ export class AdminFormationComponent implements OnInit {
     this.formation = {};
     this.teachers = [];
     this.students = [];
+    this.newStudents = [];
     this.modules = [];
-    this.calendars = [];
     this.route.queryParams
-      .subscribe(params => {
-        this.idFormation = params.idFormation;
-        this.getFormation();
-        this.getTeachers();
-        this.getStudents();
-        this.getModules();
-        this.getTeacherAll();
-        this.getPlannings();
-        this.formationAll();
-      });
+    .subscribe(params => {
+      this.idFormation = params.idFormation;
+      this.getFormation();
+      this.getTeachers();
+      this.getStudents();
+      this.getModules();
+      this.getTeacherAll();
+      this.getPlannings();
+      this.formationAll();
+    });
     this.displayOne = this.dropDown ? 'inline' : 'none';
   }
 
@@ -88,10 +106,28 @@ export class AdminFormationComponent implements OnInit {
 
   public getFormation() {
     this.apiService.get('formation/' + this.idFormation)
-      .subscribe((data) => {
-        this.formation = data;
-        console.log('getFormation', this.formation);
-      });
+    .subscribe((data) => {
+      this.formation = data;
+      console.log('getFormation', this.formation);
+      // changement du format de la date de début de la formation
+      this.dateSplitedStart = data.start_at.split(' ');
+      this.dateStart = this.dateSplitedStart[0].split('-');
+      this.yearStart = this.dateStart[0];
+      this.monthStart = this.dateStart[1];
+      this.daysStart = this.dateStart[2];
+
+      // changement du format de la date de fin de la formation
+      this.dateSplitedEnd = data.end_at.split(' ');
+      this.dateEnd = this.dateSplitedEnd[0].split('-');
+      this.yearEnd = this.dateEnd[0];
+      this.monthEnd = this.dateEnd[1];
+      this.daysEnd = this.dateEnd[2];
+
+      this.newFormationForm.controls['name'].setValue(this.formation.name);
+      this.newFormationForm.controls['start_at'].setValue(this.daysStart + '/' + this.monthStart + '/' + this.yearStart);
+      console.log('start_at', this.daysStart + '/' + this.monthStart + '/' + this.yearStart);
+      this.newFormationForm.controls['end_at'].setValue(this.daysEnd + '/' + this.monthEnd  + '/' + this.yearEnd);
+    });
   }
 
   private formationAll() {
@@ -101,45 +137,44 @@ export class AdminFormationComponent implements OnInit {
       console.log('formations data', this.formations);
     });
   }
-
   private getTeachers() {
     this.apiService.get('getTeachersOfFormation/' + this.idFormation)
-      .subscribe((data) => {
-        this.teachers = data;
-        console.log('getTeachers', this.teachers);
-      });
+    .subscribe((data) => {
+      this.teachers = data;
+      console.log('getTeachers', this.teachers);
+    });
   }
   public getTeacherAll() {
-    this.apiService.get('users/teacher').subscribe(
-      data => {
-        this.teachersAll = data.data;
-        console.log('teachersAll', this.teachersAll);
-      }
-    );
+    this.apiService.get('users/teacher')
+    .subscribe(data => {
+      this.teachersAll = data.data;
+      console.log('teachersAll', this.teachersAll);
+    });
   }
-
   private getStudents() {
     this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
-      .subscribe((data) => {
-        this.students = data;
-        console.log('getStudents', this.students);
-      });
+    .subscribe((data) => {
+      this.students = data;
+      console.log('getStudents', this.students);
+      this.getStudentsNotInFormation();
+    });
   }
 
   private getModules() {
     this.apiService.get('getModulesOfFormation/' + this.idFormation)
-      .subscribe((data) => {
-        this.modules = data;
-        console.log('getModules', this.modules);
-      });
+    .subscribe((data) => {
+      this.modules = data;
+      console.log('getModules', this.modules);
+    });
   }
 
   private getPlannings() {
-    this.apiService.get('getPlanningForAdmin')
-      .subscribe((data) => {
-        this.calendars = data;
-        console.log('getPlannings', this.calendars);
-      });
+    console.log('this.idFormation', this.idFormation);
+    this.apiService.get('getCalendarOfFormation/' + this.idFormation)
+    .subscribe((data) => {
+      this.calendar = data;
+      console.log('getPlannings', this.calendar);
+    });
   }
 
   goToStudentPage(studentId) {
@@ -162,7 +197,13 @@ export class AdminFormationComponent implements OnInit {
     console.log('goToSkill', moduleId);
     this.router.navigate(['/admin/skills'], { queryParams: { idModule: moduleId } });
   }
+  // convenience getter for easy access to form fields
+  get plan() { return this.newPlanningForm.controls; };
 
+  onFileChanged(event) {
+    console.log(event);
+    this.filename = event.target.files[0];
+  }
   // convenience getter for easy access to form fields
   get m() { return this.newModuleForm.controls; }
 
@@ -175,61 +216,59 @@ export class AdminFormationComponent implements OnInit {
     this.loading = true;
     const uploadData = new FormData();
     uploadData.append('name', this.m.name.value);
-    uploadData.append('teacher', this.m.teacher.value);
+    uploadData.append('formation_id', this.idFormation);
+    uploadData.append('teacher_id', this.selectedTeacher.id);
     uploadData.append('color', this.m.color.value);
     uploadData.append('total_hours', this.m.total_hours.value);
 
     console.log('uploadData', uploadData);
-    this.apiService.upload('module/create', uploadData)
+    this.apiService.post('module/create', uploadData)
     .subscribe(data => {
-      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
+      const element: HTMLElement = document.getElementById('closeModalModule') as HTMLElement;
       element.click();
+      this.selectedTeacher = { id: null, avatar: null, firstname: null, lastname: null};
+      this.selectedColor = '';
+      this.ngOnInit();
+    });
+  }
+  createCalendar(): any {
+    this.submitted = true;
+    if (this.newPlanningForm.invalid && this.filename == null) return;
+
+    this.loading = true;
+    const uploadData = new FormData();
+    uploadData.append('formation_id', this.idFormation);
+    uploadData.append('file_name', this.filename.name);
+    uploadData.append('file_url', this.filename, this.filename.name);
+
+    this.apiService.upload('calendar/create', uploadData)
+    .subscribe(data => {
+      const element: HTMLElement = document.getElementById('closeModalCalendar') as HTMLElement;
+      element.click();
+      if(this.calendar) this.deleteOldCalendar();
+      else this.ngOnInit();
+    });
+  }
+
+  deleteOldCalendar() {
+    this.apiService.delete('calendar/' + this.calendar.calendar_id).subscribe((data)=>{
+      console.log('calendar deleted', data);
       this.ngOnInit();
     });
   }
 
   // convenience getter for easy access to form fields
-  get plan() { return this.newPlanningForm.controls; }
+  get f() { return this.newFormationForm.controls; }
 
-  onFileChanged(event) {
+  onFileFormationChanged(event) {
     console.log(event);
-    this.filename = event.target.files[0];
+    this.newFormationImage = event.target.files[0];
   }
-
-  createCalendar(): any {
-    this.submitted = true;
-    if (this.newPlanningForm.invalid && this.filename == null) {
-        return;
-    }
-
-    this.loading = true;
-    const uploadData = new FormData();
-    uploadData.append('formation_id', this.formation_id);
-    uploadData.append('file_name', this.plan.file_name.value);
-    uploadData.append('file_url', this.filename, this.filename.name);
-
-    console.log('uploadData', uploadData);
-    console.log('this.filename', this.filename);
-    this.apiService.upload('calendar/create', uploadData)
-    .subscribe(data => {
-      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-      element.click();
-      this.ngOnInit();
-    });
-  }
-
-   // convenience getter for easy access to form fields
-   get f() { return this.newFormationForm.controls; }
-
-   onFileFormationChanged(event) {
-     console.log(event);
-     this.newFormationImage = event.target.files[0];
-   }
 
   editeFormation(idFormation): any {
     this.submitted = true;
     if (this.newFormationForm.invalid && this.newFormationImage == null) {
-        return;
+      return;
     }
 
     this.loading = true;
@@ -239,11 +278,11 @@ export class AdminFormationComponent implements OnInit {
     uploadData.append('name', this.f.name.value);
     uploadData.append('start_at', start_at[2] + '-' + start_at[1] + '-' + start_at[0] + ' 00:00:00:00');
     uploadData.append('end_at', end_at[2] + '-' + end_at[1] + '-' + end_at[0] + ' 00:00:00:00');
-    uploadData.append('logo', this.newFormationImage, this.newFormationImage.name);
+    uploadData.append('logo', this.filename, this.filename.name);
 
     console.log('uploadData', uploadData);
-    console.log('this.newFormationImage', this.newFormationImage);
-    this.apiService.upload('formation/' + idFormation, uploadData)
+    console.log('this.filename', this.filename);
+    this.apiService.upload('editFormation/' + idFormation, uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
@@ -251,27 +290,56 @@ export class AdminFormationComponent implements OnInit {
     });
   }
 
-
   deleteModule(idModule): any {
     console.log('idModule', idModule);
-    this.apiService.delete('module/' + { params: {idModule: idModule}})
-      .subscribe((data) => {
-        console.log('Module deleted');
-      });
+    this.apiService.delete('module/' + idModule)
+    .subscribe((data) => {
+      console.log('Module deleted');
+      this.ngOnInit();
+    });
+  }
+
+  deleteStudent(userId): any {
+    console.log('deleteStudent userId', userId);
   }
 
   openColorsPanel() {
     this.showColorsPanel = 1;
-    console.log('showColorPanel', this.showColorsPanel);
   }
 
   selectColor(index) {
-    console.log('this.newModuleForm.controls', this.newModuleForm.controls);
     this.selectedColor = this.colorsPanel[index];
-    // this.newModuleForm.controls.color.value = this.selectedColor;
+    this.newModuleForm.controls['color'].setValue(this.selectedColor);
     this.showColorsPanel = 0;
-    console.log('index', index);
-    console.log('selectedColor', this.selectedColor);
-    console.log('showColorsPanel', this.showColorsPanel);
+  }
+
+  selectTeacher(index) {
+    this.showTeachersPanel = 0;
+    this.selectedTeacher.id = this.teachersAll[index].id;
+    this.selectedTeacher.avatar = this.teachersAll[index].avatar;
+    this.selectedTeacher.lastname = this.teachersAll[index].lastname;
+    this.selectedTeacher.firstname = this.teachersAll[index].firstname;
+  }
+
+  getStudentsNotInFormation() {
+    this.newStudents = [];
+    this.apiService.get('getAllStudentsNotInFormation/' + this.idFormation)
+    .subscribe((data) => {
+      console.log('getStudentsNotInFormation', data);
+      this.newStudents = data;
+    });
+  }
+
+  addStudentToFormation(studentId) {
+
+    const uploadData = new FormData();
+    uploadData.append('user_id', studentId);
+    uploadData.append('formation_id', this.idFormation);
+
+    console.log('uploadData', uploadData);
+    this.apiService.post('fillstudent', uploadData)
+    .subscribe(data => {
+      this.getStudents();
+    });
   }
 }
