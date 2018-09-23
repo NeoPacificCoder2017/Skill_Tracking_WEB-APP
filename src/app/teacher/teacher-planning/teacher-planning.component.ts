@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 
 @Component({
   selector: 'app-teacher-planning',
@@ -15,13 +12,6 @@ import { environment } from '../../../environments/environment';
 })
 export class TeacherPlanningComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-=======
   page = 1;
   environment = environment;
   calendars: any;
@@ -45,5 +35,4 @@ export class TeacherPlanningComponent implements OnInit {
       console.log('calendars data', this.calendars);
     });
   }
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 }

@@ -61,12 +61,8 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
-<<<<<<< HEAD
-import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
-=======
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 
 @NgModule({
   declarations: [
@@ -101,9 +97,6 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
     TeacherProfileComponent,
-<<<<<<< HEAD
-    TeacherPlanningComponent
-=======
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
@@ -111,7 +104,6 @@ import { AtomSpinnerModule } from 'angular-epic-spinners';
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
     TeacherReportsComponent
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
   ],
   imports: [
     BrowserModule,

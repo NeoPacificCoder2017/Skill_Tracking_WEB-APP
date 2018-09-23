@@ -176,11 +176,6 @@ export class AdminFormationComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('name', this.m.name.value);
     uploadData.append('teacher', this.m.teacher.value);
-<<<<<<< HEAD
-    uploadData.append('color', this.m.color.value);
-    uploadData.append('total_hours', this.m.total_hours.value);
-=======
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
     uploadData.append('color', this.m.color.value);
     uploadData.append('total_hours', this.m.total_hours.value);
 
