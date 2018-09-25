@@ -25,7 +25,7 @@ import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admi
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
-
+import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
@@ -85,6 +85,8 @@ const routes: Routes = [
       { path: 'admin/profileTeacher', component: AdminProfileTeacherComponent},
       { path: 'admin/profileAdmin', component: AdminProfileAdminComponent},
       { path: 'admin/studentModule', component: AdminStudentModuleComponent},
+      { path: 'admin/reportDetail', component: AdminReportDetailComponent},
+
     ],
     runGuardsAndResolvers: 'always'
   },

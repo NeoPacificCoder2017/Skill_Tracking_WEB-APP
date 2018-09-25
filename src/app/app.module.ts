@@ -64,6 +64,7 @@ import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
+import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,8 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
     TeacherPlanningComponent,
-    AdminStudentModuleComponent
+    AdminStudentModuleComponent,
+    AdminReportDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,7 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     ScalingSquaresSpinnerModule
   ],
   providers: [
-    ApiService, 
+    ApiService,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     {
       provide: HTTP_INTERCEPTORS,

@@ -109,15 +109,6 @@ export class AdminSkillsComponent implements OnInit {
     return (this.selectedSkills.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
   }
 
-  skillObligationByAdmin() {
-    for (let i = 0; i < this.skills.length; i++ ) {
-      if ( this.skills[i].progression.teacher_validation === 0) {
-        // this.skillValidatedByTeacher(this.skills[i].id);
-        //   this.stateText(this.skills[i].id);
-      }
-    }
-  }
-
   deletedSkill(idSkill): any {
     this.apiService.delete('skill/' + idSkill)
     .subscribe(data => {
