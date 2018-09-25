@@ -16,11 +16,7 @@ export class TeacherPlanningComponent implements OnInit {
   environment = environment;
   calendars: any;
 
-  constructor(private apiService: ApiService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getCalendar();
@@ -29,7 +25,7 @@ export class TeacherPlanningComponent implements OnInit {
   getCalendar() {
     this.apiService.get('teachers/calendar')
     .subscribe((data) => {
-      this.calendars = data.data;
+      this.calendars = data;
       console.log('calendars data', this.calendars);
     });
   }

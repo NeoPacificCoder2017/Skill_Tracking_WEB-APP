@@ -38,10 +38,22 @@
           <td><span class="alignleft">{{e.name}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
-                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="50" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="80" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
-                <div class="progressTeacherText red">100%</div>
-                <div class="progressStudentText purple">100%</div>
+                <round-progress class="roundProgressBar roundProgressBarTeacher"
+                                [current]="e.progressions_teacher_validated*100/e.progressions_total_skills"
+                                [max]="environment.progressMax"
+                                [color]="environment.tableProgressColorTeacher"
+                                [radius]="environment.tableProgressRadiusTeacher"
+                                [stroke]="environment.tableProgressStrokeTeacher">
+                </round-progress>
+                <round-progress class="roundProgressBar roundProgressBarStudent"
+                                [current]="e.progressions_student_validated*100/e.progressions_total_skills"
+                                [max]="environment.progressMax"
+                                [color]="environment.tableProgressColorStudent"
+                                [radius]="environment.tableProgressRadiusStudent"
+                                [stroke]="environment.tableProgressStrokeStudent">
+                </round-progress>
+                <div class="progressTeacherText red">{{ (e.progressions_teacher_validated*100/e.progressions_total_skills) | number: '1.0-0' }}%</div>
+                <div class="progressStudentText purple">{{ (e.progressions_student_validated*100/e.progressions_total_skills) | number: '1.0-0' }}%</div>
             </div>
           </td>
           <td><span class="alignleft">{{e.start_at | date}}</span></td>
