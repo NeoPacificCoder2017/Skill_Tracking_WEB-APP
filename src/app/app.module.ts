@@ -42,6 +42,7 @@ import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-pla
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminModuleComponent } from './admin/admin-module/admin-module.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
@@ -64,6 +65,7 @@ import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +104,9 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
     TeacherPlanningComponent,
-    AdminStudentModuleComponent
+    AdminStudentModuleComponent,
+    AdminModuleComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,

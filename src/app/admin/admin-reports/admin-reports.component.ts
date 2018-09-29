@@ -16,6 +16,7 @@ export class AdminReportsComponent implements OnInit {
   newReportForm: FormGroup;
   loading = false;
   submitted = false;
+  displayViewReport = false;
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
