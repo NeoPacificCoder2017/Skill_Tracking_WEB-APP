@@ -62,12 +62,8 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
-<<<<<<< HEAD
-import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
-=======
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
 
 import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -106,9 +102,6 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
     TeacherProfileComponent,
-<<<<<<< HEAD
-    TeacherPlanningComponent
-=======
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
@@ -116,7 +109,6 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
     TeacherReportsComponent
->>>>>>> 55c8873aeba95fac0da0d7b388a4bfb7752b6cb0
   ],
   imports: [
     BrowserModule,
