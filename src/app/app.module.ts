@@ -27,7 +27,6 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
-
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -64,6 +63,7 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
+import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +103,7 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminProfileAdminComponent,
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
+    AdminReportDetailComponent,
     TeacherReportsComponent
   ],
   imports: [

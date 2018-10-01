@@ -16,20 +16,31 @@ export class AdminReportsComponent implements OnInit {
   newReportForm: FormGroup;
   loading = false;
   submitted = false;
+  reportdetail: any;
 
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.reportdetail = {};
+     }
 
   ngOnInit() {
     this.apiService.get('reports/allDate/allUser').subscribe(
       data => {
         this.reports = data;
-        console.log('reports', data);
+        this.reportdetail = data[6];
+        console.log('reports', this.reports);
+        console.log('reportdetail', this.reportdetail);
       }
     );
+
+  }
+
+  showdetailReport(idReport) {
+    console.log('Formation', idReport);
+    this.router.navigate(['admin/reportDetail'], { queryParams: { idReport: idReport } });
   }
 
 }

@@ -91,6 +91,46 @@ export class AdminSkillsComponent implements OnInit {
     });
   }
 
+  // skillValidatedByAdmin(skillId, AdminValidation, skillIndex) {
+  //   AdminValidation = (AdminValidation === 1) ? 0 : 1;
+  //   console.log('AdminValidation skillId', skillId);
+  //   console.log('AdminValidation AdminValidation', AdminValidation);
+  //   this.skills[skillIndex].student_validation = AdminValidation;
+
+  //   this.updateSkillsArray(skillId, AdminValidation);
+
+  //   const datas = { student_validation: AdminValidation };
+
+  //   this.apiService.put('progression/updateAdminValidation', datas)
+  //   .subscribe(data => {
+  //     console.log('skillValidatedByStudent data', data);
+  //   });
+  // }
+
+  // updateSkillsArray(skillId, AdminValidation) {
+  //   console.log('updateSkillsArray launched');
+  //   console.log('updateSkillsArray skillId', skillId);
+  //   console.log('updateSkillsArray this.allSkills[0]', this.allSkills[0]);
+  //   for (let i = 0; i < this.allSkills.length; i++) {
+  //     if (this.allSkills[i].id === skillId) {
+  //       console.log('updateSkillsArray (this.allSkills[i].id === skillId OK');
+  //       this.allSkills[i].progression.student_validation = AdminValidation;
+  //       break;
+  //     }
+  //   }
+
+  //   this.filterByModule(this.moduleSelected);
+
+  //   for (let i = 0; i < this.dataStudent.length; i++) {
+  //     for (let j = 0; j < this.dataStudent[i].module.skills.length; j++) {
+  //       if (this.dataStudent[i].module.skills[j].id === skillId) {
+  //         this.dataStudent[i].module.skills[j].progression.student_validation = AdminValidation;
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
+
   onChange(skillId) {
     console.log('onChange');
     const index = this.selectedSkills.indexOf(skillId);
@@ -107,15 +147,6 @@ export class AdminSkillsComponent implements OnInit {
 
   stateText(skillId) {
     return (this.selectedSkills.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
-  }
-
-  skillObligationByAdmin() {
-    for (let i = 0; i < this.skills.length; i++ ) {
-      if ( this.skills[i].progression.teacher_validation === 0) {
-        // this.skillValidatedByTeacher(this.skills[i].id);
-        //   this.stateText(this.skills[i].id);
-      }
-    }
   }
 
   deletedSkill(idSkill): any {
