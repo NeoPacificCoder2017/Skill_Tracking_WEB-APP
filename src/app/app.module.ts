@@ -27,7 +27,6 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
@@ -117,7 +116,6 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     FroalaViewModule.forRoot(),
     ChartjsModule,
     AtomSpinnerModule,
-    PdfViewerModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     FilterPipeModule,
