@@ -15,36 +15,40 @@
 <div class="clearfix"></div>
 <!-- formulaire -->
 <form [formGroup]="newReportForm" class="form-horizontal form-label-left">
-  <!-- ajouter un titre au rapport -->
-  <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Titre :</label>
-    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-      <input type="text" formControlName="title" placeholder="Ajoutez un titre..." class="form-control" id="title" >
+  <div class="row">
+    <!-- ajouter un titre au rapport -->
+    <div class="form-group col-md-3">
+      <label class="control-label col-md-3" for="title">Titre :</label>
+      <div class="form-group col-md-9">
+        <input type="text" formControlName="title" placeholder="Ajoutez un titre..." class="form-control" id="title" >
+      </div>
+    </div>
+
+    <!-- ajouter une note au rapport -->
+    <div class="form-group col-md-2"> 
+      <label class="control-label col-md-6" for="rate">Notation :</label>
+      <div class="col-md-6 emphasis">
+        <input type="number" id="rate" formControlName="rate" class="form-control col-md-7 col-xs-12">
+      </div>
+    </div>
+
+    <!-- date -->
+    <div class="form-group col-md-5">
+      <label class="control-label col-md-6" for="created_date">Date de création du rapport :</label>
+      <div class="col-md-6">
+        <input type="date" class="form-control" formControlName="created_date" id="created_date">
+      </div>
+    </div>
+
+    <!-- journalier -->
+    <div class="form-group col-md-2">
+      <label class="control-label col-md-7">Journalier :</label>
+      <div class="col-md-3">
+        <input class="form-control" formControlName="is_daily" type="checkbox" checked id="is_daily"> 
+      </div>
     </div>
   </div>
-
-  <!-- ajouter une note au rapport -->
-  <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rate">Notation :</label>
-    <div class="col-xs-12 col-sm-6 emphasis">
-      <input type="number" id="rate" formControlName="rate" class="form-control col-md-7 col-xs-12">
-    </div>
-  </div>
-
-  <!-- date -->
-  <div class="form-group">
-    <div class="col-md-9 col-sm-9 col-xs-9">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="created_date">Date de création du rapport :</label>
-      <input type="date" class="form-control" formControlName="created_date" id="created_date">
-    </div>
-  </div>
-
-  <!-- journalier -->
-  <div class="form-group">
-    <label>
-      <input class="form-control" formControlName="is_daily" type="checkbox" checked id="is_daily"> Journalier
-    </label>
-  </div>
+  
 
   <!-- rediger un rapport -->
   <div class="form-group">

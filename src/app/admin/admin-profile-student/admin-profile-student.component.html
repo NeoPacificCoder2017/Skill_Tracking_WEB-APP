@@ -19,7 +19,7 @@
 </div>
 <div class="row" style="margin-bottom: 50px;">
   <div class="col-md-12" style="text-align: center;">
-    <h4 style="margin: 5px 0 0 5px;">{{ profileStudent.email }} | {{ profileStudent.phone_number }} | {{ profileStudent.birthday_date }} | {{ profileStudent.gender }}</h4>
+    <h4 style="margin: 5px 0 0 5px;">{{ profileStudent.email }} | {{ profileStudent.phone_number }} | {{ date }} | {{ profileStudent.gender }}</h4>
   </div>
 </div>
 
@@ -82,8 +82,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let skills of skillsStudent" class="shadow bg-white rad text-row">
-              <th></th>
-              <th scope="row" width="40" >{{ skills.user_id }}</th>
+              <th scope="row" width="40" >{{ skills.skill_id }}</th>
+              <td>{{ skills.name }}</td>
             </tr>
           </tbody>
         </table>

@@ -30,8 +30,8 @@
       <td>{{ skill.name }}</td>
       <td>
         <div class="pull-left">
-          <input id="toggle{{ skill.id }}" type="checkbox" class="checky admin" [checked]="isAdminValidated(skill.id)" (change)="onChange(skill.id)">
-          <label (click)="skillObligationByAdmin(skill.id)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
+          <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isAdminValidated(skill.id)" (change)="onChange(skill.id)">
+          <label (click)="skillObligationByAdmin(skill.id, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
         </div>
       </td>
       <td>
