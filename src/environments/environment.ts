@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://skillstracking.gc/api/',
-  appUrl: 'http://skillstracking.gc/',
-  appImageUrl: 'http://skillstracking.gc/uploads/images/',
-  appLogoUrl: 'http://skillstracking.gc/uploads/logos/',
-  appCalendarUrl: 'http://skillstracking.gc/uploads/calendars/',
+  apiUrl: 'http://skillstracking.motjo.io/api/',
+  appUrl: 'http://skillstracking.motjo.io/',
+  appImageUrl: 'http://skillstracking.motjo.io/uploads/images/',
+  appLogoUrl: 'http://skillstracking.motjo.io/uploads/logos/',
+  appCalendarUrl: 'http://skillstracking.motjo.io/uploads/calendars/',
 
   tableProgressRadiusTeacher: 30,
   tableProgressRadiusStudent: 24,
