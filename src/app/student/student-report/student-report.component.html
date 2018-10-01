@@ -1,4 +1,4 @@
-<div class="page-title">
+<div class="page-title" *ngIf="!displayViewReport">
   <div class="title_left">
     <h3>Liste des rapports</h3>
   </div>
@@ -17,10 +17,10 @@
 <div class="row" *ngIf="!displayViewReport">
 
   <!-- champ de recherche par auteur a mettre dynamiquement -->
-  <div class="col-md-5 col-sm-5 col-xs-12 form-group" id="search_author">
+  <div class="col-md-5 col-sm-5 col-xs-12 form-group">
     <div class="input-group">
-      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent" (change)="filterByStudent($event)">
+        <option [ngValue]="student.studentId" *ngFor="let student of students" id="search_author">{{ student.studentName }}</option>
       </select>
     </div>
   </div>
@@ -37,7 +37,7 @@
 <div class="row" *ngIf="!displayViewReport">
   <div class="col-md-12 col-xd-12">
     <!-- Tableau des formations -->
-    <table class="table table-borderless space" style="color: #999">
+    <table class="table table-borderless space" style="color: #999" id="listingReport">
       <thead class="">
         <tr class="tablecolor rad text-row">
           <th scope="col"></th>
@@ -50,7 +50,6 @@
         </tr>
       </thead>
       <tbody>
-
         <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
@@ -61,7 +60,6 @@
           </td>
           <td>{{ item.last_edit_date | date:format }}</td>
           <td></td>
-
         </tr>
       </tbody>
     </table>
@@ -74,26 +72,25 @@
 
   <!-- div sans formulaire si consultation-->
   <div id="viewOnly" *ngIf="!displayEditReport">
-    <div class="item">
+    <div class="item" style="padding: 45px;">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span>*</span></label>
       <div class="col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
     </div>
-    <div class="item">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span>
-      </label>
+    <div class="item" style="padding: 39px; margin: 4px;">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span></label>
       <div class="col-md-6 col-sm-6 col-xs-12">
         {{report.report_rate}}
       </div>
     </div>
-    <div class="col-md-9 col-sm-9 col-xs-12">
+    <div class="item" style="padding: 14px; margin: -74px; text-align: left;">
       <div class="pull-right">
         <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
       </div>
+
     </div>
     <div class="item">
       <div class="item">
-        <label class="col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span>
-        </label>
+        <label class="col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span></label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           {{report.text}}
         </div>
@@ -128,13 +125,13 @@
     </div>
     <div class="form-group modal-body">
       <div class="x_content jumbotron">
-        <div [froalaEditor] id="text" [(froalaModel)]="report.text">
-        </div>
+        <div [froalaEditor] id="text" [(froalaModel)]="report.text"></div>
       </div>
       <div>
         <button  type="button" [disabled]="loading" (click)="saveReport()" class="btn bg-blue icon no-border">Enregistrer</button>
       </div>
     </div>
   </div>
+
 </div>
 

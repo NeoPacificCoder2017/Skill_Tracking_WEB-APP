@@ -300,4 +300,4 @@ export class AdminFormationComponent implements OnInit {
       console.log('selectedColor', this.selectedColor);
       console.log('showColorsPanel', this.showColorsPanel);
     }
-  }
+}

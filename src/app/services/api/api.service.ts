@@ -25,7 +25,7 @@ export class ApiService {
     if (this.me) {
       this.httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
           'Authorization': 'Bearer ' + this.me.token
         })
 
@@ -48,9 +48,10 @@ export class ApiService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + this.me.token
       })
-
     };
+
     return this.http.post(apiUrl + url, data, httpOptions).pipe(map(data => {return data;}));
+
   }
 
   put (url, data): any {
