@@ -6,7 +6,7 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un rapport</button>
+        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un Rapport</button>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
-          <td>{{item.report_title}}</td>
+          <td>{{ item.report_title }}</td>
           <td>
             <span class="alignleft">{{ item.created_date  | date:format }}</span>
           </td>

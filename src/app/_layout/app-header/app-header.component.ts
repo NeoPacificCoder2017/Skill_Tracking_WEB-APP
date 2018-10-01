@@ -22,14 +22,14 @@ export class AppHeaderComponent implements OnInit {
           'icon': 'fa-user',
           'url': '',
           'submenus': [
-            {'title': 'Administrateur', 'url': 'admin'},
+            {'title': 'Administrateurs', 'url': 'admin'},
             {'title': 'Formateurs', 'icon': 'fa-user', 'url': 'teachers'},
             {'title': 'Apprentis', 'icon': 'fa-user', 'url': 'students'},
             // {'title': 'Organisms', 'icon': 'fa-user', 'url': 'organisms'},
             // {'title': 'Entreprise', 'icon': 'fa-user', 'url': 'entreprise'}
           ]
         },
-        {'title': 'Reports', 'icon': 'fa-home', 'url': 'reports'},
+        {'title': 'Rapports', 'icon': 'fa-home', 'url': 'reports'},
       ]
     },
     {
@@ -38,8 +38,8 @@ export class AppHeaderComponent implements OnInit {
         {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
         // {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
         // {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
-        {'title': 'Reports', 'icon': 'fa-clipboard', 'url': 'reports'},
-        {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
+        {'title': 'Rapports', 'icon': 'fa-clipboard', 'url': 'reports'},
+        {'title': 'Plannings', 'icon': 'fa-calendar', 'url': 'planning'}
       ]
     },
     {
