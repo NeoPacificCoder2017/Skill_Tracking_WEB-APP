@@ -44,8 +44,9 @@ export class AdminStudentsComponent implements OnInit {
 
     this.apiService.get('users/student').subscribe(
       data => {
-        console.log('dataStudents', data);
+
         this.students = data.data;
+        console.log('dataStudents', data);
       }
     );
 
@@ -87,34 +88,6 @@ export class AdminStudentsComponent implements OnInit {
     console.log('uploadData', uploadData);
     console.log('this.newStudentImage', this.newStudentImage);
     this.apiService.upload('createStudent', uploadData)
-    .subscribe(data => {
-      const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-      element.click();
-      this.ngOnInit();
-    });
-  }
-
-  editeStudent(idUser): any {
-    this.submitted = true;
-    if (this.newStudentForm.invalid && this.newStudentImage == null) {
-      return;
-    }
-    this.loading = true;
-    const birthday_date = this.s.birthday_date.value.split('/');
-    const uploadData = new FormData();
-    uploadData.append('lastname', this.s.lastname.value);
-    uploadData.append('firstname', this.s.firstname.value);
-    uploadData.append('email', this.s.email.value);
-    uploadData.append('password', this.s.password.value);
-    uploadData.append('c_password', this.s.password.value);
-    uploadData.append('phone_number', this.s.phone_number.value);
-    uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
-    uploadData.append('gender', this.s.gender.value);
-    uploadData.append('avatar', this.newStudentImage, this.newStudentImage.name);
-
-    console.log('uploadData', uploadData);
-    console.log('this.newStudentImage', this.newStudentImage);
-    this.apiService.upload('user/update', uploadData)
     .subscribe(data => {
       const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
       element.click();
