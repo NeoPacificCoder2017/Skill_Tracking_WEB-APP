@@ -16,18 +16,18 @@
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
 
-  <!-- champ de recherche par auteur a mettre dynamiquement -->
-  <div class="col-md-5 col-sm-5 col-xs-12 form-group">
-    <div class="input-group">
-      <select class="form-control input-sm" [(ngModel)]="selectedStudent" (change)="filterByStudent($event)">
-        <option [ngValue]="student.studentId" *ngFor="let student of students" id="search_author">{{ student.studentName }}</option>
+  <!-- champ de recherche par auteur -->
+  <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
+    <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
+    <div class="">
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
+        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
       </select>
     </div>
   </div>
-
   <!-- champ recherche par date picker -->
-  <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
-    <div class="col-md-9 col-sm-9 col-xs-9">
+  <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
+    <div class="">
       <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
     </div>
   </div>

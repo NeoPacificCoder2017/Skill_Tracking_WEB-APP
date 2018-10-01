@@ -38,6 +38,8 @@ export class AdminFormationComponent implements OnInit {
   newPlanningForm: FormGroup;
   filename: File;
   totalSkills: any;
+  selectedTeacher: any;
+  newStudents: any;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -45,6 +47,7 @@ export class AdminFormationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
       this.moduleName = '';
+      this.selectedTeacher = {};
     }
 
     ngOnInit() {
@@ -76,6 +79,7 @@ export class AdminFormationComponent implements OnInit {
         this.getTeacherAll();
         this.getPlannings();
         this.formationAll();
+        this.getAllStudents();
       });
       this.displayOne = this.dropDown ? 'inline' : 'none';
     }
@@ -104,6 +108,7 @@ export class AdminFormationComponent implements OnInit {
       this.apiService.get('getTeachersOfFormation/' + this.idFormation)
       .subscribe((data) => {
         this.teachers = data;
+        this.selectedTeacher = data;
         console.log('getTeachers', this.teachers);
       });
     }
@@ -120,6 +125,14 @@ export class AdminFormationComponent implements OnInit {
       .subscribe((data) => {
         this.students = data;
         console.log('getStudents', this.students);
+      });
+    }
+
+    private getAllStudents() {
+      this.apiService.get('students')
+      .subscribe((data) => {
+        this.newStudents = data.data;
+        console.log('getAllStudents', this.newStudents);
       });
     }
 
@@ -185,21 +198,6 @@ export class AdminFormationComponent implements OnInit {
         this.ngOnInit();
       });
     }
-  //   this.loading = true;
-  //   const uploadData = new FormData();
-  //   uploadData.append('name', this.m.name.value);
-  //   uploadData.append('teacher', this.m.teacher.value);
-  //   uploadData.append('color', this.m.color.value);
-  //   uploadData.append('total_hours', this.m.total_hours.value);
-
-  //   console.log('uploadData', uploadData);
-  //   this.apiService.upload('module/create', uploadData)
-  //   .subscribe(data => {
-  //     const element: HTMLElement = document.getElementById('closeModal') as HTMLElement;
-  //     element.click();
-  //     this.ngOnInit();
-  //   });
-  // }
 
     getplan() {
       return this.newPlanningForm.controls;
