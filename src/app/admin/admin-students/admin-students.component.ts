@@ -31,20 +31,11 @@ export class AdminStudentsComponent implements OnInit {
       c_password: ['', Validators.required],
       phone_number: ['', Validators.required],
       birthday_date: ['', Validators.required],
-      formation_id: ['', Validators.required],
       gender: ['', Validators.required],
     });
 
-    this.apiService.get('getAllFormationsForAdmin').subscribe(
-      data => {
-        console.log('dataFormations', data);
-        this.formations = data;
-      }
-    );
-
     this.apiService.get('users/student').subscribe(
       data => {
-
         this.students = data.data;
         console.log('dataStudents', data);
       }
@@ -80,8 +71,6 @@ export class AdminStudentsComponent implements OnInit {
     uploadData.append('c_password', this.s.password.value);
     uploadData.append('phone_number', this.s.phone_number.value);
     uploadData.append('birthday_date', birthday_date[2] + '-' + birthday_date[1] + '-' + birthday_date[0] + ' 00:00:00:00');
-    uploadData.append('formation_id', this.s.formation_id.value);
-    console.log('formation-id', this.s.formation_id.value);
     uploadData.append('gender', this.s.gender.value);
     uploadData.append('avatar', this.newStudentImage, this.newStudentImage.name);
 

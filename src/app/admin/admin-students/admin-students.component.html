@@ -141,18 +141,6 @@
               <div *ngIf="s.birthday_date.errors.required">La date de naissance est requise</div>
             </div>
           </div>
-          <!-- selected formations -->
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="formation_id" >Formation</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <select class="form-control" formControlName="formation_id">
-                <option value="formation_id.id" *ngFor="let formation_id of formations">{{ formation_id.name }}</option>
-              </select>
-              <div *ngIf="submitted && s.formation_id.errors" class="invalid-feedback">
-                <div *ngIf="s.formation_id.errors.required">Veuillez sélectionner une formation</div>
-              </div>
-            </div>
-          </div>
           <!-- gender -->
           <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Genre</label>

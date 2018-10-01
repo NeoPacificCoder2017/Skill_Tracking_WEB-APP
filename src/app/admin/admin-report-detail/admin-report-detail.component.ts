@@ -13,15 +13,46 @@ import { environment } from '../../../environments/environment';
 })
 export class AdminReportDetailComponent implements OnInit {
 
+  idReport: any;
+  environment = environment;
+  commenteRport: any;
+  report: any;
+  dateSplite: any;
+
   constructor(private apiService: ApiService,
-    private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private ngZone: NgZone) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private ngZone: NgZone) {
+      this.report = {};
+      this.commenteRport = {};
+   }
 
   ngOnInit() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.idReport = params.idReport;
+        this.getCommentReport();
+        this.getReport();
+      });
+
   }
 
-  showFormation(idReport) {
-    console.log('report detail', idReport);
-    this.router.navigate(['/report-detail'], { queryParams: { idReport: idReport } });
+  public getCommentReport(): any {
+    this.apiService.get('commentsByReport/' + this.idReport)
+    .subscribe((data) => {
+      this.commenteRport = data;
+      console.log('Commentaire', this.commenteRport);
+    });
+  }
+
+  public getReport(): any {
+    this.apiService.get('report/' + this.idReport)
+    .subscribe((data) => {
+      this.report = data;
+      this.dateSplite = data.date;
+      console.log('report', this.report);
+      console.log('date', this.dateSplite);
+    });
   }
 
 }

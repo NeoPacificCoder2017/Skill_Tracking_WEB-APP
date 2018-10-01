@@ -38,7 +38,7 @@ export class StudentDashboardComponent implements OnInit {
     this.apiService.get('studentsFormation').subscribe(data => {
       console.log('StudentDashboardComponent studentsFormation data', data);
       this.formations = data;
-    })
+    });
 
     this.getFormationDatas();
   }

@@ -35,6 +35,12 @@ export class AdminReportsComponent implements OnInit {
         console.log('reportdetail', this.reportdetail);
       }
     );
+
+  }
+
+  showdetailReport(idReport) {
+    console.log('Formation', idReport);
+    this.router.navigate(['admin/reportDetail'], { queryParams: { idReport: idReport } });
   }
 
 }
