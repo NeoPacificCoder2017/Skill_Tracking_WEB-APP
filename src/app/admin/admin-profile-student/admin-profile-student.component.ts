@@ -24,6 +24,8 @@ export class AdminProfileStudentComponent implements OnInit {
   loading = false;
   submitted = false;
   user_type_id: any = 3;
+  dateSplited: any;
+  date: any;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -62,6 +64,8 @@ export class AdminProfileStudentComponent implements OnInit {
       .subscribe((data) => {
         console.log('idStudent', this.idStudent);
         this.profileStudent = data;
+        this.dateSplited = data.birthday_date.split(' ');
+        this.date = this.dateSplited[0];
         console.log('getProfileStudent', this.profileStudent);
       });
   }
@@ -79,7 +83,7 @@ export class AdminProfileStudentComponent implements OnInit {
     this.apiService.get('getProgressionForAdminByStudentId/' + this.idStudent)
       .subscribe((data) => {
         console.log('idStudent', this.idStudent);
-        this.skillsStudent = data;
+        this.skillsStudent = data[0].skillsValidatedByTeachersAndStudent;
         console.log('getSkillStudentValidated', this.skillsStudent);
       });
   }
