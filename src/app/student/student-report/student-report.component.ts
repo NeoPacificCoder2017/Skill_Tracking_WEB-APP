@@ -49,8 +49,8 @@ export class StudentReportComponent implements OnInit {
     // recuperer la liste des rapports d une formation
     public getReports() {
       this.apiService.get('report/getStudentsReportByFormation').subscribe(data => {
-        this.dataReport = data.data;
-        console.log('data Report', data);
+        this.dataReport = data;
+        console.log('data Report', this.dataReport);
         this.generateStudentsList();
       });
     }
