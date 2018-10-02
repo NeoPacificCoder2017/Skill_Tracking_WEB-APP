@@ -47,6 +47,7 @@ import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-repor
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminModuleComponent } from './admin/admin-module/admin-module.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
@@ -63,7 +64,11 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
+<<<<<<< HEAD
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+=======
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+>>>>>>> 542b476d1b583edbd54b9e0dfe4033bbb5ebee20
 @NgModule({
   declarations: [
     AppComponent,
