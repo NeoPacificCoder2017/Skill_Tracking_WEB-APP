@@ -4,15 +4,27 @@
   </div>
 </div>
 <br>
-<div class="row" style="padding-top: 25px;">
-  <h2 style="text-align: center;">Rapport</h2>
-  <h4 style="text-align: center;">{{ report.title }}</h4>
-  <h4 style="text-align: center;">{{ report.studentFirstname }} {{ report.studentLastname }}</h4>
-  <h5 style="text-align: center;">Créer le : {{ report.date }}</h5>
+<br>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1" style="box-shadow: 1px 4px 15px 3px #888888; margin-top: 15px;">
+    <div class="row" style="padding-top: 25px;">
+      <h3 style="text-align: center;">Rapport de {{ report.studentFirstname }} {{ report.studentLastname }}</h3>
+      <h4 style="text-align: center;">{{ report.title }}</h4>
+      <h5 style="text-align: center; font-size: 12px;">Créer le : {{ report.date }}</h5>
+    </div>
+    <br>
+    <br>
+    <div style="padding: 30px;">
+      <p>{{ report.text }}</p>
+    </div>
+  </div>
 </div>
-<div>
-  <p>{{ report.text }}</p>
+<br>
+<div class="row">
+  <h3 style="padding: 3px;" class="col-md-10 col-md-offset-1">Commentaires :</h3>
+  <div *ngFor="let comment of commenteRport" class="panel panel-info col-md-10 col-md-offset-1">
+    <h5>{{ comment.firstname }} {{ comment.lastname }} :</h5>
+    <p>{{ comment.text }}</p>
+  </div>
 </div>
-<div>
 
-</div>

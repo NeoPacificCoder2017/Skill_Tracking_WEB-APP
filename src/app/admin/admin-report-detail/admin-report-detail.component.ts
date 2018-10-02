@@ -5,6 +5,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-report-detail',
@@ -21,10 +22,10 @@ export class AdminReportDetailComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,
+    private location: Location,
     private router: Router,
     private ngZone: NgZone) {
       this.report = {};
-      this.commenteRport = {};
    }
 
   ngOnInit() {
@@ -37,10 +38,15 @@ export class AdminReportDetailComponent implements OnInit {
 
   }
 
+  goBack() {
+    this.location.back();
+  }
+
+
   public getCommentReport(): any {
     this.apiService.get('commentsByReport/' + this.idReport)
     .subscribe((data) => {
-      this.commenteRport = data;
+      this.commenteRport = data.data;
       console.log('Commentaire', this.commenteRport);
     });
   }
