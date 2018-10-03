@@ -110,3 +110,13 @@
 
   </div>
 </div>
+
+<div class="row" *ngIf="displayViewReport">
+  <h3 style="padding: 3px;" class="col-md-10 col-md-offset-1">Commentaires :</h3>
+  <div *ngFor="let comment of commenteRport" class="panel panel-info col-md-10 col-md-offset-1">
+    <h5>{{ comment.firstname }} {{ comment.lastname }} :</h5>
+    <p>{{ comment.text }}</p>
+  </div>
+</div>
+
+<br><br><br><br><br>

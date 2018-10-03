@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
@@ -11,20 +11,25 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class TeacherReportsComponent implements OnInit {
 
+  formations: any;
   formation: any;
+  selectedFormation: any;
+  idFormation: any;
+
   me: any;
+
   dataReport: any;
-  dataStudent: any;
-  students = [];
   report: any;
   displayViewReport = 0;
+
+  dataStudent: any;
+  students = [];
   selectedStudent: any;
-  selectedFormation: any;
-  formations: any;
 
   constructor(
     private apiService: ApiService,
     private filter: FilterPipe,
+    private route: ActivatedRoute
   ) {
       this.formation = {};
       this.report = {title : '', rate : '', text : ''};
@@ -33,10 +38,17 @@ export class TeacherReportsComponent implements OnInit {
     ngOnInit() {
       this.me = JSON.parse(localStorage.getItem('user'));
       console.log('this.me', this.me);
+
+      this.route.queryParams
+      .subscribe(params => {
+        this.idFormation = params.idFormation;
+      });
+
       this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
         this.formation = data;
         console.log('formation_id data', this.formation);
       });
+
       this.getReports();
       this.getFormations();
 
@@ -52,7 +64,7 @@ export class TeacherReportsComponent implements OnInit {
 
     // recuperer la liste des rapports des toutes formations confondues
     public getReports() {
-      this.apiService.get('report/reportsAvailableForTeacher').subscribe(data => {
+      this.apiService.get('reportsByFormation/1' ).subscribe(data => {
         this.dataReport = data;
         console.log('data Report', this.dataReport);
         this.generateStudentsList();
@@ -61,9 +73,9 @@ export class TeacherReportsComponent implements OnInit {
 
     // recupere la liste des etudiants d une formation
     getSelectedStudentsSearch(formation_id) {
-      this.apiService.get('getStudentsOfAFormation/' + this.me.formation_id).subscribe(
+      this.apiService.get('getStudentsOfAFormation/1').subscribe(
         data => {
-          this.dataStudent = data.data;
+          this.dataStudent = data;
           console.log('getStudentOfFormation data', data);
         }
       );
