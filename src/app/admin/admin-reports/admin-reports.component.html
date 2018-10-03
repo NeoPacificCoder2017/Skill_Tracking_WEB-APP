@@ -13,7 +13,7 @@
     <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
       <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
+        <option value="student_id.id" *ngFor="let student of reports">{{ student.studentFirstname }} {{ student.studentLastname }}</option>
       </select>
     </div>
   </div>
@@ -51,7 +51,7 @@
           <span class="alignleft">{{ item.date }}</span>
         </td>
         <td>
-          <button  type="button" (click)="showdetailReport(item.report_id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
+          <button  type="button" (click)="showdetailReport(item.report_id)" class="rounded btn bg-green icon no-border"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
         </td>
       </tr>
       <br>

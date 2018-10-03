@@ -27,8 +27,6 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { AtomSpinnerModule } from 'angular-epic-spinners';
 import { ScalingSquaresSpinnerModule} from 'angular-epic-spinners';
-// import { PdfViewerModule } from 'ng2-pdf-viewer';
-
 import { LoginComponent } from './login/login.component';
 /** STUDENT */
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -49,6 +47,7 @@ import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-repor
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminModuleComponent } from './admin/admin-module/admin-module.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
@@ -66,6 +65,7 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 
 import { RequestInterceptor } from './services/api/request.interceptor';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,6 +106,8 @@ import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-re
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
+    AdminModuleComponent,
+    AdminUsersComponent,
     TeacherReportsComponent
   ],
   imports: [
@@ -119,7 +121,6 @@ import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-re
     FroalaViewModule.forRoot(),
     ChartjsModule,
     AtomSpinnerModule,
-    // PdfViewerModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     FilterPipeModule,
