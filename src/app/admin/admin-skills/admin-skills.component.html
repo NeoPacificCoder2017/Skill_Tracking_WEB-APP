@@ -5,13 +5,13 @@
   <div class="title_right">
     <button data-toggle="modal" data-target="#modalSkill" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Ajouter une compétence</button>
   </div>
-</div>
+</div> 
 <br>
 <div class="row" style="padding-top: 25px;">
   <h2 style="text-align: center;">Liste des compétences</h2>
   <h4 style="text-align: center;">{{ module.name }} || total heure: {{ module.total_hours }}h</h4>
 </div>
-
+  
 <table class="table table-borderless space" style="color: #999">
   <thead class="">
     <tr class="tablecolor rad text-row">
@@ -19,7 +19,7 @@
         <th scope="col">#</th>
         <th scope="col">Intitulé</th>
         <th scope="col">Obligatoire</th>
-        <th scope="col">Validés par les étudiants</th>
+        <th scope="col">Validé par les étudiants</th>
         <th scope="col" class="pull-right">Validés par le formateur</th>
     </tr>
   </thead>
@@ -46,9 +46,6 @@
           <div class="progressTeacherText purple">{{ (skill.validated_by_student*100/skill.toValidate) | number: '1.0-0' }}%</div>
         </div>
       </td>
-      <td>
-        <button (click)="deletedSkill(skill.id)" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-trash"></i></button>
-      </td>
     </tr>
     <br>
   </tbody>
@@ -65,10 +62,10 @@
         <h4 class="modal-title" id="modalSkillLabel">Ajouter une compétence</h4>
       </div>
       <div class="modal-body">
-
+        
         <form [formGroup]="newSkillForm" class="form-horizontal form-label-left">
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la compétence</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du compétence</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
             </div>

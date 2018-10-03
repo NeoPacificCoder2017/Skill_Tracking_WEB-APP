@@ -137,20 +137,20 @@ export class AdminFormationStudentComponent implements OnInit {
 
   onChange(skillId) {
     console.log('onChange');
-    const index = this.selectedSkills.indexOf(skillId);
-    if (index === -1) {
+    let index = this.selectedSkills.indexOf(skillId);
+    if (index == -1) {
       this.selectedSkills.push(skillId);
     } else {
       this.selectedSkills.splice(index, 1);
     }
   }
 
-  isTeacherValidated(skillId) {
+  isTeacherValidated(skillId){
     return this.selectedSkills.indexOf(skillId) >= 0;
   }
 
-  stateText(skillId) {
-    return (this.selectedSkills.indexOf(skillId) >= 0) ? 'validé' : 'à valider';
+  stateText(skillId){
+    return (this.selectedSkills.indexOf(skillId) >= 0) ? "validé" : "à valider";
   }
 
 }

@@ -23,9 +23,7 @@ export class AdminSkillsComponent implements OnInit {
   newSkillForm: FormGroup;
   loading = false;
   submitted = false;
-  ValueIsMandotry: any = 0;
-  allSkills = [];
-  moduleSelected = 0;
+  ValueIsMandotry = "0";
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -92,33 +90,19 @@ export class AdminSkillsComponent implements OnInit {
       element.click();
       this.ngOnInit();
     });
-  }
+}
 
   updateIsMandatory(index) {
     const is_mandatory = (this.listSkill[index].is_mandatory === 1) ? 0 : 1;
     console.log('updateIsMandatory is_mandatory', is_mandatory);
     this.listSkill[index].is_mandatory = is_mandatory;
-
-    // this.updateSkillsArray(this.listSkill[index].id, is_mandatory);
+    
     const datas = { isMandatory: is_mandatory, skill_id: this.listSkill[index].id };
 
     this.apiService.put('isMandatoryUpdate', datas)
     .subscribe(data => {
       console.log('isMandatoryUpdate', data);
     });
-  }
-  
-  updateSkillsArray(skillId, is_mandatory) {
-    console.log('updateSkillsArray launched');
-    console.log('updateSkillsArray skillId', skillId);
-    console.log('updateSkillsArray this.allSkills[0]', this.allSkills[0]);
-    for (let i = 0; i < this.listSkill.length; i++) {
-      if (this.listSkill[i].id === skillId) {
-        console.log('updateSkillsArray (this.allSkills[i].id === skillId OK');
-        this.listSkill[i].is_mandatory = is_mandatory;
-        break;
-      }
-    }
   }
 
   onChange(skillId) {
@@ -137,13 +121,5 @@ export class AdminSkillsComponent implements OnInit {
 
   stateText(skillId) {
     return (this.skillsIsMandatory.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
-  }
-
-  deletedSkill(idSkill): any {
-    this.apiService.delete('skill/' + idSkill)
-    .subscribe(data => {
-      this.ngOnInit();
-      console.log('SkillDeleted:', data);
-    });
   }
 }

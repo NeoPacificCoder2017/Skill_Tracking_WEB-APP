@@ -65,6 +65,7 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 
 import { RequestInterceptor } from './services/api/request.interceptor';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +106,8 @@ import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-re
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
+    AdminModuleComponent,
+    AdminUsersComponent,
     TeacherReportsComponent
   ],
   imports: [

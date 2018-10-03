@@ -1,6 +1,6 @@
 <div class="page-title">
   <div class="title_left">
-      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la liste des Formateurs</button>
+      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la liste des formateurs</button>
   </div>
   <div class="title_right">
     <button data-toggle="modal" data-target="#modalProfile" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Modifier sont profile</button>
@@ -65,7 +65,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="modalProfileLabel">Modifier un Formateur</h4>
+        <h4 class="modal-title" id="modalProfileLabel">Modifier un formateur</h4>
       </div>
       <div class="modal-body">
 
@@ -113,7 +113,7 @@
               <input type="password" formControlName="c_password" class="form-control col-md-7 col-xs-12 " id="c_password" aria-describedby="c_passwordnameHelp" [ngClass]="{ 'is-invalid': submitted && f.c_password.errors }">
             </div>
             <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
-              <div *ngIf="f.c_password.errors.required">La confirmation du mot de passe est requise</div>
+              <div *ngIf="f.c_password.errors.required">La confirmation du mot de passe est requis</div>
             </div>
           </div>
           <div class="form-group">
@@ -123,7 +123,7 @@
                 [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" value="{{ teacherProfile.phone_number }}">
             </div>
             <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
-              <div *ngIf="f.phone_number.errors.required">La confirmation du téléphone est requise</div>
+              <div *ngIf="f.phone_number.errors.required">La confirmation du téléphone est requis</div>
             </div>
           </div>
           <div class="form-group">
@@ -132,11 +132,11 @@
               <input type="birthday_date" formControlName="birthday_date" class="form-control col-md-7 col-xs-12 calendar" id="birthday_date" [ngClass]="{ 'is-invalid': submitted && f.birthday_date.errors }" placeholder="jj/mm/aaaa" value="{{ teacherProfile.birthday_date }}">
             </div>
             <div *ngIf="submitted && f.birthday_date.errors" class="invalid-feedback">
-              <div *ngIf="f.birthday_date.errors.required">La date de naissance est requise</div>
+              <div *ngIf="f.birthday_date.errors.required">La date de naissance est requis</div>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Photo de Profil</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Photo de profil</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="file" (change)="onFileChanged($event)" id="avatar">
             </div>
