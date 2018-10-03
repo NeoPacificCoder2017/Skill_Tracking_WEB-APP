@@ -13,7 +13,7 @@
     <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
       <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
+        <option value="student_id.id" *ngFor="let student of reports">{{ student.studentFirstname }} {{ student.studentLastname }}</option>
       </select>
     </div>
   </div>
