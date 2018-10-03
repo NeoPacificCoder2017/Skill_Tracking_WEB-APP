@@ -57,6 +57,7 @@ export class StudentCreateReportComponent implements OnInit {
     uploadData.append('student_id', this.me.student_id);
     uploadData.append('rate', this.f.rate.value);
     uploadData.append('text', this.f.text.value);
+    console.log('value text', this.f.text.value);
     uploadData.append('is_daily', (this.f.is_daily.value) ? '1' : '0');
     uploadData.append('date', this.f.created_date.value);
 

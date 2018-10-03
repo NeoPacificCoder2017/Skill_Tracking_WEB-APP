@@ -23,6 +23,7 @@ export class StudentReportComponent implements OnInit {
   selectedStudent: any;
   submitted: false;
   loading: false;
+  format: 'd/mmm/yyyy';
   students = [];
   allReports = [];
   displayViewReport = 0;
@@ -50,11 +51,7 @@ export class StudentReportComponent implements OnInit {
     public getReports() {
       this.apiService.get('report/getStudentsReportByFormation').subscribe(data => {
         this.dataReport = data;
-<<<<<<< HEAD
-        console.log('data Report', this.dataReport);
-=======
         console.log('data Report', data);
->>>>>>> 83d53fc51883977b78aec226a8f66db0d8fcb101
         this.generateStudentsList();
       });
     }

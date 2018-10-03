@@ -15,23 +15,22 @@
 <div class="clearfix"></div>
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
-
-  <!-- champ de recherche par auteur -->
-  <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
-    <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
-    <div class="">
-      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
-      </select>
+    <!-- champ de recherche par auteur -->
+    <div class="col-md-4 col-xs-12 form-group top_search filterStyle" id="search_author">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Auteur :</label>
+      <div class="col-md-9 col-sm-9 col-xs-12">
+        <select class="form-control input-sm" [(ngModel)]="selectedStudent">
+          <option *ngFor="let student of students" value="student_id.id">{{ student }}</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <!-- champ recherche par date picker -->
-  <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
-    <div class="">
-      <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
+    <!-- champ recherche par date picker -->
+    <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date :</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+        <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
+      </div>
     </div>
-  </div>
-
 </div>
 <!-- Liste des formations -->
 <div class="row" *ngIf="!displayViewReport">
