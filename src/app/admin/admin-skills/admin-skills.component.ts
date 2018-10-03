@@ -19,7 +19,7 @@ export class AdminSkillsComponent implements OnInit {
   module: any;
   progresseBySkill: any;
   skills: any;
-  selectedSkills: number[] = [0];
+  skillsIsMandatory: number[] = [0];
   newSkillForm: FormGroup;
   loading = false;
   submitted = false;
@@ -64,8 +64,13 @@ export class AdminSkillsComponent implements OnInit {
   getProgressionsBySkillsOfModule() {
     this.apiService.get('progressionsBySkillsOfModule/' + this.idModule)
     .subscribe((data) => {
-    this.listSkill = data;
-    console.log('getListSkill', this.listSkill);
+      this.listSkill = data;
+      for (let i = 0; i < this.listSkill.length; i++) {
+        if (this.listSkill[i].is_mandatory) {
+          this.skillsIsMandatory.push(this.listSkill[i].id);
+        }
+      }
+      console.log('getListSkill', this.listSkill);
     });
   }
 
@@ -89,71 +94,49 @@ export class AdminSkillsComponent implements OnInit {
     });
   }
 
-  skillObligationByAdmin(skillId, AdminValidation, skillIndex) {
-    AdminValidation = (AdminValidation === 1) ? 0 : 1;
-    console.log('AdminValidation skillId', skillId);
-    console.log('AdminValidation AdminValidation', AdminValidation);
+  updateIsMandatory(index) {
+    const is_mandatory = (this.listSkill[index].is_mandatory === 1) ? 0 : 1;
+    console.log('updateIsMandatory is_mandatory', is_mandatory);
+    this.listSkill[index].is_mandatory = is_mandatory;
 
-    this.getProgressionsBySkillsOfModule();
-    this.updateSkillsArray(skillId, AdminValidation);
-
-    const datas = { isMandatory: AdminValidation, skill_id: skillId };
+    // this.updateSkillsArray(this.listSkill[index].id, is_mandatory);
+    const datas = { isMandatory: is_mandatory, skill_id: this.listSkill[index].id };
 
     this.apiService.put('isMandatoryUpdate', datas)
     .subscribe(data => {
       console.log('isMandatoryUpdate', data);
     });
-
-    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
   }
-
-  updateSkillsArray(skillId, AdminValidation) {
+  
+  updateSkillsArray(skillId, is_mandatory) {
     console.log('updateSkillsArray launched');
     console.log('updateSkillsArray skillId', skillId);
     console.log('updateSkillsArray this.allSkills[0]', this.allSkills[0]);
-    for (let i = 0; i < this.allSkills.length; i++) {
-      if (this.allSkills[i].id === skillId) {
+    for (let i = 0; i < this.listSkill.length; i++) {
+      if (this.listSkill[i].id === skillId) {
         console.log('updateSkillsArray (this.allSkills[i].id === skillId OK');
+        this.listSkill[i].is_mandatory = is_mandatory;
         break;
-      }
-    }
-
-    this.filterByModule(this.moduleSelected);
-  }
-
-  filterByModule(moduleId) {
-    console.log('filterByModule moduleId', moduleId);
-    // console.log('filterByModule this.allSkills', this.allSkills);
-    this.skills = [];
-    this.moduleSelected = moduleId;
-    if (this.moduleSelected === 0) {
-      this.skills = this.allSkills;
-    } else {
-      console.log('filterByModule moduleId', moduleId);
-      for (let i = 0; i < this.allSkills.length; i++) {
-        if (this.allSkills[i].module_id === this.moduleSelected) {
-          this.skills.push(this.allSkills[i]);
-        }
       }
     }
   }
 
   onChange(skillId) {
     console.log('onChange');
-    const index = this.selectedSkills.indexOf(skillId);
+    const index = this.skillsIsMandatory.indexOf(skillId);
     if (index === -1) {
-      this.selectedSkills.push(skillId);
+      this.skillsIsMandatory.push(skillId);
     } else {
-      this.selectedSkills.splice(index, 1);
+      this.skillsIsMandatory.splice(index, 1);
     }
   }
 
-  isAdminValidated(skillId) {
-    return this.selectedSkills.indexOf(skillId) >= 0;
+  isMandatory(skillId) {
+    return this.skillsIsMandatory.indexOf(skillId) >= 0;
   }
 
   stateText(skillId) {
-    return (this.selectedSkills.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
+    return (this.skillsIsMandatory.indexOf(skillId) >= 0) ? 'oui' : 'non' ;
   }
 
   deletedSkill(idSkill): any {

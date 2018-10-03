@@ -24,14 +24,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let skill of listSkill" class="shadow bg-white rad text-row">
+    <tr *ngFor="let skill of listSkill; index as index" class="shadow bg-white rad text-row">
       <th></th>
       <th scope="row" width="40" >{{ skill.id }}</th>
       <td>{{ skill.name }}</td>
       <td>
         <div class="pull-left">
-          <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isAdminValidated(skill.id)" (change)="onChange(skill.id)">
-          <label (click)="skillObligationByAdmin(skill.id, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
+          <input id="toggle{{ skill.id }}" type="checkbox" class="checky" [checked]="isMandatory(skill.id)" (change)="onChange(skill.id)">
+          <label (click)="updateIsMandatory(index)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
         </div>
       </td>
       <td>
