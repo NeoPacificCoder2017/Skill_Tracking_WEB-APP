@@ -34,6 +34,7 @@ export class AdminFormationComponent implements OnInit {
   '#FFD700', '#48D1CC', '#87CEEB', '#FF69B4', '#CD5C5C', '#87CEFA', '#6495ED',
   '#DC143C', '#FF8C00', '#C71585', '#000000', '#118e2c', '#c43403', '#620793'];
   showColorsPanel = 0;
+  teachersPanel = 0;
   selectedColor: string;
   newPlanningForm: FormGroup;
   filename: File;
@@ -108,7 +109,6 @@ export class AdminFormationComponent implements OnInit {
       this.apiService.get('getTeachersOfFormation/' + this.idFormation)
       .subscribe((data) => {
         this.teachers = data;
-        this.selectedTeacher = data;
         console.log('getTeachers', this.teachers);
       });
     }
@@ -116,6 +116,7 @@ export class AdminFormationComponent implements OnInit {
       this.apiService.get('users/teacher')
       .subscribe(data => {
         this.teachersAll = data.data;
+        this.selectedTeacher = data.data;
         console.log('teachersAll', this.teachersAll);
       });
     }
@@ -129,11 +130,12 @@ export class AdminFormationComponent implements OnInit {
     }
 
     private getAllStudents() {
-      this.apiService.get('students')
-      .subscribe((data) => {
-        this.newStudents = data.data;
-        console.log('getAllStudents', this.newStudents);
-      });
+      this.apiService.get('users/student').subscribe(
+        data => {
+          this.newStudents = data.data;
+          console.log('students', this.newStudents);
+        }
+      );
     }
 
     private getModules() {
@@ -160,13 +162,6 @@ export class AdminFormationComponent implements OnInit {
     profileTeacher(idTeacher) {
       console.log('teacher', idTeacher);
       this.router.navigate(['admin/profileTeacher'], { queryParams: { idTeacher: idTeacher } });
-    }
-
-    editeModule(idModule) {
-      console.log('idModule', idModule);
-      this.dropDown = !this.dropDown;
-      this.displayOff = this.dropDown ? 'inline' : 'none';
-      this.displayOne = this.dropDown ? 'inline' : 'inline';
     }
 
     goToSkill(moduleId) {
@@ -197,6 +192,10 @@ export class AdminFormationComponent implements OnInit {
         element.click();
         this.ngOnInit();
       });
+    }
+
+    addStudentToFormation() {
+
     }
 
     getplan() {
@@ -297,5 +296,14 @@ export class AdminFormationComponent implements OnInit {
       console.log('index', index);
       console.log('selectedColor', this.selectedColor);
       console.log('showColorsPanel', this.showColorsPanel);
+    }
+
+
+    selectTeacher(index) {
+      console.log('this.newModuleForm.controls', this.newModuleForm.controls);
+      this.selectedTeacher = this.teachersPanel[index];
+      console.log('index', index);
+      console.log('selectedTeacher', this.selectedTeacher);
+      console.log('teachersPanel', this.teachersPanel);
     }
 }

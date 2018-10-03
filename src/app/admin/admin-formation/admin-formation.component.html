@@ -210,13 +210,13 @@
 <!-- Liste des Plannings -->
 <div class="row" *ngIf="tabSelected === 4">
   <div class="col-md-12 col-sd-12 col-xs-12">
-    <div *ngIf="!calendars" class="mid_center" style="margin-top: 50px;">
+    <div *ngIf="!calendar" class="mid_center" style="margin-top: 50px;">
       <p>Il n'y a pas encore de planning</p>
       <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Ajouter un Planning</button>
     </div>
-    <div *ngIf="calendars" class="mid_center" style="margin-top: 50px;">
+    <div *ngIf="calendar" class="mid_center" style="margin-top: 50px;">
       <div><i class="fa fa-file-pdf-o purple" style="font-size: 50px; margin: 20px 0;"></i></div>
-      <a href="{{ environment.appCalendarUrl }}{{ calendars.file_url }}" target="_blank" class="btn bg-purple">Télécharger</a>
+      <a href="{{ environment.appCalendarUrl }}{{ calendar.file_url }}" target="_blank" class="btn bg-purple">Télécharger</a>
       <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Modifier le planning</button>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 import { environment } from '../../../environments/environment';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-admin-reports',
@@ -11,28 +12,32 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./admin-reports.component.css']
 })
 export class AdminReportsComponent implements OnInit {
+
+  selectedStudent: any = { name: '' };
+
   environment = environment;
   reports: any;
   newReportForm: FormGroup;
   loading = false;
   submitted = false;
-  reportdetail: any;
+  students: any;
 
   constructor(private apiService: ApiService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute) {
-      this.reportdetail = {};
-     }
+    private filterPipe: FilterPipe,
+    private router: Router) {}
 
   ngOnInit() {
     this.apiService.get('reports/allDate/allUser').subscribe(
       data => {
         this.reports = data;
-        this.reportdetail = data[6];
         console.log('reports', this.reports);
-        console.log('reportdetail', this.reportdetail);
+      }
+    );
+
+    this.apiService.get('users/student').subscribe(
+      data => {
+        this.students = data.data;
+        console.log('students', this.students);
       }
     );
 
@@ -42,5 +47,7 @@ export class AdminReportsComponent implements OnInit {
     console.log('Formation', idReport);
     this.router.navigate(['admin/reportDetail'], { queryParams: { idReport: idReport } });
   }
+
+
 
 }

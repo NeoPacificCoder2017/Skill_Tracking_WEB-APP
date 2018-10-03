@@ -64,11 +64,7 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
-<<<<<<< HEAD
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
-=======
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
->>>>>>> 542b476d1b583edbd54b9e0dfe4033bbb5ebee20
 @NgModule({
   declarations: [
     AppComponent,

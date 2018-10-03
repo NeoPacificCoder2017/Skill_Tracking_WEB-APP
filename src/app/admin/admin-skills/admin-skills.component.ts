@@ -24,6 +24,8 @@ export class AdminSkillsComponent implements OnInit {
   loading = false;
   submitted = false;
   ValueIsMandotry: any = 0;
+  allSkills = [];
+  moduleSelected = 0;
 
   constructor(private location: Location,
     private apiService: ApiService,
@@ -51,24 +53,20 @@ export class AdminSkillsComponent implements OnInit {
           console.log('module', this.module);
         });
 
-        this.apiService.get('progressionsBySkillsOfModule/' + this.idModule)
-        .subscribe((data) => {
-          console.log('getListSkill data', data);
-          this.listSkill = data;
-          console.log('getListSkill', this.listSkill);
-        });
-
-        // this.apiService.get('progressionsBySkillsOfModule')
-        // .subscribe((data) => {
-        //   this.progresseBySkill = data;
-        //   console.log('progressionsBySkills', this.progresseBySkill);
-        // });
-
+        this.getProgressionsBySkillsOfModule();
       });
   }
 
   goBack() {
     this.location.back();
+  }
+
+  getProgressionsBySkillsOfModule() {
+    this.apiService.get('progressionsBySkillsOfModule/' + this.idModule)
+    .subscribe((data) => {
+    this.listSkill = data;
+    console.log('getListSkill', this.listSkill);
+    });
   }
 
   // convenience getter for easy access to form fields
@@ -91,45 +89,54 @@ export class AdminSkillsComponent implements OnInit {
     });
   }
 
-  // skillValidatedByAdmin(skillId, AdminValidation, skillIndex) {
-  //   AdminValidation = (AdminValidation === 1) ? 0 : 1;
-  //   console.log('AdminValidation skillId', skillId);
-  //   console.log('AdminValidation AdminValidation', AdminValidation);
-  //   this.skills[skillIndex].student_validation = AdminValidation;
+  skillObligationByAdmin(skillId, AdminValidation, skillIndex) {
+    AdminValidation = (AdminValidation === 1) ? 0 : 1;
+    console.log('AdminValidation skillId', skillId);
+    console.log('AdminValidation AdminValidation', AdminValidation);
 
-  //   this.updateSkillsArray(skillId, AdminValidation);
+    this.getProgressionsBySkillsOfModule();
+    this.updateSkillsArray(skillId, AdminValidation);
 
-  //   const datas = { student_validation: AdminValidation };
+    const datas = { isMandatory: AdminValidation, skill_id: skillId };
 
-  //   this.apiService.put('progression/updateAdminValidation', datas)
-  //   .subscribe(data => {
-  //     console.log('skillValidatedByStudent data', data);
-  //   });
-  // }
+    this.apiService.put('isMandatoryUpdate', datas)
+    .subscribe(data => {
+      console.log('isMandatoryUpdate', data);
+    });
 
-  // updateSkillsArray(skillId, AdminValidation) {
-  //   console.log('updateSkillsArray launched');
-  //   console.log('updateSkillsArray skillId', skillId);
-  //   console.log('updateSkillsArray this.allSkills[0]', this.allSkills[0]);
-  //   for (let i = 0; i < this.allSkills.length; i++) {
-  //     if (this.allSkills[i].id === skillId) {
-  //       console.log('updateSkillsArray (this.allSkills[i].id === skillId OK');
-  //       this.allSkills[i].progression.student_validation = AdminValidation;
-  //       break;
-  //     }
-  //   }
+    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
+  }
 
-  //   this.filterByModule(this.moduleSelected);
+  updateSkillsArray(skillId, AdminValidation) {
+    console.log('updateSkillsArray launched');
+    console.log('updateSkillsArray skillId', skillId);
+    console.log('updateSkillsArray this.allSkills[0]', this.allSkills[0]);
+    for (let i = 0; i < this.allSkills.length; i++) {
+      if (this.allSkills[i].id === skillId) {
+        console.log('updateSkillsArray (this.allSkills[i].id === skillId OK');
+        break;
+      }
+    }
 
-  //   for (let i = 0; i < this.dataStudent.length; i++) {
-  //     for (let j = 0; j < this.dataStudent[i].module.skills.length; j++) {
-  //       if (this.dataStudent[i].module.skills[j].id === skillId) {
-  //         this.dataStudent[i].module.skills[j].progression.student_validation = AdminValidation;
-  //         break;
-  //       }
-  //     }
-  //   }
-  // }
+    this.filterByModule(this.moduleSelected);
+  }
+
+  filterByModule(moduleId) {
+    console.log('filterByModule moduleId', moduleId);
+    // console.log('filterByModule this.allSkills', this.allSkills);
+    this.skills = [];
+    this.moduleSelected = moduleId;
+    if (this.moduleSelected === 0) {
+      this.skills = this.allSkills;
+    } else {
+      console.log('filterByModule moduleId', moduleId);
+      for (let i = 0; i < this.allSkills.length; i++) {
+        if (this.allSkills[i].module_id === this.moduleSelected) {
+          this.skills.push(this.allSkills[i]);
+        }
+      }
+    }
+  }
 
   onChange(skillId) {
     console.log('onChange');
