@@ -13,41 +13,81 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class AdminReportsComponent implements OnInit {
 
-  selectedStudent: any = { name: '' };
-
   environment = environment;
   reports: any;
-  newReportForm: FormGroup;
-  loading = false;
-  submitted = false;
-  students: any;
+  dataReport: any;
+  students = [];
+  allReports = [];
+  displayViewReport = 0;
+  selectedStudent: any;
+  selectedDate: any;
+  selectedFormation = 'all';
+  report: any;
+  formations: {};
 
-  constructor(private apiService: ApiService,
-    private filterPipe: FilterPipe,
-    private router: Router) {}
+  constructor(private apiService: ApiService, private filterPipe: FilterPipe, private router: Router) {}
 
   ngOnInit() {
-    this.apiService.get('reports/allDate/allUser').subscribe(
+    this.apiService.get('reportsByFormation/'+this.selectedFormation).subscribe(
       data => {
-        this.reports = data;
-        console.log('reports', this.reports);
+        this.dataReport = this.allReports = data;
+        console.log('data Report', data);
+        this.generateStudentsList();
       }
     );
 
-    this.apiService.get('users/student').subscribe(
+    this.apiService.get('getAllFormationsForAdmin').subscribe(
       data => {
-        this.students = data.data;
-        console.log('students', this.students);
+        this.formations = data;
       }
     );
-
+  }
+  
+  generateStudentsList() {
+    this.students = [];
+    for (let i = 0; i < this.dataReport.length; i++) {
+      const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
+      const studentId = this.dataReport[i].studentId;
+      const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
+      if (position === -1)  {
+        this.students.push({
+          studentName: studentName,
+          studentId: studentId
+        });
+      }
+    }
+  }
+  
+  viewReport(item) {
+    this.report = item;
+    console.log('this.report', this.report);
+  
+    this.displayViewReport = 1;
+    this.report.report_text = this.report.report_text.split('::://:::');
+  }
+  
+  closeViewReport() {
+    this.displayViewReport = 0;
   }
 
-  showdetailReport(idReport) {
-    console.log('Formation', idReport);
-    this.router.navigate(['admin/reportDetail'], { queryParams: { idReport: idReport } });
+  filterReportsByFormation(){
+    this.selectedDate = "";
+    this.apiService.get('reportsByFormation/'+this.selectedFormation).subscribe(
+      data => {
+        this.dataReport = this.allReports = data;
+        console.log('data Report', data);
+        this.generateStudentsList();
+      }
+    );
   }
-
-
-
+  
+  filterReports() {
+    console.log('filterByStudent studentId ',  this.selectedStudent);
+    console.log('filterByStudent studentId ',  this.selectedDate);
+    const filter = {
+      studentId: this.selectedStudent,
+      report_date: (this.selectedDate !== '0')?this.selectedDate:''
+    }
+    this.dataReport = this.filterPipe.transform(this.allReports, filter);
+  }
 }

@@ -2,7 +2,7 @@
   <div class="title_left">
     <h3>Nouveau Rapport</h3>
   </div>
-
+  
   <!-- bouton sauvegarder -->
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -21,7 +21,7 @@
     <div class="x_panel">
       <div class="x_content">
         <!-- formulaire -->
-        <form [formGroup]="newReportForm" class="form-horizontal form-label-left">
+        <form [formGroup]="reportForm" class="form-horizontal form-label-left">
           <div class="form-row">
             <!-- ajouter un titre au rapport -->
             <div class="form-group col-md-12">
@@ -29,10 +29,10 @@
               <input type="text" formControlName="title" placeholder="Ajoutez un titre à votre rapport" class="form-control" id="title" >
             </div>
           </div>
-
+          
           <div class="form-row">
             <!-- ajouter une note au rapport -->
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-2"> 
               <label class="" for="rate">Notation</label>
               <div class="emoji">
                 <i class="far fa-smile-wink" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.green]="selectedRate == 5" (click)="updateNotation(5)" ></i>
@@ -42,20 +42,20 @@
                 <i class="far fa-angry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.red]="selectedRate == 1" (click)="updateNotation(1)"></i>
               </div>
             </div>
-
+            
             <!-- date -->
             <div class="form-group col-md-5">
-              <label class="" for="created_date">Date du rapport</label>
-              <input type="date" class="form-control" formControlName="created_date" id="created_date">
+              <label class="" for="date">Date du rapport</label>
+              <input type="date" class="form-control" formControlName="date" id="date">
             </div>
-
+            
             <!-- journalier -->
             <div class="form-group col-md-5">
               <label class="">Journalier</label>
               <input class="form-control" formControlName="is_daily" type="checkbox" checked id="is_daily">
             </div>
           </div>
-
+        
           <div class="form-row">
             <!-- rediger un rapport -->
             <div class="form-group col-md-12">
