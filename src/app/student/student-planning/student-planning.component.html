@@ -1,0 +1,33 @@
+<div class="row page-title ">
+  <div class="title_left">
+    <h3>Planning</h3>
+  </div>
+</div>
+
+<table class="table table-borderless space" style="color: #999">
+  <thead class="">
+    <tr class="tablecolor rad text-row">
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">Formation</th>
+      <th scope="col"></th>
+      <th scope="col" class="pull-right">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let calendar of calendars" class="shadow bg-white rad text-row">
+      <th></th>
+      <th scope="row" width="40" >{{ calendar.id }}</th>
+      <td>
+        <img src="{{ environment.appLogoUrl }}{{ calendar.logo }}" class="img-circle pull-left" width="100%">
+        <div class="pull-left" style="margin: 13px 0 0 10px;">
+          <span class="alignleft">{{ calendar.name }}</span>
+        </div>
+      </td>
+      <th></th>
+      <td>
+        <a href="{{ environment.appCalendarUrl }}{{ calendar.file_url }}" target="_blank" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+      </td>
+  </tr>
+  </tbody>
+</table>
