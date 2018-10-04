@@ -11,19 +11,22 @@
         <th scope="col">#</th>
         <th scope="col">Formation</th>
         <th scope="col"></th>
-        <th scope="col">Description</th>
         <th scope="col" class="pull-right">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let calend of calendars" class="shadow bg-white rad text-row">
+    <tr *ngFor="let calendar of calendars" class="shadow bg-white rad text-row">
         <th></th>
-        <th scope="row" width="40" >{{ calend.id }}</th>
-        <td>{{ calend.name }}</td>
-        <th></th>
-        <td>{{ calend.file_name }}</td>
+        <th scope="row" width="40" >{{ calendar.calendar_id }}</th>
         <td>
-          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+          <img src="{{ environment.appLogoUrl }}{{ calendar.formation_logo }}" class="img-circle pull-left" width="100%">
+          <div class="pull-left" style="margin: 13px 0 0 10px;">
+            <span class="alignleft">{{ calendar.formation_name }}</span>
+          </div>
+        </td>
+        <th></th>
+        <td>
+          <a href="{{ environment.appCalendarUrl }}{{ calendar.calendar_file_url }}" target="_blank" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
         </td>
     </tr>
 
