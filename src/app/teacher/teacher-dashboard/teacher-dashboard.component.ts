@@ -11,13 +11,17 @@ import { environment } from '../../../environments/environment';
 })
 
 export class TeacherDashboardComponent implements OnInit {
+
   listFormations: any;
   environment = environment;
   nameFormation: string;
   addPicture: string;
   dateAdd: number;
 
-  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.getFormations();
@@ -31,7 +35,7 @@ export class TeacherDashboardComponent implements OnInit {
   public getFormations(): any {
     this.apiService.get('teacher/myFormations')
     .subscribe((data) => {
-      this.listFormations = data;
+      this.listFormations = data.data;
       console.log('formations data', this.listFormations);
     });
   }

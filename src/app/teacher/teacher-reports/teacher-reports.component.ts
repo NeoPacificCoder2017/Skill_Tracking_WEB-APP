@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FilterPipe } from 'ngx-filter-pipe';
+import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-teacher-reports',
@@ -11,91 +12,168 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class TeacherReportsComponent implements OnInit {
 
+  environment = environment;
+
+  dateSplite: any;
+  selectedDate: any;
+
+  formations: any;
   formation: any;
+  selectedFormation: any;
+  idFormation: any;
+
   me: any;
+
   dataReport: any;
+  allReports = [];
+  report: any;
+  idReport: number;
+  displayViewReport = 0;
+
   dataStudent: any;
   students = [];
-  report: any;
-  displayViewReport = 0;
   selectedStudent: any;
-  selectedFormation: any;
-  formations: any;
+
+  comments: any;
 
   constructor(
     private apiService: ApiService,
-    private filter: FilterPipe,
+    private filterPipe: FilterPipe,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
   ) {
       this.formation = {};
       this.report = {title : '', rate : '', text : ''};
+      this.comments = {};
     }
 
-    ngOnInit() {
-      this.me = JSON.parse(localStorage.getItem('user'));
-      console.log('this.me', this.me);
-      this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
-        this.formation = data;
-        console.log('formation_id data', this.formation);
-      });
-      this.getReports();
-      this.getFormations();
+  ngOnInit() {
+    this.me = JSON.parse(localStorage.getItem('user'));
+    console.log('this.me', this.me);
 
-    }
+    this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
+      this.formation = data;
+      console.log('formation_id data', data.id);
+    });
 
-    getFormations(): any {
-      this.apiService.get('teacher/myFormations')
-      .subscribe((data) => {
-        this.formations = data.data;
-        console.log('formations data', this.formations);
-      });
-    }
+    this.getReports();
+    this.getFormations();
 
-    // recuperer la liste des rapports des toutes formations confondues
-    public getReports() {
-      this.apiService.get('report/reportsAvailableForTeacher').subscribe(data => {
-        this.dataReport = data;
-        console.log('data Report', this.dataReport);
-        this.generateStudentsList();
-      });
-    }
+  }
 
-    // recupere la liste des etudiants d une formation
-    getSelectedStudentsSearch(formation_id) {
-      this.apiService.get('getStudentsOfAFormation/' + this.me.formation_id).subscribe(
-        data => {
-          this.dataStudent = data.data;
-          console.log('getStudentOfFormation data', data);
-        }
-      );
-    }
+  // Récupérer toutes les formations assignées au formateur connecté
+  getFormations(): any {
+    this.apiService.get('teacher/myFormations')
+    .subscribe((data) => {
+      this.formations = data.data;
+      console.log('formations data', this.formations);
+    });
+  }
 
-    generateStudentsList() {
-      console.log('generateStudentsList this.dataReport', this.dataReport);
-      for (let i = 0; i < this.dataReport.length; i++) {
-        const studentName = this.dataReport[i].student.firstname + ' ' + this.dataReport[i].student.lastname;
-        console.log('studentName: ', studentName);
-        if (this.students.indexOf(studentName) === -1)  {
-          this.students.push(studentName);
-        }
+  // recuperer la liste des rapports des toutes formations confondues
+  public getReports() {
+    this.apiService.get('report/reportsAvailableForTeacher' ).subscribe(data => {
+      this.dataReport = data;
+      console.log('data Report', this.dataReport);
+      this.generateStudentsList();
+    });
+  }
+
+  // recupère la liste des étudiants
+  generateStudentsList() {
+    for (let i = 0; i < this.dataReport.length; i++) {
+      const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
+      const studentId = this.dataReport[i].student_id;
+      const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
+      if (position === -1)  {
+        this.students.push({
+          studentName: studentName,
+          studentId: studentId
+        });
       }
-      console.log('generateStudentsList this.students', this.students);
     }
 
+    console.log('ListStudent', this.students);
+  }
 
-    // modifier un rapport
-    viewReport(item) {
+  // -------------------------- FILTRES ------------------------ //
+  // Mettre à jour la liste de recherche par étudiant
+
+  filterReports() {
+    console.log('filterByStudent studentId ',  this.selectedStudent);
+    console.log('filterByDate  ',  this.selectedDate);
+    console.log('filterByFormation  ',  this.selectedFormation);
+    const filter = {
+      studentId: this.selectedStudent,
+      report_date: (this.selectedDate !== '0') ? this.selectedDate : ''
+    };
+    this.dataReport = this.filterPipe.transform(this.allReports, filter);
+  }
+
+  getSelectedStudentsSearch() {
+    this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
+    .subscribe( data => {
+      this.dataStudent = data;
+      console.log('getStudentOfFormation data', this.dataStudent);
+      }
+    );
+  }
+
+  getReportsByFormation() {
+    this.apiService.get('reportsByFormation/' + this.idFormation)
+    .subscribe( data => {
+      this.dataReport = data;
+      console.log('getReportsByFormation data', this.dataReport);
+    });
+  }
+
+  showDetailReport(idReport) {
+    console.log('idReport ShowDetailReport', idReport);
+    this.router.navigate(['teacher/reportDetail'], { queryParams: { idReport: idReport } });
+  }
+
+  // -------------------------- DETAIL RAPPORTS ------------------------ //
+  goBack() {
+    this.location.back();
+  }
+
+  viewReport(item) {
+    this.report = item;
+    if (this.me.id === this.report.studentId) {
+      this.router.navigate(['student/report/edit'], {queryParams : { report : this.report.report_id }} );
+    } else {
       this.displayViewReport = 1;
-      console.log('displayViewReport', this.displayViewReport);
-      this.report = item;
+      console.log('this.report', this.report);
+      console.log('this.me', this.me);
+      this.report.report_text = this.report.report_text.split('::://:::');
     }
+  }
 
-    closeViewReport() {
-      this.displayViewReport = 0;
-    }
+  closeViewReport() {
+    this.displayViewReport = 0;
+  }
 
-    stateText() {
-      return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
-    }
+  stateText() {
+    return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
+  }
 
+  // -------------------------- DETAIL RAPPORTS - COMMENTAIRES ------------------------ //
+  getComments() {
+    this.apiService.get('getReport/reportId/ofFormation/formationId')
+    .subscribe(data => {
+      this.comments = data;
+      console.log('getComents', this.comments);
+    });
+  }
 
 }
+// TODO
+// alors pour récupérer les commentaire, tu récupère les commentaire par l'id du report, donc tu utilise cette route :
+// getReport/reportId/ofFormation/formationId
+
+// Ensuite pour la création d'un commentaire :
+// reportComment/create
+// tu as besoin d'envoyer :
+// - report_id
+// - text

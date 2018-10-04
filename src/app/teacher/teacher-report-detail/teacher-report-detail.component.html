@@ -1,0 +1,30 @@
+<div *ngIf="displayViewReport" class="page-title">
+  <div class="title_left">
+      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la liste des rapports</button>
+  </div>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1" style="box-shadow: 1px 4px 15px 3px #888888; margin-top: 15px;">
+    <div class="row" style="padding-top: 25px;">
+      <h3 style="text-align: center;">Rapport de {{ report.studentFirstname }} {{ report.studentLastname }}</h3>
+      <h4 style="text-align: center;">{{ report.title }}</h4>
+      <h5 style="text-align: center; font-size: 12px;">Créer le : {{ report.date }}</h5>
+    </div>
+    <br>
+    <br>
+    <div style="padding: 30px;">
+      <p>{{ report.text }}</p>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <h3 style="padding: 3px;" class="col-md-10 col-md-offset-1">Commentaires :</h3>
+  <div *ngFor="let comment of commenteRport" class="panel panel-info col-md-10 col-md-offset-1">
+    <h5>{{ comment.firstname }} {{ comment.lastname }} :</h5>
+    <p>{{ comment.text }}</p>
+  </div>
+</div>
+<br><br><br><br><br>
