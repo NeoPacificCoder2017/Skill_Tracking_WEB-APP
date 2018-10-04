@@ -18,17 +18,19 @@
 
   <!-- champ de recherche par auteur -->
   <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
-    <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
-      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student.studentId" *ngFor="let student of students">{{ student.studentName }}</option>
+      Filtrer par étudiants<br />
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent" (change)="filterReportsByStudent(selectedStudent)">
+        <option value="0">Tous les étudiants</option>
+        <option value="{{ student.studentId }}" *ngFor="let student of students">{{ student.studentName }}</option>
       </select>
     </div>
   </div>
   <!-- champ recherche par date picker -->
   <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
     <div class="">
-      <input type="date" class="form-control" data-inputmask="'mask': 'jj/mm/aaaa'">
+        Filtrer par date<br />
+      <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="filterReportsByDate(selectedDate)" data-inputmask="'mask': 'jj/mm/aaaa'">
     </div>
   </div>
 
@@ -44,6 +46,7 @@
           <th scope="col">#</th>
           <th scope="col">Auteur</th>
           <th scope="col">Titre du rapport</th>
+          <th scope="col">Notation</th>
           <th scope="col">Date de création</th>
           <th scope="col">Dernière modification</th>
           <th></th>
@@ -53,12 +56,27 @@
         <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
-          <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
-          <td>{{ item.name }}</td>
           <td>
-            <span class="alignleft">{{ item.created_date  | date:format }}</span>
+            <img src="{{ environment.appImageUrl }}{{ item.studentAvatar }}" class="img-circle pull-left" width="100%">
+            <div class="pull-left" style="margin: 13px 0 0 10px;">
+              <span class="alignleft">{{ item.studentLastname }}</span><br/>
+              <span class="alignleft">{{ item.studentFirstname }}</span>
+            </div>
           </td>
-          <td>{{ item.last_edit_date | date:format }}</td>
+          <td>{{ item.report_title }}</td>
+          <td>
+            <div class="emoji">
+              <i class="far fa-smile-wink" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 5" ></i>
+              <i class="far fa-smile" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 4"></i>
+              <i class="far fa-angry" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 3"></i>
+              <i class="far fa-frown" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 2"></i>
+              <i class="far fa-sad-cry" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 1"></i>
+            </div>
+          </td>
+          <td>
+            <span class="alignleft">{{ item.report_date  | date:format }}</span>
+          </td>
+          <td>{{ item.report_last_edit_date | date:format }}</td>
           <td></td>
         </tr>
       </tbody>
@@ -74,7 +92,7 @@
   <div id="viewOnly" *ngIf="!displayEditReport">
     <div class="item" style="padding: 45px;">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span>*</span></label>
-      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.name}} </div>
+      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
     </div>
     <div class="item" style="padding: 39px; margin: 4px;">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span></label>
