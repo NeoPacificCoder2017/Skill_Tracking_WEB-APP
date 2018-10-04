@@ -31,7 +31,6 @@ export class StudentReportComponent implements OnInit {
   students = [];
   allReports = [];
   displayViewReport = 0;
-  displayEditReport = 0;
   
   constructor(private location: Location, private apiService: ApiService, private formBuilder: FormBuilder, private router: Router, private filterPipe: FilterPipe, private froalaEditorModule: FroalaEditorModule, private froalaViewModule: FroalaViewModule) {
     this.formation = {};
@@ -76,43 +75,37 @@ export class StudentReportComponent implements OnInit {
     }
   }
   
-  
-  // modifier un rapport
   viewReport(item) {
-    this.displayViewReport = 1;
-    console.log('displayViewReport', this.displayViewReport);
     this.report = item;
-    this.displayEditReport = (this.me.user_id === this.report.student_id) ? 1 : 0;
+    if(this.me.student_id === this.report.studentId){
+      this.router.navigate(['student/report/edit'], {queryParams : { report : this.report.report_id }} );
+    }else{
+      this.displayViewReport = 1;
+      console.log('this.report', this.report);
+      console.log('this.me', this.me);
+      this.report.report_text = this.report.report_text.split('::://:::');
+    }
   }
   
   closeViewReport() {
     this.displayViewReport = 0;
   }
   
-  // creer un rapport
   createReport(student_id): any {
     this.router.navigate(['/student/report/create'], {queryParams : { student_id : student_id }} );
-  }
-  
-  updateReport(student_id) {
-    console.log('report id', this.report.report_id);
   }
   
   stateText() {
     return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
   }
   
-  saveReport() {
-    return null;
-  }
-  
-  filterReportsByStudent() {
+  filterReports() {
     console.log('filterByStudent studentId ',  this.selectedStudent);
-      this.dataReport = (this.selectedStudent !== '0')?this.filterPipe.transform(this.allReports, { studentId: this.selectedStudent}):this.allReports;
-  }
-  
-  filterReportsByDate() {
     console.log('filterByStudent studentId ',  this.selectedDate);
-      this.dataReport = (this.selectedDate !== '0')?this.filterPipe.transform(this.allReports, { report_date: this.selectedDate}):this.allReports;
+    const filter = {
+      studentId: this.selectedStudent,
+      report_date: (this.selectedDate !== '0')?this.selectedDate:''
+    }
+    this.dataReport = this.filterPipe.transform(this.allReports, filter);
   }
 }
