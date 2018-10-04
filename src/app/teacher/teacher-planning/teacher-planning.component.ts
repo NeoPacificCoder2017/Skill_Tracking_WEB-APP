@@ -16,7 +16,11 @@ export class TeacherPlanningComponent implements OnInit {
   environment = environment;
   calendars: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getCalendar();

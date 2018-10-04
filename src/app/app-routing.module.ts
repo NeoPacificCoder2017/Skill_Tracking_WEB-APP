@@ -36,13 +36,13 @@ import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-f
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
-import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { StudentReportComponent } from './student/student-report/student-report.component';
 import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
+import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
 var token: any;
 const routes: Routes = [
@@ -67,6 +67,7 @@ const routes: Routes = [
       { path: 'student/reports', component: StudentReportComponent},
       { path: 'student/report', component: StudentDetailReportComponent},
       { path: 'student/report/create', component: StudentCreateReportComponent},
+      { path: 'student/report/edit', component: StudentEditReportComponent},
       { path: 'student/plannings', component: StudentPlanningComponent},
 
       // ROUTES TEACHER
@@ -75,8 +76,6 @@ const routes: Routes = [
       { path: 'teacher/student', component: TeacherStudentComponent},
       { path: 'teacher/profile', component: TeacherProfileComponent},
       { path: 'teacher/planning', component: TeacherPlanningComponent},
-      { path: 'teacher/reports', component: TeacherReportsComponent},
-
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
