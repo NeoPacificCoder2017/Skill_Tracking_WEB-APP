@@ -24,6 +24,28 @@ export class AuthService {
     }));
   }
 
+  resetPassword(username: string) {
+    return this.http.post<any>(apiUrl + 'password/forgot', { email: username })
+    .pipe(map(user => {
+      console.log('authService login user', user);
+        if (user && user.token) {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+        return user;
+    }));
+  }
+
+  resetPasswordForm(username: string, password: string, password_confirmation: string, token: string) {
+    return this.http.post<any>(apiUrl + 'password/reset', { email: username, password: password, password_confirmation: password_confirmation, token: token })
+    .pipe(map(user => {
+      console.log('authService login user', user);
+        if (user && user.token) {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+        return user;
+    }));
+  }
+
   logout(): boolean {
     const me = JSON.parse(localStorage.getItem('user'));
     const httpOptions = {

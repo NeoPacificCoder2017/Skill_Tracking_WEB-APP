@@ -65,6 +65,8 @@ import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admi
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { ResetPasswordComponent } from './password-reset/reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './password-reset/reset-password-form/reset-password-form.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
@@ -115,6 +117,9 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminProfileAdminComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
+    TeacherReportsComponent,
+    ResetPasswordComponent,
+    ResetPasswordFormComponent,
     AdminModuleComponent,
     AdminUsersComponent,
   ],
