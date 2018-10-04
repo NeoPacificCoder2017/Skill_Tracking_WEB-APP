@@ -34,6 +34,7 @@ import { StudentReportComponent } from './student/student-report/student-report.
 import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
+import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -44,6 +45,7 @@ import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 import { TeacherReportDetailComponent } from './teacher/teacher-report-detail/teacher-report-detail.component';
+
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
@@ -63,10 +65,10 @@ import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admi
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
-import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
