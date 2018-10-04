@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://skillnet.abi/api/',
-  appUrl: 'http://skillnet.abi/',
-  appImageUrl: 'http://skillnet.abi/uploads/images/',
-  appLogoUrl: 'http://skillnet.abi/uploads/logos/',
-  appCalendarUrl: 'http://skillnet.abi/uploads/calendars/',
+  apiUrl: 'http://skillstracking.motjo.io/api/',
+  appUrl: 'http://skillstracking.motjo.io/',
+  appImageUrl: 'http://skillstracking.motjo.io/uploads/images/',
+  appLogoUrl: 'http://skillstracking.motjo.io/uploads/logos/',
+  appCalendarUrl: 'http://skillstracking.motjo.io/uploads/calendars/',
 
   tableProgressRadiusTeacher: 30,
   tableProgressRadiusStudent: 24,
