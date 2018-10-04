@@ -40,7 +40,7 @@ export class StudentReportComponent implements OnInit {
       this.me = JSON.parse(localStorage.getItem('user'));
       console.log('this.me', this.me);
       this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
-        this.formation = data;
+        this.formation = data.data;
         console.log('formation_id data', data.id);
       });
       this.getReports();
