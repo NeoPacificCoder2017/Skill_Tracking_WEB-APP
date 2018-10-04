@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FilterPipe } from 'ngx-filter-pipe';
+import { environment } from '../../../environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-teacher-reports',
@@ -10,6 +11,11 @@ import { FilterPipe } from 'ngx-filter-pipe';
   styleUrls: ['./teacher-reports.component.css']
 })
 export class TeacherReportsComponent implements OnInit {
+
+  environment = environment;
+
+  dateSplite: any;
+  selectedDate: any;
 
   formations: any;
   formation: any;
@@ -19,8 +25,10 @@ export class TeacherReportsComponent implements OnInit {
   me: any;
 
   dataReport: any;
+  allReports = [];
   report: any;
   idReport: number;
+  displayViewReport = 0;
 
   dataStudent: any;
   students = [];
@@ -30,9 +38,10 @@ export class TeacherReportsComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private filter: FilterPipe,
+    private filterPipe: FilterPipe,
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
   ) {
       this.formation = {};
       this.report = {title : '', rate : '', text : ''};
@@ -42,6 +51,11 @@ export class TeacherReportsComponent implements OnInit {
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
     console.log('this.me', this.me);
+
+    this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
+      this.formation = data;
+      console.log('formation_id data', data.id);
+    });
 
     this.getReports();
     this.getFormations();
@@ -68,19 +82,35 @@ export class TeacherReportsComponent implements OnInit {
 
   // recupère la liste des étudiants
   generateStudentsList() {
-    console.log('generateStudentsList this.dataReport', this.dataReport);
     for (let i = 0; i < this.dataReport.length; i++) {
-        const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
-        console.log('studentName: ', studentName);
-        if (this.students.indexOf(studentName) === -1)  {
-          this.students.push(studentName);
-        }
+      const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
+      const studentId = this.dataReport[i].student_id;
+      const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
+      if (position === -1)  {
+        this.students.push({
+          studentName: studentName,
+          studentId: studentId
+        });
+      }
     }
-    console.log('generateStudentsList this.students', this.students);
+
+    console.log('ListStudent', this.students);
   }
 
   // -------------------------- FILTRES ------------------------ //
   // Mettre à jour la liste de recherche par étudiant
+
+  filterReports() {
+    console.log('filterByStudent studentId ',  this.selectedStudent);
+    console.log('filterByDate  ',  this.selectedDate);
+    console.log('filterByFormation  ',  this.selectedFormation);
+    const filter = {
+      studentId: this.selectedStudent,
+      report_date: (this.selectedDate !== '0') ? this.selectedDate : ''
+    };
+    this.dataReport = this.filterPipe.transform(this.allReports, filter);
+  }
+
   getSelectedStudentsSearch() {
     this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
     .subscribe( data => {
@@ -101,6 +131,40 @@ export class TeacherReportsComponent implements OnInit {
   showDetailReport(idReport) {
     console.log('idReport ShowDetailReport', idReport);
     this.router.navigate(['teacher/reportDetail'], { queryParams: { idReport: idReport } });
+  }
+
+  // -------------------------- DETAIL RAPPORTS ------------------------ //
+  goBack() {
+    this.location.back();
+  }
+
+  viewReport(item) {
+    this.report = item;
+    if (this.me.id === this.report.studentId) {
+      this.router.navigate(['student/report/edit'], {queryParams : { report : this.report.report_id }} );
+    } else {
+      this.displayViewReport = 1;
+      console.log('this.report', this.report);
+      console.log('this.me', this.me);
+      this.report.report_text = this.report.report_text.split('::://:::');
+    }
+  }
+
+  closeViewReport() {
+    this.displayViewReport = 0;
+  }
+
+  stateText() {
+    return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
+  }
+
+  // -------------------------- DETAIL RAPPORTS - COMMENTAIRES ------------------------ //
+  getComments() {
+    this.apiService.get('getReport/reportId/ofFormation/formationId')
+    .subscribe(data => {
+      this.comments = data;
+      console.log('getComents', this.comments);
+    });
   }
 
 }
