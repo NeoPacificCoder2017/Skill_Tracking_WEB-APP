@@ -7,7 +7,7 @@
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
         <button type="button" class="btn green bg-green" data-toggle="modal" data-target="#myModal">
-          Ajouter une Formation
+          Ajouter une formation
         </button>
       </div>
     </div>
@@ -86,10 +86,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Ajouter une Formation</h4>
+        <h4 class="modal-title" id="myModalLabel">Ajouter une formation</h4>
       </div>
       <div class="modal-body">
-
+        
         <form [formGroup]="newFormationForm" class="form-horizontal form-label-left">
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
@@ -104,7 +104,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start_at">Date de début</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="start_at" formControlName="start_at" class="form-control col-md-7 col-xs-12 calendar" id="start_at" [ngClass]="{ 'is-invalid': submitted && f.start_at.errors }" placeholder="jj/mm/aaaa">
+              <input type="date" formControlName="start_at" class="form-control col-md-7 col-xs-12 calendar" id="start_at" [ngClass]="{ 'is-invalid': submitted && f.start_at.errors }" placeholder="jj/mm/aaaa">
             </div>
             <div *ngIf="submitted && f.start_at.errors" class="invalid-feedback">
               <div *ngIf="f.start_at.errors.required">La date de début est requis</div>
@@ -113,7 +113,7 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="end_at">Date de fin</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="end_at" formControlName="end_at" class="form-control col-md-7 col-xs-12 calendar" id="end_at" [ngClass]="{ 'is-invalid': submitted && f.end_at.errors }" placeholder="jj/mm/aaaa">
+              <input type="date" formControlName="end_at" class="form-control col-md-7 col-xs-12 calendar" id="end_at" [ngClass]="{ 'is-invalid': submitted && f.end_at.errors }" placeholder="jj/mm/aaaa">
             </div>
             <div *ngIf="submitted && f.end_at.errors" class="invalid-feedback">
               <div *ngIf="f.end_at.errors.required">La date de fin est requis</div>

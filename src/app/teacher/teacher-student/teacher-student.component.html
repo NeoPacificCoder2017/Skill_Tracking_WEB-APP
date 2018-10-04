@@ -6,7 +6,7 @@
     <h3 class="pull-left" style="margin: 13px 0 0 10px;">{{ student.user_firstname }} {{ student.user_lastname }}</h3>
   </div>
   <div class="title_right">
-      <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la Formation</button>
+      <button class="btn bg-blue pull-right" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir à la formation</button>
   </div>
 </div>
 
@@ -79,7 +79,7 @@
           <td>
             <div class="pull-right">
               <input id="toggle{{ skill.id }}" type="checkbox" class="checky teacher" [checked]="isTeacherValidated(skill.id)" (change)="onChange(skill.id)">
-              <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>
+              <label (click)="skillValidatedByTeacher(skill.id, skill.progression.student_progression_id, skill.progression.teacher_validation, i)" for="toggle{{ skill.id }}" class="labChecky" [innerHtml]="stateText(skill.id)"></label>                                                        
             </div>
           </td>
         </tr>

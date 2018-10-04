@@ -1,9 +1,9 @@
 <div class="page-title">
   <div class="title_left">
-      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux Formations</button>
+      <button class="btn bg-blue pull-left" (click)="goBack()"><i class="fa fa-arrow-left fa-1x"></i> Revenir aux formations</button>
   </div>
   <div class="title_right">
-    <button data-toggle="modal" data-target="#modalFormation" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Editer la Formation</button>
+    <button data-toggle="modal" data-target="#modalFormation" class="btn bg-green pull-right" style="margin: 0;"><i class="glyphicon glyphicon-pencil"></i> Editer la formation</button>
   </div>
 </div>
 
@@ -90,7 +90,7 @@
       <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="students.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore d'apprentis</p>
-          <button class="btn bg-blue" type="button" data-toggle="modal" data-target="#modalStudent">Ajoutez les premiers apprentis</button>
+          <button class="btn bg-blue" data-toggle="modal" data-target="#modalStudent">Ajoutez les premiers apprentis</button>
         </div>
         <table *ngIf="students.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
@@ -147,7 +147,7 @@
     <div class="row" *ngIf="modules.length > 0">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group pull-right row" style="display: flex;">
-          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#ModalModule">Ajouter un Module</button>
+          <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#ModalModule">Ajouter un module</button>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
       <div class="col-md-12 col-sd-12 col-xs-12">
         <div *ngIf="modules.length == 0" class="mid_center" style="margin-top: 50px;">
           <p>Il n'y a pas encore de modules</p>
-          <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#ModalModule">Ajoutez le premier Module</button>
+          <button type="button" class="btn bg-blue" data-toggle="modal" data-target="#ModalModule">Ajoutez le premier module</button>
         </div>
         <table *ngIf="modules.length > 0" class="table table-borderless space" style="color: #999">
           <thead class="">
@@ -173,7 +173,7 @@
             <tr *ngFor="let module of modules" class="shadow bg-white rad text-row">
               <th></th>
               <th scope="row" width="40" >{{module.id}}</th>
-
+              
               <td class="">
                 <a [ngStyle]="{display:displayOff}"><span class="alignleft">{{module.name}}</span></a>
                 <div [ngStyle]="{display:displayOne}"><input type="text img-rounded" class="form-control col-md-2" value="{{module.name}}"></div>
@@ -195,7 +195,7 @@
                 <div [ngStyle]="{display:displayOne}" class="">
                   <a href="" class="rounded btn bg-red icon no-border alignright"><i class="glyphicon glyphicon-remove-sign"></i></a>
                   <a href="" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon-ok-sign"></i></a>
-
+                  
                 </div>
               </td>
             </tr>
@@ -210,13 +210,13 @@
 <!-- Liste des Plannings -->
 <div class="row" *ngIf="tabSelected === 4">
   <div class="col-md-12 col-sd-12 col-xs-12">
-    <div *ngIf="!calendars" class="mid_center" style="margin-top: 50px;">
+    <div *ngIf="!calendar.file_url" class="mid_center" style="margin-top: 50px;">
       <p>Il n'y a pas encore de planning</p>
-      <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Ajouter un Planning</button>
+      <button  class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Ajouter un planning</button>
     </div>
-    <div *ngIf="calendars" class="mid_center" style="margin-top: 50px;">
+    <div *ngIf="calendar.file_url" class="mid_center" style="margin-top: 50px;">
       <div><i class="fa fa-file-pdf-o purple" style="font-size: 50px; margin: 20px 0;"></i></div>
-      <a href="{{ environment.appCalendarUrl }}{{ calendars.file_url }}" target="_blank" class="btn bg-purple">Télécharger</a>
+      <a href="{{ environment.appCalendarUrl }}{{ calendar.file_url }}" target="_blank" class="btn bg-purple">Télécharger</a>
       <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#modalPlanning">Modifier le planning</button>
     </div>
   </div>
@@ -230,14 +230,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="modalFormationLabel">Modifier la Formation</h4>
+        <h4 class="modal-title" id="modalFormationLabel">Modifier la formation</h4>
       </div>
       <div class="modal-body">
-
+        
         <form [formGroup]="newFormationForm" class="form-horizontal form-label-left">
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la Formation</label>
-
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la formation</label>
+            
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
             </div>
@@ -264,23 +264,25 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo">Logo</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo">Image</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="file" (change)="onFileFormationChanged($event)" id="logo">
             </div>
             <div *ngIf="submitted && newFormationImage == null" class="invalid-feedback">
-              <div>Un logo est requis</div>
+              <div>Une image est requise</div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" id="closeModal" class="btn bg-red icon no-border" data-dismiss="modal">Annuler</button>
-        <button  type="button" [disabled]="loading" (click)="editeFormation(idFormation)"class="btn bg-blue icon no-border">Modifier</button>
+        <button  type="button" [disabled]="loading" (click)="editeFormation(idFormation)"class="btn bg-blue icon no-border">modifier</button>
       </div>
     </div>
   </div>
 </div>
+
+
 
 <!-- Modal Student -->
 <div class="modal fade" id="modalStudent" tabindex="-1" role="dialog" aria-labelledby="modalStudentLabel">
@@ -290,7 +292,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="modalStudentLabel">Ajouter des Etudiants</h4>
+        <h4 class="modal-title" id="modalStudentLabel">Ajouter des étudiants</h4>
       </div>
       <div class="modal-body">
         <div id="studentsPanel">
@@ -319,12 +321,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="ModalModuleLabel">Ajouter un Module</h4>
+        <h4 class="modal-title" id="ModalModuleLabel">Ajouter un module</h4>
       </div>
       <div class="modal-body">
         <form [formGroup]="newModuleForm" class="form-horizontal form-label-left">
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du Module</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom du module</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" formControlName="name" class="form-control col-md-7 col-xs-12" id="name" aria-describedby="nameHelp" [ngClass]="{ 'is-invalid': submitted && m.name.errors }">
             </div>
@@ -370,7 +372,7 @@
               </div>
             </div>
             <div *ngIf="submitted && m.color.errors" class="invalid-feedback">
-              <div *ngIf="m.color.errors.required">La couleur est requise</div>
+              <div *ngIf="m.color.errors.required">La couleur est requis</div>
             </div>
           </div>
           <div class="form-group">
@@ -396,11 +398,11 @@
 <div class="modal fade" id="modalPlanning" tabindex="-1" role="dialog" aria-labelledby="modalPlanningLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header">  
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="modalPlanningLabel">Modification du Planning</h4>
+        <h4 class="modal-title" id="modalPlanningLabel">Modification du planning</h4>
       </div>
       <div class="modal-body">
         <form [formGroup]="newPlanningForm" class="form-horizontal form-label-left">

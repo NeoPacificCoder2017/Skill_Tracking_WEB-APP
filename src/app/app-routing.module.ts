@@ -41,6 +41,7 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
 import { StudentReportComponent } from './student/student-report/student-report.component';
 import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
+import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
 
 const routes: Routes = [
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path: 'student/reports', component: StudentReportComponent},
       { path: 'student/report', component: StudentDetailReportComponent},
       { path: 'student/report/create', component: StudentCreateReportComponent},
+      { path: 'student/report/edit', component: StudentEditReportComponent},
       { path: 'student/plannings', component: StudentPlanningComponent},
 
       // ROUTES TEACHER

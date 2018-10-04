@@ -21,7 +21,7 @@
     <div class="x_panel">
       <div class="x_content">
         <!-- formulaire -->
-        <form [formGroup]="newReportForm" class="form-horizontal form-label-left">
+        <form [formGroup]="reportForm" class="form-horizontal form-label-left">
           <div class="form-row">
             <!-- ajouter un titre au rapport -->
             <div class="form-group col-md-12">
@@ -45,8 +45,8 @@
             
             <!-- date -->
             <div class="form-group col-md-5">
-              <label class="" for="created_date">Date du rapport</label>
-              <input type="date" class="form-control" formControlName="created_date" id="created_date">
+              <label class="" for="date">Date du rapport</label>
+              <input type="date" class="form-control" formControlName="date" id="date">
             </div>
             
             <!-- journalier -->

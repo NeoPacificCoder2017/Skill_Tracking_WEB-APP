@@ -47,6 +47,7 @@ import { TeacherReportDetailComponent } from './teacher/teacher-report-detail/te
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
+import { AdminModuleComponent } from './admin/admin-module/admin-module.component';
 import { AdminTeachersComponent } from './admin/admin-teachers/admin-teachers.component';
 import { AdminStudentsComponent } from './admin/admin-students/admin-students.component';
 import { AdminSkillsComponent } from './admin/admin-skills/admin-skills.component';
@@ -64,7 +65,8 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
-
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +83,7 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     StudentDetailReportComponent,
     StudentCreateReportComponent,
     StudentPlanningComponent,
+    StudentEditReportComponent,
 
     TeacherDashboardComponent,
     TeacherPlanningComponent,
@@ -110,6 +113,8 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     AdminProfileAdminComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
+    AdminModuleComponent,
+    AdminUsersComponent,
   ],
   imports: [
     BrowserModule,
