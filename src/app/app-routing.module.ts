@@ -9,6 +9,10 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 // PAGES
 import { LoginComponent } from './login/login.component';
 
+// RESET PASSWORD
+import { ResetPasswordComponent } from './password-reset/reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './password-reset/reset-password-form/reset-password-form.component';
+
 // PAGES ADMIN
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
@@ -40,13 +44,15 @@ import { StudentReportComponent } from './student/student-report/student-report.
 import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
-
+var token: any;
 const routes: Routes = [
   {
     path: '',
     component: SiteLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent},
+      { path: 'password/reset', component: ResetPasswordComponent},
+      { path: 'password/reset/find/:token', component: ResetPasswordFormComponent},
       { path: '', redirectTo: '/login', pathMatch: 'full' },
     ]
   },

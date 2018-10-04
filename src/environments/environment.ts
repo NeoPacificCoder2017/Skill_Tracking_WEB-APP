@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://skillstracking.gc/api/',
-  appUrl: 'http://skillstracking.gc/',
-  appImageUrl: 'http://skillstracking.gc/uploads/images/',
-  appLogoUrl: 'http://skillstracking.gc/uploads/logos/',
-  appCalendarUrl: 'http://skillstracking.gc/uploads/calendars/',
+  apiUrl: 'http://localhost:8000/api/',
+  appUrl: 'http://localhost:8000/',
+  appImageUrl: 'http://localhost:8000/uploads/images/',
+  appLogoUrl: 'http://localhost:8000/uploads/logos/',
+  appCalendarUrl: 'http://localhost:8000/uploads/calendars/',
 
   tableProgressRadiusTeacher: 30,
   tableProgressRadiusStudent: 24,

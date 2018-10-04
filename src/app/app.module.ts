@@ -64,6 +64,8 @@ import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-
 
 import { RequestInterceptor } from './services/api/request.interceptor';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { ResetPasswordComponent } from './password-reset/reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './password-reset/reset-password-form/reset-password-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +106,9 @@ import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-re
     TeacherPlanningComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
-    TeacherReportsComponent
+    TeacherReportsComponent,
+    ResetPasswordComponent,
+    ResetPasswordFormComponent
   ],
   imports: [
     BrowserModule,
