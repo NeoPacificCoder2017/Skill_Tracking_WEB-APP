@@ -6,7 +6,7 @@
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group pull-right">
-        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un rapport</button>
+        <button type="button" class="btn green bg-green" (click)="createReport()" >Ajouter un Rapport</button>
       </div>
     </div>
   </div>
@@ -21,14 +21,14 @@
     <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
       <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student_id.id" *ngFor="let student of students">{{ student }}</option>
+        <option value="student.studentId" *ngFor="let student of students">{{ student.studentName }}</option>
       </select>
     </div>
   </div>
   <!-- champ recherche par date picker -->
   <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
     <div class="">
-      <input type="date" class="form-control" data-inputmask="'mask': '99/99/9999'">
+      <input type="date" class="form-control" data-inputmask="'mask': 'jj/mm/aaaa'">
     </div>
   </div>
 
@@ -54,7 +54,7 @@
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
           <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
-          <td>{{item.report_title}}</td>
+          <td>{{ item.name }}</td>
           <td>
             <span class="alignleft">{{ item.created_date  | date:format }}</span>
           </td>
@@ -74,7 +74,7 @@
   <div id="viewOnly" *ngIf="!displayEditReport">
     <div class="item" style="padding: 45px;">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span>*</span></label>
-      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.report_title}} </div>
+      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.name}} </div>
     </div>
     <div class="item" style="padding: 39px; margin: 4px;">
       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span></label>
