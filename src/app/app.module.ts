@@ -43,7 +43,7 @@ import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-pla
 import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
-
+import { TeacherReportDetailComponent } from './teacher/teacher-report-detail/teacher-report-detail.component';
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
@@ -61,9 +61,10 @@ import { AdminProfileStudentComponent } from './admin/admin-profile-student/admi
 import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
+import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
-import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,37 +75,41 @@ import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-re
     SiteHeaderComponent,
     SiteLayoutComponent,
     LoginComponent,
+
     StudentDashboardComponent,
     StudentReportComponent,
     StudentDetailReportComponent,
     StudentCreateReportComponent,
     StudentPlanningComponent,
+
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
-    AdminDashboardComponent,
     TeacherFormationComponent,
+    TeacherModuleComponent,
+    TeacherStudentComponent,
+    TeacherProfileComponent,
+    TeacherPlanningComponent,
+    TeacherReportsComponent,
+    TeacherReportDetailComponent,
+
+    AdminDashboardComponent,
     AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
     AdminSkillsComponent,
     AdminFormationComponent,
-    TeacherModuleComponent,
-    TeacherStudentComponent,
     AdminFormationStudentComponent,
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    TeacherProfileComponent,
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
-    TeacherPlanningComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
-    TeacherReportsComponent
   ],
   imports: [
     BrowserModule,
