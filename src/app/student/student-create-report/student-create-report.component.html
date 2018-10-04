@@ -1,6 +1,6 @@
 <div class="page-title">
   <div class="title_left">
-    <h3>Créer un rapport</h3>
+    <h3>Nouveau Rapport</h3>
   </div>
 
   <!-- bouton sauvegarder -->
@@ -12,55 +12,64 @@
     </div>
   </div>
 </div>
+
 <div class="clearfix"></div>
-<!-- formulaire -->
-<form [formGroup]="newReportForm" class="form-horizontal form-label-left">
-  <div class="row">
-    <!-- ajouter un titre au rapport -->
-    <div class="form-group col-md-3">
-      <label class="control-label col-md-3" for="title">Titre :</label>
-      <div class="form-group col-md-9">
-        <input type="text" formControlName="title" placeholder="Ajoutez un titre..." class="form-control" id="title" >
-      </div>
-    </div>
 
-    <!-- ajouter une note au rapport -->
-    <div class="form-group col-md-2">
-      <label class="control-label col-md-6" for="rate">Notation :</label>
-      <div class="col-md-6 emphasis">
-        <input type="number" id="rate" formControlName="rate" class="form-control col-md-7 col-xs-12">
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_content">
+        <!-- formulaire -->
+        <form [formGroup]="newReportForm" class="form-horizontal form-label-left">
+          <div class="form-row">
+            <!-- ajouter un titre au rapport -->
+            <div class="form-group col-md-12">
+              <label class="" for="title">Titre</label>
+              <input type="text" formControlName="title" placeholder="Ajoutez un titre à votre rapport" class="form-control" id="title" >
+            </div>
+          </div>
 
-    <!-- date -->
-    <div class="form-group col-md-5">
-      <label class="control-label col-md-6" for="created_date">Date de création du rapport :</label>
-      <div class="col-md-6">
-        <input type="date" class="form-control" formControlName="created_date" id="created_date">
-      </div>
-    </div>
+          <div class="form-row">
+            <!-- ajouter une note au rapport -->
+            <div class="form-group col-md-2">
+              <label class="" for="rate">Notation</label>
+              <input type="number" id="rate" formControlName="rate" class="form-control col-md-7 col-xs-12">
+            </div>
 
-    <!-- journalier -->
-    <div class="form-group col-md-2">
-      <label class="control-label col-md-7">Journalier :</label>
-      <div class="col-md-3">
-        <input class="form-control" formControlName="is_daily" type="checkbox" checked id="is_daily">
+            <!-- date -->
+            <div class="form-group col-md-5">
+              <label class="" for="created_date">Date du rapport</label>
+              <input type="date" class="form-control" formControlName="created_date" id="created_date">
+            </div>
+
+            <!-- journalier -->
+            <div class="form-group col-md-5">
+              <label class="">Journalier</label>
+              <input class="form-control" formControlName="is_daily" type="checkbox" checked id="is_daily">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- rediger un rapport -->
+            <div class="form-group col-md-12">
+              <div for="text">
+                <h2 style="margin-top: 40px;">Objectif(s) de la journée</h2>
+                <textarea class="form-control" [froalaEditor]="options1" formControlName="text1"></textarea>
+                <h2 style="margin-top: 40px;">Succès</h2>
+                <textarea class="form-control" [froalaEditor]="options2" formControlName="text2"> </textarea>
+                <h2 style="margin-top: 40px;">Difficultés</h2>
+                <textarea class="form-control" [froalaEditor]="options3" formControlName="text3"></textarea>
+                <h2 style="margin-top: 40px;">Outils et méthodes utilisés</h2>
+                <textarea class="form-control" [froalaEditor]="options4" formControlName="text4"></textarea>
+                <h2 style="margin-top: 40px;">Compétences acquises</h2>
+                <textarea class="form-control" [froalaEditor]="options5" formControlName="text5"></textarea>
+                <h2 style="margin-top: 40px;">Recommandations</h2>
+                <textarea class="form-control" [froalaEditor]="options6" formControlName="text6"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
-
-  <!-- rediger un rapport -->
-  <div class="form-group">
-    <div for="text">
-      <div id="text_report" class="form-control" formControlName="text" [froalaEditor]>
-        <h3>Objectif(s) de la journée :</h3><br>
-        <h3>Succès :</h3><br>
-        <h3>Difficultés :</h3><br>
-        <h3>Outils et méthodes utilisés :</h3><br>
-        <h3>Compétences acquises :</h3><br>
-        <h3>Recommandations :</h3><br>
-      </div>
-    </div>
-  </div>
-</form>
+</div>

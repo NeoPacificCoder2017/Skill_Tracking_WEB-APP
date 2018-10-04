@@ -20,9 +20,21 @@ export class StudentCreateReportComponent implements OnInit {
   readonly = false;
   placeHolderText: any;
   me: any;
-  // options: any = {
-  //   pluginsEnabled: ['image', 'link', 'codeView'],
-  // };
+  optionsDefault: any = {
+    toolbarInline: true,
+    charCounterCount: false,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    quickInsertButtons: ['embedly', 'table', 'ul', 'ol', 'hr'],
+    quickInsertTags: ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'blockquote']
+  };
+
+  options1: any;
+  options2: any;
+  options3: any;
+  options4: any;
+  options5: any;
+  options6: any;
+
   loading = false;
   submitted = false;
   isDaily = 0;
@@ -38,10 +50,24 @@ export class StudentCreateReportComponent implements OnInit {
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
     console.log('this.me', this.me);
+
+    this.options1 = this.options2 = this.options3 = this.options4 = this.options5 = this.options6 = this.optionsDefault;
+    this.options1.placeholderText = "Que deviez-vous accomplir?";
+    this.options2.placeholderText = "Quels ont été vos succès?";
+    this.options3.placeholderText = "Qu'avez-vous trouver de difficile?";
+    this.options4.placeholderText = "Quels outils et/ou méthodes avez-vous utilisé??";
+    this.options5.placeholderText = "De nouvelles compétences acquises?";
+    this.options6.placeholderText = "Quelles recommandations feriez-vous?";
+
     this.newReportForm = this.formBuilder.group({
       title: ['', Validators.required],
       rate: ['', Validators.required],
-      text: ['', Validators.required],
+      text1: ['', Validators.required],
+      text2: ['', Validators.required],
+      text3: ['', Validators.required],
+      text4: ['', Validators.required],
+      text5: ['', Validators.required],
+      text6: ['', Validators.required],
       is_daily: ['', Validators.required],
       created_date: ['', Validators.required]
     });
@@ -52,12 +78,19 @@ export class StudentCreateReportComponent implements OnInit {
     console.log('this.f', this.f);
     this.submitted = true;
     this.loading = true;
+
+    const text = this.f.text1.value+"::://:::"+this.f.text2.value+"::://:::"+this.f.text3.value+"::://:::"+this.f.text4.value+"::://:::"+this.f.text5.value+"::://:::"+this.f.text6.value+"::://:::";
+
     const uploadData = new FormData();
     uploadData.append('title', this.f.title.value);
     uploadData.append('student_id', this.me.user_id);
     uploadData.append('rate', this.f.rate.value);
+<<<<<<< HEAD
     uploadData.append('text', this.f.text.value);
     console.log('value text', this.f.text.value);
+=======
+    uploadData.append('text', text);
+>>>>>>> e9416b9b03b6f0d072ca2479e57955ef9dd110e8
     uploadData.append('is_daily', (this.f.is_daily.value) ? '1' : '0');
     uploadData.append('date', this.f.created_date.value);
 

@@ -73,6 +73,8 @@ export class StudentReportComponent implements OnInit {
         const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
         const studentId = this.dataReport[i].student_id;
         const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
+        console.log('studentName', studentName, studentId, position);
+        console.log('this.students', this.students);
         if (position === -1)  {
           this.students.push({
             studentName: studentName,
