@@ -98,12 +98,12 @@ export class StudentReportComponent implements OnInit {
     }
 
     // creer un rapport
-    createReport(student_id): any {
+    createReport(userId): any {
       console.log('createReport');
-      this.router.navigate(['/student/report/create'], {queryParams : { student_id : student_id }} );
+      this.router.navigate(['/student/report/create'], {queryParams : { userId : userId }} );
     }
 
-    updateReport(student_id) {
+    updateReport(userId) {
       console.log('report id', this.report.report_id);
     }
 
