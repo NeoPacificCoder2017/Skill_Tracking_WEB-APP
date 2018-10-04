@@ -15,23 +15,25 @@
 <div class="clearfix"></div>
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
-
+  
   <!-- champ de recherche par auteur -->
   <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
-    <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span>
     <div class="">
-      <select class="form-control input-sm" [(ngModel)]="selectedStudent">
-        <option value="student.studentId" *ngFor="let student of students">{{ student.studentName }}</option>
+      Filtrer par étudiants<br />
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent" (change)="filterReports()">
+        <option value="0">Tous les étudiants</option>
+        <option value="{{ student.studentId }}" *ngFor="let student of students">{{ student.studentName }}</option>
       </select>
     </div>
   </div>
   <!-- champ recherche par date picker -->
   <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
     <div class="">
-      <input type="date" class="form-control" data-inputmask="'mask': 'jj/mm/aaaa'">
+      Filtrer par date<br />
+      <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="filterReports()" data-inputmask="'mask': 'jj/mm/aaaa'">
     </div>
   </div>
-
+  
 </div>
 <!-- Liste des formations -->
 <div class="row" *ngIf="!displayViewReport">
@@ -44,94 +46,101 @@
           <th scope="col">#</th>
           <th scope="col">Auteur</th>
           <th scope="col">Titre du rapport</th>
-          <th scope="col">Date de création</th>
+          <th scope="col">Notation</th>
+          <th scope="col">Date du rapport</th>
           <th scope="col">Dernière modification</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)">
+        <tr *ngFor="let item of dataReport" class="shadow bg-white rad text-row" (click)="viewReport(item)" style="cursor: pointer;">
           <td></td>
           <td scope="row" width="40">{{ item.report_id }}</td>
-          <td>{{ item.studentFirstname }} {{ item.studentLastname }}</td>
-          <td>{{ item.name }}</td>
           <td>
-            <span class="alignleft">{{ item.created_date  | date:format }}</span>
+            <img src="{{ environment.appImageUrl }}{{ item.studentAvatar }}" class="img-circle pull-left" width="100%">
+            <div class="pull-left" style="margin: 13px 0 0 10px;">
+              <span class="alignleft">{{ item.studentLastname }}</span><br/>
+              <span class="alignleft">{{ item.studentFirstname }}</span>
+            </div>
           </td>
-          <td>{{ item.last_edit_date | date:format }}</td>
-          <td></td>
+          <td>{{ item.report_title }}</td>
+          <td>
+            <div class="emoji">
+              <i class="far fa-smile-wink" style="font-size: 34px; margin: 0 5px 0 0;" [class.green]="item.report_rate == 5" ></i>
+              <i class="far fa-smile" style="font-size: 34px; margin: 0 5px 0 0;" [class.blue]="item.report_rate == 4"></i>
+              <i class="far fa-frown" style="font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="item.report_rate == 3"></i>
+              <i class="far fa-sad-cry" style="font-size: 34px; margin: 0 5px 0 0;" [class.purple]="item.report_rate == 2"></i>
+              <i class="far fa-angry" style="font-size: 34px; margin: 0 5px 0 0;" [class.red]="item.report_rate == 1"></i>
+            </div>
+          </td>
+          <td>
+            <span class="alignleft">{{ item.report_date  | date:format }}</span>
+          </td>
+          <td>{{ item.report_last_edit_date | date:format }}</td>
+          <td>
+            <button type="button" class="rounded btn bg-green icon no-border"><i class="glyphicon glyphicon glyphicon-eye-open"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<div id="viewReport" *ngIf="displayViewReport">
-
-  <button type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
-
-  <!-- div sans formulaire si consultation-->
-  <div id="viewOnly" *ngIf="!displayEditReport">
-    <div class="item" style="padding: 45px;">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span>*</span></label>
-      <div class="col-md-6 col-sm-6 col-xs-12"> {{report.name}} </div>
-    </div>
-    <div class="item" style="padding: 39px; margin: 4px;">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span>*</span></label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        {{report.report_rate}}
+<div id="viewReport" *ngIf="displayViewReport" class="container">
+  <div id="viewOnly">
+    <div class="page-title">
+        <div class="title_left">
+          <h3>Rapport : {{report.report_title}}</h3>
+        </div>
+        <!-- bouton ajouter -->
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group pull-right">
+              <button type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Revenir aux rapports</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="item" style="padding: 14px; margin: -74px; text-align: left;">
-      <div class="pull-right">
-        <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
-      </div>
-
-    </div>
-    <div class="item">
-      <div class="item">
-        <label class="col-md-3 col-sm-3 col-xs-12" for="name">Contenu <span>*</span></label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          {{report.text}}
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <div class="pull-left">
+              <img src="{{ environment.appImageUrl }}{{ report.studentAvatar }}" class="img-circle pull-left" style="width: 37px;">
+              <div class="pull-left" style="margin: 0 0 0 10px;">
+                <div class="alignleft" style="font-size: 25px;">{{ report.studentLastname }} {{ report.studentFirstname }}</div>
+              </div>
+            </div>
+            <div class="emoji pull-right">
+              <i class="far fa-smile-wink" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.green]="report.report_rate == 5" (click)="updateNotation(5)" ></i>
+              <i class="far fa-smile" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.blue]="report.report_rate == 4" (click)="updateNotation(4)"></i>
+              <i class="far fa-frown" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="report.report_rate == 3" (click)="updateNotation(3)"></i>
+              <i class="far fa-sad-cry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.purple]="report.report_rate == 2" (click)="updateNotation(2)"></i>
+              <i class="far fa-angry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.red]="report.report_rate == 1" (click)="updateNotation(1)"></i>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2 style="margin-top: 40px;">Objectif(s) de la journée</h2>
+                <div [innerHTML]="report.report_text[0]"></div>
+                <h2 style="margin-top: 40px;">Succès</h2>
+                <div [innerHTML]="report.report_text[1]"></div>
+                <h2 style="margin-top: 40px;">Difficultés</h2>
+                <div [innerHTML]="report.report_text[2]"></div>
+                <h2 style="margin-top: 40px;">Outils et méthodes utilisés</h2>
+                <div [innerHTML]="report.report_text[3]"></div>
+                <h2 style="margin-top: 40px;">Compétences acquises</h2>
+                <div [innerHTML]="report.report_text[4]"></div>
+                <h2 style="margin-top: 40px;">Recommandations</h2>
+                <div [innerHTML]="report.report_text[5]"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- div avec formulaire si rapport appartient a l etudiant connecte -->
-  <div id='editReport' *ngIf="displayEditReport">
-    <!-- titre -->
-    <div class="item form-group">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Titre <span class="required">*</span></label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="" required="required" type="text">
-      </div>
-    </div>
-    <!-- rating -->
-    <div class="item form-group">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Notation <span class="required">*</span>
-      </label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-      </div>
-    </div>
-    <div>
-      <div class="col-md-9 col-sm-9 col-xs-12">
-        <div class="pull-right">
-          <input id="toggle{{ report.is_daily }}" type="checkbox" class="checky" [checked]="report.is_daily">
-          <label for="toggle{{ report.is_daily }}" class="labChecky" [innerHtml]="stateText()"></label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group modal-body">
-      <div class="x_content jumbotron">
-        <div [froalaEditor] id="text" [(froalaModel)]="report.text"></div>
-      </div>
-      <div>
-        <button  type="button" [disabled]="loading" (click)="saveReport()" class="btn bg-blue icon no-border">Enregistrer</button>
-      </div>
-    </div>
-  </div>
-
 </div>
 

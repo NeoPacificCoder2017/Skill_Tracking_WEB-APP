@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { throwIfEmpty } from '../../../../node_modules/rxjs/operators';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-student-create-report',
@@ -18,6 +19,7 @@ export class StudentCreateReportComponent implements OnInit {
   selected = 0;
   hovered = 0;
   readonly = false;
+
   placeHolderText: any;
   me: any;
   optionsDefault: any = {
@@ -38,9 +40,10 @@ export class StudentCreateReportComponent implements OnInit {
   loading = false;
   submitted = false;
   isDaily = 0;
+  selectedRate = 0;
 
   constructor (
-    private apiService: ApiService,
+    private location: Location, private apiService: ApiService,
     private formBuilder: FormBuilder,
     private router: Router,
     private froalaEditorModule: FroalaEditorModule,
@@ -72,7 +75,17 @@ export class StudentCreateReportComponent implements OnInit {
       created_date: ['', Validators.required]
     });
   }
+  
+  goBack() {
+    this.location.back();
+  }
+  
   get f() { return this.newReportForm.controls; }
+
+  updateNotation(note) {
+    this.selectedRate = note;
+    this.newReportForm.controls['rate'].setValue(note);
+  }
 
   saveReport(): any {
     console.log('this.f', this.f);
@@ -92,8 +105,7 @@ export class StudentCreateReportComponent implements OnInit {
     console.log('uploadData', uploadData);
     this.apiService.post('report/create', uploadData)
     .subscribe(data => {
-      this.ngOnInit();
-      console.log('sauvegardé');
+      this.router.navigate(['student/reports']);
     });
   }
 
