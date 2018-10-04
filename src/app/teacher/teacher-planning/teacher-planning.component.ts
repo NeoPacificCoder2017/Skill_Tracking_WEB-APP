@@ -29,7 +29,7 @@ export class TeacherPlanningComponent implements OnInit {
   getCalendar() {
     this.apiService.get('teachers/calendar')
     .subscribe((data) => {
-      this.calendars = data.data;
+      this.calendars = data;
       console.log('calendars data', this.calendars);
     });
   }
