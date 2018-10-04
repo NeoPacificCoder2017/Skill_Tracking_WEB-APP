@@ -27,6 +27,8 @@ export class StudentPlanningComponent implements OnInit {
     this.apiService.get('students/calendar').subscribe((data) => {
       this.calendar = data;
       console.log('calendar data', this.calendar);
+      window.open(this.environment.appCalendarUrl+this.calendar.file_url, "_blank");
+      this.router.navigate(['student/dashboard']);
     });
   }
 

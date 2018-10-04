@@ -2,13 +2,6 @@
   <div class="title_left">
     <h3>Liste des plannings</h3>
   </div>
-  <div class="title_right">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <div class="input-group pull-right">
-          <button class="btn green bg-green" type="button" data-toggle="modal" data-target="#myModal">Ajouter un Planning</button>
-        </div>
-      </div>
-    </div>
 </div>
 
 <table class="table table-borderless space" style="color: #999">
@@ -30,7 +23,7 @@
       <th></th>
       <td>{{ calend.file_name }}</td>
       <td>
-          <a (click)="uploadCalendar(calendarId)" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
+          <a href="{{ environment.appCalendarUrl }}{{ calendar.file_url }}" target="_blank" class="rounded btn bg-green icon no-border alignright"><i class="fa fa-download"></i></a>
       </td>
     </tr>
     <br>
