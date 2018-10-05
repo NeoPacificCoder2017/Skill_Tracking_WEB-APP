@@ -61,6 +61,15 @@ export class StudentReportComponent implements OnInit {
     });
   }
   
+  // recuperer la liste des rapports d une formation
+  public getReportComments() {
+    this.apiService.get('report/getStudentsReportByFormation').subscribe(data => {
+      this.dataReport = this.allReports = data.data;
+      console.log('data Report', data);
+      this.generateStudentsList();
+    });
+  }
+  
   generateStudentsList() {
     for (let i = 0; i < this.dataReport.length; i++) {
       const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
