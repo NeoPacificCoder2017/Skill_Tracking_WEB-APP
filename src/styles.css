@@ -4446,7 +4446,7 @@ input.checky:checked + label.labChecky::before {
     width: 100%;
     height: 100%;
     background: #f3f5f7;
-    z-index: 9;
+    z-index: 9999;
 }
 .loadingBoxWrapper {
     width: 100%;
