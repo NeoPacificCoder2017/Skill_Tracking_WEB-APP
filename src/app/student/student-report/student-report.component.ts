@@ -32,13 +32,11 @@ export class StudentReportComponent implements OnInit {
   allReports = [];
   displayViewReport = 0;
 
-  constructor(private location: Location,
-     private apiService: ApiService,
-      private formBuilder: FormBuilder,
-      private router: Router,
-      private filterPipe: FilterPipe,
-      private froalaEditorModule: FroalaEditorModule,
-      private froalaViewModule: FroalaViewModule) {
+  constructor(
+    private location: Location,
+    private apiService: ApiService,
+    private router: Router,
+    private filterPipe: FilterPipe) {
     this.formation = {};
     this.report = {title : '', rate : '', text : ''};
   }
@@ -46,12 +44,12 @@ export class StudentReportComponent implements OnInit {
   ngOnInit() {
     this.me = JSON.parse(localStorage.getItem('user'));
     console.log('this.me', this.me);
+
     this.apiService.get('formation/' + this.me.formation_id).subscribe(data => {
       this.formation = data;
       console.log('formation_id data', data.id);
     });
     this.getReports();
-
   }
 
   goBack() {

@@ -20,7 +20,7 @@ export class StudentEditReportComponent implements OnInit {
   optionsDefault: any = {
     toolbarInline: true,
     charCounterCount: false,
-    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
     quickInsertButtons: ['embedly', 'table', 'ul', 'ol', 'hr'],
     quickInsertTags: ['p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'blockquote']
   };
@@ -35,7 +35,12 @@ export class StudentEditReportComponent implements OnInit {
   submitted = false;
   selectedRate = 0;
 
-  constructor(private location: Location, private apiService: ApiService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private location: Location,
+    private apiService: ApiService,
+    private router: Router,
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams
@@ -45,12 +50,12 @@ export class StudentEditReportComponent implements OnInit {
     this.me = JSON.parse(localStorage.getItem('user'));
 
     this.options1 = this.options2 = this.options3 = this.options4 = this.options5 = this.options6 = this.optionsDefault;
-    this.options1.placeholderText = "Que deviez-vous accomplir?";
-    this.options2.placeholderText = "Quels ont été vos succès?";
-    this.options3.placeholderText = "Qu'avez-vous trouver de difficile?";
-    this.options4.placeholderText = "Quels outils et/ou méthodes avez-vous utilisé??";
-    this.options5.placeholderText = "De nouvelles compétences acquises?";
-    this.options6.placeholderText = "Quelles recommandations feriez-vous?";
+    this.options1.placeholderText = 'Que deviez-vous accomplir?';
+    this.options2.placeholderText = 'Quels ont été vos succès?';
+    this.options3.placeholderText = 'Qu\'avez-vous trouver de difficile?';
+    this.options4.placeholderText = 'Quels outils et/ou méthodes avez-vous utilisé??';
+    this.options5.placeholderText = 'De nouvelles compétences acquises?';
+    this.options6.placeholderText = 'Quelles recommandations feriez-vous?';
 
     this.reportForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -67,11 +72,11 @@ export class StudentEditReportComponent implements OnInit {
 
     this.getReportData();
   }
-  
+
   getReportData() {
-    this.apiService.get('reportofStudent/'+this.reportId).subscribe(data => {
+    this.apiService.get('reportofStudent/' + this.reportId).subscribe(data => {
       console.log('data Report', data);
-      const texts = data.report_text.split('::://:::');console.log(texts);
+      const texts = data.report_text.split('::://:::'); console.log(texts);
       this.reportForm.controls['title'].setValue(data.report_title);
       this.reportForm.controls['date'].setValue(data.report_date);
       this.reportForm.controls['is_daily'].setValue(data.report_is_daily);
@@ -88,7 +93,7 @@ export class StudentEditReportComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-  
+
   get f() { return this.reportForm.controls; }
 
   updateNotation(note) {
@@ -100,7 +105,12 @@ export class StudentEditReportComponent implements OnInit {
     console.log('this.f', this.f);
     this.submitted = true;
 
-    const text = this.f.text1.value+"::://:::"+this.f.text2.value+"::://:::"+this.f.text3.value+"::://:::"+this.f.text4.value+"::://:::"+this.f.text5.value+"::://:::"+this.f.text6.value+"::://:::";
+    const text = this.f.text1.value +
+    '::://:::' + this.f.text2.value +
+    '::://:::' + this.f.text3.value +
+    '::://:::' + this.f.text4.value +
+    '::://:::' + this.f.text5.value +
+    '::://:::' + this.f.text6.value + '::://:::';
 
     const datas = {
       'report_id' : this.reportId,

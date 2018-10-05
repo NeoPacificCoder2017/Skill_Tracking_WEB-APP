@@ -15,8 +15,8 @@
 <div class="row" style="margin-bottom: 50px;">
   <div class="col-md-12" style="text-align: center;">
     <h3>Formation : {{ formation.name }}</h3>
-    <button class="btn bg-dark "><i class="fa fa-calendar"></i> début : {{ formation.start_at | date }}</button>
-    <button class="btn bg-dark "><i class="fa fa-calendar"></i> fin : {{ formation.end_at | date }}</button>
+    <button style="pointer-events: none;" class="btn bg-dark "><i class="fa fa-calendar"></i> début : {{ formation.start_at | date }}</button>
+    <button style="pointer-events: none;" class="btn bg-dark "><i class="fa fa-calendar"></i> fin : {{ formation.end_at | date }}</button>
   </div>
 </div>
 
@@ -32,8 +32,8 @@
             <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col">Nom</th>
-            <th scope="col">Progression formateur</th>
-            <th scope="col">Progression étudiant</th>
+            <th scope="col">Progression formateurs sur la formation</th>
+            <th scope="col">Progression étudiant sur la formation</th>
             <th scope="col">Action</th>
         </tr>
       </thead>
@@ -61,10 +61,11 @@
             </div>
           </td>
           <td>
-              <a (click)="showStudent(student.id)" class="rounded btn bg-green icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></a>
+              <a (click)="showStudent(student.id)" class="rounded btn bg-blue icon no-border alignright"><i class="glyphicon glyphicon glyphicon-eye-open"></i></a>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+<br> <br> <br> <br> <br>
