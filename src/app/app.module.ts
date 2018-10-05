@@ -44,7 +44,6 @@ import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-pla
 import { TeacherModuleComponent } from './teacher/teacher-module/teacher-module.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
-import { TeacherReportDetailComponent } from './teacher/teacher-report-detail/teacher-report-detail.component';
 
 /** ADMIN */
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -98,7 +97,6 @@ import { RequestInterceptor } from './services/api/request.interceptor';
     TeacherProfileComponent,
     TeacherPlanningComponent,
     TeacherReportsComponent,
-    TeacherReportDetailComponent,
 
     AdminDashboardComponent,
     AdminReportsComponent,

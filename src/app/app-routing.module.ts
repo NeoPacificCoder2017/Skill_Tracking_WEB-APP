@@ -38,7 +38,6 @@ import { TeacherStudentComponent } from './teacher/teacher-student/teacher-stude
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
 import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
-import { TeacherReportDetailComponent } from './teacher/teacher-report-detail/teacher-report-detail.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -47,7 +46,8 @@ import { StudentDetailReportComponent } from './student/student-detail-report/st
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
-var token: any;
+
+let token: any;
 const routes: Routes = [
   {
     path: '',
@@ -80,8 +80,6 @@ const routes: Routes = [
       { path: 'teacher/profile', component: TeacherProfileComponent},
       { path: 'teacher/planning', component: TeacherPlanningComponent},
       { path: 'teacher/reports', component: TeacherReportsComponent},
-      { path: 'teacher/reportDetail', component: TeacherReportDetailComponent},
-
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
