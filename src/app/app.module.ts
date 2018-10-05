@@ -67,6 +67,7 @@ import { RequestInterceptor } from './services/api/request.interceptor';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
