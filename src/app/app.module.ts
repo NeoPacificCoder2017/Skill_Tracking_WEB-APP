@@ -34,6 +34,7 @@ import { StudentReportComponent } from './student/student-report/student-report.
 import { StudentDetailReportComponent } from './student/student-detail-report/student-detail-report.component';
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
+import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 
 /** TEACHER */
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
@@ -62,11 +63,13 @@ import { AdminProfileStudentComponent } from './admin/admin-profile-student/admi
 import { AdminProfileTeacherComponent } from './admin/admin-profile-teacher/admin-profile-teacher.component';
 import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-profile-admin.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
+import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+import { ResetPasswordComponent } from './password-reset/reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './password-reset/reset-password-form/reset-password-form.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 import { RequestInterceptor } from './services/api/request.interceptor';
-import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
-import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,40 +80,46 @@ import { StudentEditReportComponent } from './student/student-edit-report/studen
     SiteHeaderComponent,
     SiteLayoutComponent,
     LoginComponent,
+
     StudentDashboardComponent,
     StudentReportComponent,
     StudentDetailReportComponent,
     StudentCreateReportComponent,
     StudentPlanningComponent,
+    StudentEditReportComponent,
+
     TeacherDashboardComponent,
     TeacherPlanningComponent,
     TeacherProfileComponent,
-    AdminDashboardComponent,
     TeacherFormationComponent,
+    TeacherModuleComponent,
+    TeacherStudentComponent,
+    TeacherProfileComponent,
+    TeacherPlanningComponent,
+    TeacherReportsComponent,
+
+    AdminDashboardComponent,
     AdminReportsComponent,
     AdminFormationsComponent,
     AdminTeachersComponent,
     AdminStudentsComponent,
     AdminSkillsComponent,
     AdminFormationComponent,
-    TeacherModuleComponent,
-    TeacherStudentComponent,
     AdminFormationStudentComponent,
     AdminAdminsComponent,
     AdminFormationTeacherComponent,
     AdminPlanningsComponent,
-    TeacherProfileComponent,
     AdminProfileComponent,
     AdminProfileStudentComponent,
     AdminProfileTeacherComponent,
     AdminProfileAdminComponent,
-    TeacherPlanningComponent,
     AdminStudentModuleComponent,
     AdminReportDetailComponent,
+    TeacherReportsComponent,
+    ResetPasswordComponent,
+    ResetPasswordFormComponent,
     AdminModuleComponent,
     AdminUsersComponent,
-    TeacherReportsComponent,
-    StudentEditReportComponent
   ],
   imports: [
     BrowserModule,

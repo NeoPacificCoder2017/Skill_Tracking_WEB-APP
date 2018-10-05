@@ -20,10 +20,8 @@ export class AppComponent {
   reloadPage() {
     console.log('reloadPage');
     this.onlineOffline = navigator.onLine;
-    this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
-  
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){ return false; };
     let currentUrl = this.router.url + '?';
-  
     this.router.navigateByUrl(currentUrl)
       .then(() => {
         this.router.navigated = false;

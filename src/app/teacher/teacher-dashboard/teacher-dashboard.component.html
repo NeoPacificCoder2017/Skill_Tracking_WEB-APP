@@ -38,15 +38,15 @@
           <td><span class="alignleft">{{e.name}}</span></td>
           <td class="">
             <div class="roundProgressBarWrapper">
-                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="50" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
-                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="80" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
-                <div class="progressTeacherText red">100%</div>
-                <div class="progressStudentText purple">100%</div>
+                <round-progress class="roundProgressBar roundProgressBarTeacher" [current]="(e.total_skills_validated_by_teacher/e.total_skills)*100 | number: '1.0-0'" [max]="environment.progressMax" [color]="environment.tableProgressColorTeacher" [radius]="environment.tableProgressRadiusTeacher" [stroke]="environment.tableProgressStrokeTeacher"></round-progress>
+                <round-progress class="roundProgressBar roundProgressBarStudent" [current]="(e.total_skills_validated_by_student/e.total_skills)*100 | number: '1.0-0'" [max]="environment.progressMax" [color]="environment.tableProgressColorStudent" [radius]="environment.tableProgressRadiusStudent" [stroke]="environment.tableProgressStrokeStudent"></round-progress>
+                <div class="progressTeacherText red">{{ (e.total_skills_validated_by_teacher/e.total_skills)*100 | number: '1.0-0' }}% </div>
+                <div class="progressStudentText purple">{{ (e.total_skills_validated_by_student/e.total_skills)*100 | number: '1.0-0' }}% </div>
             </div>
           </td>
           <td><span class="alignleft">{{e.start_at | date}}</span></td>
           <td><span class="alignleft">{{e.end_at | date}}</span></td>
-          <td><a href="" class="btn btn-round bg-dark no-border left">{{e.total_students}}</a></td>
+          <td><a href="" style="pointer-events: none;" class="btn btn-round bg-dark no-border left">{{e.total_students}}</a></td>
           <td>
           </td>
         </tr>

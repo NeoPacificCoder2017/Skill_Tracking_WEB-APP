@@ -15,7 +15,7 @@ export class AppHeaderComponent implements OnInit {
     {
       'name': 'admin',
       'links': [
-        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
+        {'title': 'Tableau de bord', 'icon': 'fa-home', 'url': 'dashboard'},
         {'title': 'Formations', 'icon': 'fa-graduation-cap', 'url': 'formations'},
         {
           'title': 'Utilisateurs',
@@ -35,14 +35,17 @@ export class AppHeaderComponent implements OnInit {
     {
       'name': 'teacher',
       'links': [
-        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
+        {'title': 'Tableau de bord', 'icon': 'fa-home', 'url': 'dashboard'},
+        // {"title": "Formations", "icon": "fa-wpforms", "url": "formations"},
+        // {"title": "Modules", "icon": "fa-list-alt", "url": "modules"},
+        {'title': 'Rapports', 'icon': 'fa-clipboard', 'url': 'reports'},
         {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'planning'}
       ]
     },
     {
       'name': 'student',
       'links': [
-        {'title': 'Dashboard', 'icon': 'fa-home', 'url': 'dashboard'},
+        {'title': 'Tableau de bord', 'icon': 'fa-home', 'url': 'dashboard'},
         {'title': 'Rapports', 'icon': 'fa-clipboard', 'url': 'reports'},
         {'title': 'Planning', 'icon': 'fa-calendar', 'url': 'plannings'}
       ]

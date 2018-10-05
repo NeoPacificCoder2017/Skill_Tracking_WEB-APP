@@ -9,6 +9,10 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 // PAGES
 import { LoginComponent } from './login/login.component';
 
+// RESET PASSWORD
+import { ResetPasswordComponent } from './password-reset/reset-password/reset-password.component';
+import { ResetPasswordFormComponent } from './password-reset/reset-password-form/reset-password-form.component';
+
 // PAGES ADMIN
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFormationsComponent } from './admin/admin-formations/admin-formations.component';
@@ -26,12 +30,14 @@ import { AdminProfileAdminComponent } from './admin/admin-profile-admin/admin-pr
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { AdminStudentModuleComponent } from './admin/admin-student-module/admin-student-module.component';
 import { AdminReportDetailComponent } from './admin/admin-report-detail/admin-report-detail.component';
+
 // PAGES TEACHER
 import { TeacherDashboardComponent } from './teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherFormationComponent } from './teacher/teacher-formation/teacher-formation.component';
 import { TeacherStudentComponent } from './teacher/teacher-student/teacher-student.component';
 import { TeacherProfileComponent } from './teacher/teacher-profile/teacher-profile.component';
 import { TeacherPlanningComponent } from './teacher/teacher-planning/teacher-planning.component';
+import { TeacherReportsComponent } from './teacher/teacher-reports/teacher-reports.component';
 
 // PAGES STUDENT
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
@@ -41,12 +47,15 @@ import { StudentCreateReportComponent } from './student/student-create-report/st
 import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
 
+let token: any;
 const routes: Routes = [
   {
     path: '',
     component: SiteLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent},
+      { path: 'password/reset', component: ResetPasswordComponent},
+      { path: 'password/reset/find/:token', component: ResetPasswordFormComponent},
       { path: '', redirectTo: '/login', pathMatch: 'full' },
     ]
   },
@@ -70,6 +79,7 @@ const routes: Routes = [
       { path: 'teacher/student', component: TeacherStudentComponent},
       { path: 'teacher/profile', component: TeacherProfileComponent},
       { path: 'teacher/planning', component: TeacherPlanningComponent},
+      { path: 'teacher/reports', component: TeacherReportsComponent},
 
       // ROUTES ADMIN
       { path: 'admin/dashboard', component: AdminDashboardComponent},
