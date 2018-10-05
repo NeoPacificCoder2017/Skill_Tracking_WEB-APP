@@ -18,6 +18,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    document.getElementById("loadingWrapper2").style.display = 'block';
     return next.handle(request).do((event: HttpEvent<any>) => {}, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         // do error handling here
