@@ -61,15 +61,6 @@ export class StudentReportComponent implements OnInit {
     });
   }
   
-  // recuperer la liste des rapports d une formation
-  public getReportComments() {
-    this.apiService.get('report/getStudentsReportByFormation').subscribe(data => {
-      this.dataReport = this.allReports = data.data;
-      console.log('data Report', data);
-      this.generateStudentsList();
-    });
-  }
-  
   generateStudentsList() {
     for (let i = 0; i < this.dataReport.length; i++) {
       const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
@@ -93,6 +84,7 @@ export class StudentReportComponent implements OnInit {
       console.log('this.report', this.report);
       console.log('this.me', this.me);
       this.report.report_text = this.report.report_text.split('::://:::');
+      console.log("comments", this.report);
     }
   }
   
