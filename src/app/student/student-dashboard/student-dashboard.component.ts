@@ -77,6 +77,7 @@ export class StudentDashboardComponent implements OnInit {
           this.allSkills.push(this.dataStudent[i].module.skills[j]);
         }
       }
+      document.getElementById("loadingWrapper2").style.display = 'none';
     });
   }
 
