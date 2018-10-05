@@ -139,15 +139,10 @@ export class TeacherReportsComponent implements OnInit {
   }
 
   viewReport(item) {
+    this.displayViewReport = 1;
+    console.log('displayViewReport', this.displayViewReport);
     this.report = item;
-    if (this.me.id === this.report.studentId) {
-      this.router.navigate(['student/report/edit'], {queryParams : { report : this.report.report_id }} );
-    } else {
-      this.displayViewReport = 1;
-      console.log('this.report', this.report);
-      console.log('this.me', this.me);
-      this.report.report_text = this.report.report_text.split('::://:::');
-    }
+    this.report.report_text = this.report.report_text.split('::://:::');
   }
 
   closeViewReport() {
