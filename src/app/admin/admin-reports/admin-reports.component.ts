@@ -33,12 +33,7 @@ export class AdminReportsComponent implements OnInit {
         this.dataReport = this.allReports = data;
         console.log('data Report', data);
         this.generateStudentsList();
-      }
-    );
-
-    this.apiService.get('getAllFormationsForAdmin').subscribe(
-      data => {
-        this.formations = data;
+        this.generateFormationsList();
       }
     );
   }
@@ -53,6 +48,21 @@ export class AdminReportsComponent implements OnInit {
         this.students.push({
           studentName: studentName,
           studentId: studentId
+        });
+      }
+    }
+  }
+  
+  generateFormationsList() {
+    this.formations = [];
+    for (let i = 0; i < this.dataReport.length; i++) {
+      const formationtName = this.dataReport[i].formationName;
+      const formationtId = this.dataReport[i].formationt_Id;
+      const position = this.formations.map(function(e) { return e.name; }).indexOf(formationtName);
+      if (position === -1)  {
+        this.formations.push({
+          name: formationtName,
+          id: formationtId
         });
       }
     }
