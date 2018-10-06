@@ -97,7 +97,6 @@ export class TeacherReportsComponent implements OnInit {
   }
   // -------------------------- FILTRES ------------------------ //
   // Mettre à jour la liste de recherche par étudiant
-
   filterReports() {
     console.log('filterByStudent studentId ',  this.selectedStudent);
     console.log('filterByFormation formationId ',  this.selectedFormation);
@@ -111,13 +110,13 @@ export class TeacherReportsComponent implements OnInit {
     console.log('filterReports dataReport', this.dataReport);
   }
 
-  getReportsByFormation() {
-    this.apiService.get('reportsByFormation/' + this.idFormation)
-    .subscribe( data => {
-      this.dataReport = data;
-      console.log('getReportsByFormation data', this.dataReport);
-    });
-  }
+  // getReportsByFormation() {
+  //   this.apiService.get('reportsByFormation/' + this.idFormation)
+  //   .subscribe( data => {
+  //     this.dataReport = data;
+  //     console.log('getReportsByFormation data', this.dataReport);
+  //   });
+  // }
 
   // -------------------------- DETAIL RAPPORTS ------------------------ //
   goBack() {
