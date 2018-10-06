@@ -23,7 +23,7 @@ export class RequestInterceptor implements HttpInterceptor {
       if (err instanceof HttpErrorResponse) {
         // do error handling here
         console.log('ERROR -------------', err);
-        // alert('souci internet')
+        document.getElementById("loadingWrapper2").style.display = 'none';
       }
     });
   }
