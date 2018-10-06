@@ -23,7 +23,7 @@ export class AdminReportsComponent implements OnInit {
   selectedDate: any;
   selectedFormation = 'all';
   report: any;
-  formations: {};
+  formations: any;
 
   constructor(private apiService: ApiService, private filterPipe: FilterPipe, private router: Router) {}
 
