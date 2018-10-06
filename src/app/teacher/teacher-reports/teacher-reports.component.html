@@ -1,58 +1,53 @@
-<div class="page-title">
+<div class="page-title" *ngIf="!displayViewReport">
   <div class="title_left">
-    <h3 *ngIf="!displayViewReport"  style="margin-bottom: 80px;">Liste des rapports</h3>
+    <h3  style="margin-bottom: 80px;">Liste des rapports</h3>
   </div>
+</div>
 
 
 <div class="clearfix"></div>
 <!-- CHAMPS RECHERCHE -->
 <div class="row" *ngIf="!displayViewReport">
-
-  <!-- champ de recherche par FORMATION a mettre dynamiquement -->
-  <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
-    <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
-      <label class="control-label col-md-3 col-sm-3 col-xs-12">Formation</label>
-    <div class="col-md-9 col-sm-9 col-xs-12">
-      <select class="form-control">
-        <option value="0" >All</option>
-        <option *ngFor="let f of formations" value="f.id" >{{ f.name }}</option>
+  <!-- champ de recherche par auteur -->
+  <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
+    <div class="">
+      Filtrer par formations<br />
+      <select class="form-control input-sm" [(ngModel)]="selectedFormation" (change)="filterReportsByFormation()">
+        <option value="all">Toutes les formations</option>
+        <option value="{{ formation.id }}" *ngFor="let formation of formations">{{ formation.name }}</option>
       </select>
     </div>
   </div>
-
-  <!-- champ de recherche par AUTEUR a mettre dynamiquement -->
-  <div class="col-md-4 col-xs-12 form-group top_search" id="search_author">
-    <!-- <span class="fa fa-child form-control-feedback right" aria-hidden="true"></span> -->
-    <label class="control-label col-md-3 col-sm-3 col-xs-12">Auteur</label>
-    <div class="col-md-9 col-sm-9 col-xs-12">
-      <select class="form-control" [(ngModel)]="selectedStudent" (change)="filterReports()">
-          <option value="0" >Tous les étudiants</option>
-          <option value="{{ student.studentId }}" *ngFor="let student of students">{{ student.studentName }}</option>
+  <div class="col-md-3 col-xs-5 form-group top_search filterStyle" id="search_author">
+    <div class="">
+      Filtrer par étudiants<br />
+      <select class="form-control input-sm" [(ngModel)]="selectedStudent" (change)="filterReports()">
+        <option value="0">Tous les étudiants</option>
+        <option value="{{ student.studentId }}" *ngFor="let student of students">{{ student.studentName }}</option>
       </select>
     </div>
   </div>
-
-
   <!-- champ recherche par date picker -->
-  <div class="col-md-4 col-xs-12 form-group top_search" id="search_date">
-    <label>Date</label>
-    <div class="col-md-9 col-sm-9 col-xs-9">
+  <div class="col-md-3 col-xs-6 form-group top_search filterStyle" id="search_date">
+    <div class="">
+      Filtrer par date<br />
       <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="filterReports()" data-inputmask="'mask': 'jj/mm/aaaa'">
     </div>
   </div>
-
+  
 </div>
-<!-- Liste des Rapports -->
+<!-- Liste des rapports -->
 <div class="row" *ngIf="!displayViewReport">
   <div class="col-md-12 col-xd-12">
-    <!-- Tableaux des Rapports -->
-    <table class="table table-borderless space" style="color: #999">
+    <!-- Tableau des rapports -->
+    <table class="table table-borderless space" style="color: #999" id="listingReport">
       <thead class="">
         <tr class="tablecolor rad text-row">
           <th scope="col"></th>
           <th scope="col">#</th>
           <th scope="col">Auteur</th>
           <th scope="col">Titre du rapport</th>
+          <th scope="col">Formation</th>
           <th scope="col">Notation</th>
           <th scope="col">Date du rapport</th>
           <th scope="col">Dernière modification</th>
@@ -71,6 +66,9 @@
             </div>
           </td>
           <td>{{ item.report_title }}</td>
+          <td>
+            <img src="{{environment.appLogoUrl}}{{ item.formationLogo }}" class="img-circle pull-left" width="100%">
+          </td>
           <td>
             <div class="emoji">
               <i class="far fa-smile-wink" style="font-size: 34px; margin: 0 5px 0 0;" [class.green]="item.report_rate == 5" ></i>
@@ -95,67 +93,68 @@
 
 
 <!-- ///////////////////////////////////////// DETAIL RAPPORT ///////////////////////////////////////// -->
-<div id="viewReport" *ngIf="displayViewReport">
-
-  <button style="margin-bottom: 50px;" type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Close</button>
-  <!-- div sans formulaire si consultation-->
-
-  <!-- Info de l'étudiant -->
-  <div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
-        <div class="x_title">
-          <div class="pull-left">
-            <img src="{{ environment.appImageUrl }}{{ report.studentAvatar }}" class="img-circle pull-left" style="width: 37px;">
-            <div class="pull-left" style="margin: 0 0 0 10px;">
-              <div class="alignleft" style="font-size: 25px;">{{ report.studentLastname }} {{ report.studentFirstname }}</div>
-            </div>
+<div id="viewReport" *ngIf="displayViewReport" class="container">
+  <div id="viewOnly">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Rapport : {{report.report_title}}</h3>
+      </div>
+      <!-- bouton ajouter -->
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group pull-right">
+            <button type="button" id="closeModal" class="btn bg-red icon no-border" (click)="closeViewReport()">Revenir aux rapports</button>
           </div>
-          <div class="emoji pull-right">
-            <i class="far fa-smile-wink" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.green]="report.report_rate == 5" (click)="updateNotation(5)" ></i>
-            <i class="far fa-smile" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.blue]="report.report_rate == 4" (click)="updateNotation(4)"></i>
-            <i class="far fa-frown" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="report.report_rate == 3" (click)="updateNotation(3)"></i>
-            <i class="far fa-sad-cry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.purple]="report.report_rate == 2" (click)="updateNotation(2)"></i>
-            <i class="far fa-angry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.red]="report.report_rate == 1" (click)="updateNotation(1)"></i>
-          </div>
-          <div class="clearfix"></div>
         </div>
-        <div class="x_content">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <h2 style="margin-top: 40px;">Objectif(s) de la journée</h2>
-              <div [innerHTML]="report.report_text[0]"></div>
-              <h2 style="margin-top: 40px;">Succès</h2>
-              <div [innerHTML]="report.report_text[1]"></div>
-              <h2 style="margin-top: 40px;">Difficultés</h2>
-              <div [innerHTML]="report.report_text[2]"></div>
-              <h2 style="margin-top: 40px;">Outils et méthodes utilisés</h2>
-              <div [innerHTML]="report.report_text[3]"></div>
-              <h2 style="margin-top: 40px;">Compétences acquises</h2>
-              <div [innerHTML]="report.report_text[4]"></div>
-              <h2 style="margin-top: 40px;">Recommandations</h2>
-              <div [innerHTML]="report.report_text[5]"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <div class="pull-left">
+              <img src="{{ environment.appImageUrl }}{{ report.studentAvatar }}" class="img-circle pull-left" style="width: 37px;">
+              <div class="pull-left" style="margin: 0 0 0 10px;">
+                <div class="alignleft" style="font-size: 25px;">{{ report.studentLastname }} {{ report.studentFirstname }}</div>
+              </div>
+            </div>
+            <div class="emoji pull-right">
+              <i class="far fa-smile-wink" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.green]="report.report_rate == 5"></i>
+              <i class="far fa-smile" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.blue]="report.report_rate == 4"></i>
+              <i class="far fa-frown" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.yellow]="report.report_rate == 3"></i>
+              <i class="far fa-sad-cry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.purple]="report.report_rate == 2"></i>
+              <i class="far fa-angry" style="cursor: pointer; font-size: 34px; margin: 0 5px 0 0;" [class.red]="report.report_rate == 1"></i>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2 style="margin-top: 40px;">Objectif(s) de la journée</h2>
+                <div [innerHTML]="report.report_text[0]"></div>
+                <h2 style="margin-top: 40px;">Succès</h2>
+                <div [innerHTML]="report.report_text[1]"></div>
+                <h2 style="margin-top: 40px;">Difficultés</h2>
+                <div [innerHTML]="report.report_text[2]"></div>
+                <h2 style="margin-top: 40px;">Outils et méthodes utilisés</h2>
+                <div [innerHTML]="report.report_text[3]"></div>
+                <h2 style="margin-top: 40px;">Compétences acquises</h2>
+                <div [innerHTML]="report.report_text[4]"></div>
+                <h2 style="margin-top: 40px;">Recommandations</h2>
+                <div [innerHTML]="report.report_text[5]"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="row">
+      <h3 style="padding: 3px;" class="col-md-10 col-md-offset-1">Commentaires :</h3>
+      <div *ngFor="let comment of report.comments" class="panel panel-info col-md-10 col-md-offset-1">
+        <h5>{{ comment.firstname }} {{ comment.lastname }} :</h5>
+        <p>{{ comment.text }}</p>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="row" *ngIf="displayViewReport">
-  <h3 style="padding: 3px;" class="col-md-10 col-md-offset-1">Commentaires :</h3>
-  <div *ngFor="let comment of commenteRport" class="panel panel-info col-md-10 col-md-offset-1">
-    <h5>{{ comment.firstname }} {{ comment.lastname }} :</h5>
-    <p>{{ comment.text }}</p>
-  </div>
-</div>
-
-<br><br><br><br><br>
-
-
 <!-- Détail d'un rapport -->
