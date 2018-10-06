@@ -142,7 +142,7 @@ export class TeacherReportsComponent implements OnInit {
     console.log('filterByStudent studentId ',  this.selectedStudent);
     console.log('filterByStudent selectedDate ',  this.selectedDate);
     const filter = {
-      studentId: this.selectedStudent,
+      studentId: (this.selectedStudent !== '0') ? this.selectedStudent : '',
       report_date: (this.selectedDate !== '0')?this.selectedDate:''
     }
     this.dataReport = this.filterPipe.transform(this.allReports, filter);
