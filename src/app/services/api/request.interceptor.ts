@@ -7,15 +7,15 @@ import {
   HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
- 
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
- 
+
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
- 
+
   constructor() {}
- 
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     document.getElementById("loadingWrapper2").style.display = 'block';

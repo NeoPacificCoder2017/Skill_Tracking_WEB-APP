@@ -31,9 +31,10 @@ export class ResetPasswordComponent implements OnInit {
     this.resetPasswordForm = this.formBuilder.group({
       username: ['', Validators.required],
     });
-  
+
     document.getElementById("loadingWrapper2").style.display = 'none';
   }
+
 
   get f() { return this.resetPasswordForm.controls; }
 
