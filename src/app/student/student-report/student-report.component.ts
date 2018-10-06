@@ -88,6 +88,7 @@ export class StudentReportComponent implements OnInit {
       console.log('this.report', this.report);
       console.log('this.me', this.me);
       this.report.report_text = this.report.report_text.split('::://:::');
+      console.log("comments", this.report);
     }
   }
 

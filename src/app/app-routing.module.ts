@@ -46,8 +46,8 @@ import { StudentDetailReportComponent } from './student/student-detail-report/st
 import { StudentCreateReportComponent } from './student/student-create-report/student-create-report.component';
 import { StudentEditReportComponent } from './student/student-edit-report/student-edit-report.component';
 import { StudentPlanningComponent } from './student/student-planning/student-planning.component';
-
 let token: any;
+
 const routes: Routes = [
   {
     path: '',
