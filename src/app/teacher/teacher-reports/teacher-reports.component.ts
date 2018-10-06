@@ -56,7 +56,6 @@ export class TeacherReportsComponent implements OnInit {
     });
 
     this.getReports();
-    this.getFormations();
 
   }
 
@@ -72,17 +71,18 @@ export class TeacherReportsComponent implements OnInit {
   // recuperer la liste des rapports des toutes formations confondues
   public getReports() {
     this.apiService.get('report/reportsAvailableForTeacher' ).subscribe(data => {
-      this.dataReport = data;
+      this.dataReport = this.allReports = data;
       console.log('data Report', this.dataReport);
       this.generateStudentsList();
+      this.generateFormationsList();
     });
   }
 
-  // recupère la liste des étudiants
   generateStudentsList() {
+    this.students = [];
     for (let i = 0; i < this.dataReport.length; i++) {
       const studentName = this.dataReport[i].studentFirstname + ' ' + this.dataReport[i].studentLastname;
-      const studentId = this.dataReport[i].student_id;
+      const studentId = this.dataReport[i].studentId;
       const position = this.students.map(function(e) { return e.studentName; }).indexOf(studentName);
       if (position === -1)  {
         this.students.push({
@@ -91,55 +91,59 @@ export class TeacherReportsComponent implements OnInit {
         });
       }
     }
-
-    console.log('ListStudent', this.students);
   }
 
-  // -------------------------- FILTRES ------------------------ //
-  // Mettre à jour la liste de recherche par étudiant
-
-  filterReports() {
-    console.log('filterByStudent studentId ',  this.selectedStudent);
-    console.log('filterByDate  ',  this.selectedDate);
-    console.log('filterByFormation  ',  this.selectedFormation);
-    const filter = {
-      studentId: this.selectedStudent,
-      report_date: (this.selectedDate !== '0') ? this.selectedDate : ''
-    };
-    this.dataReport = this.filterPipe.transform(this.allReports, filter);
-  }
-
-  getSelectedStudentsSearch() {
-    this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
-    .subscribe( data => {
-      this.dataStudent = data;
-      console.log('getStudentOfFormation data', this.dataStudent);
+  generateFormationsList() {
+    this.formations = [];
+    for (let i = 0; i < this.dataReport.length; i++) {
+      const formationtName = this.dataReport[i].formationName;
+      const formationtId = this.dataReport[i].formationt_Id;
+      const position = this.formations.map(function(e) { return e.name; }).indexOf(formationtName);
+      if (position === -1)  {
+        this.formations.push({
+          name: formationtName,
+          id: formationtId
+        });
       }
-    );
+    }
   }
 
-  getReportsByFormation() {
-    this.apiService.get('reportsByFormation/' + this.idFormation)
-    .subscribe( data => {
-      this.dataReport = data;
-      console.log('getReportsByFormation data', this.dataReport);
-    });
-  }
-
-  // -------------------------- DETAIL RAPPORTS ------------------------ //
   goBack() {
     this.location.back();
   }
 
   viewReport(item) {
-    this.displayViewReport = 1;
-    console.log('displayViewReport', this.displayViewReport);
     this.report = item;
+    console.log('this.report', this.report);
+
+    this.displayViewReport = 1;
     this.report.report_text = this.report.report_text.split('::://:::');
   }
 
   closeViewReport() {
     this.displayViewReport = 0;
+  }
+
+  // -------------------------- FILTRES ------------------------ //
+  filterReportsByFormation() {
+    this.selectedDate = '';
+    this.apiService.get('reportsByFormation/' + this.selectedFormation).subscribe(
+      data => {
+        this.dataReport = this.allReports = data;
+        console.log('data Report', data);
+        this.generateStudentsList();
+      }
+    );
+  }
+
+  filterReports() {
+    console.log('filterByStudent studentId ',  this.selectedStudent);
+    console.log('filterByStudent selectedDate ',  this.selectedDate);
+    const filter = {
+      studentId: (this.selectedStudent !== '0') ? this.selectedStudent : '',
+      report_date: (this.selectedDate !== '0') ? this.selectedDate : ''
+    };
+    this.dataReport = this.filterPipe.transform(this.allReports, filter);
   }
 
   stateText() {
