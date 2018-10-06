@@ -34,7 +34,6 @@ export class TeacherReportsComponent implements OnInit {
   students = [];
   selectedStudent: any;
 
-  comments: any;
 
   constructor(
     private apiService: ApiService,
@@ -45,7 +44,6 @@ export class TeacherReportsComponent implements OnInit {
   ) {
       this.formation = {};
       this.report = {title : '', rate : '', text : ''};
-      this.comments = {};
     }
 
   ngOnInit() {
@@ -56,13 +54,8 @@ export class TeacherReportsComponent implements OnInit {
       this.formation = data;
       console.log('formation_id data', data.id);
     });
-    this.route.queryParams
-      .subscribe(params => {
-        this.idReport = params.idReport;
-        this.getComments();
-        this.getReports();
-      });
 
+    this.getReports();
     this.getFormations();
 
   }
@@ -152,26 +145,4 @@ export class TeacherReportsComponent implements OnInit {
   stateText() {
     return ( this.report.is_daily === 0) ? 'Hebdomadaire' : 'Journalier';
   }
-
-  // -------------------------- DETAIL RAPPORTS - COMMENTAIRES ------------------------ //
-  getComments() {
-    this.apiService.get('getReport/' + this.idReport + '/ofFormation/' + this.idFormation)
-    .subscribe(data => {
-      this.comments = data;
-
-      console.log('idReport', this.idReport );
-      console.log('idFormation', this.idFormation );
-      console.log('getComents', this.comments);
-    });
-  }
-
 }
-// TODO
-// alors pour récupérer les commentaire, tu récupère les commentaire par l'id du report, donc tu utilise cette route :
-// getReport/reportId/ofFormation/formationId
-
-// Ensuite pour la création d'un commentaire :
-// reportComment/create
-// tu as besoin d'envoyer :
-// - report_id
-// - text

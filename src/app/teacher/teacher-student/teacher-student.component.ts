@@ -88,12 +88,7 @@ export class TeacherStudentComponent implements OnInit {
 
   skillValidatedByTeacher(skillId, progressionId, teacherValidation, skillIndex) {
     teacherValidation = (teacherValidation === 1) ? 0 : 1;
-    console.log('skillValidatedByTeacher skillId', skillId);
-    console.log('skillValidatedByTeacher progressionId', progressionId);
-    console.log('skillValidatedByTeacher teacherValidation', teacherValidation);
     this.skills[skillIndex].progression.student_validation = teacherValidation;
-    console.log('skillValidatedByTeacher this.skills[skillIndex].progression.student_validation',
-                this.skills[skillIndex].progression.student_validation);
 
     this.getStudentOfFormation();
     this.updateSkillsArray(skillId, teacherValidation);
@@ -106,7 +101,7 @@ export class TeacherStudentComponent implements OnInit {
       console.log('skillValidatedByTeacher data', data);
     });
 
-    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1500);
+    setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1000);
   }
 
   updateSkillsArray(skillId, teacherValidation) {
@@ -169,6 +164,8 @@ export class TeacherStudentComponent implements OnInit {
           this.stateText(this.skills[i].id);
       }
     }
+  setTimeout(() => { this.filterByModule(this.moduleSelected); }, 1000);
+
   }
 }
 
