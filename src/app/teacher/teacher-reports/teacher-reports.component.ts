@@ -21,6 +21,7 @@ export class TeacherReportsComponent implements OnInit {
   formation: any;
   selectedFormation: any;
   idFormation: any;
+  format: 'd/mmm/yyyy';
 
   me: any;
 
@@ -74,8 +75,8 @@ export class TeacherReportsComponent implements OnInit {
   // recuperer la liste des rapports des toutes formations confondues
   public getReports() {
     this.apiService.get('report/reportsAvailableForTeacher' ).subscribe(data => {
-      this.dataReport = data;
-      console.log('data Report', this.dataReport);
+      this.dataReport = this.allReports = data.data;
+      console.log('data Report', data);
       this.generateStudentsList();
     });
   }
@@ -93,31 +94,21 @@ export class TeacherReportsComponent implements OnInit {
         });
       }
     }
-
-    console.log('ListStudent', this.students);
   }
-
   // -------------------------- FILTRES ------------------------ //
   // Mettre à jour la liste de recherche par étudiant
 
   filterReports() {
     console.log('filterByStudent studentId ',  this.selectedStudent);
+    console.log('filterByFormation formationId ',  this.selectedFormation);
     console.log('filterByDate  ',  this.selectedDate);
-    console.log('filterByFormation  ',  this.selectedFormation);
     const filter = {
       studentId: this.selectedStudent,
+      formationId: this.selectedFormation,
       report_date: (this.selectedDate !== '0') ? this.selectedDate : ''
     };
     this.dataReport = this.filterPipe.transform(this.allReports, filter);
-  }
-
-  getSelectedStudentsSearch() {
-    this.apiService.get('getStudentsOfAFormation/' + this.idFormation)
-    .subscribe( data => {
-      this.dataStudent = data;
-      console.log('getStudentOfFormation data', this.dataStudent);
-      }
-    );
+    console.log('filterReports dataReport', this.dataReport);
   }
 
   getReportsByFormation() {
@@ -128,11 +119,6 @@ export class TeacherReportsComponent implements OnInit {
     });
   }
 
-  showDetailReport(idReport) {
-    console.log('idReport ShowDetailReport', idReport);
-    this.router.navigate(['teacher/reportDetail'], { queryParams: { idReport: idReport } });
-  }
-
   // -------------------------- DETAIL RAPPORTS ------------------------ //
   goBack() {
     this.location.back();
@@ -140,14 +126,10 @@ export class TeacherReportsComponent implements OnInit {
 
   viewReport(item) {
     this.report = item;
-    if (this.me.id === this.report.studentId) {
-      this.router.navigate(['student/report/edit'], {queryParams : { report : this.report.report_id }} );
-    } else {
-      this.displayViewReport = 1;
-      console.log('this.report', this.report);
-      console.log('this.me', this.me);
-      this.report.report_text = this.report.report_text.split('::://:::');
-    }
+    this.displayViewReport = 1;
+    console.log('this.report', this.report);
+    console.log('this.me', this.me);
+    this.report.report_text = this.report.report_text.split('::://:::');
   }
 
   closeViewReport() {
