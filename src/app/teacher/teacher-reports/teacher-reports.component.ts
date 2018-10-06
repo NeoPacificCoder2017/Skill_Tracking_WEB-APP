@@ -56,8 +56,13 @@ export class TeacherReportsComponent implements OnInit {
       this.formation = data;
       console.log('formation_id data', data.id);
     });
+    this.route.queryParams
+      .subscribe(params => {
+        this.idReport = params.idReport;
+        this.getComments();
+        this.getReports();
+      });
 
-    this.getReports();
     this.getFormations();
 
   }
@@ -128,11 +133,6 @@ export class TeacherReportsComponent implements OnInit {
     });
   }
 
-  showDetailReport(idReport) {
-    console.log('idReport ShowDetailReport', idReport);
-    this.router.navigate(['teacher/reportDetail'], { queryParams: { idReport: idReport } });
-  }
-
   // -------------------------- DETAIL RAPPORTS ------------------------ //
   goBack() {
     this.location.back();
@@ -155,9 +155,12 @@ export class TeacherReportsComponent implements OnInit {
 
   // -------------------------- DETAIL RAPPORTS - COMMENTAIRES ------------------------ //
   getComments() {
-    this.apiService.get('getReport/reportId/ofFormation/formationId')
+    this.apiService.get('getReport/' + this.idReport + '/ofFormation/' + this.idFormation)
     .subscribe(data => {
       this.comments = data;
+
+      console.log('idReport', this.idReport );
+      console.log('idFormation', this.idFormation );
       console.log('getComents', this.comments);
     });
   }
